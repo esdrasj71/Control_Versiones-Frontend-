@@ -2,33 +2,33 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Pipe, PipeTransform } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProductCategoryHomeComponent } from './product-category-home/product-category-home.component';
-import { ProductCategoryFormComponent } from './product-category-form/product-category-form.component';
 import {Route, RouterModule} from '@angular/router';
-import { BrandHomeComponent } from './brand-home/brand-home.component';
-import { BrandFormComponent } from './brand-form/brand-form.component';
+import { BrandHomeComponent } from './components/brand/brand-home/brand-home.component';
+import { BrandFormComponent } from './components/brand/brand-form/brand-form.component';
 import {HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import {FilterPipe, SortByPipe} from '../pipes';
+import { ProvidersHomeComponent } from './components/providers/providers-home/providers-home.component';
+import { ProvidersFormComponent } from './components/providers/providers-form/providers-form.component';
 
 const routes: Route[]=[
-  {path: '', component: ProductCategoryHomeComponent},
-  {path: 'product-category-home', component:ProductCategoryHomeComponent},
-  {path: 'product-category-form', component:ProductCategoryFormComponent},
   {path: 'brand-form', component:BrandFormComponent},
   {path: 'brand-home', component:BrandHomeComponent},
-  {path: 'brand-home/:id', component: BrandHomeComponent}
+  {path: 'brand-home/:id', component: BrandHomeComponent},
+  {path: 'providers-home', component: ProvidersHomeComponent},
+  {path: 'providers-form', component: ProvidersFormComponent},
+  {path: 'providers-form/:id', component: ProvidersFormComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductCategoryHomeComponent,
-    ProductCategoryFormComponent,
     BrandHomeComponent,
     BrandFormComponent,
     FilterPipe,
     SortByPipe,
+    ProvidersHomeComponent,
+    ProvidersFormComponent,
     
   ],
   imports: [

@@ -1,0 +1,28 @@
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">NIT</th>
+            <th scope="col">Nombre Fiscal</th>
+            <th scope="col">Número de telefono</th>
+            <th scope="col">Otro número de telefono</th>
+            <th scope="col">Correo electronico</th>
+            <th scope="col">Dirección</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let provider of providers">
+            <td>{{provider.Providers_Id}}</td>
+            <td>{{provider.NIT}}</td>
+            <td>{{provider.Fiscal_Name}}</td>
+            <td>{{provider.Phone_Number1}}</td>
+            <td>{{provider.Phone_Number2}}</td>
+            <td>{{provider.Email}}</td>
+            <td>{{provider.Address}}</td>
+            <td><a class="btn btn-primary btn-sm" routerLink="/providers-form/{{provider.Providers_Id}}">Editar</a> &nbsp;
+                <a class="btn btn-primary btn-sm" (click)="delete(provider.Providers_Id)" style="color:white;">Eliminar</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
