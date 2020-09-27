@@ -27,6 +27,7 @@ const routes: Route[]=[
   //Product_Category
   {path: 'product-category-home', component: ProductCategoryHomeComponent},
   {path: 'product-category-form', component: ProductCategoryFormComponent},
+  {path: 'product-category-form/:id', component: ProductCategoryFormComponent},
 ];
 
 @NgModule({

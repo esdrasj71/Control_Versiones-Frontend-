@@ -15,14 +15,21 @@ export class ProductCategoryHomeComponent implements OnInit {
 
     httpClient.get(this.API_ENDPOINT + 'product_category')
       .subscribe((data: Product_Category[]) => {
-      this.product_category = data; //Se debe acceder al arreglo de este modo, oAngular lo reconocera como un objeto del tipo Post
-      console.log(this.product_category);
-    });
+        this.product_category = data; //Se debe acceder al arreglo de este modo, oAngular lo reconocera como un objeto del tipo Post
+        console.log(this.product_category);
+      });
   }
   ngOnInit() {
   }
-  findproductcategory(productcategoryOne){
+  delete(id) {
+    this.productcategoryService.delete(id).subscribe((data) => {
+      alert('Categoria de producto eliminada');
+    }, (error) => {
+      console.log(error);
+    });
+  }
+  findproductcategory(productcategoryOne) {
     this.rootProductCategory = productcategoryOne;
     console.log(this.rootProductCategory);
-    }
+  }
 }
