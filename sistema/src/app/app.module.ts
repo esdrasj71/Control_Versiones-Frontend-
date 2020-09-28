@@ -12,6 +12,8 @@ import { ProvidersHomeComponent } from './components/providers/providers-home/pr
 import { ProvidersFormComponent } from './components/providers/providers-form/providers-form.component';
 import { ProductCategoryHomeComponent } from './components/product_category/product-category-home/product-category-home.component';
 import { ProductCategoryFormComponent } from './components/product_category/product-category-form/product-category-form.component';
+import { InventoryHomeComponent } from './components/inventory/inventory-home/inventory-home.component';
+import { InventoryFormComponent } from './components/inventory/inventory-form/inventory-form.component';
 
 const routes: Route[]=[
   //Brand
@@ -28,6 +30,10 @@ const routes: Route[]=[
   {path: 'product-category-home', component: ProductCategoryHomeComponent},
   {path: 'product-category-form', component: ProductCategoryFormComponent},
   {path: 'product-category-form/:id', component: ProductCategoryFormComponent},
+
+  //Inventory
+  {path: 'inventory-home', component: InventoryHomeComponent},
+  {path: 'inventory-form', component: InventoryFormComponent},
 ];
 
 @NgModule({
@@ -41,6 +47,8 @@ const routes: Route[]=[
     ProvidersFormComponent,
     ProductCategoryHomeComponent,
     ProductCategoryFormComponent,
+    InventoryHomeComponent,
+    InventoryFormComponent,
     
   ],
   imports: [
