@@ -13,8 +13,12 @@
     <tbody>
         <tr *ngFor="let inventory of inventory">
             <th>{{inventory.Inventory_Id}}</th>
-            <td>{{inventory.Presentation_Id.Name}}</td>
-            <td>{{post.cuerpo}}</td>
+            <th>{{inventory.Product_Id}}</th>
+            <td>{{inventory.Presentation_Id}}</td>
+            <td>{{inventory.Stock}}</td>
+            <td>{{inventory.Unit_Price}}</td>
+            <td>{{inventory.Retail_Price}}</td>
+            <td>{{inventory.Wholesale_Price}}</td>
         </tr>
     </tbody>
 </table>
