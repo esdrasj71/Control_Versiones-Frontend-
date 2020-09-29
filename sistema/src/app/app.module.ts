@@ -6,7 +6,7 @@ import { Route, RouterModule} from '@angular/router';
 import { BrandHomeComponent } from './components/brand/brand-home/brand-home.component';
 import { BrandFormComponent } from './components/brand/brand-form/brand-form.component';
 import { HttpClientModule} from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 import { FilterPipe, SortByPipe} from '../pipes';
 import { ProvidersHomeComponent } from './components/providers/providers-home/providers-home.component';
 import { ProvidersFormComponent } from './components/providers/providers-form/providers-form.component';
@@ -26,7 +26,6 @@ const routes: Route[]=[
   {path: 'providers-form', component: ProvidersFormComponent},
   {path: 'providers-form/:id', component: ProvidersFormComponent},
 
-
   //Product_Category
   {path: 'product-category-home', component: ProductCategoryHomeComponent},
   {path: 'product-category-form', component: ProductCategoryFormComponent},
@@ -35,6 +34,11 @@ const routes: Route[]=[
   //Inventory
   {path: 'inventory-home', component: InventoryHomeComponent},
   {path: 'inventory-form', component: InventoryFormComponent},
+
+  //Product
+  {path: 'product-category-home', component: ProductCategoryHomeComponent},
+  {path: 'product-category-form', component: ProductCategoryFormComponent},
+  {path: 'product-category-form/:id', component: ProductCategoryFormComponent},
 ];
 
 @NgModule({
@@ -50,6 +54,8 @@ const routes: Route[]=[
     ProductCategoryFormComponent,
     InventoryHomeComponent,
     InventoryFormComponent,
+    ProductCategoryHomeComponent,
+    ProductCategoryFormComponent
     
   ],
   imports: [
@@ -58,7 +64,6 @@ const routes: Route[]=[
     RouterModule.forRoot(routes),
     HttpClientModule,
     FormsModule
-    
   ],
   providers: [],
   bootstrap: [AppComponent]

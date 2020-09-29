@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Inventory } from '../interfaces/inventory';
+import { Products} from 'src/app/components/product/interfaces/product';
 
 @Component({
   selector: 'app-inventory-form',
@@ -15,12 +16,11 @@ export class InventoryFormComponent implements OnInit {
     Presentation_Id: null,
     Product_Id: null,
   };
-
+  product: Products[];
   constructor() { }
 
   ngOnInit(): void {
-    //this.tipoService.getTipo().subscribe((data: Tipo) => {
-      //return this.tipo = data['data'];
+    
     }
 
   saveInventory(){
