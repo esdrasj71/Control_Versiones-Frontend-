@@ -26,8 +26,7 @@ export class LotService {
    }
    put(lot) { //Le llamaremos put para fines practicos
     const headers = new HttpHeaders({ 'ContentType': 'application/json' }); 
-    return this.httpClient.put(this.API_ENDPOINT + 'lot/' + lot.Lot_Id
-      , lot, { headers: headers }); 
+    return this.httpClient.put(this.API_ENDPOINT + 'lot/' + lot.Lot_Id, lot, { headers: headers }); 
   }
   delete(id) {
     const headers = new HttpHeaders({ 'ContentType': 'application/json' });

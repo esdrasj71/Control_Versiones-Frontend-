@@ -24,6 +24,7 @@ export class LotHomeComponent implements OnInit {
       });
   }
   ngOnInit() {}
+  
   delete(id) {
     this.lotService.delete(id).subscribe(
       (data) => {

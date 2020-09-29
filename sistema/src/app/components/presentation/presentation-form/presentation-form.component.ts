@@ -42,7 +42,7 @@ export class PresentationFormComponent implements OnInit {
         alert('Presentacion actualizado');
         console.log(data)
       }, (error) => {
-        console.log(error);
+        console.log(error);  
         alert('Ocurrio un error');
       });
     }

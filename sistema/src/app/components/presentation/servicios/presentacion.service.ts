@@ -26,8 +26,7 @@ export class PresentacionService {
    }
    put(presentation) { //Le llamaremos put para fines practicos
     const headers = new HttpHeaders({ 'ContentType': 'application/json' }); 
-    return this.httpClient.put(this.API_ENDPOINT + 'presentation/' + presentation.Presentation_Id
-      , presentation, { headers: headers }); 
+    return this.httpClient.put(this.API_ENDPOINT + 'presentation/' + presentation.Presentation_Id, presentation,{ headers: headers }); 
   }
   delete(id) {
     const headers = new HttpHeaders({ 'ContentType': 'application/json' });

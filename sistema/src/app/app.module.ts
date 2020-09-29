@@ -27,10 +27,10 @@ const routes: Route[]=[
   {path: 'product-home', component: ProductHomeComponent},
   {path: 'product-form', component: ProductFormComponent},
   {path: 'presentation-home', component: PresentationHomeComponent},
-  {path: 'presentation-home/:id', component: LotHomeComponent},
+  {path: 'presentation-form/:id', component: PresentationFormComponent},
   {path: 'presentation-form', component: PresentationFormComponent},
   {path: 'lot-home', component: LotHomeComponent},
-  {path: 'lot-home/:id', component: LotHomeComponent},
+  {path: 'lot-form/:id', component: LotFormComponent},
   {path: 'lot-form', component: LotFormComponent}
 ];
 

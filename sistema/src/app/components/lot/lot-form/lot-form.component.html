@@ -3,9 +3,13 @@
         <h2 class="alert alert-primary" role="alert">Nuevo Lote</h2>
         <div class="alert alert-warning" role="alert">
             <div class="form-group row">
-                <label class="col-md-3 form-controllabel" for="Lot">Lote</label>
+                <label class="col-md-3 form-controllabel" for="Lot">Fecha: </label>
                 <div class="col-md-9">
                     <input [(ngModel)]="lot.Due_Date" type="date" id="Due_Date" class="form-control">
+                </div>
+                <label class="col-md-3 form-controllabel" for="Lot">Product_Id: </label>
+                <div class="col-md-9">
+                    <input [(ngModel)]="lot.Product_Id" type="number" id="Product_Id" class="form-control">
                 </div>
             </div>
            

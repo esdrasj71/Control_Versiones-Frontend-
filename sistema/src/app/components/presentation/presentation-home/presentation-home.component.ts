@@ -6,7 +6,7 @@ import { Presentation } from '../interfaces/presentation';
 @Component({
   selector: 'app-presentation-home',
   templateUrl: './presentation-home.component.html',
-  styleUrls: ['./presentation-home.component.css']
+  styleUrls: ['./presentation-home.component.css'] 
 })
 export class PresentationHomeComponent implements OnInit {
 
