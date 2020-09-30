@@ -16,7 +16,7 @@ export class ProvidersService {
    }
    getProviders(){
     return this.httpClient.get(this.API_ENDPOINT + 'providers' );
-  }
+  } 
    save(providers: Providers){
      console.log(providers);
      const headers = new HttpHeaders({'Content-Type': 'application/json'});
@@ -24,8 +24,7 @@ export class ProvidersService {
    }
    put(providers) { //Le llamaremos put para fines practicos
     const headers = new HttpHeaders({ 'ContentType': 'application/json' }); //Esto se declara cuando hay una ruta que no sea get
-    return this.httpClient.put(this.API_ENDPOINT + 'providers/' + providers.Providers_Id
-      , providers, { headers: headers }); //La ruta también se declara post por las rutasque se declararon en laravel
+    return this.httpClient.put(this.API_ENDPOINT + 'providers/' + providers.Providers_Id, providers, { headers: headers }); 
   }
   delete(id) {
     const headers = new HttpHeaders({ 'ContentType': 'application/json' });

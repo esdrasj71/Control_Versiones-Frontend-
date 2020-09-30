@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Lot } from '../interfaces/lot';
 import { ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-lot-form',
   templateUrl: './lot-form.component.html',
@@ -34,29 +35,29 @@ export class LotFormComponent implements OnInit {
     } else {
       this.editing = false;
     }
-  }
-  ngOnInit() {
-  }
-  savePost() {
-    if (this.editing) {
-      this.lotService.put(this.lot).subscribe((data) => { //El unico cambioes el put
-        alert('Lote actualizado');
-        console.log(data)
-      }, (error) => {
-        console.log(error);
-        alert('Ocurrio un error');
-      });
-    }
-    else {
-      console.log(this.lot);
-      this.lotService.save(this.lot).subscribe((data) => {
-        alert('Lote guardado');
-        console.log(data)
-      }, (error) => {
-        console.log(error);
-        alert('Ocurrio un error');
-      });
-    }
-  } 
 }
- 
+ngOnInit() {
+}
+savePost() {
+  if (this.editing) {
+    this.lotService.put(this.lot).subscribe((data) => { //El unico cambioes el put
+      alert('Lote actualizado');
+      console.log(data)
+    }, (error) => {
+      console.log(error);
+      alert('Ocurrio un error');
+    });
+  }
+  else {
+    console.log(this.lot);
+    this.lotService.save(this.lot).subscribe((data) => {
+      alert('Lote guardado');
+      console.log(data)
+    }, (error) => {
+      console.log(error);
+      alert('Ocurrio un error');
+    });
+  }
+} 
+}
+
