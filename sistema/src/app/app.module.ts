@@ -12,18 +12,17 @@ import { ProvidersHomeComponent } from './components/providers/providers-home/pr
 import { ProvidersFormComponent } from './components/providers/providers-form/providers-form.component';
 import { ProductHomeComponent } from './components/product/product-home/product-home.component';
 import { ProductFormComponent } from './components/product/product-form/product-form.component';
-<<<<<<< HEAD
 import { LotHomeComponent } from './components/lot/lot-home/lot-home.component';
 import { LotFormComponent } from './components/lot/lot-form/lot-form.component';
 import { ProductCategoryHomeComponent } from './components/product_category/product-category-home/product-category-home.component';
 import { ProductCategoryFormComponent } from './components/product_category/product-category-form/product-category-form.component';
-=======
 import { PresentationHomeComponent } from './components/presentation/presentation-home/presentation-home.component';
 import { PresentationFormComponent } from './components/presentation/presentation-form/presentation-form.component';
-import { LotHomeComponent } from './components/lot/lot-home/lot-home.component';
-import { LotFormComponent } from './components/lot/lot-form/lot-form.component';
 
->>>>>>> fd3c8aacff47692532462eae2ac0b47f8c63fcd2
+
+
+
+
 const routes: Route[]=[
   {path: 'brand-form', component:BrandFormComponent},
   {path: 'brand-home', component:BrandHomeComponent},
@@ -33,20 +32,16 @@ const routes: Route[]=[
   {path: 'providers-form/:id', component: ProvidersFormComponent},
   {path: 'product-home', component: ProductHomeComponent},
   {path: 'product-form', component: ProductFormComponent},
-<<<<<<< HEAD
   {path: 'lot-home', component: LotHomeComponent},
   {path: 'lot-form', component: LotFormComponent},
   {path: 'product-category-home', component: ProductCategoryHomeComponent},
   {path: 'product-category-form', component: ProductCategoryFormComponent},
   {path: 'product-category-form/:id', component: ProductCategoryFormComponent},
-=======
-  {path: 'presentation-home', component: PresentationHomeComponent},
   {path: 'presentation-home/:id', component: LotHomeComponent},
-  {path: 'presentation-form', component: PresentationFormComponent},
   {path: 'lot-home', component: LotHomeComponent},
   {path: 'lot-home/:id', component: LotHomeComponent},
   {path: 'lot-form', component: LotFormComponent}
->>>>>>> fd3c8aacff47692532462eae2ac0b47f8c63fcd2
+
 ];
 
 @NgModule({
@@ -60,17 +55,14 @@ const routes: Route[]=[
     ProvidersFormComponent,
     ProductHomeComponent,
     ProductFormComponent,
-<<<<<<< HEAD
     LotHomeComponent,
     LotFormComponent,
     ProductCategoryHomeComponent,
     ProductCategoryFormComponent,
-=======
     PresentationHomeComponent,
     PresentationFormComponent,
     LotHomeComponent,
     LotFormComponent,
->>>>>>> fd3c8aacff47692532462eae2ac0b47f8c63fcd2
   ],
   imports: [
     BrowserModule,
