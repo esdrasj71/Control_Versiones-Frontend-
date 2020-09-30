@@ -18,7 +18,8 @@ import { ProductCategoryHomeComponent } from './components/product_category/prod
 import { ProductCategoryFormComponent } from './components/product_category/product-category-form/product-category-form.component';
 import { PresentationHomeComponent } from './components/presentation/presentation-home/presentation-home.component';
 import { PresentationFormComponent } from './components/presentation/presentation-form/presentation-form.component';
-
+import { PurchaseHeaderFormComponent } from './components/purchase/purchase-header-form/purchase-header-form.component';
+import { FiltradoproviderPipe } from './pipes/filtradoprovider.pipe';
 const routes: Route[]=[
   {path: 'brand-form', component:BrandFormComponent},
   {path: 'brand-home', component:BrandHomeComponent},
@@ -37,8 +38,9 @@ const routes: Route[]=[
   {path: 'presentation-home/:id', component: LotHomeComponent},
   {path: 'lot-home', component: LotHomeComponent},
   {path: 'lot-form/:id', component: LotFormComponent},
-  {path: 'lot-form', component: LotFormComponent}
-
+  {path: 'lot-form', component: LotFormComponent},
+  {path: 'purchase_header-form', component: PurchaseHeaderFormComponent},
+  {path: 'product-form', component: ProductFormComponent}
 ];
 
 @NgModule({
@@ -60,6 +62,8 @@ const routes: Route[]=[
     PresentationFormComponent,
     LotHomeComponent,
     LotFormComponent,
+    PurchaseHeaderFormComponent,
+    FiltradoproviderPipe,
   ],
   imports: [
     BrowserModule,
