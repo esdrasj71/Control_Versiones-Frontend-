@@ -7,15 +7,18 @@ import {Providers} from '../interfaces/providers';
 export class ProvidersService {
   API_ENDPOINT = 'http://localhost:3000/';
   //providers:Providers[];
-  providers=[];
+  providers:Providers[];
   constructor(private httpClient: HttpClient) {
     httpClient.get(this.API_ENDPOINT + 'providers')
       .subscribe((data: Providers[]) => {
-        this.providers = data;
+        this.providers = data['data'];
       });
    }
    getProviders(){
     return this.httpClient.get(this.API_ENDPOINT + 'providers' );
+  }
+  getProvidersId(id){
+    return this.httpClient.get(this.API_ENDPOINT + 'providers/'+ id);
   }
    save(providers: Providers){
      console.log(providers);

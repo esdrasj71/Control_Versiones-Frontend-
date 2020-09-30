@@ -12,7 +12,8 @@ import { ProvidersHomeComponent } from './components/providers/providers-home/pr
 import { ProvidersFormComponent } from './components/providers/providers-form/providers-form.component';
 import { ProductHomeComponent } from './components/product/product-home/product-home.component';
 import { ProductFormComponent } from './components/product/product-form/product-form.component';
-
+import { PurchaseHeaderFormComponent } from './components/purchase/purchase-header-form/purchase-header-form.component';
+import { FiltradoproviderPipe } from './pipes/filtradoprovider.pipe';
 const routes: Route[]=[
   {path: 'brand-form', component:BrandFormComponent},
   {path: 'brand-home', component:BrandHomeComponent},
@@ -21,6 +22,7 @@ const routes: Route[]=[
   {path: 'providers-form', component: ProvidersFormComponent},
   {path: 'providers-form/:id', component: ProvidersFormComponent},
   {path: 'product-home', component: ProductHomeComponent},
+  {path: 'purchase_header-form', component: PurchaseHeaderFormComponent},
   {path: 'product-form', component: ProductFormComponent}
 ];
 
@@ -35,7 +37,8 @@ const routes: Route[]=[
     ProvidersFormComponent,
     ProductHomeComponent,
     ProductFormComponent,
-    
+    PurchaseHeaderFormComponent,
+    FiltradoproviderPipe,
   ],
   imports: [
     BrowserModule,
