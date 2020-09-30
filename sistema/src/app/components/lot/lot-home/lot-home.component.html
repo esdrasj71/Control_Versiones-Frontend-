@@ -1,1 +1,23 @@
+<<<<<<< HEAD
 <p>lot-home works!</p>
+=======
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Fecha_Vencimiento</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let lot of lot">
+            <td>{{lot.Lot_Id}}</td>
+            <td>{{lot.Due_Date}}</td>
+            <td><a class="btn btn-primary btn-sm" routerLink="/lot-form/{{lot.Lot_Id}}">Editar</a> &nbsp;
+                <a class="btn btn-primary btn-sm" (click)="delete(lot.Lot_Id)" style="color:white;">Eliminar</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+>>>>>>> fd3c8aacff47692532462eae2ac0b47f8c63fcd2
