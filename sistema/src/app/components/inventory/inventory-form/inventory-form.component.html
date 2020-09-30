@@ -1,12 +1,26 @@
 <div class="container">
     <h2>Ingresar Inventario</h2>
     <div>
-        <div class="col-md-9">
-            <label class="col-md-3 form-controllabel" for="Product">Producto:</label>
-            <select name="productcombobox" [(ngModel)]="inventory.Product_Id">
-                <option selected="true" disabled="disabled">Seleccione el producto</option>
-                <option *ngFor="let product of product" value="{{product.Product_Id}}">{{product.Name}}</option>
-            </select>
+        <div class="col-md-12">
+            <div class="form-group row">
+                <label for="product" class="col-form-label">Producto:</label>
+                <div class="col">
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target=".bd-example-modal-lg">
+                        Buscar Producto
+                    </button>
+                    <br />
+                    <div *ngFor="let select of product_select">
+                        <label for="product" class="col-form-label">Número Correlativo: {{select.Correlative_Product}}</label>
+                        <br />
+                        <label for="product" class="col-form-label">Nombre: {{select.Product}} </label>
+                        <br />
+                        <label for="product" class="col-form-label">Marca: {{select.Brand}}</label>
+                        <br />
+                        <label for="product" class="col-form-label">Categoría: {{select.Category}}</label>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-md-9">
             <label class="col-md-3 form-controllabel" for="Presentation">Presentacion:</label>
@@ -19,28 +33,28 @@
             <label class="col-md-3 form-controllabel" for="Stock">Stock:</label>
             <div class="col-md-9">
                 <input [(ngModel)]="inventory.Stock" type="number" id="Stock" class="form-control"
-                    placeholder="Ingrese el stock"  min="10" max="100">
+                    placeholder="Ingrese el stock" min="10" max="100">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-md-3 form-controllabel" for="Unit_Price">Precio Unitario:</label>
             <div class="col-md-9">
                 <input [(ngModel)]="inventory.Unit_Price" type="number" id="Unit_Price" class="form-control"
-                    placeholder="Ingrese el precio unitario"  min="10" max="100">
+                    placeholder="Ingrese el precio unitario" min="10" max="100">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-md-3 form-controllabel" for="Retail_Price">Precio Minorista:</label>
             <div class="col-md-9">
                 <input [(ngModel)]="inventory.Retail_Price" type="number" id="Retail_Price" class="form-control"
-                    placeholder="Ingrese el precio minorista"  min="10" max="100">
+                    placeholder="Ingrese el precio minorista" min="10" max="100">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-md-3 form-controllabel" for="Wholesale_Price">Precio Mayorista:</label>
             <div class="col-md-9">
                 <input [(ngModel)]="inventory.Wholesale_Price" type="number" id="Wholesale_Price" class="form-control"
-                    placeholder="Ingrese el precio mayorista"  min="10" max="100">
+                    placeholder="Ingrese el precio mayorista" min="10" max="100">
             </div>
         </div>
         <br>
@@ -51,4 +65,59 @@
         </div>
     </div>
     <hr>
+</div>
+
+<!--Modal Product-->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px;">
+        <div class="modal-content" style="width: 900px;">
+            <div class="modal-header" style="width: 900px;">
+                <h5 class="modal-title" id="exampleModalLongTitle">Encuentre el producto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y:auto;">
+                <div class="container">
+                    <div class="form-group row">
+                        <label for="product" class="col-form-label">Producto:</label>
+                        <div class="col">
+                            <input type="text" name="product" id="product" class="form-control"
+                                placeholder="Buscar producto" [(ngModel)]="filtrado_product" tabindex="4" />
+                        </div>
+                    </div>
+                    <table class="table table-dark" style="table-layout: fixed; word-wrap: break-word;" id="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Marca</th>
+                                <th scope="col">Categoria</th>
+                                <th scope="col">Perecedero</th>
+                                <th scope="col">Número Correlativo</th>>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let product of product | fitradoproduct:filtrado_product">
+                                <td height="10">{{product.Product_Id}}</td>
+                                <td height="10">{{product.Product}}</td>
+                                <td height="10">{{product.Brand}}</td>
+                                <td height="10">{{product.Category}}</td>
+                                <td height="10">{{product.Perishable}}</td>
+                                <td height="10">{{product.Correlative_Product}}</td>
+                                <td><a class="btn btn-primary btn-sm" (click)="getProductId(product.Product_Id)"
+                                        data-miss="modal">Seleccionar</a> &nbsp;
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
 </div>

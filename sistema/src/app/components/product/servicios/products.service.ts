@@ -6,13 +6,19 @@ import {Products} from '../interfaces/product'
   providedIn: 'root'
 })
 export class ProductsService {
-  API_ENDPONT = 'http://localhost:3000/';
+  API_ENDPOINT = 'http://localhost:3000/';
 
   constructor(private httpClient: HttpClient) { 
 
   }
+  getProduct(){
+    return this.httpClient.get(this.API_ENDPOINT + 'product' );
+  }
+  getProductsId(id){
+    return this.httpClient.get(this.API_ENDPOINT + 'product/'+ id);
+  }
   saveproduct(product: Products){
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.httpClient.post(this.API_ENDPONT + 'product', product, {headers: headers});
+    return this.httpClient.post(this.API_ENDPOINT + 'product', product, {headers: headers});
   }
 }
