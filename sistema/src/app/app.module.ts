@@ -12,7 +12,10 @@ import { ProvidersHomeComponent } from './components/providers/providers-home/pr
 import { ProvidersFormComponent } from './components/providers/providers-form/providers-form.component';
 import { ProductHomeComponent } from './components/product/product-home/product-home.component';
 import { ProductFormComponent } from './components/product/product-form/product-form.component';
-
+import { LotHomeComponent } from './components/lot/lot-home/lot-home.component';
+import { LotFormComponent } from './components/lot/lot-form/lot-form.component';
+import { ProductCategoryHomeComponent } from './components/product_category/product-category-home/product-category-home.component';
+import { ProductCategoryFormComponent } from './components/product_category/product-category-form/product-category-form.component';
 const routes: Route[]=[
   {path: 'brand-form', component:BrandFormComponent},
   {path: 'brand-home', component:BrandHomeComponent},
@@ -21,7 +24,12 @@ const routes: Route[]=[
   {path: 'providers-form', component: ProvidersFormComponent},
   {path: 'providers-form/:id', component: ProvidersFormComponent},
   {path: 'product-home', component: ProductHomeComponent},
-  {path: 'product-form', component: ProductFormComponent}
+  {path: 'product-form', component: ProductFormComponent},
+  {path: 'lot-home', component: LotHomeComponent},
+  {path: 'lot-form', component: LotFormComponent},
+  {path: 'product-category-home', component: ProductCategoryHomeComponent},
+  {path: 'product-category-form', component: ProductCategoryFormComponent},
+  {path: 'product-category-form/:id', component: ProductCategoryFormComponent},
 ];
 
 @NgModule({
@@ -35,7 +43,10 @@ const routes: Route[]=[
     ProvidersFormComponent,
     ProductHomeComponent,
     ProductFormComponent,
-    
+    LotHomeComponent,
+    LotFormComponent,
+    ProductCategoryHomeComponent,
+    ProductCategoryFormComponent,
   ],
   imports: [
     BrowserModule,
