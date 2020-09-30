@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Inventory } from '../interfaces/inventory';
-import { Products} from 'src/app/components/product/interfaces/product';
+import { Products} from '../../product/interfaces/product';
 
 @Component({
   selector: 'app-inventory-form',
