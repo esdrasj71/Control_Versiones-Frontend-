@@ -2,12 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Pipe, PipeTransform } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {Route, RouterModule} from '@angular/router';
+import { Route, RouterModule} from '@angular/router';
 import { BrandHomeComponent } from './components/brand/brand-home/brand-home.component';
 import { BrandFormComponent } from './components/brand/brand-form/brand-form.component';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {FilterPipe, SortByPipe} from '../pipes';
+import { FilterPipe, SortByPipe} from '../pipes';
 import { ProvidersHomeComponent } from './components/providers/providers-home/providers-home.component';
 import { ProvidersFormComponent } from './components/providers/providers-form/providers-form.component';
 import { ProductHomeComponent } from './components/product/product-home/product-home.component';
@@ -20,27 +20,41 @@ import { PresentationHomeComponent } from './components/presentation/presentatio
 import { PresentationFormComponent } from './components/presentation/presentation-form/presentation-form.component';
 import { PurchaseHeaderFormComponent } from './components/purchase/purchase-header-form/purchase-header-form.component';
 import { FiltradoproviderPipe } from './pipes/filtradoprovider.pipe';
+import { InventoryHomeComponent } from './components/inventory/inventory-home/inventory-home.component';
+import { InventoryFormComponent } from './components/inventory/inventory-form/inventory-form.component';
+import { FitradoproductPipe } from './pipes/fitradoproduct.pipe';
+
 const routes: Route[]=[
+  //Brand
   {path: 'brand-form', component:BrandFormComponent},
   {path: 'brand-home', component:BrandHomeComponent},
   {path: 'brand-home/:id', component: BrandHomeComponent},
+  //Provider
   {path: 'providers-home', component: ProvidersHomeComponent},
   {path: 'providers-form', component: ProvidersFormComponent},
   {path: 'providers-form/:id', component: ProvidersFormComponent},
+  //Product
   {path: 'product-home', component: ProductHomeComponent},
   {path: 'product-form', component: ProductFormComponent},
+  //Presentation
   {path: 'presentation-home', component: PresentationHomeComponent},
   {path: 'presentation-form/:id', component: PresentationFormComponent},
   {path: 'presentation-form', component: PresentationFormComponent},
+  {path: 'presentation-home/:id', component: LotHomeComponent},
+  //Product Category
   {path: 'product-category-home', component: ProductCategoryHomeComponent},
   {path: 'product-category-form', component: ProductCategoryFormComponent},
   {path: 'product-category-form/:id', component: ProductCategoryFormComponent},
-  {path: 'presentation-home/:id', component: LotHomeComponent},
+  //Lot
   {path: 'lot-home', component: LotHomeComponent},
   {path: 'lot-form/:id', component: LotFormComponent},
   {path: 'lot-form', component: LotFormComponent},
+  //Purchase Header
   {path: 'purchase_header-form', component: PurchaseHeaderFormComponent},
-  {path: 'product-form', component: ProductFormComponent}
+  {path: 'product-form', component: ProductFormComponent},
+  //Inventory
+  {path: 'inventory-home', component: InventoryHomeComponent},
+  {path: 'inventory-form', component: InventoryFormComponent},
 ];
 
 @NgModule({
@@ -64,6 +78,9 @@ const routes: Route[]=[
     LotFormComponent,
     PurchaseHeaderFormComponent,
     FiltradoproviderPipe,
+    InventoryHomeComponent,
+    InventoryFormComponent,
+    FitradoproductPipe
   ],
   imports: [
     BrowserModule,
@@ -72,7 +89,6 @@ const routes: Route[]=[
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule
-    
   ],
   providers: [],
   bootstrap: [AppComponent]

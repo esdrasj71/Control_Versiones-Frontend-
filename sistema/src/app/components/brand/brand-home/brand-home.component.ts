@@ -30,7 +30,4 @@ export class BrandHomeComponent implements OnInit {
     this.rootBrand = brandOne;
     console.log(this.rootBrand);
     }
-  
-
-
 }
