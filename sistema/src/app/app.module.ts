@@ -18,6 +18,8 @@ import { ProductCategoryHomeComponent } from './components/product_category/prod
 import { ProductCategoryFormComponent } from './components/product_category/product-category-form/product-category-form.component';
 import { PresentationHomeComponent } from './components/presentation/presentation-home/presentation-home.component';
 import { PresentationFormComponent } from './components/presentation/presentation-form/presentation-form.component';
+import { EmployeeHomeComponent } from './components/employee-home/employee-home.component';
+import { EmployeeFormComponent } from './components/employee-form/employee-form.component';
 
 const routes: Route[]=[
   {path: 'brand-form', component:BrandFormComponent},
@@ -60,6 +62,8 @@ const routes: Route[]=[
     PresentationFormComponent,
     LotHomeComponent,
     LotFormComponent,
+    EmployeeHomeComponent,
+    EmployeeFormComponent,
   ],
   imports: [
     BrowserModule,
