@@ -19,12 +19,13 @@ export class InventoryFormComponent implements OnInit {
     Retail_Price: null,
     Wholesale_Price: null,
     Presentation_Id: null,
-    Product_Id: null,
+    Product_Id:  null,
   };
   //Product
   filtrado_product = '';
   product_select: any[];
   product: Products[];
+ 
   //Presentation
   filtrado_presentation = '';
   presentation_select: any[];
@@ -44,12 +45,14 @@ export class InventoryFormComponent implements OnInit {
   }
 
   saveInventory() {
-    console.log(this.inventory);
+   this.inventory.Product_Id = this.product_select[0].Product_Id;
+   console.log(this.inventory);
   }
   getProductId(id) {
     this.productsService.getProductsId(id).subscribe((data: Products[]) => {
       this.product_select = data;
       return this.product_select = Array.of(this.product_select);
+      
     });
   }
   getPresentationId(id) {

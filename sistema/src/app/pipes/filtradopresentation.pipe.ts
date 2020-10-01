@@ -8,7 +8,7 @@ export class FiltradopresentationPipe implements PipeTransform {
     if (arg === '' || arg.length < 3) return value;
     const resultado_presentation = [];
     for (const presentation of value) {
-      if (presentation.Presentation.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
+      if (presentation.Name.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
         resultado_presentation.push(presentation);
       }
     }
