@@ -15,9 +15,6 @@
                         <label  for="product" class="col-form-label">Número Correlativo:
                             {{select.Correlative_Product}}</label>
                         <br />
-                        <input   name = "inventory.Product_Id"  ngDefaultControl [(ngModel)]="select.Product_Id"  [ngModelOptions]="{standalone: true}" value="{{select.Product_Id}}"/>
-                        <label name = "{{select.Product_Id}}"  ngDefaultControl [(ngModel)]="inventory.Product_Id" class="col-form-label">ID: {{select.Product_Id}} </label>
-                        <br />
                         <label for="product" class="col-form-label">Nombre: {{select.Product}} </label>
                         <br />
                         <label for="product" class="col-form-label">Marca: {{select.Brand}}</label>
@@ -160,6 +157,7 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let presentation of presentation | filtradopresentation: filtrado_presentation ">
+                                <td height="10">{{presentation.Presentation_Id}}</td>
                                 <td height="10">{{presentation.Name}}</td>
                                 <td><a class="btn btn-primary btn-sm"
                                         (click)="getPresentationId(presentation.Presentation_Id)"

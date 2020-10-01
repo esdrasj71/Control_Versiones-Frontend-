@@ -46,6 +46,7 @@ export class InventoryFormComponent implements OnInit {
 
   saveInventory() {
    this.inventory.Product_Id = this.product_select[0].Product_Id;
+   this.inventory.Presentation_Id = this.presentation_select[0].Presentation_Id;
    console.log(this.inventory);
   }
   getProductId(id) {
