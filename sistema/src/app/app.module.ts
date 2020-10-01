@@ -20,6 +20,8 @@ import { PresentationHomeComponent } from './components/presentation/presentatio
 import { PresentationFormComponent } from './components/presentation/presentation-form/presentation-form.component';
 import { PurchaseHeaderFormComponent } from './components/purchase/purchase-header-form/purchase-header-form.component';
 import { FiltradoproviderPipe } from './pipes/filtradoprovider.pipe';
+import { EmployeeFormComponent } from './components/employee/employee-form/employee-form.component';
+import { EmployeeHomeComponent } from './components/employee/employee-home/employee-home.component';
 import { BillHeaderFormComponent } from './components/sales/bill-header-form/bill-header-form.component';
 import { InventoryHomeComponent } from './components/inventory/inventory-home/inventory-home.component';
 import { InventoryFormComponent } from './components/inventory/inventory-form/inventory-form.component';
@@ -57,6 +59,9 @@ const routes: Route[]=[
   {path: 'bill-header-form', component: BillHeaderFormComponent},
   {path: 'inventory-home', component: InventoryHomeComponent},
   {path: 'inventory-form', component: InventoryFormComponent},
+  //Employee
+  {path: 'employee-home', component: EmployeeHomeComponent},
+  {path: 'employee-form', component: EmployeeFormComponent},
 
 ];
 
@@ -82,6 +87,8 @@ const routes: Route[]=[
     PurchaseHeaderFormComponent,
     FiltradoproviderPipe,
     BillHeaderFormComponent,
+    EmployeeHomeComponent,
+    EmployeeFormComponent,
     InventoryHomeComponent,
     InventoryFormComponent,
     FitradoproductPipe
