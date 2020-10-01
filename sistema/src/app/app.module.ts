@@ -26,6 +26,7 @@ import { BillHeaderFormComponent } from './components/sales/bill-header-form/bil
 import { InventoryHomeComponent } from './components/inventory/inventory-home/inventory-home.component';
 import { InventoryFormComponent } from './components/inventory/inventory-form/inventory-form.component';
 import { FitradoproductPipe } from './pipes/fitradoproduct.pipe';
+import { FiltradopresentationPipe } from './pipes/filtradopresentation.pipe';
 
 const routes: Route[]=[
   //Brand
@@ -55,8 +56,9 @@ const routes: Route[]=[
   //Purchase Header
   {path: 'purchase_header-form', component: PurchaseHeaderFormComponent},
   {path: 'product-form', component: ProductFormComponent},
-
+  //Bill Header
   {path: 'bill-header-form', component: BillHeaderFormComponent},
+  //Inventory
   {path: 'inventory-home', component: InventoryHomeComponent},
   {path: 'inventory-form', component: InventoryFormComponent},
   //Employee
@@ -91,7 +93,8 @@ const routes: Route[]=[
     EmployeeFormComponent,
     InventoryHomeComponent,
     InventoryFormComponent,
-    FitradoproductPipe
+    FitradoproductPipe,
+    FiltradopresentationPipe
 
   ],
   imports: [
