@@ -28,7 +28,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
     this.providerService.getProvidersId(id).subscribe((data: Providers[])=>{
        this.proveedor_seleccionado= data;
        return this.proveedor_seleccionado=Array.of(this.proveedor_seleccionado);
-      });
+  });
   
       
   }

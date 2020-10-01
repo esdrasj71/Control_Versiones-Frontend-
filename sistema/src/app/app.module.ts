@@ -24,6 +24,10 @@ import { BillHeaderFormComponent } from './components/sales/bill-header-form/bil
 import { InventoryHomeComponent } from './components/inventory/inventory-home/inventory-home.component';
 import { InventoryFormComponent } from './components/inventory/inventory-form/inventory-form.component';
 import { FitradoproductPipe } from './pipes/fitradoproduct.pipe';
+import { FiltradocustomersPipe } from './pipes/filtradocustomers.pipe';
+import { CustomersHomeComponent } from './components/customers/customers-home/customers-home.component';
+import { CustomersFormComponent } from './components/customers/customers-form/customers-form.component';
+
 
 const routes: Route[]=[
   //Brand
@@ -58,6 +62,10 @@ const routes: Route[]=[
   {path: 'inventory-home', component: InventoryHomeComponent},
   {path: 'inventory-form', component: InventoryFormComponent},
 
+  //customers
+  {path: 'customer-home', component: CustomersHomeComponent},
+  {path: 'customer-form', component: CustomersFormComponent},
+  
 ];
 
 @NgModule({
@@ -84,7 +92,10 @@ const routes: Route[]=[
     BillHeaderFormComponent,
     InventoryHomeComponent,
     InventoryFormComponent,
-    FitradoproductPipe
+    FitradoproductPipe,
+    FiltradocustomersPipe,
+    CustomersHomeComponent,
+    CustomersFormComponent
 
   ],
   imports: [
