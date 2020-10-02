@@ -78,8 +78,8 @@
                       <label for="clientes" class="col-form-label">Last_names: {{cliente.Last_names}}</label>
                       <br />
                       <label for="clientes" class="col-form-label">NIT: {{cliente.NIT}}</label>
-                      <input type="text" name="clientes" id="clientes" class="form-control"  value="{{cliente.Customers_Id}}"
-                [(ngModel)]="cliente.Customers_Id" tabindex="4" />
+                      <input type="text" name="clientes" id="clientes" class="form-control"
+                        value="{{cliente.Customers_Id}}" [(ngModel)]="cliente.Customers_Id" tabindex="4" />
                       <br />
                     </div>
                   </div>
@@ -125,10 +125,10 @@
               <div class="col-md-7">
                 <div class="form-group row">
                   <h5 class="card-title">Datos productos</h5>
-                  <button type="button" class="btn btn-primary" data-toggle="modal"
-                  data-target=".bd-producto-modal-lg">
-                  Buscar productos
-                </button>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-producto-modal-lg">
+                    Buscar productos
+                  </button>
+                  
                 </div>
               </div>
             </div>
@@ -174,6 +174,7 @@
             <tbody>
               <tr *ngFor="let cliente of cliente | filtradocustomers:filtrado_clientes">
                 <td height="10">{{cliente.Customers_Id}}</td>
+                <td height="10">{{cliente.DPI}}</td>
                 <td height="10">{{cliente.Names}}</td>
                 <td height="10">{{cliente.Last_names}}</td>
                 <td height="10">{{cliente.Phone_Number}}</td>
@@ -212,7 +213,7 @@
             <label for="clientes" class="col-form-label">Productos:</label>
             <div class="col">
               <input type="text" name="productos" id="productos" class="form-control" placeholder="Buscar producto"
-                [(ngModel)]="filtrado_clientes" tabindex="4" />
+                [(ngModel)]="filtrado_productos" tabindex="4" />
             </div>
           </div>
           <table class="table table-dark" style="table-layout: fixed; word-wrap: break-word;" id="table">
@@ -225,13 +226,12 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let producto of producto | fitradoproduct:filtrado_productos">
-                <td height="10">{{producto.Product_Id}}</td>
-                <td height="10">{{producto.Name}}</td>
-           
-               
-
-                <td><a class="btn btn-primary btn-sm" (click)="getCustomerId(cliente.Customers_Id)"
+              <tr *ngFor="let inventario of inventarios | fitradoproduct:filtrado_productos">
+                <td height="10">{{inventario.Inventory_Id}}</td>
+                <td height="10">{{inventario.Correlative_Product}}</td>
+                <td height="10">{{inventario.Product}}</td>
+                <td height="10">{{inventario.Unit_Price}}</td>
+                <td><a class="btn btn-primary btn-sm" (click)="getProductId(inventario.Inventory_Id)"
                     data-miss="modal">Seleccionar</a> &nbsp;
                 </td>
               </tr>
