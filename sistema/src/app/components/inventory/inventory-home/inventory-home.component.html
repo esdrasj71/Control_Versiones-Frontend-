@@ -2,23 +2,28 @@
     <thead class="thead-dark">
         <tr>
             <th scope="col">ID</th>
+            <th scope="col">Numero Correlativo</th>
             <th scope="col">Producto</th>
             <th scope="col">Presentacion</th>
             <th scope="col">Stock</th>
             <th scope="col">Precio unitario</th>
             <th scope="col">Precio minorista</th>
             <th scope="col">Precio mayorista</th>
+            <th scope="col">Acciones</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let inventory of inventories">
             <th>{{inventory.Inventory_Id}}</th>
+            <th>{{inventory.Correlative_Product}}</th>
             <th>{{inventory.Product}}</th>
             <td>{{inventory.Presentation}}</td>
             <td>{{inventory.Stock}}</td>
             <td>{{inventory.Unit_Price}}</td>
             <td>{{inventory.Retail_Price}}</td>
             <td>{{inventory.Wholesale_Price}}</td>
+            <td><a class="btn btn-warning btnsm" routerLink="/inventory-form/{{inventory.Inventory_Id}}">Editar</a> <a
+                    class="btn btn-danger btnsm" (click)="delete(inventory.Inventory_Id)">Eliminar</a></td>
         </tr>
     </tbody>
 </table>

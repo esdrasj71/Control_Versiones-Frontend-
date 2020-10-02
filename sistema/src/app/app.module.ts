@@ -61,6 +61,7 @@ const routes: Route[]=[
   //Inventory
   {path: 'inventory-home', component: InventoryHomeComponent},
   {path: 'inventory-form', component: InventoryFormComponent},
+  {path: 'inventory-form/:id', component: InventoryFormComponent},
   //Employee
   {path: 'employee-home', component: EmployeeHomeComponent},
   {path: 'employee-form', component: EmployeeFormComponent},

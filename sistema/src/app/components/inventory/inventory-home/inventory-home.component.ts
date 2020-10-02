@@ -21,13 +21,13 @@ export class InventoryHomeComponent implements OnInit {
   }
   ngOnInit() {
   }
- // delete(id) {
-  //  this.inventoryService.delete(id).subscribe((data) => {
-   //   alert('Inventario eliminado');
-    //}, (error) => {
-     // console.log(error);
-    //});
-  //}
+  delete(id) {
+    this.inventoryService.delete(id).subscribe((data) => {
+      alert('Inventario eliminado');
+    }, (error) => {
+      console.log(error);
+    });
+  }
   findinventory(inventoryOne) {
     this.rootInventory = inventoryOne;
     console.log(this.rootInventory);
