@@ -27,9 +27,9 @@ import { InventoryHomeComponent } from './components/inventory/inventory-home/in
 import { InventoryFormComponent } from './components/inventory/inventory-form/inventory-form.component';
 import { FitradoproductPipe } from './pipes/fitradoproduct.pipe';
 import { FiltradocustomersPipe } from './pipes/filtradocustomers.pipe';
+import { FiltradopresentationPipe } from './pipes/filtradopresentation.pipe';
 import { CustomersHomeComponent } from './components/customers/customers-home/customers-home.component';
 import { CustomersFormComponent } from './components/customers/customers-form/customers-form.component';
-
 
 const routes: Route[]=[
   //Brand
@@ -59,15 +59,16 @@ const routes: Route[]=[
   //Purchase Header
   {path: 'purchase_header-form', component: PurchaseHeaderFormComponent},
   {path: 'product-form', component: ProductFormComponent},
-
+  //Bill Header
   {path: 'bill-header-form', component: BillHeaderFormComponent},
+  //Inventory
   {path: 'inventory-home', component: InventoryHomeComponent},
   {path: 'inventory-form', component: InventoryFormComponent},
+  {path: 'inventory-form/:id', component: InventoryFormComponent},
   //Employee
   {path: 'employee-home', component: EmployeeHomeComponent},
   {path: 'employee-form', component: EmployeeFormComponent},
-
-  //customers
+  //Customers
   {path: 'customer-home', component: CustomersHomeComponent},
   {path: 'customer-form', component: CustomersFormComponent},
   
@@ -101,9 +102,9 @@ const routes: Route[]=[
     InventoryFormComponent,
     FitradoproductPipe,
     FiltradocustomersPipe,
+    FiltradopresentationPipe,
     CustomersHomeComponent,
     CustomersFormComponent
-
   ],
   imports: [
     BrowserModule,
