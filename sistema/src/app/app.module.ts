@@ -23,7 +23,7 @@ import { FiltradoproviderPipe } from './pipes/filtradoprovider.pipe';
 import { InventoryHomeComponent } from './components/inventory/inventory-home/inventory-home.component';
 import { InventoryFormComponent } from './components/inventory/inventory-form/inventory-form.component';
 import { FitradoproductPipe } from './pipes/fitradoproduct.pipe';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 const routes: Route[]=[
   //Brand
   {path: 'brand-form', component:BrandFormComponent},
@@ -88,7 +88,8 @@ const routes: Route[]=[
     RouterModule.forRoot(routes),
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
