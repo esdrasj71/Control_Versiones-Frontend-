@@ -43,8 +43,8 @@ export class InventoryFormComponent implements OnInit {
       this.httpClient.get(this.API_ENDPOINT + 'inventory').subscribe((data: Inventory[]) => { 
         this.inventoryarr = data;
         console.log(this.inventoryarr);
-        //this.inventory = this.inventoryarr.find((m) => { return m.Inventory_Id == this.id }); 
         this.inventory = this.inventoryarr.find((m) => { return m.Inventory_Id == this.id }); 
+        //console.log(this.inventory.Product_Id);
       }, (error) => {
         console.log(error);
       });
@@ -64,10 +64,11 @@ export class InventoryFormComponent implements OnInit {
   }
 
   saveInventory() {
+    console.log(this.inventory);
     if (this.editing) {
-      this.inventory.Product_Id = this.product_select[0].Product_Id;
+      this.inventory.Product_Id = this.product_select[0].Product_Id  ;
       this.inventory.Presentation_Id = this.presentation_select[0].Presentation_Id;
-      console.log(this.inventory);
+      console.log(this.inventory.Product_Id);
       this.inventoryService.put(this.inventory).subscribe((data) => {
         alert('Inventario actualizado');
         console.log(data)

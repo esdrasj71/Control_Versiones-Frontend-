@@ -1,8 +1,9 @@
 <table class="table">
     <thead class="thead-dark">
         <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Numero Correlativo</th>
+            <th scope="col">ID Inventario</th>
+            <th scope="col">ID Producto</th>
+            <th scope="col">No. Correlativo</th>
             <th scope="col">Producto</th>
             <th scope="col">Presentacion</th>
             <th scope="col">Stock</th>
@@ -15,6 +16,7 @@
     <tbody>
         <tr *ngFor="let inventory of inventories">
             <th>{{inventory.Inventory_Id}}</th>
+            <th>{{inventory.Product_Id}}</th>
             <th>{{inventory.Correlative_Product}}</th>
             <th>{{inventory.Product}}</th>
             <td>{{inventory.Presentation}}</td>

@@ -25,4 +25,11 @@ export class InventoryService {
     const headers = new HttpHeaders({ 'ContentType': 'application/json' });
     return this.httpClient.delete(this.API_ENDPOINT + 'inventory/' + id, { headers: headers });
   } 
+
+  getInventory() {
+    return this.httpClient.get(this.API_ENDPOINT + 'inventory');
+  }
+  getInventoryId(id) {
+    return this.httpClient.get(this.API_ENDPOINT + 'inventory/' + id);
+  }
 }

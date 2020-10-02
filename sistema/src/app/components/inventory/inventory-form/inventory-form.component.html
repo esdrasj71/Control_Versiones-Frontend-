@@ -9,9 +9,11 @@
                         data-target=".bd-product-modal-lg">
                         Buscar Producto
                     </button>
+                    <label  for="product" class="col-form-label">XD:
+                        {{inventory.Product_Id}}</label>
+                    <br />
                     <br />
                     <div *ngFor="let select of product_select" >
-        
                         <label  for="product" class="col-form-label">Número Correlativo:
                             {{select.Correlative_Product}}</label>
                         <br />
