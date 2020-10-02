@@ -73,9 +73,9 @@
                     <div *ngFor="let cliente of clientes">
                       <label for="clientes" class="col-form-label">DPI :{{cliente.DPI}} </label>
                       <br />
-                      <label for="clientes" class="col-form-label">Names: {{cliente.Names}}</label>
+                      <label for="clientes" class="col-form-label">Nombre: {{cliente.Names}}</label>
                       <br />
-                      <label for="clientes" class="col-form-label">Last_names: {{cliente.Last_names}}</label>
+                      <label for="clientes" class="col-form-label">Apellido: {{cliente.Last_names}}</label>
                       <br />
                       <label for="clientes" class="col-form-label">NIT: {{cliente.NIT}}</label>
                       <input type="text" name="clientes" id="clientes" class="form-control"
@@ -116,22 +116,51 @@
     </div>
 
     <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
-      <div class="card" style="width: 25rem; right: 5rem">
+      <div class="card" style="width: 40rem; right: 5rem">
         <div class="card-body">
           <h5 class="card-title">DETALLE DE LA FACTURA</h5>
           <div class="container">
-            <hr />
             <div class="row">
-              <div class="col-md-7">
+              <div class="col-md-12">
                 <div class="form-group row">
                   <h5 class="card-title">Datos productos</h5>
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-producto-modal-lg">
+                  <button type="button" style="margin-bottom: 5rem; margin-left: 0.5rem;" class="btn btn-primary" data-toggle="modal" data-target=".bd-producto-modal-lg">
                     Buscar productos
                   </button>
-                  
+                  <br />
+                  <br/>
+                  <div *ngFor="let producto of productos">
+                    <label for="clientes" class="col-form-label">Nombre:{{producto.Product}} </label>
+                    <br/>
+                    <br />
+                  </div>
+                  <br/>
+                  <table class="table table-dark" id="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Producto / inventario</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Subtotal</th>
+                        <th scope="col">Factura</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr >
+                        <td >holis</td>
+                 
+        
+                        <td>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
+    
           </div>
         </div>
       </div>
@@ -182,16 +211,12 @@
                 <td>{{cliente.Direccion}}</td>
 
                 <td><a class="btn btn-primary btn-sm" (click)="getCustomerId(cliente.Customers_Id)"
-                    data-miss="modal">Seleccionar</a> &nbsp;
+                    data-dismiss="modal">Seleccionar</a> &nbsp;
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -232,7 +257,7 @@
                 <td height="10">{{inventario.Product}}</td>
                 <td height="10">{{inventario.Unit_Price}}</td>
                 <td><a class="btn btn-primary btn-sm" (click)="getProductId(inventario.Inventory_Id)"
-                    data-miss="modal">Seleccionar</a> &nbsp;
+                    data-dismiss="modal">Seleccionar</a> &nbsp;
                 </td>
               </tr>
             </tbody>

@@ -47,7 +47,7 @@ export class BillHeaderFormComponent implements OnInit {
   {
     
     this.customersService.getCustomerId(id).subscribe((data: Customers[])=>{
-       this.clientes= data;
+       this.clientes= data;//json
        return this.clientes=Array.of(this.clientes);
   });
 
@@ -59,5 +59,4 @@ export class BillHeaderFormComponent implements OnInit {
       return this.productos = Array.of(this.productos);
     })
   }
-
 }
