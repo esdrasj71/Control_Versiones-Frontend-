@@ -8,7 +8,7 @@ export class FitradoproductPipe implements PipeTransform {
     if(arg === '' || arg.length<3) return value;
     const resultado_product =[];
     for(const product of value){
-      if(product.Product.toLowerCase().indexOf(arg.toLowerCase())> -1)
+      if(product.Correlative_Product.toLowerCase().indexOf(arg.toLowerCase())> -1)
       {
         resultado_product.push(product);
       }

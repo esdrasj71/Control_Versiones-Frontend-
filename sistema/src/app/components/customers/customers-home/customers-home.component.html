@@ -1,0 +1,25 @@
+<h1>Listado de clientes</h1>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">DPI</th>
+            <th scope="col">Nombres</th>
+            <th scope="col">Apellidos</th>
+            <th scope="col">Numero de telefono</th>
+            <th scope="col">Nit</th>
+            <th scope="col">Direccion</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let customer of customers">
+            <th>{{customer.Customers_Id}}</th>
+            <td>{{customer.DPI}}</td>
+            <td>{{customer.Names}}</td>
+            <td>{{customer.Last_names}}</td>
+            <td>{{customer.Phone_Number}}</td>
+            <td>{{customer.NIT}}</td>
+            <td>{{customer.Direccion}}</td>
+        </tr>
+    </tbody>
+</table>

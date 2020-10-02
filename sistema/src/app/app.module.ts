@@ -20,9 +20,16 @@ import { PresentationHomeComponent } from './components/presentation/presentatio
 import { PresentationFormComponent } from './components/presentation/presentation-form/presentation-form.component';
 import { PurchaseHeaderFormComponent } from './components/purchase/purchase-header-form/purchase-header-form.component';
 import { FiltradoproviderPipe } from './pipes/filtradoprovider.pipe';
+import { EmployeeFormComponent } from './components/employee/employee-form/employee-form.component';
+import { EmployeeHomeComponent } from './components/employee/employee-home/employee-home.component';
+import { BillHeaderFormComponent } from './components/sales/bill-header-form/bill-header-form.component';
 import { InventoryHomeComponent } from './components/inventory/inventory-home/inventory-home.component';
 import { InventoryFormComponent } from './components/inventory/inventory-form/inventory-form.component';
 import { FitradoproductPipe } from './pipes/fitradoproduct.pipe';
+import { FiltradocustomersPipe } from './pipes/filtradocustomers.pipe';
+import { FiltradopresentationPipe } from './pipes/filtradopresentation.pipe';
+import { CustomersHomeComponent } from './components/customers/customers-home/customers-home.component';
+import { CustomersFormComponent } from './components/customers/customers-form/customers-form.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 const routes: Route[]=[
   //Brand
@@ -52,9 +59,19 @@ const routes: Route[]=[
   //Purchase Header
   {path: 'purchase_header-form', component: PurchaseHeaderFormComponent},
   {path: 'product-form', component: ProductFormComponent},
+  //Bill Header
+  {path: 'bill-header-form', component: BillHeaderFormComponent},
   //Inventory
   {path: 'inventory-home', component: InventoryHomeComponent},
   {path: 'inventory-form', component: InventoryFormComponent},
+  {path: 'inventory-form/:id', component: InventoryFormComponent},
+  //Employee
+  {path: 'employee-home', component: EmployeeHomeComponent},
+  {path: 'employee-form', component: EmployeeFormComponent},
+  //Customers
+  {path: 'customer-home', component: CustomersHomeComponent},
+  {path: 'customer-form', component: CustomersFormComponent},
+  
 ];
 
 @NgModule({
@@ -78,9 +95,16 @@ const routes: Route[]=[
     LotFormComponent,
     PurchaseHeaderFormComponent,
     FiltradoproviderPipe,
+    BillHeaderFormComponent,
+    EmployeeHomeComponent,
+    EmployeeFormComponent,
     InventoryHomeComponent,
     InventoryFormComponent,
-    FitradoproductPipe
+    FitradoproductPipe,
+    FiltradocustomersPipe,
+    FiltradopresentationPipe,
+    CustomersHomeComponent,
+    CustomersFormComponent
   ],
   imports: [
     BrowserModule,
