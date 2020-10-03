@@ -136,16 +136,16 @@
           <h5 class="card-title">Busqueda de producto</h5>
           <hr>
           <div class="form-group">
-            <label for="product" class="col-form-label">Producto:</label>
             <div class="col">
-                <input type="text" name="product" id="product" class="form-control"
-                    placeholder="Buscar producto" [(ngModel)]="filtrado_product" tabindex="9" />
-                    <hr>
+              <label for="product" class="col-form-label">Producto:</label> &nbsp;
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-producto-modal-lg">
+                Buscar Producto
+              </button>
             </div>
+            <hr>
               <table class="table table-dark" style="table-layout: fixed; word-wrap: break-word;" id="table">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">ID</th>
                         <th scope="col">Producto</th>
                         <th scope="col">Presentacion</th>
                         <th scope="col">Cantidad</th>
@@ -155,10 +155,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let inventory of inventory | fitradoproduct:filtrado_product">
-                        <td>{{inventory.Inventory_Id}}</td>
-                        <th>{{inventory.Product}}</th>
-                        <td>{{inventory.Presentation}}</td>
+                    <tr *ngFor="let inventario of vista_detail; let i=index;">
+                        <td>{{inventario[0].Product}}</td>
+                        <th>{{inventario[0].Presentation}}</th>
+                        <td><input type="number" class="form-control"  min="0"  value="1" [(ngModel)]="cantidad[i]"/></td>
+                        <td><input type="number" class="form-control" [(ngModel)]="precio[i]" #box (keyup.enter)="onEnter(cantidad[i], precio[i], inventario)"  min="0"  value="1"/></td>
+                        <td>{{inventario[0].Subtotal}}</td>
+                        <td><button class="btn btn-danger"  type="button" (click)="EliminarDetalle(i)" onClick="EliminarFila(this)">Eliminar</button></td>
                         <!--<div *ngFor="let vista of vista_detail; let in=index;">
                          <td> <input type="text" class="form-control"
                           [(ngModel)]="vista[in].value" name="name{{in}}" placeholder="Cantidad" tabindex="10"/> </td>
@@ -168,67 +171,8 @@
                     </tr>
                 </tbody>
             </table>
-            <form #formRef="ngForm">
-              <div *ngFor="let word2 of words2; let in=index" class="col-sm-3">
-                  <div class="form-group">
-                    <input type="text" [(ngModel)]="words2[in].cantidad" name="name{{in}}" class="form-control" #name="ngModel" required />
-                    <input type="text" [(ngModel)]="words2[in].precio" name="name{{in}}"  placeholder="Precio" class="form-control" #name="ngModel" required />
-                    <input type="text" [(ngModel)]="words2[in].subtotal" name="name{{in}}" value="{{words2[in].cantidad*words2[in].precio}}" placeholder="Precio" class="form-control" #name="ngModel" required />
-                  </div>
-                  <br />
-              </div>
-              <button [disabled]="!formRef.form.valid" (click)="add()">Add input</button>
-            </form>
-            <br />
-            <br />
-            {{words2 | json}}
-     
-            <form [formGroup]="formulario">
-              <h3>
-                Experiencia Laboral:
-              </h3>
-              <div formArrayName="experienciaLaboral">
-                <div *ngFor="let trabajo of experienciaLaboral.controls; let i = index;">
-                  <div>
-                    <label>Empresa:</label><br />
-                    <input type="text" />
-                  </div>
-                  <div>
-                    <label>Puesto:</label><br />
-                    <input type="text"/>
-                  </div>
-                  <div>
-                    <label>Descripción:</label><br />
-                    <textarea></textarea>
-                  </div>
-                  <div>
-                    <button (click)="borrarTrabajo(i)">Borrar</button>
-                  </div>
-                  <hr />
-                </div>
-              </div>
-              <button (click)="anadirExperienciaLaboral()">
-                + Añadir
-              </button>
-            </form>
+           
         </div>
-        <table class="table table-dark" style="table-layout: fixed; word-wrap: break-word;" id="table">
-          <thead class="thead-dark">
-              <tr>
-                  <th scope="col">Cantidad</th>
-                  <th scope="col">Precio</th>
-                  <th scope="col">Subtotal</th>
-                  <th scope="col"></th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let vista of vista_detail; let i=index ">
-                  <th id={{i+1}}>{{vista.Quantity}}</th>
-                  <th id={{i+1}}>{{vista.Unit_Price}}</th>
-              </tr>
-              
-          </tbody>
-      </table>
         </div>
       </div>
     </div>
@@ -236,7 +180,7 @@
 </div>
 
 
-<!--MODALS-->
+<!--MODALS PROVEEDORES-->
 <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px;">
     <div class="modal-content"style="width: 900px;">
@@ -299,6 +243,59 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--MODALS PRODUCTOS-->
+<div class="modal fade bd-producto-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px;">
+    <div class="modal-content"style="width: 900px;">
+      <div class="modal-header"style="width: 900px;">
+        <h5 class="modal-title" id="exampleModalLongTitle">Encuentre su producto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y:auto;">
+        <div class="container">
+        <div class="form-group row">
+          <label for="proveedores" class="col-form-label"
+            >Producto:</label
+          >
+          <div class="col">
+            <!--<input type="text" name="product" id="product" class="form-control"
+            placeholder="Buscar producto" [(ngModel)]="filtrado_product" tabindex="9" />-->
+            <hr>
+          </div>
+        </div>
+        <table class="table table-dark" style="table-layout: fixed; word-wrap: break-word;" id="table">
+          <thead>
+              <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Correlativo Producto</th>
+                  <th scope="col">Nombre Producto</th>
+                  <th scope="col">Presentación</th>
+                  <th scope="col"></th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let inventario of inventory ">
+                  <td height="10">{{inventario.Inventory_Id}}</td>
+                  <td height="10">{{inventario.Correlative_Product}}</td>
+                  <td height="10">{{inventario.Product}}</td>
+                  <td height="10">{{inventario.Presentation}}</td>
+                  <td><a class="btn btn-primary btn-sm"  (click)="getInventoryId(inventario.Inventory_Id)" data-dismiss="modal">Seleccionar</a> &nbsp;
+                      
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
