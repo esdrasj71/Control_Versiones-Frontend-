@@ -11,7 +11,7 @@
                 <div class="form-group row">
                   <label for="correlativo" class="col-form-label">No Correlativo:</label>
                   <div class="col-sm-7">
-                    <input type="text" name="correlativo" id="correlativo" class="form-control" placeholder="No"
+                    <input type="text" [(ngModel)]="encabezado_factura.Correlative_Number" ngDefaultControl name="correlativo" id="correlativo" class="form-control" placeholder="No"
                       tabindex="1" />
                   </div>
                 </div>
@@ -20,7 +20,7 @@
                 <div class="form-group row">
                   <label for="serie" class="col-form-label">Serie:</label>
                   <div class="col-sm-9">
-                    <input type="text" name="serie" id="serie" class="form-control" placeholder="Serie" tabindex="2" />
+                    <input type="text"  [(ngModel)]="encabezado_factura.Serie"  ngDefaultControl name="serie" id="serie" class="form-control" placeholder="Serie" tabindex="2" />
                   </div>
                 </div>
               </div>
@@ -30,7 +30,7 @@
                 <div class="form-group row">
                   <label for="date" class="col-form-label">Fecha de realizacion:</label>
                   <div class="col">
-                    <input type="date" name="creation_date" id="creation_date" class="form-control" placeholder="date"
+                    <input type="date" name="creation_date" [(ngModel)]="encabezado_factura.Date"  ngDefaultControl id="creation_date" class="form-control" placeholder="date"
                       tabindex="3" />
                   </div>
                 </div>
@@ -44,16 +44,16 @@
                 <div class="form-group row">
                   <label for="correlativo" class="col-form-label">Nota de credito:</label>
                   <div class="col-sm-6">
-                    <input type="checkbox" name="correlativo" id="correlativo" class="form-control" placeholder="No"
+                    <input type="checkbox" [(ngModel)]="encabezado_factura.Refund"  ngDefaultControl name="correlativo" id="correlativo" class="form-control" placeholder="No"
                       tabindex="5" />
                   </div>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group row">
-                  <label for="serie" class="col-form-label">Anular compra:</label>
+                  <label for="serie" class="col-form-label">Anular factura:</label>
                   <div class="col-sm-6">
-                    <input type="checkbox" name="serie" id="serie" class="form-control" placeholder="Serie"
+                    <input type="checkbox"  [(ngModel)]="encabezado_factura.Annulment_State"  ngDefaultControl name="serie" id="serie" class="form-control" placeholder="Serie"
                       tabindex="6" />
                   </div>
                 </div>
@@ -79,7 +79,7 @@
                       <br />
                       <label for="clientes" class="col-form-label">NIT: {{cliente.NIT}}</label>
                       <input type="text" name="clientes" id="clientes" class="form-control"
-                        value="{{cliente.Customers_Id}}" [(ngModel)]="cliente.Customers_Id" tabindex="4" />
+                        value="{{cliente.Customers_Id}}" [(ngModel)]="encabezado_factura.Customers_Id"  ngDefaultControl tabindex="4" />
                       <br />
                     </div>
                   </div>
@@ -92,8 +92,10 @@
                 <div class="form-group row">
                   <label for="total" class="col-form-label">Empleado</label>
                   <div class="col">
-                    <select name="empleado" id="empleado" tabindex="8" class="form-control">
-                      <option>prueba</option>
+                    <select   name="empleado" id="empleado" [(ngModel)]="encabezado_factura.Employee_Id" ngDefaultControl tabindex="8" class="form-control" >
+                      <option *ngFor="let empleado of empleados" value="{{empleado.Employee_Id}}">
+                        {{empleado.Names + " " +empleado.Last_names}}
+                      </option>
                     </select>
                   </div>
                 </div>
@@ -104,11 +106,11 @@
                 <div class="form-group row">
                   <label for="total" class="col-form-label">Total:</label>
                   <div class="col">
-                    <input type="text" name="total" id="total" class="form-control"
-                      placeholder="Monto total de la compra" tabindex="8" />
+                    <label [(ngModel)]="encabezado_factura.Total" ngDefaultControl >{{total}}</label>
                   </div>
                 </div>
               </div>
+              <button type="button" (click)="enviar()" class="btn btn-primary " >Enviar</button>
             </div>
           </div>
         </div>
@@ -137,7 +139,7 @@
                         <th scope="col">Cantidad</th>
                         <th scope="col">Precio</th>
                         <th scope="col">Subtotal</th>
-                        <th scope="col">No factura</th>
+                        <th scope="col">Eliminar</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -146,6 +148,7 @@
                         <td  for="inventarios"><input type="number" #box (keyup.enter)="onEnter(box.value, inventario[0].Unit_Price, inventario)"  min="0" max="{{inventario[0].Stock}}" value="1"/></td>
                         <td  for="inventarios">{{inventario[0].Unit_Price}}</td>
                         <td>{{inventario[0].Subtotal}}</td>
+                        <td><button (click)="onDelete(inventario)" class="btn btn-danger" >x</button></td>
                         <td>
                         </td>
                       </tr>
