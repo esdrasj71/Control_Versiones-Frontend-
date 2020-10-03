@@ -127,31 +127,25 @@
                   <button type="button" style="margin-bottom: 5rem; margin-left: 0.5rem;" class="btn btn-primary" data-toggle="modal" data-target=".bd-producto-modal-lg">
                     Buscar productos
                   </button>
-                  <br />
-                  <br/>
-                  <div *ngFor="let producto of productos">
-                    <label for="clientes" class="col-form-label">Nombre:{{producto.Product}} </label>
-                    <br/>
-                    <br />
-                  </div>
+            
                   <br/>
                   <table class="table table-dark" id="table">
                     <thead>
-                      <tr>
-                        <th scope="col">#</th>
+                      <tr >
+                        <!--th scope="col">#</th>-->
                         <th scope="col">Producto / inventario</th>
                         <th scope="col">Cantidad</th>
                         <th scope="col">Precio</th>
                         <th scope="col">Subtotal</th>
-                        <th scope="col">Factura</th>
-                        
+                        <th scope="col">No factura</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr >
-                        <td >holis</td>
-                 
-        
+                      <tr *ngFor="let inventario of nuevo">
+                        <td for="inventarios" >{{inventario[0].Product}}</td>
+                        <td  for="inventarios"><input type="number" #box (keyup.enter)="onEnter(box.value, inventario[0].Unit_Price, inventario)"  min="0" max="{{inventario[0].Stock}}" value="1"/></td>
+                        <td  for="inventarios">{{inventario[0].Unit_Price}}</td>
+                        <td>{{inventario[0].Subtotal}}</td>
                         <td>
                         </td>
                       </tr>
@@ -160,7 +154,6 @@
                 </div>
               </div>
             </div>
-    
           </div>
         </div>
       </div>
@@ -251,12 +244,12 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let inventario of inventarios | fitradoproduct:filtrado_productos">
+              <tr *ngFor="let inventario of inventario | fitradoproduct:filtrado_productos">
                 <td height="10">{{inventario.Inventory_Id}}</td>
                 <td height="10">{{inventario.Correlative_Product}}</td>
                 <td height="10">{{inventario.Product}}</td>
                 <td height="10">{{inventario.Unit_Price}}</td>
-                <td><a class="btn btn-primary btn-sm" (click)="getProductId(inventario.Inventory_Id)"
+                <td><a class="btn btn-primary btn-sm" (click)="getInventoryId(inventario.Inventory_Id)"
                     data-dismiss="modal">Seleccionar</a> &nbsp;
                 </td>
               </tr>

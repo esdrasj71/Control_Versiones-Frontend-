@@ -7,6 +7,7 @@ import {CustomersService} from '../../customers/servicios/customers.service';
 import {ProductsService} from '../../product/servicios/products.service';
 import {InventoryService} from '../../inventory/servicios/inventory.service';
 import { ActivatedRoute } from '@angular/router';
+import {BillDetails} from '../interfaces/bill-detail';
 
 @Component({
   selector: 'app-bill-header-form',
@@ -14,6 +15,18 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./bill-header-form.component.css']
 })
 export class BillHeaderFormComponent implements OnInit {
+  values: number = 0;
+
+  detalle_factura: BillDetails ={
+    Bill_Detail_Id: null,
+    Subtotal: null,
+    Quantity: null,
+    Price: null,
+    Bill_header_Id: null,
+    Inventory_Id: null,
+  }
+  changeCount: number = 0;
+  nuevo = [];
   API_ENDPOINT = 'http://localhost:3000/'
   filtrado_clientes = '';
   clientes: any[];
@@ -24,13 +37,11 @@ export class BillHeaderFormComponent implements OnInit {
   productos: any[];
   producto: Products[];
   //inventario
-  inventarios: Inventory[];
+  inventario: Inventory[];
+  inventarios: any[];
+
   constructor(private customersService:CustomersService,private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private productsService: ProductsService, private inventoryService: InventoryService) { 
-    httpClient.get(this.API_ENDPOINT + 'inventory')
-      .subscribe((data: Inventory[]) => {
-        this.inventarios = data; //Se debe acceder al arreglo de este modo, oAngular lo reconocera como un objeto del tipo Post
-        console.log(this.inventarios);
-      });
+  
   }
 
   ngOnInit(): void {
@@ -40,6 +51,9 @@ export class BillHeaderFormComponent implements OnInit {
 
     this.productsService.getProduct().subscribe((data: Products[])=>{
       return this.producto = data;
+    })
+    this.inventoryService.getInventory().subscribe((data: Inventory[])=>{
+      return this.inventario = data;
     })
   
   }
@@ -59,4 +73,23 @@ export class BillHeaderFormComponent implements OnInit {
       return this.productos = Array.of(this.productos);
     })
   }
+  getInventoryId(id){
+    this.inventoryService.getInventoryId(id).subscribe((data: Inventory[])=>{
+      let datos:any  = data;
+      datos.Subtotal = 0;
+      this.inventarios = Array.of(datos);
+      this.nuevo.push(this.inventarios)
+      console.log(this.nuevo)
+      return this.nuevo
+  })
+  }
+  saveBillDetail(){
+    console.log(this.detalle_factura);
+  }
+  onEnter(value: number, precio: number, datos: any){
+    console.log(datos)
+    datos[0].Subtotal = value * precio;  
+  }
+
+ 
 }
