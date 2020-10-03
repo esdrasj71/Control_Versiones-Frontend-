@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { LotService } from '../servicios/lot.service';
 import { HttpClient } from '@angular/common/http';
 import { Lot } from '../interfaces/lot';

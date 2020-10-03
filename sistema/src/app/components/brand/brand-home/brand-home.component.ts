@@ -11,7 +11,7 @@ import { Brands } from '../interfaces/brand';
 export class BrandHomeComponent implements OnInit {
   API_ENDPOINT = 'http://localhost:3000/';
   brands: Brands[];
-  rootBrand = '';
+  rootBrand = ''; 
   constructor(private brandsService: BrandsService, private httpClient: HttpClient) {
    
     httpClient.get(this.API_ENDPOINT + 'brands')
@@ -20,6 +20,17 @@ export class BrandHomeComponent implements OnInit {
       console.log(this.brands);
     })
    }
+
+   delete(id) {
+    this.brandsService.delete(id).subscribe(
+      (data) => {
+        alert('Marca Eliminado');
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  } 
 
   ngOnInit(): void {
   }
@@ -30,4 +41,5 @@ export class BrandHomeComponent implements OnInit {
     this.rootBrand = brandOne;
     console.log(this.rootBrand);
     }
+
 }

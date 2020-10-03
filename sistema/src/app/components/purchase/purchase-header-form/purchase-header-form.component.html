@@ -89,42 +89,6 @@
             </div>
 
             <hr />
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label for="correlativo" class="col-form-label"
-                    >Devolucion:</label
-                  >
-                  <div class="col-sm-6">
-                    <input
-                      type="checkbox"
-                      name="correlativo"
-                      id="correlativo"
-                      class="form-control"
-                      placeholder="No"
-                      tabindex="5"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label for="serie" class="col-form-label"
-                    >Anular compra:</label
-                  >
-                  <div class="col-sm-6">
-                    <input
-                      type="checkbox"
-                      name="serie"
-                      id="serie"
-                      class="form-control"
-                      placeholder="Serie"
-                      tabindex="6"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
 
             <div class="row">
               <div class="col-md-12">
@@ -167,17 +131,112 @@
       </div>
     </div>
     <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
-      <div class="card" style="width: 25rem; right: 5rem">
+      <div class="card" style="width: 45rem; right: 5rem">
         <div class="card-body">
-          <h5 class="card-title">ESTE LADO IRA EL DETALLE</h5>
+          <h5 class="card-title">Busqueda de producto</h5>
+          <hr>
+          <div class="form-group">
+            <label for="product" class="col-form-label">Producto:</label>
+            <div class="col">
+                <input type="text" name="product" id="product" class="form-control"
+                    placeholder="Buscar producto" [(ngModel)]="filtrado_product" tabindex="9" />
+                    <hr>
+            </div>
+              <table class="table table-dark" style="table-layout: fixed; word-wrap: break-word;" id="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Presentacion</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Subtotal</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let inventory of inventory | fitradoproduct:filtrado_product">
+                        <td>{{inventory.Inventory_Id}}</td>
+                        <th>{{inventory.Product}}</th>
+                        <td>{{inventory.Presentation}}</td>
+                        <!--<div *ngFor="let vista of vista_detail; let in=index;">
+                         <td> <input type="text" class="form-control"
+                          [(ngModel)]="vista[in].value" name="name{{in}}" placeholder="Cantidad" tabindex="10"/> </td>
+                         <td>{{detail.Quantity * detail.Unit_Price}}</td>
+                         {{vista_detail | json}}
+                        </div>-->
+                    </tr>
+                </tbody>
+            </table>
+            <form #formRef="ngForm">
+              <div *ngFor="let word2 of words2; let in=index" class="col-sm-3">
+                  <div class="form-group">
+                    <input type="text" [(ngModel)]="words2[in].cantidad" name="name{{in}}" class="form-control" #name="ngModel" required />
+                    <input type="text" [(ngModel)]="words2[in].precio" name="name{{in}}"  placeholder="Precio" class="form-control" #name="ngModel" required />
+                    <input type="text" [(ngModel)]="words2[in].subtotal" name="name{{in}}" value="{{words2[in].cantidad*words2[in].precio}}" placeholder="Precio" class="form-control" #name="ngModel" required />
+                  </div>
+                  <br />
+              </div>
+              <button [disabled]="!formRef.form.valid" (click)="add()">Add input</button>
+            </form>
+            <br />
+            <br />
+            {{words2 | json}}
+     
+            <form [formGroup]="formulario">
+              <h3>
+                Experiencia Laboral:
+              </h3>
+              <div formArrayName="experienciaLaboral">
+                <div *ngFor="let trabajo of experienciaLaboral.controls; let i = index;">
+                  <div>
+                    <label>Empresa:</label><br />
+                    <input type="text" />
+                  </div>
+                  <div>
+                    <label>Puesto:</label><br />
+                    <input type="text"/>
+                  </div>
+                  <div>
+                    <label>Descripción:</label><br />
+                    <textarea></textarea>
+                  </div>
+                  <div>
+                    <button (click)="borrarTrabajo(i)">Borrar</button>
+                  </div>
+                  <hr />
+                </div>
+              </div>
+              <button (click)="anadirExperienciaLaboral()">
+                + Añadir
+              </button>
+            </form>
+        </div>
+        <table class="table table-dark" style="table-layout: fixed; word-wrap: break-word;" id="table">
+          <thead class="thead-dark">
+              <tr>
+                  <th scope="col">Cantidad</th>
+                  <th scope="col">Precio</th>
+                  <th scope="col">Subtotal</th>
+                  <th scope="col"></th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let vista of vista_detail; let i=index ">
+                  <th id={{i+1}}>{{vista.Quantity}}</th>
+                  <th id={{i+1}}>{{vista.Unit_Price}}</th>
+              </tr>
+              
+          </tbody>
+      </table>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div id="msgid1">
-</div>
 
+
+<!--MODALS-->
 <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px;">
     <div class="modal-content"style="width: 900px;">
@@ -219,7 +278,7 @@
               </tr>
           </thead>
           <tbody>
-              <tr *ngFor="let provider of providers | filtradoprovider:filtrado_proveedor">
+              <tr *ngFor="let provider of providers | filtradoprovider:filtrado_proveedor | paginate: { itemsPerPage: 3, currentPage: paginaActual }">
                   <td height="10">{{provider.Providers_Id}}</td>
                   <td height="10">{{provider.NIT}}</td>
                   <td height="10">{{provider.Fiscal_Name}}</td>
@@ -227,12 +286,14 @@
                   <td>{{provider.Phone_Number2}}</td>
                   <td>{{provider.Email}}</td>
                   <td>{{provider.Address}}</td>
-                  <td><a class="btn btn-primary btn-sm"  (click)="getProviderId(provider.Providers_Id)" data-miss="modal">Seleccionar</a> &nbsp;
+                  <td><a class="btn btn-primary btn-sm"  (click)="getProviderId(provider.Providers_Id)" data-dismiss="modal">Seleccionar</a> &nbsp;
                       
                   </td>
               </tr>
           </tbody>
       </table>
+      <pagination-controls (pageChange)="paginaActual = $event" previousLabel="Anterior"
+      nextLabel="Siguiente" maxSize="9" autoHide="true"></pagination-controls>
     </div>
       </div>
       <div class="modal-footer">

@@ -26,16 +26,20 @@ import { BillHeaderFormComponent } from './components/sales/bill-header-form/bil
 import { InventoryHomeComponent } from './components/inventory/inventory-home/inventory-home.component';
 import { InventoryFormComponent } from './components/inventory/inventory-form/inventory-form.component';
 import { FitradoproductPipe } from './pipes/fitradoproduct.pipe';
+import { EmployeePositionHomeComponent } from './components/employee_position/employee-position-home/employee-position-home.component';
+import { EmployeePositionFormComponent } from './components/employee_position/employee-position-form/employee-position-form.component';
+import { EmployeePostComponent } from './components/employee/employee-post/employee-post.component';
 import { FiltradocustomersPipe } from './pipes/filtradocustomers.pipe';
 import { FiltradopresentationPipe } from './pipes/filtradopresentation.pipe';
 import { CustomersHomeComponent } from './components/customers/customers-home/customers-home.component';
 import { CustomersFormComponent } from './components/customers/customers-form/customers-form.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 const routes: Route[]=[
   //Brand
   {path: 'brand-form', component:BrandFormComponent},
   {path: 'brand-home', component:BrandHomeComponent},
-  {path: 'brand-home/:id', component: BrandHomeComponent},
+  {path: 'brand-form/:id', component: BrandFormComponent},
   //Provider
   {path: 'providers-home', component: ProvidersHomeComponent},
   {path: 'providers-form', component: ProvidersFormComponent},
@@ -68,6 +72,12 @@ const routes: Route[]=[
   //Employee
   {path: 'employee-home', component: EmployeeHomeComponent},
   {path: 'employee-form', component: EmployeeFormComponent},
+  {path: 'employee-form/:id', component: EmployeeFormComponent},
+  {path: 'employee-post', component: EmployeePostComponent},
+  //Employee Position
+  {path: 'employee-position-home', component: EmployeePositionHomeComponent},
+  {path: 'employee-position-form', component: EmployeePositionFormComponent},
+  {path: 'employee-position-form/:id', component: EmployeePositionFormComponent},
   //Customers
   {path: 'customer-home', component: CustomersHomeComponent},
   {path: 'customer-form', component: CustomersFormComponent},
@@ -101,6 +111,9 @@ const routes: Route[]=[
     InventoryHomeComponent,
     InventoryFormComponent,
     FitradoproductPipe,
+    EmployeePositionHomeComponent,
+    EmployeePositionFormComponent,
+    EmployeePostComponent,
     FiltradocustomersPipe,
     FiltradopresentationPipe,
     CustomersHomeComponent,
@@ -112,7 +125,8 @@ const routes: Route[]=[
     RouterModule.forRoot(routes),
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

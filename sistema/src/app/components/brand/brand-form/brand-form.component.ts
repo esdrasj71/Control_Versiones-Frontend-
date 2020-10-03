@@ -12,7 +12,7 @@ export class BrandFormComponent implements OnInit {
   }
   constructor(private brandService: BrandsService) {
 
-   }
+   } 
 
   ngOnInit(): void {
   }
