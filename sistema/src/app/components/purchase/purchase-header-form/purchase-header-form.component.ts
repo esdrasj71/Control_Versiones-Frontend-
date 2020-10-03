@@ -4,8 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { Providers } from '../../providers/interfaces/providers';
 import { ProvidersService } from '../../providers/servicios/providers.service';
 import { Inventory } from '../../inventory/interfaces/inventory';
+import { InventoryService } from '../../inventory/servicios/inventory.service';
 import { Purchase_Detail } from './interfaces/purchase-detail';
-import { FormGroup, FormArray, FormBuilder, FormControl } from '@angular/forms';
+
 @Component({
   selector: 'app-purchase-header-form',
   templateUrl: './purchase-header-form.component.html',
@@ -20,6 +21,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
   vista_detail=[];
   providers:Providers[];
   inventory: Inventory[];
+  inventorys: any[];
   detail:Purchase_Detail={
     Purchase_Detail_Id:null,
     Quantity:null,
@@ -28,13 +30,10 @@ export class PurchaseHeaderFormComponent implements OnInit {
     Purchase_Header_Id:null,
     Inventory_Id:null,
   };
-  constructor(private providerService:ProvidersService,private activatedRoute: ActivatedRoute, private httpClient: HttpClient) 
+  
+  constructor(private inventoryService:InventoryService,private providerService:ProvidersService,private activatedRoute: ActivatedRoute, private httpClient: HttpClient) 
   { 
-    httpClient.get(this.API_ENDPOINT + 'inventory')
-      .subscribe((data: Inventory[]) => {
-        this.inventory = data; //Se debe acceder al arreglo de este modo, oAngular lo reconocera como un objeto del tipo Post
-        //console.log(this.inventory);
-      });
+    
   }
 
   ngOnInit(){
@@ -42,6 +41,11 @@ export class PurchaseHeaderFormComponent implements OnInit {
       this.providers= data;
       //console.log(this.providers);
     });
+
+    this.inventoryService.getInventory().subscribe((data:Inventory[])=>{
+      this.inventory=data;
+    })
+    
   }
 
   getProviderId(id)
@@ -50,5 +54,26 @@ export class PurchaseHeaderFormComponent implements OnInit {
        this.proveedor_seleccionado= data;
        return this.proveedor_seleccionado=Array.of(this.proveedor_seleccionado);
       });
-    }
+  }
+  getInventoryId(id)
+  {
+    this.inventoryService.getInventoryId(id).subscribe((data: Inventory[])=>{
+      let datos:any  = data;
+      datos.Subtotal = 0;
+      this.inventorys = Array.of(datos);
+      this.vista_detail.push(this.inventorys)
+      console.log(this.vista_detail);
+      return this.vista_detail
+  });
+  }
+  cantidad=[];
+  precio=[];
+  onEnter(cantidad, precio, datos: any){
+    datos[0].Subtotal = cantidad * precio;
+    console.log(datos);
+  }
+  EliminarDetalle(index) {
+    this.vista_detail.splice(index,1);
+    console.log(this.vista_detail);
+}
 }
