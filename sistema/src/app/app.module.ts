@@ -29,6 +29,11 @@ import { FitradoproductPipe } from './pipes/fitradoproduct.pipe';
 import { EmployeePositionHomeComponent } from './components/employee_position/employee-position-home/employee-position-home.component';
 import { EmployeePositionFormComponent } from './components/employee_position/employee-position-form/employee-position-form.component';
 import { EmployeePostComponent } from './components/employee/employee-post/employee-post.component';
+import { FiltradocustomersPipe } from './pipes/filtradocustomers.pipe';
+import { FiltradopresentationPipe } from './pipes/filtradopresentation.pipe';
+import { CustomersHomeComponent } from './components/customers/customers-home/customers-home.component';
+import { CustomersFormComponent } from './components/customers/customers-form/customers-form.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 const routes: Route[]=[
   //Brand
@@ -58,10 +63,12 @@ const routes: Route[]=[
   //Purchase Header
   {path: 'purchase_header-form', component: PurchaseHeaderFormComponent},
   {path: 'product-form', component: ProductFormComponent},
-
+  //Bill Header
   {path: 'bill-header-form', component: BillHeaderFormComponent},
+  //Inventory
   {path: 'inventory-home', component: InventoryHomeComponent},
   {path: 'inventory-form', component: InventoryFormComponent},
+  {path: 'inventory-form/:id', component: InventoryFormComponent},
   //Employee
   {path: 'employee-home', component: EmployeeHomeComponent},
   {path: 'employee-form', component: EmployeeFormComponent},
@@ -71,6 +78,10 @@ const routes: Route[]=[
   {path: 'employee-position-home', component: EmployeePositionHomeComponent},
   {path: 'employee-position-form', component: EmployeePositionFormComponent},
   {path: 'employee-position-form/:id', component: EmployeePositionFormComponent},
+  //Customers
+  {path: 'customer-home', component: CustomersHomeComponent},
+  {path: 'customer-form', component: CustomersFormComponent},
+  
 ];
 
 @NgModule({
@@ -102,7 +113,11 @@ const routes: Route[]=[
     FitradoproductPipe,
     EmployeePositionHomeComponent,
     EmployeePositionFormComponent,
-    EmployeePostComponent
+    EmployeePostComponent,
+    FiltradocustomersPipe,
+    FiltradopresentationPipe,
+    CustomersHomeComponent,
+    CustomersFormComponent
   ],
   imports: [
     BrowserModule,
@@ -110,7 +125,8 @@ const routes: Route[]=[
     RouterModule.forRoot(routes),
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
