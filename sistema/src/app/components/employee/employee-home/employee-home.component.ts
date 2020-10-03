@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { EmployeeService } from '../servicios/employee.service';
+import { HttpClient } from '@angular/common/http';
+import { Employee } from '../interfaces/employee';
 
 @Component({
   selector: 'app-employee-home',
@@ -7,9 +10,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeHomeComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  API_ENDPOINT = 'http://localhost:3000/';
+  employee: Employee[];
+  constructor(
+    private employeeService: EmployeeService,
+    private httpClient: HttpClient
+  ) {
+    httpClient
+      .get(this.API_ENDPOINT + 'employee')
+      .subscribe((data: Employee[]) => {
+        this.employee = data; 
+        console.log(this.employee);
+      });
   }
-
+  ngOnInit() {}
+  delete(id) {
+    this.employeeService.delete(id).subscribe(
+      (data) => {
+        alert('Empleado Eliminado');
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 }
+ 

@@ -14,14 +14,16 @@
         <thead class="thead-dark">
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Nombre de la marca del producto</th>
-                
+                <th scope="col">Nombre de la marca del producto</th>             
             </tr>
         </thead>
         <tbody>
             <tr *ngFor= "let brand of brands | filter:rootBrand"(click)="myFn(brand.Brand_Id)">
                 <td>{{brand.Brand_Id}}</td>
                 <td>{{brand.Name}}</td>
+                <td><a class="btn btn-primary btn-sm" routerLink="/brand-form/{{brand.Brand_Id}}">Editar</a> &nbsp;
+                    <a class="btn btn-danger btn-sm" (click)="delete(brand.Brand_Id)" routerLink="/brand-home" style="color:white;">Eliminar</a>
+                </td>
             </tr>
         </tbody>
     </table>

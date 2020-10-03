@@ -3,6 +3,7 @@ import { LotService } from '../servicios/lot.service';
 import { HttpClient } from '@angular/common/http';
 import { Lot } from '../interfaces/lot';
 import { ActivatedRoute } from '@angular/router';
+import { Products } from '../../product/interfaces/product';
 
 
 @Component({
@@ -21,6 +22,8 @@ export class LotFormComponent implements OnInit {
   id: any;
   editing: boolean = false; 
   postarr: Lot[]; 
+  products: Products[];
+  
   constructor(private lotService: LotService, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
     this.id = this.activatedRoute.snapshot.params['id']; //Este es el parametro que se definio en la ruta de app.module.ts
     if (this.id) {
@@ -33,8 +36,14 @@ export class LotFormComponent implements OnInit {
         console.log(error);
       });
     } else {
-      this.editing = false;
+      this.editing = false; 
     }
+
+    httpClient.get(this.API_ENDPOINT + 'product')
+    .subscribe((data: Products[]) =>{
+      this.products = data;
+      console.log(this.products);
+    })
 }
 ngOnInit() {
 }

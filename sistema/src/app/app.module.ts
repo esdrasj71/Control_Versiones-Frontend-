@@ -26,12 +26,15 @@ import { BillHeaderFormComponent } from './components/sales/bill-header-form/bil
 import { InventoryHomeComponent } from './components/inventory/inventory-home/inventory-home.component';
 import { InventoryFormComponent } from './components/inventory/inventory-form/inventory-form.component';
 import { FitradoproductPipe } from './pipes/fitradoproduct.pipe';
+import { EmployeePositionHomeComponent } from './components/employee_position/employee-position-home/employee-position-home.component';
+import { EmployeePositionFormComponent } from './components/employee_position/employee-position-form/employee-position-form.component';
+import { EmployeePostComponent } from './components/employee/employee-post/employee-post.component';
 
 const routes: Route[]=[
   //Brand
   {path: 'brand-form', component:BrandFormComponent},
   {path: 'brand-home', component:BrandHomeComponent},
-  {path: 'brand-home/:id', component: BrandHomeComponent},
+  {path: 'brand-form/:id', component: BrandFormComponent},
   //Provider
   {path: 'providers-home', component: ProvidersHomeComponent},
   {path: 'providers-form', component: ProvidersFormComponent},
@@ -62,7 +65,12 @@ const routes: Route[]=[
   //Employee
   {path: 'employee-home', component: EmployeeHomeComponent},
   {path: 'employee-form', component: EmployeeFormComponent},
-
+  {path: 'employee-form/:id', component: EmployeeFormComponent},
+  {path: 'employee-post', component: EmployeePostComponent},
+  //Employee Position
+  {path: 'employee-position-home', component: EmployeePositionHomeComponent},
+  {path: 'employee-position-form', component: EmployeePositionFormComponent},
+  {path: 'employee-position-form/:id', component: EmployeePositionFormComponent},
 ];
 
 @NgModule({
@@ -91,8 +99,10 @@ const routes: Route[]=[
     EmployeeFormComponent,
     InventoryHomeComponent,
     InventoryFormComponent,
-    FitradoproductPipe
-
+    FitradoproductPipe,
+    EmployeePositionHomeComponent,
+    EmployeePositionFormComponent,
+    EmployeePostComponent
   ],
   imports: [
     BrowserModule,
