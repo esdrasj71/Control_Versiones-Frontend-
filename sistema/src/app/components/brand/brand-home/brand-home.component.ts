@@ -35,9 +35,6 @@ export class BrandHomeComponent implements OnInit {
   ngOnInit(): void {
   }
   findbrand(brandOne){
-    //this.httpClient.get(this.API_ENDPOINT + 'brands/:brandId')
-    //.subscribe((data: Brands[] )=>{
-      //this.brands = data;
     this.rootBrand = brandOne;
     console.log(this.rootBrand);
     }
