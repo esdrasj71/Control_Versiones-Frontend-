@@ -11,6 +11,7 @@ import {EmployeeService} from '../../employee/servicios/employee.service';
 import { ActivatedRoute } from '@angular/router';
 import {BillDetails} from '../interfaces/bill-detail';
 import {Bill_header} from '../interfaces/bill-header';
+import {BillsService} from '../servicios/bills.service';
 @Component({
   selector: 'app-bill-header-form',
   templateUrl: './bill-header-form.component.html',
@@ -21,7 +22,6 @@ export class BillHeaderFormComponent implements OnInit {
   total: number = 0;
 
   encabezado_factura: Bill_header = {
-    Bill_header_Id: null,
     Correlative_Number: null,
     Serie: null,
     Date: null,
@@ -33,7 +33,6 @@ export class BillHeaderFormComponent implements OnInit {
   }
 
   detalle_factura: BillDetails ={
-    Bill_Detail_Id: null,
     Subtotal: null,
     Quantity: null,
     Price: null,
@@ -59,7 +58,7 @@ export class BillHeaderFormComponent implements OnInit {
   empleados: Employee[];
  
 
-  constructor(private employeeService: EmployeeService, private customersService:CustomersService,private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private productsService: ProductsService, private inventoryService: InventoryService) { 
+  constructor(private billsService: BillsService,private employeeService: EmployeeService, private customersService:CustomersService,private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private productsService: ProductsService, private inventoryService: InventoryService) { 
   
   }
 
@@ -112,6 +111,7 @@ export class BillHeaderFormComponent implements OnInit {
     console.log(datos)
     this.total -= datos[0].Subtotal;
     datos[0].Subtotal = value * precio;
+    datos[0].Quantity = value;
     this.total += datos[0].Subtotal;  
   }
   onDelete(datos: any){
@@ -124,11 +124,23 @@ export class BillHeaderFormComponent implements OnInit {
 
   enviar(){
     this.encabezado_factura.Total = this.total;
-    this.encabezado_factura
+    this.encabezado_factura;
+    let arreglo = []
+    this.nuevo.forEach((e)=>{
+      let temporal = [];
+      temporal.push(e[0].Subtotal, parseInt(e[0].Quantity), e[0].Unit_Price, e[0].Inventory_Id)
+      arreglo.push(temporal);
+    })
     let venta = {
       header:this.encabezado_factura,
-      detail: this.nuevo
+      detail: arreglo
     }
+    /*this.billsService.saveHeader(this.encabezado_factura).subscribe((data)=>{
+      console.log(data);
+    }, (error)=>{
+      console.log(error);
+      alert('Ocurrio un error');
+    })*/
     console.log(venta);
   }
  
