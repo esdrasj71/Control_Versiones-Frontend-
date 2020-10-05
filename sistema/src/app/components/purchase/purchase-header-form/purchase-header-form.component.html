@@ -9,16 +9,16 @@
             <div class="row">
               <div class="col-md-7">
                 <div class="form-group row">
-                  <label for="correlativo" class="col-form-label"
+                  <label for="Correlative_Number" class="col-form-label"
                     >No Correlativo:</label
                   >
                   <div class="col-sm-7">
                     <input
+                    [(ngModel)]="header.Correlative_Number"
                       type="text"
-                      name="correlativo"
-                      id="correlativo"
+                      id="Correlative_Number"
                       class="form-control"
-                      placeholder="No"
+                      placeholder="No.Correlativo"
                       tabindex="1"
                     />
                   </div>
@@ -26,12 +26,12 @@
               </div>
               <div class="col-md-5">
                 <div class="form-group row">
-                  <label for="serie" class="col-form-label">Serie:</label>
+                  <label for="Serie" class="col-form-label">Serie:</label>
                   <div class="col-sm-9">
                     <input
+                    [(ngModel)]="header.Serie"
                       type="text"
-                      name="serie"
-                      id="serie"
+                      id="Serie"
                       class="form-control"
                       placeholder="Serie"
                       tabindex="2"
@@ -43,16 +43,16 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="date" class="col-form-label"
+                  <label for="Date_Purchase" class="col-form-label"
                     >Fecha de realizacion:</label
                   >
                   <div class="col">
                     <input
+                    [(ngModel)]="header.Date_Purchase"
                       type="date"
-                      name="date"
-                      id="date"
+                      id="Date_Purchase"
                       class="form-control"
-                      placeholder="date"
+                      placeholder="Fecha de compra"
                       tabindex="3"
                     />
                   </div>
@@ -62,7 +62,7 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="proveedores" class="col-form-label"
+                  <label for="Providers_Id" class="col-form-label"
                     >Proveedor:</label
                   >
                   <div class="col">
@@ -71,7 +71,7 @@
                     </button>
                     <br/>
                     <div *ngFor="let select of proveedor_seleccionado">
-                      <label for="proveedores" class="col-form-label"
+                      <label for="Providers_Id" class="col-form-label"
                       >ID: {{select.Providers_Id}}</label>
                       <br/>
                     <label for="proveedores" class="col-form-label"
@@ -93,13 +93,14 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="proveedores" class="col-form-label"
+                  <label for="Observations" class="col-form-label"
                     >Observaciónes:</label
                   >
                   <div class="col">
                     <textarea
+                    [(ngModel)]="header.Observations"
                       class="form-control"
-                      id="exampleFormControlTextarea1"
+                      id="Observations"
                       rows="2"
                       placeholder="Escribas las observaciónes de la compra"
                       tabindex="7"
@@ -112,16 +113,16 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="total" class="col-form-label">Total:</label>
+                  <label for="Total" class="col-form-label">Total:</label>
                   <div class="col">
-                    <input
+                    <label
+                    [(ngModel)]="header.Total"
                       type="text"
-                      name="total"
-                      id="total"
+                      id="Total"
                       class="form-control"
-                      placeholder="Monto total de la compra"
+                      value="0"
                       tabindex="8"
-                    />
+                      ngDefaultControl >Q{{total}}</label>
                   </div>
                 </div>
               </div>
@@ -143,9 +144,12 @@
               </button>
             </div>
             <hr>
+            <h5 class="card-title">Detalle de la compra</h5>
+ 
               <table class="table table-dark" style="table-layout: fixed; word-wrap: break-word;" id="table">
                 <thead class="thead-dark">
                     <tr>
+                        <th scope="col">ID Producto</th>
                         <th scope="col">Producto</th>
                         <th scope="col">Presentacion</th>
                         <th scope="col">Cantidad</th>
@@ -156,22 +160,17 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let inventario of vista_detail; let i=index;">
+                        <td>{{inventario[0].Product_Id}}</td>
                         <td>{{inventario[0].Product}}</td>
                         <th>{{inventario[0].Presentation}}</th>
                         <td><input type="number" class="form-control"  min="0"  value="1" [(ngModel)]="cantidad[i]"/></td>
                         <td><input type="number" class="form-control" [(ngModel)]="precio[i]" #box (keyup.enter)="onEnter(cantidad[i], precio[i], inventario)"  min="0"  value="1"/></td>
                         <td>{{inventario[0].Subtotal}}</td>
-                        <td><button class="btn btn-danger"  type="button" (click)="EliminarDetalle(i)" onClick="EliminarFila(this)">Eliminar</button></td>
-                        <!--<div *ngFor="let vista of vista_detail; let in=index;">
-                         <td> <input type="text" class="form-control"
-                          [(ngModel)]="vista[in].value" name="name{{in}}" placeholder="Cantidad" tabindex="10"/> </td>
-                         <td>{{detail.Quantity * detail.Unit_Price}}</td>
-                         {{vista_detail | json}}
-                        </div>-->
+                        <td><button class="btn btn-danger"  type="button" (click)="EliminarDetalle(i,inventario)" onClick="EliminarFila(this)">Eliminar</button></td>
                     </tr>
                 </tbody>
             </table>
-           
+            <button type="button" class="btn btn-success" (click)="savePost()" >Registrar Compra</button>
         </div>
         </div>
       </div>
