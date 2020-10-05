@@ -52,7 +52,7 @@ export class EmployeePositionFormComponent implements OnInit {
       this.employeePositionServicie.save(this.employeePosition).subscribe((data) => {
         alert('Posicion empleado guardado');
         console.log(data)
-      }, (error) => {
+      }, (error) => { 
         console.log(error);
         alert('Ocurrio un error');
       });

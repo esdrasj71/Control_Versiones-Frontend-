@@ -34,6 +34,7 @@ import { FiltradopresentationPipe } from './pipes/filtradopresentation.pipe';
 import { CustomersHomeComponent } from './components/customers/customers-home/customers-home.component';
 import { CustomersFormComponent } from './components/customers/customers-form/customers-form.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { CustomerPostComponent } from './components/customers/customer-post/customer-post.component';
 
 const routes: Route[]=[
   //Brand
@@ -79,9 +80,9 @@ const routes: Route[]=[
   {path: 'employee-position-form', component: EmployeePositionFormComponent},
   {path: 'employee-position-form/:id', component: EmployeePositionFormComponent},
   //Customers
-  {path: 'customer-home', component: CustomersHomeComponent},
-  {path: 'customer-form', component: CustomersFormComponent},
-  
+  {path: 'customers-home', component: CustomersHomeComponent},
+  {path: 'customers-form', component: CustomersFormComponent},
+  {path: 'customer-post', component: CustomersFormComponent},
 ];
 
 @NgModule({
@@ -117,7 +118,8 @@ const routes: Route[]=[
     FiltradocustomersPipe,
     FiltradopresentationPipe,
     CustomersHomeComponent,
-    CustomersFormComponent
+    CustomersFormComponent,
+    CustomerPostComponent
   ],
   imports: [
     BrowserModule,

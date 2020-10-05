@@ -1,0 +1,55 @@
+<div class="container card">
+    <div class="card-body">
+        <h2 class="alert alert-primary" role="alert">Nuevo Cliente</h2>
+        <div class="alert alert-warning" role="alert">
+
+            <div class="form-group row">
+                <label class="col-md-3 form-controllabel" for="DPI">DPI</label>
+                <div class="col-md-9">
+                    <input [(ngModel)]="customers.DPI" type="text" id="DPI" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-md-3 form-controllabel" for="Names">Nombres</label>
+                <div class="col-md-9">
+                    <input [(ngModel)]="customers.Names" type="text" id="Names" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-md-3 form-controllabel" for="Last_names">Apellidos</label>
+                <div class="col-md-9">
+                    <input [(ngModel)]="customers.Last_names" type="text" id="Last_names" class="form-control">
+                </div>
+            </div>
+           
+            <div class="form-group row">
+                <label class="col-md-3 form-controllabel" for="Phone_Number">Numero Telefonico</label>
+                <div class="col-md-9">
+                    <input [(ngModel)]="customers.Phone_Number" type="text" id="Phone_number" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-md-3 form-controllabel" for="NIT">NIT</label>
+                <div class="col-md-9">
+                    <input [(ngModel)]="customers.NIT" type="text" id="NIT" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-md-3 form-controllabel" for="Direccion">Direccion</label>
+                <div class="col-md-9">
+                    <input [(ngModel)]="customers.Direccion" type="text" id="Direccion" class="form-control">
+                </div>
+            </div>
+         
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <button (click)="saveCustomer()" class="btn btn-primary btnblock" routerLink="/customers-home">Guardar</button>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div> 
