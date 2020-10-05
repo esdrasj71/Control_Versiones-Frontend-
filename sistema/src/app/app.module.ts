@@ -49,6 +49,7 @@ const routes: Route[]=[
   //Product
   {path: 'product-home', component: ProductHomeComponent},
   {path: 'product-form', component: ProductFormComponent},
+  {path: 'product-form/:id', component: ProductFormComponent},
   //Presentation
   {path: 'presentation-home', component: PresentationHomeComponent},
   {path: 'presentation-form/:id', component: PresentationFormComponent},
