@@ -5,18 +5,18 @@
             <div class="form-group row">
                 <label for="product" class="col-form-label">Producto:</label>
                 <div class="col">
+                    <input  [(ngModel)]="inventory.Product_Id" />
                     <button type="button" class="btn btn-danger" data-toggle="modal"
                         data-target=".bd-product-modal-lg">
                         Buscar Producto
                     </button>
-                    <label  for="product" class="col-form-label">XD:
-                        {{inventory.Product_Id}}</label>
-                    <br />
                     <br />
                     <div *ngFor="let select of product_select" >
                         <label  for="product" class="col-form-label">Número Correlativo:
                             {{select.Correlative_Product}}</label>
                         <br />
+                        <label for="product" class="col-form-label">ID Producto: {{select.Product_Id}} </label>
+                        <br>
                         <label for="product" class="col-form-label">Nombre: {{select.Product}} </label>
                         <br />
                         <label for="product" class="col-form-label">Marca: {{select.Brand}}</label>
@@ -30,12 +30,15 @@
             <div class="form-group row">
                 <label for="presentation" class="col-form-label">Presentacion:</label>
                 <div class="col">
+                    <input  [(ngModel)]="inventory.Presentation_Id" />
                     <button type="button" class="btn btn-warning" data-toggle="modal"
                         data-target=".bd-presentation-modal-lg">
                         Buscar Presentacion
                     </button>
                     <br />
                     <div *ngFor="let select of presentation_select">
+                        <label for="product" class="col-form-label">ID Presentacion: {{select.Presentation_Id}} </label>
+                        <br>
                         <label for="presentation" class="col-form-label">Nombre: {{select.Name}} </label>
                     </div>
                 </div>
