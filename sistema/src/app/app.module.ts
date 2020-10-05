@@ -30,6 +30,7 @@ import { FiltradocustomersPipe } from './pipes/filtradocustomers.pipe';
 import { FiltradopresentationPipe } from './pipes/filtradopresentation.pipe';
 import { CustomersHomeComponent } from './components/customers/customers-home/customers-home.component';
 import { CustomersFormComponent } from './components/customers/customers-form/customers-form.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 const routes: Route[]=[
   //Brand
@@ -112,7 +113,8 @@ const routes: Route[]=[
     RouterModule.forRoot(routes),
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

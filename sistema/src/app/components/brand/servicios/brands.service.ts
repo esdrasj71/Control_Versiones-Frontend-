@@ -10,6 +10,10 @@ export class BrandsService {
   constructor(private httpClient: HttpClient) {
 
    }
+
+  getBrand() {
+    return this.httpClient.get(this.API_ENDPOINT + 'brand');
+  }
    save(brand: Brands){
      const headers = new HttpHeaders({'Content-Type': 'application/json'});
      return this.httpClient.post(this.API_ENDPOINT + 'brands', brand, {headers: headers});
