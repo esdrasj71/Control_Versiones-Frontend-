@@ -7,7 +7,6 @@ import { Products } from '../interfaces/product'
 export class ProductsService {
   API_ENDPOINT = 'http://localhost:3000/';
 
-
   constructor(private httpClient: HttpClient) {
 
   }

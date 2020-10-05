@@ -34,7 +34,12 @@ import { FiltradopresentationPipe } from './pipes/filtradopresentation.pipe';
 import { CustomersHomeComponent } from './components/customers/customers-home/customers-home.component';
 import { CustomersFormComponent } from './components/customers/customers-form/customers-form.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+<<<<<<< HEAD
 import { CustomerPostComponent } from './components/customers/customer-post/customer-post.component';
+=======
+import { NgSelectModule } from '@ng-select/ng-select';
+
+>>>>>>> master
 
 const routes: Route[]=[
   //Brand
@@ -128,7 +133,8 @@ const routes: Route[]=[
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
