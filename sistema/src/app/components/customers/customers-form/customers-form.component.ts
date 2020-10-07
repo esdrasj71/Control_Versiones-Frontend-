@@ -16,7 +16,7 @@ customer: Customers ={
   Last_names: null,
   Phone_Number: null,
   NIT: null,
-  Direccion: null,
+  Address: null,
 };
 API_ENDPOINT = 'http://localhost:3000/';
 id: any;

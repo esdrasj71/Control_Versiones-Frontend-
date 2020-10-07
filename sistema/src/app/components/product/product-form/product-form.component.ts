@@ -4,6 +4,7 @@ import { Brands } from '../../brand/interfaces/brand';
 import { HttpClient } from '@angular/common/http';
 import { Product_Category } from '../../product_category/interfaces/product-category';
 import { Products } from '../interfaces/product';
+import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../servicios/products.service';
 @Component({
   selector: 'app-product-form',
@@ -26,7 +27,26 @@ export class ProductFormComponent implements OnInit {
   @Input() name: string;
   form: FormGroup;
   estado_fecha: boolean = false;
-  constructor(private fb: FormBuilder, private httpClient: HttpClient, private productService: ProductsService) {
+  //Update
+  id: any;
+  editing: boolean = false;
+  productarr: Products[];
+  constructor(private fb: FormBuilder, private httpClient: HttpClient, private productService: ProductsService, private activatedRoute: ActivatedRoute) {
+    //Update
+    this.id = this.activatedRoute.snapshot.params['id'];
+    if (this.id) {
+      this.editing = true;
+      this.httpClient.get(this.API_ENDPOINT + 'product').subscribe((data: Products[]) => {
+        this.productarr = data;
+        console.log(this.productarr);
+        this.product = this.productarr.find((m) => { return m.Product_Id == this.id });
+      }, (error) => {
+        console.log(error);
+      });
+    }
+    else {
+      this.editing = false;
+    }
     httpClient.get(this.API_ENDPOINT + 'brands')
       .subscribe((data: Brands[]) => {
         this.brands = data;
@@ -40,9 +60,11 @@ export class ProductFormComponent implements OnInit {
     this.form = this.fb.group({
       estado_fecha: this.fb.array([], [Validators.required])
     })
+    
   }
 
   ngOnInit(): void {
+   
   }
 
   showform = function () {
@@ -62,15 +84,29 @@ export class ProductFormComponent implements OnInit {
   }
 
   saveProduct() {
-    this.product.Product_Category_Id = this.selectedCategoryId;
-    this.product.Brand_Id = this.selectedBrandId;
-    this.productService.saveproduct(this.product).subscribe((data) => {
-      alert('Producto guardado');
-      console.log(data)
-    }, (error) => {
-      console.log(error);
-      alert('Ocurrio un error');
-    })
+    if (this.editing) {
+      this.product.Product_Category_Id = this.selectedCategoryId;
+      this.product.Brand_Id = this.selectedBrandId;
+      console.log(this.product.Brand_Id);
+      this.productService.put(this.product).subscribe((data) => {
+        alert('Producto actualizado');
+        console.log(data)
+      }, (error) => {
+        console.log(error);
+        alert('Ocurrio un error');
+      })
+    }
+    else {
+      this.product.Product_Category_Id = this.selectedCategoryId;
+      this.product.Brand_Id = this.selectedBrandId;
+      this.productService.saveproduct(this.product).subscribe((data) => {
+        alert('Producto guardado');
+        console.log(data)
+      }, (error) => {
+        console.log(error);
+        alert('Ocurrio un error');
+      })
+    }
   }
 
   searchCategory(filter: string, product_category) {
