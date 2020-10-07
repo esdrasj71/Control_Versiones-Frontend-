@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CustomersFormComponent implements OnInit {
 customer: Customers ={
+  Customers_Id: null,
   DPI: null,
   Names: null,
   Last_names: null,
@@ -20,7 +21,7 @@ customer: Customers ={
 API_ENDPOINT = 'http://localhost:3000/';
 id: any;
 editing: boolean = false; //Este campo ayuda a saber cuando estamos editando y cuando estamos ingresando
-postarr: Customers[]; //Este campo nos ayudara a traer los datos cuando queremos editar
+postarr: Customers[]; 
 constructor(private customerService: CustomersService, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
   this.id = this.activatedRoute.snapshot.params['id']; //Este es el parametro que se definio en la ruta de app.module.ts
   if (this.id) {
@@ -31,17 +32,17 @@ constructor(private customerService: CustomersService, private activatedRoute: A
       this.customer = this.postarr.find((m) => { return m.Customers_Id == this.id }); //Aqui traemos solo el id que nos interesa
     }, (error) => {
       console.log(error);
-    });
+    }); 
   } else {
     this.editing = false;
-  }
+  } 
 }
 
   ngOnInit(): void {
   }
-  saveCustomer(){
+  saveCustomer() {
     if (this.editing) {
-      this.customerService.put(this.customer).subscribe((data) => { 
+      this.customerService.put(this.customer).subscribe((data) => { //El unico cambioes el put
         alert('Cliente actualizado');
         console.log(data)
       }, (error) => {
@@ -59,6 +60,6 @@ constructor(private customerService: CustomersService, private activatedRoute: A
         alert('Ocurrio un error');
       });
     }
-  }
+  } 
 
 }

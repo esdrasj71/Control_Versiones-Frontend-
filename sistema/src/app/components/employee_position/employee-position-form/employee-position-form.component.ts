@@ -54,7 +54,7 @@ export class EmployeePositionFormComponent implements OnInit {
         console.log(data)
       }, (error) => { 
         console.log(error);
-        alert('Ocurrio un error');
+        alert('Ocurrio un error'); 
       });
     }
   } 

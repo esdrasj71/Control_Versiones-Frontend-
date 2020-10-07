@@ -33,19 +33,20 @@ import { FiltradocustomersPipe } from './pipes/filtradocustomers.pipe';
 import { FiltradopresentationPipe } from './pipes/filtradopresentation.pipe';
 import { CustomersHomeComponent } from './components/customers/customers-home/customers-home.component';
 import { CustomersFormComponent } from './components/customers/customers-form/customers-form.component';
-import {NgxPaginationModule} from 'ngx-pagination';
-<<<<<<< HEAD
 import { CustomerPostComponent } from './components/customers/customer-post/customer-post.component';
-=======
+import {NgxPaginationModule} from 'ngx-pagination';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { BrandPostComponent } from './components/brand/brand-post/brand-post.component';
+import { EmployeePositionPostComponent } from './components/employee_position/employee-position-post/employee-position-post.component';
 
->>>>>>> master
+
 
 const routes: Route[]=[
   //Brand
   {path: 'brand-form', component:BrandFormComponent},
   {path: 'brand-home', component:BrandHomeComponent},
   {path: 'brand-form/:id', component: BrandFormComponent},
+  {path: 'brand-post', component: BrandPostComponent},
   //Provider
   {path: 'providers-home', component: ProvidersHomeComponent},
   {path: 'providers-form', component: ProvidersFormComponent},
@@ -84,9 +85,11 @@ const routes: Route[]=[
   {path: 'employee-position-home', component: EmployeePositionHomeComponent},
   {path: 'employee-position-form', component: EmployeePositionFormComponent},
   {path: 'employee-position-form/:id', component: EmployeePositionFormComponent},
+  {path: 'employee-position-post', component: EmployeePositionPostComponent},
   //Customers
   {path: 'customers-home', component: CustomersHomeComponent},
   {path: 'customers-form', component: CustomersFormComponent},
+  {path: 'customers-form/:id', component: CustomersFormComponent},
   {path: 'customer-post', component: CustomersFormComponent},
 ];
 
@@ -124,7 +127,9 @@ const routes: Route[]=[
     FiltradopresentationPipe,
     CustomersHomeComponent,
     CustomersFormComponent,
-    CustomerPostComponent
+    CustomerPostComponent,
+    BrandPostComponent,
+    EmployeePositionPostComponent
   ],
   imports: [
     BrowserModule,

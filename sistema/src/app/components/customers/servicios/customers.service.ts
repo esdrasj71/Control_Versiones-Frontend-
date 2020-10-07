@@ -8,9 +8,13 @@ import {Customers} from '../interfaces/customer';
 export class CustomersService {
   API_ENDPOINT = 'http://localhost:3000/';
 
+  customer = []; 
   constructor(private httpClient: HttpClient) {
-
-   }
+    httpClient.get(this.API_ENDPOINT + 'customer')
+      .subscribe((data: Customers[]) => {
+        this.customer = data;
+      });
+   } 
    saveCustomer(customer: Customers){
      const headers = new HttpHeaders({'Content-Type': 'application/json'});
      return this.httpClient.post(this.API_ENDPOINT + 'customer', customer, {headers: headers});

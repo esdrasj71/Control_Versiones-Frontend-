@@ -15,7 +15,7 @@ export class EmployeeService {
       .subscribe((data: Employee[]) => {
         this.employee = data;
       });
-   }
+   } 
    getEmployee(){
     return this.httpClient.get(this.API_ENDPOINT + 'employee' );
   }

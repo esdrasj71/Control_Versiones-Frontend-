@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Customers } from '../interfaces/customer';
 import {CustomersService} from '../servicios/customers.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http'; 
 
 @Component({
   selector: 'app-customer-post',
