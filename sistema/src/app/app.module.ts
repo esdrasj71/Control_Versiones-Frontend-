@@ -2,12 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Pipe, PipeTransform } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { Route, RouterModule} from '@angular/router';
+import { Route, RouterModule } from '@angular/router';
 import { BrandHomeComponent } from './components/brand/brand-home/brand-home.component';
 import { BrandFormComponent } from './components/brand/brand-form/brand-form.component';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FilterPipe, SortByPipe} from '../pipes';
+import { FilterPipe, SortByPipe } from '../pipes';
 import { ProvidersHomeComponent } from './components/providers/providers-home/providers-home.component';
 import { ProvidersFormComponent } from './components/providers/providers-form/providers-form.component';
 import { ProductHomeComponent } from './components/product/product-home/product-home.component';
@@ -33,62 +33,60 @@ import { FiltradocustomersPipe } from './pipes/filtradocustomers.pipe';
 import { FiltradopresentationPipe } from './pipes/filtradopresentation.pipe';
 import { CustomersHomeComponent } from './components/customers/customers-home/customers-home.component';
 import { CustomersFormComponent } from './components/customers/customers-form/customers-form.component';
-import {NgxPaginationModule} from 'ngx-pagination';
-<<<<<<< HEAD
+import { NgxPaginationModule } from 'ngx-pagination';
 import { CustomerPostComponent } from './components/customers/customer-post/customer-post.component';
-=======
 import { NgSelectModule } from '@ng-select/ng-select';
 
->>>>>>> master
 
-const routes: Route[]=[
+const routes: Route[] = [
   //Brand
-  {path: 'brand-form', component:BrandFormComponent},
-  {path: 'brand-home', component:BrandHomeComponent},
-  {path: 'brand-form/:id', component: BrandFormComponent},
+  { path: 'brand-form', component: BrandFormComponent },
+  { path: 'brand-home', component: BrandHomeComponent },
+  { path: 'brand-form/:id', component: BrandFormComponent },
   //Provider
-  {path: 'providers-home', component: ProvidersHomeComponent},
-  {path: 'providers-form', component: ProvidersFormComponent},
-  {path: 'providers-form/:id', component: ProvidersFormComponent},
+  { path: 'providers-home', component: ProvidersHomeComponent },
+  { path: 'providers-form', component: ProvidersFormComponent },
+  { path: 'providers-form/:id', component: ProvidersFormComponent },
   //Product
-  {path: 'product-home', component: ProductHomeComponent},
-  {path: 'product-form', component: ProductFormComponent},
-  {path: 'product-form/:id', component: ProductFormComponent},
+  { path: 'product-home', component: ProductHomeComponent },
+  { path: 'product-form', component: ProductFormComponent },
+  { path: 'product-form/:id', component: ProductFormComponent },
   //Presentation
-  {path: 'presentation-home', component: PresentationHomeComponent},
-  {path: 'presentation-form/:id', component: PresentationFormComponent},
-  {path: 'presentation-form', component: PresentationFormComponent},
-  {path: 'presentation-home/:id', component: LotHomeComponent},
+  { path: 'presentation-home', component: PresentationHomeComponent },
+  { path: 'presentation-form/:id', component: PresentationFormComponent },
+  { path: 'presentation-form', component: PresentationFormComponent },
+  { path: 'presentation-home/:id', component: LotHomeComponent },
   //Product Category
-  {path: 'product-category-home', component: ProductCategoryHomeComponent},
-  {path: 'product-category-form', component: ProductCategoryFormComponent},
-  {path: 'product-category-form/:id', component: ProductCategoryFormComponent},
+  { path: 'product-category-home', component: ProductCategoryHomeComponent },
+  { path: 'product-category-form', component: ProductCategoryFormComponent },
+  { path: 'product-category-form/:id', component: ProductCategoryFormComponent },
   //Lot
-  {path: 'lot-home', component: LotHomeComponent},
-  {path: 'lot-form/:id', component: LotFormComponent},
-  {path: 'lot-form', component: LotFormComponent},
+  { path: 'lot-home', component: LotHomeComponent },
+  { path: 'lot-form/:id', component: LotFormComponent },
+  { path: 'lot-form', component: LotFormComponent },
   //Purchase Header
-  {path: 'purchase_header-form', component: PurchaseHeaderFormComponent},
-  {path: 'product-form', component: ProductFormComponent},
+  { path: 'purchase_header-form', component: PurchaseHeaderFormComponent },
+  { path: 'product-form', component: ProductFormComponent },
   //Bill Header
-  {path: 'bill-header-form', component: BillHeaderFormComponent},
+  { path: 'bill-header-form', component: BillHeaderFormComponent },
   //Inventory
-  {path: 'inventory-home', component: InventoryHomeComponent},
-  {path: 'inventory-form', component: InventoryFormComponent},
-  {path: 'inventory-form/:id', component: InventoryFormComponent},
+  { path: 'inventory-home', component: InventoryHomeComponent },
+  { path: 'inventory-form', component: InventoryFormComponent },
+  { path: 'inventory-form/:id', component: InventoryFormComponent },
   //Employee
-  {path: 'employee-home', component: EmployeeHomeComponent},
-  {path: 'employee-form', component: EmployeeFormComponent},
-  {path: 'employee-form/:id', component: EmployeeFormComponent},
-  {path: 'employee-post', component: EmployeePostComponent},
+  { path: 'employee-home', component: EmployeeHomeComponent },
+  { path: 'employee-form', component: EmployeeFormComponent },
+  { path: 'employee-form/:id', component: EmployeeFormComponent },
+  { path: 'employee-post', component: EmployeePostComponent },
   //Employee Position
-  {path: 'employee-position-home', component: EmployeePositionHomeComponent},
-  {path: 'employee-position-form', component: EmployeePositionFormComponent},
-  {path: 'employee-position-form/:id', component: EmployeePositionFormComponent},
+  { path: 'employee-position-home', component: EmployeePositionHomeComponent },
+  { path: 'employee-position-form', component: EmployeePositionFormComponent },
+  { path: 'employee-position-form/:id', component: EmployeePositionFormComponent },
   //Customers
-  {path: 'customers-home', component: CustomersHomeComponent},
-  {path: 'customers-form', component: CustomersFormComponent},
-  {path: 'customer-post', component: CustomersFormComponent},
+  { path: 'customers-home', component: CustomersHomeComponent },
+  { path: 'customers-form', component: CustomersFormComponent },
+  { path: 'customers-post', component: CustomersFormComponent },
+  { path: 'customers-form/:id', component: CustomersFormComponent },
 ];
 
 @NgModule({

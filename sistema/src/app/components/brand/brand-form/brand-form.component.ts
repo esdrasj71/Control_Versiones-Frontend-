@@ -30,7 +30,6 @@ export class BrandFormComponent implements OnInit {
     } else {
       this.editing = false;
     }
-<<<<<<< HEAD
   }
 
   ngOnInit(): void {
@@ -56,23 +55,6 @@ export class BrandFormComponent implements OnInit {
       });
     }
   }
-=======
-  constructor(private brandService: BrandsService) {
 
-  }
-
-  ngOnInit(): void {
-  }
-  savebrand() {
-    console.log(this.brand);
-    this.brandService.save(this.brand).subscribe((data) => {
-      alert('Marca guardada');
-      console.log(data)
-    }, (error) => {
-      console.log(error);
-      alert('Ocurrio un error');
-    })
-  }
->>>>>>> Ramajulio
 
 }

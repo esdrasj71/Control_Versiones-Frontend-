@@ -5,5 +5,5 @@ export interface Customers{
     Last_names: string;
     Phone_Number: string;
     NIT: string;
-    Direccion: string;
+    Address: string;
 }
