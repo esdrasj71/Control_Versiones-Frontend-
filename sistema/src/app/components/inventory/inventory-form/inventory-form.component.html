@@ -3,176 +3,62 @@
     <div>
         <div class="col-md-12">
             <div class="form-group row">
-                <label for="product" class="col-form-label">Producto:</label>
-                <div class="col">
-                    <input  [(ngModel)]="inventory.Product_Id" />
-                    <button type="button" class="btn btn-danger" data-toggle="modal"
-                        data-target=".bd-product-modal-lg">
-                        Buscar Producto
-                    </button>
-                    <br />
-                    <div *ngFor="let select of product_select" >
-                        <label  for="product" class="col-form-label">Número Correlativo:
-                            {{select.Correlative_Product}}</label>
-                        <br />
-                        <label for="product" class="col-form-label">ID Producto: {{select.Product_Id}} </label>
-                        <br>
-                        <label for="product" class="col-form-label">Nombre: {{select.Product}} </label>
-                        <br />
-                        <label for="product" class="col-form-label">Marca: {{select.Brand}}</label>
-                        <br />
-                        <label for="product" class="col-form-label">Categoría: {{select.Category}}</label>
-                    </div>
+                <label for="product" class="col-form-label">Producto: </label>
+                <!--Product-->
+                <div style="width:300px; height:10px; left: 10px"  left= "300px">
+                    <ng-select [searchFn]="searchProduct" id="product" name="product" [items]="product"
+                        [virtualScroll]="true" bindLabel="Name" bindValue="Product_Id" placeholder="Producto"
+                        [(ngModel)]="selectedProductId" >
+                        <ng-template ng-header-tmp>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-6">Marca</div>
+                                </div>
+                            </div>
+                        </ng-template>
+                        <ng-template ng-label-tmp let-item="item">
+                            <span>{{item.Complete}}</span>
+                        </ng-template>
+                        <ng-template ng-option-tmp let-item="item" let-index="index">
+                            {{item.Complete}}
+                        </ng-template>
+                    </ng-select>
                 </div>
             </div>
-        </div>
-        <div class="col-md-12">
             <div class="form-group row">
-                <label for="presentation" class="col-form-label">Presentacion:</label>
-                <div class="col">
-                    <input  [(ngModel)]="inventory.Presentation_Id" />
-                    <button type="button" class="btn btn-warning" data-toggle="modal"
-                        data-target=".bd-presentation-modal-lg">
-                        Buscar Presentacion
-                    </button>
-                    <br />
-                    <div *ngFor="let select of presentation_select">
-                        <label for="product" class="col-form-label">ID Presentacion: {{select.Presentation_Id}} </label>
-                        <br>
-                        <label for="presentation" class="col-form-label">Nombre: {{select.Name}} </label>
-                    </div>
+                <label class="col-md-3 form-controllabel" for="Stock">Stock:</label>
+                <div class="col-md-9">
+                    <input [(ngModel)]="inventory.Stock" type="number" id="Stock" class="form-control"
+                        placeholder="Ingrese el stock" min="10" max="100">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 form-controllabel" for="Unit_Price">Precio Unitario:</label>
+                <div class="col-md-9">
+                    <input [(ngModel)]="inventory.Unit_Price" type="number" id="Unit_Price" class="form-control"
+                        placeholder="Ingrese el precio unitario" min="10" max="100">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 form-controllabel" for="Retail_Price">Precio Minorista:</label>
+                <div class="col-md-9">
+                    <input [(ngModel)]="inventory.Retail_Price" type="number" id="Retail_Price" class="form-control"
+                        placeholder="Ingrese el precio minorista" min="10" max="100">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 form-controllabel" for="Wholesale_Price">Precio Mayorista:</label>
+                <div class="col-md-9">
+                    <input [(ngModel)]="inventory.Wholesale_Price" type="number" id="Wholesale_Price"
+                        class="form-control" placeholder="Ingrese el precio mayorista" min="10" max="100">
+                </div>
+            </div>
+            <br>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <button (click)="saveInventory()" class="btn btn-success btnblock">Guardar</button>
                 </div>
             </div>
         </div>
-        <div class="form-group row">
-            <label class="col-md-3 form-controllabel" for="Stock">Stock:</label>
-            <div class="col-md-9">
-                <input [(ngModel)]="inventory.Stock" type="number" id="Stock" class="form-control"
-                    placeholder="Ingrese el stock" min="10" max="100">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-md-3 form-controllabel" for="Unit_Price">Precio Unitario:</label>
-            <div class="col-md-9">
-                <input [(ngModel)]="inventory.Unit_Price" type="number" id="Unit_Price" class="form-control"
-                    placeholder="Ingrese el precio unitario" min="10" max="100">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-md-3 form-controllabel" for="Retail_Price">Precio Minorista:</label>
-            <div class="col-md-9">
-                <input [(ngModel)]="inventory.Retail_Price" type="number" id="Retail_Price" class="form-control"
-                    placeholder="Ingrese el precio minorista" min="10" max="100">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-md-3 form-controllabel" for="Wholesale_Price">Precio Mayorista:</label>
-            <div class="col-md-9">
-                <input [(ngModel)]="inventory.Wholesale_Price" type="number" id="Wholesale_Price" class="form-control"
-                    placeholder="Ingrese el precio mayorista" min="10" max="100">
-            </div>
-        </div>
-        <br>
-        <div class="form-group row">
-            <div class="col-md-12">
-                <button (click)="saveInventory()" class="btn btn-success btnblock">Guardar</button>
-            </div>
-        </div>
+        <hr>
     </div>
-    <hr>
-</div>
-
-<!--Modal Product-->
-<div class="modal fade bd-product-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px;">
-        <div class="modal-content" style="width: 900px;">
-            <div class="modal-header" style="width: 900px;">
-                <h5 class="modal-title" id="exampleModalLongTitle">Encuentre el producto</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y:auto;">
-                <div class="container">
-                    <div class="form-group row">
-                        <label for="product" class="col-form-label">Producto:</label>
-                        <div class="col">
-                            <input type="text" name="product" id="product" class="form-control"
-                                placeholder="Buscar producto" [(ngModel)]="filtrado_product" tabindex="4" />
-                        </div>
-                    </div>
-                    <table class="table table-dark" style="table-layout: fixed; word-wrap: break-word;" id="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Marca</th>
-                                <th scope="col">Categoria</th>
-                                <th scope="col">Perecedero</th>
-                                <th scope="col">Número Correlativo</th>>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let product of product | fitradoproduct:filtrado_product">
-                                <td height="10">{{product.Product_Id}}</td>
-                                <td height="10">{{product.Product}}</td>
-                                <td height="10">{{product.Brand}}</td>
-                                <td height="10">{{product.Category}}</td>
-                                <td height="10">{{product.Perishable}}</td>
-                                <td height="10">{{product.Correlative_Product}}</td>
-                                <td><a  class="btn btn-primary btn-sm" (click)="getProductId(product.Product_Id)"
-                                data-dismiss="modal" >Seleccionar</a> &nbsp;
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--Modal Presentation-->
-<div class="modal fade bd-presentation-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px;">
-        <div class="modal-content" style="width: 900px;">
-            <div class="modal-header" style="width: 900px;">
-                <h5 class="modal-title" id="exampleModalLongTitle">Encuentre la presentacion</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y:auto;">
-                <div class="container">
-                    <div class="form-group row">
-                        <label for="product" class="col-form-label">Presentación:</label>
-                        <div class="col">
-                            <input type="text" name="presentation" id="presentation" class="form-control"
-                            placeholder="Buscar presentacion" [(ngModel)]="filtrado_presentation" tabindex="4" />
-                        </div>
-                    </div>
-                    <table class="table table-dark" style="table-layout: fixed; word-wrap: break-word;" id="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Nombre</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let presentation of presentation | filtradopresentation: filtrado_presentation ">
-                                <td height="10">{{presentation.Presentation_Id}}</td>
-                                <td height="10">{{presentation.Name}}</td>
-                                <td><a class="btn btn-primary btn-sm"
-                                        (click)="getPresentationId(presentation.Presentation_Id)"
-                                        data-dismiss="modal">Seleccionar</a> &nbsp;
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
