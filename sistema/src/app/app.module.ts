@@ -28,17 +28,16 @@ import { InventoryFormComponent } from './components/inventory/inventory-form/in
 import { FitradoproductPipe } from './pipes/fitradoproduct.pipe';
 import { EmployeePositionHomeComponent } from './components/employee_position/employee-position-home/employee-position-home.component';
 import { EmployeePositionFormComponent } from './components/employee_position/employee-position-form/employee-position-form.component';
-import { EmployeePostComponent } from './components/employee/employee-post/employee-post.component';
 import { FiltradocustomersPipe } from './pipes/filtradocustomers.pipe';
 import { FiltradopresentationPipe } from './pipes/filtradopresentation.pipe';
 import { CustomersHomeComponent } from './components/customers/customers-home/customers-home.component';
 import { CustomersFormComponent } from './components/customers/customers-form/customers-form.component';
-import { CustomerPostComponent } from './components/customers/customer-post/customer-post.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { BrandPostComponent } from './components/brand/brand-post/brand-post.component';
-import { EmployeePositionPostComponent } from './components/employee_position/employee-position-post/employee-position-post.component';
-
+import { PaymentHomeComponent } from './components/payment/payment-home/payment-home.component';
+import { PaymentFormComponent } from './components/payment/payment-form/payment-form.component';
+import { PaymentTypeComponent } from './components/payment_type_detail/payment-type-home/payment-type.component';
+import { PaymentTypeFormComponent } from './components/payment_type_detail/payment-type-form/payment-type-form.component';
 
 
 const routes: Route[] = [
@@ -46,8 +45,6 @@ const routes: Route[] = [
   { path: 'brand-form', component: BrandFormComponent },
   { path: 'brand-home', component: BrandHomeComponent },
   { path: 'brand-form/:id', component: BrandFormComponent },
-  { path: 'brand-post', component: BrandPostComponent },
-
   //Provider
   { path: 'providers-home', component: ProvidersHomeComponent },
   { path: 'providers-form', component: ProvidersFormComponent },
@@ -82,18 +79,22 @@ const routes: Route[] = [
   { path: 'employee-home', component: EmployeeHomeComponent },
   { path: 'employee-form', component: EmployeeFormComponent },
   { path: 'employee-form/:id', component: EmployeeFormComponent },
-  { path: 'employee-post', component: EmployeePostComponent },
   //Employee Position
   { path: 'employee-position-home', component: EmployeePositionHomeComponent },
   { path: 'employee-position-form', component: EmployeePositionFormComponent },
   { path: 'employee-position-form/:id', component: EmployeePositionFormComponent },
-  { path: 'employee-position-post', component: EmployeePositionPostComponent },
   //Customers
   { path: 'customers-home', component: CustomersHomeComponent },
   { path: 'customers-form', component: CustomersFormComponent },
   { path: 'customers-form/:id', component: CustomersFormComponent },
-  { path: 'customer-post', component: CustomersFormComponent },
-
+  //Payment
+  { path: 'payment-home', component: PaymentHomeComponent },
+  { path: 'payment-form', component: PaymentFormComponent },
+  { path: 'payment-form/:id', component: PaymentFormComponent },
+   //Payment type detail
+  { path: 'payment-type-home', component: PaymentTypeComponent },
+  { path: 'payment-type-form', component: PaymentTypeFormComponent },
+  { path: 'payment-type-form/:id', component: PaymentTypeFormComponent },
 ];
 
 @NgModule({
@@ -125,14 +126,14 @@ const routes: Route[] = [
     FitradoproductPipe,
     EmployeePositionHomeComponent,
     EmployeePositionFormComponent,
-    EmployeePostComponent,
     FiltradocustomersPipe,
     FiltradopresentationPipe,
     CustomersHomeComponent,
     CustomersFormComponent,
-    CustomerPostComponent,
-    BrandPostComponent,
-    EmployeePositionPostComponent
+    PaymentHomeComponent,
+    PaymentFormComponent,
+    PaymentTypeComponent,
+    PaymentTypeFormComponent
   ],
   imports: [
     BrowserModule,

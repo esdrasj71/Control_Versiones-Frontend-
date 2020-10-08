@@ -25,6 +25,7 @@ export class CustomersHomeComponent implements OnInit {
     this.customersService.delete(id).subscribe(
       (data) => {
         alert('Cliente Eliminado');
+        window.location.reload();
       },
       (error) => {
         console.log(error);

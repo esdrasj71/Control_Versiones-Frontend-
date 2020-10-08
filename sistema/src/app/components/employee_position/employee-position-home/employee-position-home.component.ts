@@ -29,6 +29,7 @@ export class EmployeePositionHomeComponent implements OnInit {
     this.employeePositionService.delete(id).subscribe(
       (data) => {
         alert('Posicion de Empleado Eliminado');
+        window.location.reload();
       },
       (error) => {
         console.log(error);
