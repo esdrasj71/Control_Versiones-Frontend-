@@ -14,7 +14,9 @@ export class ProductHomeComponent implements OnInit {
     httpClient.get(this.API_ENDPOINT + 'product')
       .subscribe((data: Products[]) => {
         this.products = data;
+        console.log(this.products);
       })
+      
   }
 
   ngOnInit(): void {

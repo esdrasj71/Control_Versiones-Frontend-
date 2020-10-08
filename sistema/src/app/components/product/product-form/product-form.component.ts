@@ -35,11 +35,15 @@ export class ProductFormComponent implements OnInit {
     //Update
     this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
+      console.log(this.product);
       this.editing = true;
       this.httpClient.get(this.API_ENDPOINT + 'product').subscribe((data: Products[]) => {
         this.productarr = data;
-        console.log(this.productarr);
+        //console.log(this.productarr);
         this.product = this.productarr.find((m) => { return m.Product_Id == this.id });
+        //console.log(this.product);
+        this.selectedCategoryId=this.product.Product_Category_Id;
+        this.selectedBrandId=this.product.Brand_Id;
       }, (error) => {
         console.log(error);
       });
@@ -50,12 +54,12 @@ export class ProductFormComponent implements OnInit {
     httpClient.get(this.API_ENDPOINT + 'brands')
       .subscribe((data: Brands[]) => {
         this.brands = data;
-        console.log(this.brands);
+       // console.log(this.brands);
       })
     httpClient.get(this.API_ENDPOINT + 'product_category')
       .subscribe((data: Product_Category[]) => {
         this.product_category = data; //Se debe acceder al arreglo de este modo, oAngular lo reconocera como un objeto del tipo Post
-        console.log(this.product_category);
+        //console.log(this.product_category);
       });
     this.form = this.fb.group({
       estado_fecha: this.fb.array([], [Validators.required])
@@ -85,9 +89,7 @@ export class ProductFormComponent implements OnInit {
 
   saveProduct() {
     if (this.editing) {
-      this.product.Product_Category_Id = this.selectedCategoryId;
-      this.product.Brand_Id = this.selectedBrandId;
-      console.log(this.product.Brand_Id);
+      console.log(this.product);
       this.productService.put(this.product).subscribe((data) => {
         alert('Producto actualizado');
         console.log(data)
@@ -99,6 +101,7 @@ export class ProductFormComponent implements OnInit {
     else {
       this.product.Product_Category_Id = this.selectedCategoryId;
       this.product.Brand_Id = this.selectedBrandId;
+      console.log(this.product);
       this.productService.saveproduct(this.product).subscribe((data) => {
         alert('Producto guardado');
         console.log(data)
