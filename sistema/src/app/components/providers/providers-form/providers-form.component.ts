@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output, EventEmitter } from '@angular/core';
 import { ProvidersService } from '../servicios/providers.service';
 import { HttpClient } from '@angular/common/http';
 import { Providers } from '../interfaces/providers';
@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./providers-form.component.css']
 })
 export class ProvidersFormComponent implements OnInit {
+  @Output() Provider_Id = new EventEmitter<number>();
   providers: Providers = {
     Providers_Id:null,
     NIT: null,
@@ -52,6 +53,7 @@ export class ProvidersFormComponent implements OnInit {
     else {
       console.log(this.providers);
       this.providersService.save(this.providers).subscribe((data) => {
+        this.Provider_Id.emit(data["id"]);
         alert('Proveedor guardado');
         console.log(data)
       }, (error) => {

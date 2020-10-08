@@ -10,7 +10,7 @@
               <div class="col-md-7">
                 <div class="form-group row">
                   <label for="Correlative_Number" class="col-form-label"
-                    >No Correlativo:</label
+                    >No Factura:</label
                   >
                   <div class="col-sm-7">
                     <input
@@ -109,6 +109,22 @@
                 </div>
               </div>
             </div>
+            
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group row">
+                  <label for="Observations" class="col-form-label"
+                    >¿Esta pagado?</label
+                  >
+                  <div class="col">
+                    <input type="checkbox" v-model="Payment_Complete" 
+                    class="formcontrol"  [(ngModel)]="header.Payment_Complete" 
+                    class="form-control" placeholder="No"
+                    [ngModelOptions]="{standalone: true}">
+                  </div>
+                </div>
+              </div>
+            </div>            
             <hr />
             <div class="row">
               <div class="col-md-12">
@@ -143,15 +159,14 @@
                 Buscar Producto
               </button>
             </div>
-            <hr>
             <h5 class="card-title">Detalle de la compra</h5>
  
               <table class="table table-dark" style="table-layout: fixed; word-wrap: break-word;" id="table">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">ID Producto</th>
+                        <th scope="col">No. Correlativo</th>
                         <th scope="col">Producto</th>
-                        <th scope="col">Presentacion</th>
                         <th scope="col">Cantidad</th>
                         <th scope="col">Precio</th>
                         <th scope="col">Subtotal</th>
@@ -161,10 +176,10 @@
                 <tbody>
                     <tr *ngFor="let inventario of vista_detail; let i=index;">
                         <td>{{inventario[0].Product_Id}}</td>
-                        <td>{{inventario[0].Product}}</td>
-                        <th>{{inventario[0].Presentation}}</th>
-                        <td><input type="number" class="form-control"  min="0"  value="1" [(ngModel)]="cantidad[i]"/></td>
-                        <td><input type="number" class="form-control" [(ngModel)]="precio[i]" #box (keyup.enter)="onEnter(cantidad[i], precio[i], inventario)"  min="0"  value="1"/></td>
+                        <td>{{inventario[0].Correlative_Product}}</td>
+                        <th>{{inventario[0].Name}}</th>
+                        <td><input type="number" class="form-control"  [(ngModel)]="cantidad[i]"/></td>
+                        <td><input type="number" class="form-control" [(ngModel)]="precio[i]" #box (keyup.enter)="onEnter(cantidad[i], precio[i], inventario)"/></td>
                         <td>{{inventario[0].Subtotal}}</td>
                         <td><button class="btn btn-danger"  type="button" (click)="EliminarDetalle(i,inventario)" onClick="EliminarFila(this)">Eliminar</button></td>
                     </tr>
@@ -205,6 +220,9 @@
               [(ngModel)]="filtrado_proveedor"
               tabindex="4"
             />
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-agregarproveedor-modal-lg">
+              + Agregar Proveedor
+            </button>
           </div>
         </div>
         <table class="table table-dark" style="table-layout: fixed; word-wrap: break-word;" id="table">
@@ -246,7 +264,44 @@
     </div>
   </div>
 </div>
-
+<!--MODAL AGREGAR PROVEEDORES-->
+<div class="modal fade bd-agregarproveedor-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px;">
+    <div class="modal-content"style="width: 900px;">
+      <div class="modal-header"style="width: 900px;">
+        <h5 class="modal-title" id="exampleModalLongTitle">Encuentre su proveedor</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y:auto;">
+        <app-providers-form (Provider_Id)="getProviderId($event)"></app-providers-form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--MODAL AGREGAR PRODUCTOS-->
+<div class="modal fade bd-agregarproveedor-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px;">
+    <div class="modal-content"style="width: 900px;">
+      <div class="modal-header"style="width: 900px;">
+        <h5 class="modal-title" id="exampleModalLongTitle">Encuentre su proveedor</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y:auto;">
+        <app-providers-form (Provider_Id)="getProviderId($event)"></app-providers-form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!--MODALS PRODUCTOS-->
 <div class="modal fade bd-producto-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px;">
@@ -264,8 +319,8 @@
             >Producto:</label
           >
           <div class="col">
-            <!--<input type="text" name="product" id="product" class="form-control"
-            placeholder="Buscar producto" [(ngModel)]="filtrado_product" tabindex="9" />-->
+            <input type="text" name="product" id="product" class="form-control"
+            placeholder="Buscar producto" [(ngModel)]="filtrado_product" tabindex="9" />
             <hr>
           </div>
         </div>
@@ -275,22 +330,21 @@
                   <th scope="col">#</th>
                   <th scope="col">Correlativo Producto</th>
                   <th scope="col">Nombre Producto</th>
-                  <th scope="col">Presentación</th>
                   <th scope="col"></th>
               </tr>
           </thead>
           <tbody>
-              <tr *ngFor="let inventario of inventory ">
-                  <td height="10">{{inventario.Inventory_Id}}</td>
-                  <td height="10">{{inventario.Correlative_Product}}</td>
-                  <td height="10">{{inventario.Product}}</td>
-                  <td height="10">{{inventario.Presentation}}</td>
-                  <td><a class="btn btn-primary btn-sm"  (click)="getInventoryId(inventario.Inventory_Id)" data-dismiss="modal">Seleccionar</a> &nbsp;
-                      
+              <tr *ngFor="let produ of product | fitradoproduct:filtrado_product | paginate: { itemsPerPage: 3, currentPage: paginaActualp }">
+                  <td height="10">{{produ.Product_Id}}</td>
+                  <td height="10">{{produ.Correlative_Product}}</td>
+                  <td height="10">{{produ.Name}}</td>
+                  <td><a class="btn btn-primary btn-sm"  (click)="getProductId(produ.Product_Id)" data-dismiss="modal">Seleccionar</a> &nbsp; 
                   </td>
               </tr>
           </tbody>
       </table>
+      <pagination-controls (pageChange)="paginaActualp = $event" previousLabel="Anterior"
+      nextLabel="Siguiente" maxSize="9" autoHide="true"></pagination-controls>
     </div>
       </div>
       <div class="modal-footer">
