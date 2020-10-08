@@ -36,6 +36,8 @@ import { PaymentHomeComponent } from './components/payment/payment-home/payment-
 import { PaymentFormComponent } from './components/payment/payment-form/payment-form.component';
 import { PaymentTypeComponent } from './components/payment_type_detail/payment-type-home/payment-type.component';
 import { PaymentTypeFormComponent } from './components/payment_type_detail/payment-type-form/payment-type-form.component';
+import { PaymentPurchaseHomeComponent } from './components/payment_purchase/payment-purchase-home/payment-purchase-home.component';
+import { PaymentPurchaseFormComponent } from './components/payment_purchase/payment-purchase-form/payment-purchase-form.component';
 
 
 const routes: Route[] = [
@@ -125,7 +127,9 @@ const routes: Route[] = [
     PaymentHomeComponent,
     PaymentFormComponent,
     PaymentTypeComponent,
-    PaymentTypeFormComponent
+    PaymentTypeFormComponent,
+    PaymentPurchaseHomeComponent,
+    PaymentPurchaseFormComponent
   ],
   imports: [
     BrowserModule,
