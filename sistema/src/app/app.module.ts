@@ -92,7 +92,7 @@ const routes: Route[] = [
   { path: 'customers-home', component: CustomersHomeComponent },
   { path: 'customers-form', component: CustomersFormComponent },
   { path: 'customers-form/:id', component: CustomersFormComponent },
-  { path: 'customer-post', component: CustomersFormComponent },
+  { path: 'customer-post', component: CustomerPostComponent },
 
 ];
 
