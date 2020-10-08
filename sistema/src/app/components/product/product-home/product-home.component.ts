@@ -16,10 +16,8 @@ export class ProductHomeComponent implements OnInit {
         this.products = data;
       })
   }
-
   ngOnInit(): void {
   }
-
   delete(id) {
     this.productsService.delete(id).subscribe((data) => {
       alert('Producto eliminado');
