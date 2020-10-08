@@ -21,4 +21,15 @@ export class CustomersHomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  delete(id) {
+    this.customersService.delete(id).subscribe(
+      (data) => {
+        alert('Cliente Eliminado');
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
 }

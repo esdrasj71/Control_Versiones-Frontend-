@@ -37,14 +37,13 @@ export class InventoryFormComponent implements OnInit {
   presentation: Presentation[];
 
   constructor(private inventoryService: InventoryService, private productsService: ProductsService, private presentacionService: PresentacionService, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
-    this.id = this.activatedRoute.snapshot.params['id']; 
+    this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
       this.editing = true;
-      this.httpClient.get(this.API_ENDPOINT + 'inventory').subscribe((data: Inventory[]) => { 
+      this.httpClient.get(this.API_ENDPOINT + 'inventory').subscribe((data: Inventory[]) => {
         this.inventoryarr = data;
         console.log(this.inventoryarr);
-        this.inventory = this.inventoryarr.find((m) => { return m.Inventory_Id == this.id }); 
-        //console.log(this.inventory.Product_Id);
+        this.inventory = this.inventoryarr.find((m) => { return m.Inventory_Id == this.id });
       }, (error) => {
         console.log(error);
       });
@@ -62,13 +61,15 @@ export class InventoryFormComponent implements OnInit {
       return this.presentation = data;
     })
   }
-
   saveInventory() {
-    console.log(this.inventory);
+    //console.log(this.product_select[0].Product_Id);
+   // console.log(this.presentation_select[0].Presentation_Id);
+  
+  //Agregar otro IF
+  
+  //
     if (this.editing) {
-      this.inventory.Product_Id = this.product_select[0].Product_Id  ;
-      this.inventory.Presentation_Id = this.presentation_select[0].Presentation_Id;
-      console.log(this.inventory.Product_Id);
+      console.log("Entran 2");
       this.inventoryService.put(this.inventory).subscribe((data) => {
         alert('Inventario actualizado');
         console.log(data)
@@ -80,7 +81,6 @@ export class InventoryFormComponent implements OnInit {
     else {
       this.inventory.Product_Id = this.product_select[0].Product_Id;
       this.inventory.Presentation_Id = this.presentation_select[0].Presentation_Id;
-      console.log(this.inventory);
       this.inventoryService.save(this.inventory).subscribe((data) => {
         alert('Inventario guardado');
         console.log(data)

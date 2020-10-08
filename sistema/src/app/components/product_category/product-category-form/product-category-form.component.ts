@@ -16,16 +16,16 @@ export class ProductCategoryFormComponent implements OnInit {
   };
   API_ENDPOINT = 'http://localhost:3000/';
   id: any;
-  editing: boolean = false; //Este campo ayuda a saber cuando estamos editando y cuando estamos ingresando
-  postarr: Product_Category[]; //Este campo nos ayudara a traer los datos cuando queremos editar
+  editing: boolean = false; 
+  postarr: Product_Category[]; 
   constructor(private productcategoryService: ProductCategoryService, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
-    this.id = this.activatedRoute.snapshot.params['id']; //Este es el parametro que se definio en la ruta de app.module.ts
+    this.id = this.activatedRoute.snapshot.params['id']; 
     if (this.id) {
       this.editing = true;
-      this.httpClient.get(this.API_ENDPOINT + 'product_category').subscribe((data: Product_Category[]) => { //Aqui traemos el arreglo completo de datos
+      this.httpClient.get(this.API_ENDPOINT + 'product_category').subscribe((data: Product_Category[]) => { 
         this.postarr = data;
         console.log(this.postarr);
-        this.product_category = this.postarr.find((m) => { return m.Product_Category_Id == this.id }); //Aqui traemos solo el id que nos interesa
+        this.product_category = this.postarr.find((m) => { return m.Product_Category_Id == this.id }); 
       }, (error) => {
         console.log(error);
       });
