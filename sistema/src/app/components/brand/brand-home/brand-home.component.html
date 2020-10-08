@@ -1,34 +1,36 @@
 <a class="btn btn-success btnsm" routerLink="/brand-post" style="float: right;">Agregar +</a>
 <div style="height:50px;"></div>
 <div class="container">
-    <h2>Buscar  Marca</h2>
+    <h2>Buscar Marca</h2>
     <form>
         <div class="form-group row">
             <label class="col-md-3 form-control-label" for="textinput">Nombre de la marca del producto</label>
             <div class="col-md-9">
-                <input  type="text" name="Name" class="formcontrol" placeholder="Ingrese el nombre de la marca" [(ngModel)]="rootBrand" (ngModelChange)="findbrand($event)">
+                <input type="text" name="Name" class="formcontrol" placeholder="Ingrese el nombre de la marca"
+                    [(ngModel)]="rootBrand" (ngModelChange)="findbrand($event)">
             </div>
         </div>
     </form>
- 
+
     <hr>
     <table class="table" id="searchTextResults">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nombre de la marca del producto</th>             
+                <th scope="col">ID</th>
+                <th scope="col">Nombre de la marca del producto</th>
+                <th scope="col">Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor= "let brand of brands | filter:rootBrand"(click)="myFn(brand.Brand_Id)">
+            <tr *ngFor="let brand of brands | filter:rootBrand" (click)="myFn(brand.Brand_Id)">
                 <td>{{brand.Brand_Id}}</td>
                 <td>{{brand.Name}}</td>
                 <td><a class="btn btn-primary btn-sm" routerLink="/brand-form/{{brand.Brand_Id}}">Editar</a> &nbsp;
-                    <a class="btn btn-danger btn-sm" (click)="delete(brand.Brand_Id)" routerLink="/brand-home" style="color:white;">Eliminar</a>
+                    <a class="btn btn-danger btn-sm" (click)="delete(brand.Brand_Id)" routerLink="/brand-home"
+                        style="color:white;">Eliminar</a>
                 </td>
             </tr>
         </tbody>
     </table>
 
 </div>
-
