@@ -94,7 +94,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
     console.log(this.header);
     this.purchase_headerservice.save(this.header).subscribe(
       (data) => {
-        alert('Header guardado');
+        alert('Venta guardada');
         console.log(data);
       },
       (error) => {
@@ -112,7 +112,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
       console.log(this.purchase);
       this.procedure_purchaseservice.save(this.purchase).subscribe(
         (data) => {
-          alert('procedimiento almacenado guardado');
+          //alert('procedimiento almacenado guardado');
           console.log(data);
         },
         (error) => {

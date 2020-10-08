@@ -9,7 +9,7 @@ export class FiltradocustomersPipe implements PipeTransform {
     if(arg === '' || arg.length<3) return value;
     const resultado_cliente = [];
     for(const cliente of value){
-      if(cliente.Names.toLowerCase().indexOf(arg.toLowerCase())>-1){
+      if(cliente.Names.toLowerCase().indexOf(arg.toLowerCase())>-1 || cliente.NIT.toLowerCase().indexOf(arg.toLowerCase())>-1){
         resultado_cliente.push(cliente);
       }
     }

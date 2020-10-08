@@ -16,8 +16,6 @@ import { LotHomeComponent } from './components/lot/lot-home/lot-home.component';
 import { LotFormComponent } from './components/lot/lot-form/lot-form.component';
 import { ProductCategoryHomeComponent } from './components/product_category/product-category-home/product-category-home.component';
 import { ProductCategoryFormComponent } from './components/product_category/product-category-form/product-category-form.component';
-import { PresentationHomeComponent } from './components/presentation/presentation-home/presentation-home.component';
-import { PresentationFormComponent } from './components/presentation/presentation-form/presentation-form.component';
 import { PurchaseHeaderFormComponent } from './components/purchase/purchase-header-form/purchase-header-form.component';
 import { FiltradoproviderPipe } from './pipes/filtradoprovider.pipe';
 import { EmployeeFormComponent } from './components/employee/employee-form/employee-form.component';
@@ -53,11 +51,6 @@ const routes: Route[] = [
   { path: 'product-home', component: ProductHomeComponent },
   { path: 'product-form', component: ProductFormComponent },
   { path: 'product-form/:id', component: ProductFormComponent },
-  //Presentation
-  { path: 'presentation-home', component: PresentationHomeComponent },
-  { path: 'presentation-form/:id', component: PresentationFormComponent },
-  { path: 'presentation-form', component: PresentationFormComponent },
-  { path: 'presentation-home/:id', component: LotHomeComponent },
   //Product Category
   { path: 'product-category-home', component: ProductCategoryHomeComponent },
   { path: 'product-category-form', component: ProductCategoryFormComponent },
@@ -95,6 +88,7 @@ const routes: Route[] = [
   { path: 'payment-type-home', component: PaymentTypeComponent },
   { path: 'payment-type-form', component: PaymentTypeFormComponent },
   { path: 'payment-type-form/:id', component: PaymentTypeFormComponent },
+
 ];
 
 @NgModule({
@@ -112,8 +106,6 @@ const routes: Route[] = [
     LotFormComponent,
     ProductCategoryHomeComponent,
     ProductCategoryFormComponent,
-    PresentationHomeComponent,
-    PresentationFormComponent,
     LotHomeComponent,
     LotFormComponent,
     PurchaseHeaderFormComponent,

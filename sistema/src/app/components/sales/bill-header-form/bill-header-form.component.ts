@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {Customers} from '../../customers/interfaces/customer';
 import {Products} from '../../product/interfaces/product';
 import {Inventory} from '../../inventory/interfaces/inventory';
@@ -8,32 +8,42 @@ import {CustomersService} from '../../customers/servicios/customers.service';
 import {ProductsService} from '../../product/servicios/products.service';
 import {InventoryService} from '../../inventory/servicios/inventory.service';
 import {EmployeeService} from '../../employee/servicios/employee.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Data } from '@angular/router';
 import {BillDetails} from '../interfaces/bill-detail';
 import {Bill_header} from '../interfaces/bill-header';
+import {BillsService} from '../servicios/bills.service';
+import {ProcedureSaleService} from '../servicios/procedure-sale.service';
+import {Procedure_Sale} from '../interfaces/procedure-sale';
+
 @Component({
   selector: 'app-bill-header-form',
   templateUrl: './bill-header-form.component.html',
   styleUrls: ['./bill-header-form.component.css']
 })
 export class BillHeaderFormComponent implements OnInit {
+
   values: number = 0;
   total: number = 0;
 
   encabezado_factura: Bill_header = {
-    Bill_header_Id: null,
     Correlative_Number: null,
     Serie: null,
     Date: null,
     Total: null,
     Refund: null,
     Annulment_State: null,
+    Payment_Complete: null,
     Customers_Id: null,
     Employee_Id: null,
+  };
+  procedure_sale: Procedure_Sale ={
+    Subtotal: null,
+    Quantity: null,
+    Price: null,
+    Inventory_Id: null,
   }
 
   detalle_factura: BillDetails ={
-    Bill_Detail_Id: null,
     Subtotal: null,
     Quantity: null,
     Price: null,
@@ -42,6 +52,7 @@ export class BillHeaderFormComponent implements OnInit {
   }
   changeCount: number = 0;
   nuevo = [];
+  vista_detail = [];
   API_ENDPOINT = 'http://localhost:3000/'
   filtrado_clientes = '';
   clientes: any[];
@@ -57,9 +68,25 @@ export class BillHeaderFormComponent implements OnInit {
 
   //empleado
   empleados: Employee[];
- 
 
-  constructor(private employeeService: EmployeeService, private customersService:CustomersService,private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private productsService: ProductsService, private inventoryService: InventoryService) { 
+  //fecha
+
+  date = new Date();
+  mes = this.date.getMonth()+ 1 
+  fecha = this.date.getDate() + "/" +  this.mes.toString()   + "/" + this.date.getFullYear();
+
+
+  constructor(
+    private billsService: BillsService,
+    private employeeService: EmployeeService, 
+    private customersService:CustomersService,
+    private activatedRoute: ActivatedRoute, 
+    private httpClient: HttpClient, 
+    private productsService: ProductsService, 
+    private inventoryService: InventoryService,
+    private proceduresaleService: ProcedureSaleService,
+    ) { 
+     
   
   }
 
@@ -77,6 +104,8 @@ export class BillHeaderFormComponent implements OnInit {
     this.employeeService.getEmployee().subscribe((data: Employee[])=>{
       return this.empleados = data;
     })
+    
+    
   
   }
   getCustomerId(id)
@@ -112,6 +141,7 @@ export class BillHeaderFormComponent implements OnInit {
     console.log(datos)
     this.total -= datos[0].Subtotal;
     datos[0].Subtotal = value * precio;
+    datos[0].Quantity = value;
     this.total += datos[0].Subtotal;  
   }
   onDelete(datos: any){
@@ -121,15 +151,43 @@ export class BillHeaderFormComponent implements OnInit {
     })
     console.log(this.nuevo)
   }
+  getCustomerNIT(NIT){
+    console.log(NIT);
+  }
 
   enviar(){
+    this.encabezado_factura.Payment_Complete = 0;
+    this.encabezado_factura.Refund = 0;
+    this.encabezado_factura.Annulment_State = 0;
     this.encabezado_factura.Total = this.total;
-    this.encabezado_factura
-    let venta = {
-      header:this.encabezado_factura,
-      detail: this.nuevo
-    }
-    console.log(venta);
+    console.log(this.encabezado_factura.Employee_Id);
+    this.encabezado_factura.Date = this.fecha;
+    this.billsService.saveHeader(this.encabezado_factura).subscribe(
+      (data)=>{
+        alert('header guardado');
+        console.log(data);
+      },
+      (error)=>{
+        console.log(error);
+        alert('Ocurrio un error');
+      });
+      //detalle
+      for(let misdatos of this.nuevo){
+        this.procedure_sale.Subtotal = misdatos[0].Subtotal;
+        this.procedure_sale.Quantity = parseInt( misdatos[0].Quantity);
+        this.procedure_sale.Price = misdatos[0].Unit_Price;
+        this.procedure_sale.Inventory_Id = misdatos[0].Inventory_Id;
+        console.log(this.procedure_sale);
+        this.proceduresaleService.save(this.procedure_sale).subscribe(
+          (data)=>{
+            alert('producto guardado');
+            console.log(data);
+          },
+          (error)=>{
+            console.log(error);
+            alert('Ocurrio un error');
+          }
+        )};
   }
  
 }

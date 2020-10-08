@@ -2,7 +2,7 @@
 <div style="height:50px;"></div>
 <h1>Listado de clientes</h1>
 <table class="table">
-    <thead class="thead-dark">  
+    <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
             <th scope="col">DPI</th>
@@ -11,7 +11,7 @@
             <th scope="col">Numero de telefono</th>
             <th scope="col">Nit</th>
             <th scope="col">Direccion</th>
-            <th scope="col"></th>
+            <th scope="col">Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -23,9 +23,11 @@
             <td>{{customer.Phone_Number}}</td>
             <td>{{customer.NIT}}</td>
             <td>{{customer.Address}}</td>
-            <td><a class="btn btn-primary btn-sm" routerLink="/customers-form/{{customer.Customers_Id}}">Editar</a> &nbsp;
-                <a class="btn btn-danger btn-sm" (click)="delete(customer.Customers_Id)" routerLink="/customers-home" style="color:white;">Eliminar</a>
-            </td>
-        </tr> 
+
+        </tr>
+        <td><a class="btn btn-primary btn-sm" routerLink="/customers-form/{{customer.Customers_Id}}">Editar</a> &nbsp;
+            <a class="btn btn-danger btn-sm" (click)="delete(customer.Customers_Id)" routerLink="/customers-home" style="color:white;">Eliminar</a>
+        </td>
+        </tr>
     </tbody>
 </table>
