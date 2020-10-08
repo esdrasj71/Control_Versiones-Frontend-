@@ -5,23 +5,26 @@
 <table class="table" id="searchTextResults">
     <thead class="thead-dark">
         <tr>
-            <th scope="col">#</th>
+            <th scope="col">ID</th>
             <th scope="col">Nombre del producto</th>
             <th scope="col">Numero correlativo de producto</th>
             <th scope="col">Marca</th>
             <th scope="col">Categoria producto</th>
-            <th scope="col">¿Perecedero?</th>
-            
+            <th scope="col">Perecedero</th>
+            <th scope="col">Acciones </th>
+
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor= "let product of products">
+        <tr *ngFor="let product of products">
             <td>{{product.Product_Id}}</td>
-            <td>{{product.Product}}</td>
+            <td>{{product.Name}}</td>
             <td>{{product.Correlative_Product}}</td>
             <td>{{product.Brand}}</td>
             <td>{{product.Category}}</td>
             <td>{{product.Perishable}}</td>
+            <td><a class="btn btn-warning btnsm" routerLink="/product-form/{{product.Product_Id}}">Editar</a> <a
+                    class="btn btn-danger btnsm" (click)="delete(product.Product_Id)">Eliminar</a></td>
         </tr>
     </tbody>
 </table>
