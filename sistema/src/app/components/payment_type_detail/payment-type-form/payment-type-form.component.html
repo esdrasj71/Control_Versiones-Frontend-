@@ -1,0 +1,43 @@
+<div class="container card">
+    <div class="card-body">
+        <h2 class="alert alert-primary" role="alert">Editar detalle tipo de pago</h2>
+        <div class="alert alert-warning" role="alert">
+
+            <div class="form-group row">
+                <label class="col-md-3 form-controllabel" for="Total_Amount">Cantidad Total</label>
+                <div class="col-md-9">
+                    <input [(ngModel)]="paymentDetail.Total_Amount" type="number" id="Total_Amount" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-md-3 form-controllabel" for="Description">Descripcion</label>
+                <div class="col-md-9">
+                    <input [(ngModel)]="paymentDetail.Description" type="text" id="Description" class="form-control">
+                </div>
+            </div>
+
+            <label class="col-md-3 form-controllabel" for="Lot"> Seleccione el tipo de pago: </label>
+            <select id="pay" name="pay" [(ngModel)]="paymentDetail.Payment_Id" [ngModelOptions]="{standalone: true}"style="width:700px" >
+                <option *ngFor="let payment of payment" value="{{payment.Payment_Id}}" style="height: 1200px">
+                    {{payment.Method_Name}}
+                 </option>
+            </select>
+
+
+            <div class="form-group row">
+                <label class="col-md-3 form-controllabel" for="Bill_header_Id">Bill Header Id</label>
+                <div class="col-md-9">
+                    <input [(ngModel)]="paymentDetail.Bill_header_Id" type="number" id="Total_Amount" class="form-control" disabled>
+                </div>
+            </div>
+                       
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <button (click)="savePaymentDetail()" class="btn btn-primary btnblock" routerLink="/payment-type-home">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

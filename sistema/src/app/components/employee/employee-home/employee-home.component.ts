@@ -28,6 +28,7 @@ export class EmployeeHomeComponent implements OnInit {
     this.employeeService.delete(id).subscribe(
       (data) => {
         alert('Empleado Eliminado');
+        window.location.reload();
       },
       (error) => {
         console.log(error);
