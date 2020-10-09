@@ -37,7 +37,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
     Total: null,
     Refund:null,
     Annulment_State:null,
-    Payment_Complete:false,
+    Payment_Complete:null,
     Observations: null,
     Providers_Id: null,
   };
@@ -91,6 +91,9 @@ export class PurchaseHeaderFormComponent implements OnInit {
     
   }
   getProductId(id) {
+    this.productService.getProduct().subscribe((data: Products[]) => {
+      this.product = data;
+    });
     this.productService.getProductsId(id).subscribe((data: Products[]) => {
       let datos: any = data;
       datos.Subtotal = 0;
@@ -98,20 +101,8 @@ export class PurchaseHeaderFormComponent implements OnInit {
       datos.Price=0;
       this.inventorys = Array.of(datos);
       this.vista_detail.push(this.inventorys);
-     // console.log(this.vista_detail);
+      console.log(this.vista_detail);
       return this.vista_detail;
-    });
-  }
-  saveProvider(){
-    this.providerService.save(this.provider).subscribe((data) => {
-      alert('Proveedor guardado');
-    }, (error) => {
-      console.log(error);
-      alert('Ocurrio un error');
-    });
-    console.log(this.provider);
-    this.providerService.getProviders().subscribe((data: Providers[]) => {
-      this.providers = data;
     });
   }
   savePost() {
@@ -121,9 +112,9 @@ export class PurchaseHeaderFormComponent implements OnInit {
     this.header.Annulment_State=0;
     this.header.Total=this.total;
     console.log(this.header);
-    this.purchase_headerservice.save(this.header).subscribe(
+   this.purchase_headerservice.save(this.header).subscribe(
       (data) => {
-        alert('Venta guardada');
+        alert('Compra guardada');
         console.log(data);
       },
       (error) => {
@@ -131,14 +122,13 @@ export class PurchaseHeaderFormComponent implements OnInit {
         alert('Ocurrio un error');
       });
     //DETAIL
-    
     for(let misdatos of this.vista_detail)
     {
       this.purchase.Quantity=misdatos[0].Quantity;
       this.purchase.Unit_Price=misdatos[0].Price;
       this.purchase.Subtotal=misdatos[0].Subtotal;
-      this.purchase.Inventory_Id=misdatos[0].Inventory_Id;
-      console.log(this.purchase);
+      this.purchase.Inventory_Id=misdatos[0].Product_Id;
+      //console.log(this.purchase);
       this.procedure_purchaseservice.save(this.purchase).subscribe(
         (data) => {
           //alert('procedimiento almacenado guardado');

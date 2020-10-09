@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { Brands } from '../../brand/interfaces/brand';
 import { HttpClient } from '@angular/common/http';
@@ -13,6 +13,7 @@ import { BrandsService } from '../../brand/servicios/brands.service';
   styleUrls: ['./product-form.component.css']
 })
 export class ProductFormComponent implements OnInit {
+  @Output() Product_Id = new EventEmitter<number>();
   product: Products = {
     Name: null,
     Perishable: null,
@@ -82,6 +83,7 @@ export class ProductFormComponent implements OnInit {
       console.log(this.product);
       this.product.Perishable = false;
       this.productService.saveproduct(this.product).subscribe((data) => {
+        this.Product_Id.emit(data["id"]);
         alert('Producto guardado');
         console.log(data)
       }, (error) => {

@@ -129,11 +129,12 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="Total" class="col-form-label">Total:</label>
+                  <label for="Total" class="col-form-label" 
+                  style="font-size: 45px; color:red;">Total:</label>
                   <div class="col">
                     <label
                     [(ngModel)]="header.Total"
-                      type="text"
+                    style="font-size: 45px; color:red;"
                       id="Total"
                       class="form-control"
                       value="0"
@@ -248,7 +249,6 @@
                   <td>{{provider.Email}}</td>
                   <td>{{provider.Address}}</td>
                   <td><a class="btn btn-primary btn-sm"  (click)="getProviderId(provider.Providers_Id)" data-dismiss="modal">Seleccionar</a> &nbsp;
-                      
                   </td>
               </tr>
           </tbody>
@@ -257,44 +257,6 @@
       nextLabel="Siguiente" maxSize="9" autoHide="true"></pagination-controls>
     </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!--MODAL AGREGAR PROVEEDORES-->
-<div class="modal fade bd-agregarproveedor-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px;">
-    <div class="modal-content"style="width: 900px;">
-      <div class="modal-header"style="width: 900px;">
-        <h5 class="modal-title" id="exampleModalLongTitle">Encuentre su proveedor</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y:auto;">
-        <app-providers-form (Provider_Id)="getProviderId($event)"></app-providers-form>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!--MODAL AGREGAR PRODUCTOS-->
-<div class="modal fade bd-agregarproveedor-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px;">
-    <div class="modal-content"style="width: 900px;">
-      <div class="modal-header"style="width: 900px;">
-        <h5 class="modal-title" id="exampleModalLongTitle">Encuentre su proveedor</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y:auto;">
-        <app-providers-form (Provider_Id)="getProviderId($event)"></app-providers-form>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         <button type="button" class="btn btn-primary">Save changes</button>
@@ -321,7 +283,9 @@
           <div class="col">
             <input type="text" name="product" id="product" class="form-control"
             placeholder="Buscar producto" [(ngModel)]="filtrado_product" tabindex="9" />
-            <hr>
+            <button type="button" class="btn btn-primary"  data-toggle="modal" data-target=".bd-agregarproducto-modal-lg">
+              + Agregar Producto
+            </button>
           </div>
         </div>
         <table class="table table-dark" style="table-layout: fixed; word-wrap: break-word;" id="table">
@@ -349,6 +313,47 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--MODAL AGREGAR PROVEEDORES-->
+<div class="modal fade bd-agregarproveedor-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px;">
+    <div class="modal-content"style="width: 900px;">
+      <div class="modal-header"style="width: 900px;">
+        <h5 class="modal-title" id="exampleModalLongTitle">Encuentre su proveedor</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y:auto;">
+       <app-providers-form (Provider_Id)="getProviderId($event)"></app-providers-form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--MODAL AGREGAR PRODUCTO-->
+<div class="modal fade bd-agregarproducto-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px;">
+    <div class="modal-content"style="width: 900px;">
+      <div class="modal-header"style="width: 900px;">
+        <h5 class="modal-title" id="exampleModalLongTitle">Agregue de forma rapido su producto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y:auto;">
+        <app-product-form (Product_Id)="getProductId($event)"></app-product-form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>

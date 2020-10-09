@@ -6,7 +6,7 @@ export interface Purchase_Header{
     Total:number;
     Refund:number;
     Annulment_State:number;
-    Payment_Complete:boolean;
+    Payment_Complete:number;
     Observations:string;
     Providers_Id:string;
 }
