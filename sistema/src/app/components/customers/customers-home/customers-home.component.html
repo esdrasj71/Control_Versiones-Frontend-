@@ -23,8 +23,8 @@
             <td>{{customer.Phone_Number}}</td>
             <td>{{customer.NIT}}</td>
             <td>{{customer.Address}}</td>
-        <td><a class="btn btn-primary btn-sm" routerLink="/customers-form/{{customer.Customers_Id}}">Editar</a> &nbsp;
-           <a class="btn btn-danger btn-sm" (click)="delete(customer.Customers_Id)" style="color:white; ">Eliminar</a>
+        <td><a class="btn btn-warning btnsm" routerLink="/customers-form/{{customer.Customers_Id}}">Editar</a> 
+           <a class="btn btn-danger btnsm" (click)="delete(customer.Customers_Id)" style="color:white; ">Eliminar</a>
         </td>
     </tr>    
     </tbody>

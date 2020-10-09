@@ -38,6 +38,8 @@ import { PaymentTypeComponent } from './components/payment_type_detail/payment-t
 import { PaymentTypeFormComponent } from './components/payment_type_detail/payment-type-form/payment-type-form.component';
 import { PaymentPurchaseHomeComponent } from './components/payment_purchase/payment-purchase-home/payment-purchase-home.component';
 import { PaymentPurchaseFormComponent } from './components/payment_purchase/payment-purchase-form/payment-purchase-form.component';
+import { PaymentDetailHomeComponent } from './components/payment_detail_purchase/payment-detail-home/payment-detail-home.component';
+import { PaymentDetailFormComponent } from './components/payment_detail_purchase/payment-detail-form/payment-detail-form.component';
 
 
 const routes: Route[] = [
@@ -90,8 +92,14 @@ const routes: Route[] = [
   { path: 'payment-type-home', component: PaymentTypeComponent },
   { path: 'payment-type-form', component: PaymentTypeFormComponent },
   { path: 'payment-type-form/:id', component: PaymentTypeFormComponent },
-
-
+  //Payment purchase
+  { path: 'payment-purchase-home', component: PaymentPurchaseHomeComponent },
+  { path: 'payment-purchase-form', component: PaymentPurchaseFormComponent },
+  { path: 'payment-purchase-form/:id', component: PaymentPurchaseFormComponent },
+  //Payment Detail Purchase
+  { path: 'payment-detail-purchase-home', component: PaymentDetailHomeComponent },
+  { path: 'payment-detail-purchase-form', component: PaymentDetailFormComponent },
+  { path: 'payment-detail-purchase-form/:id', component: PaymentDetailFormComponent },
 ];
 
 @NgModule({
@@ -130,7 +138,9 @@ const routes: Route[] = [
     PaymentTypeComponent,
     PaymentTypeFormComponent,
     PaymentPurchaseHomeComponent,
-    PaymentPurchaseFormComponent
+    PaymentPurchaseFormComponent,
+    PaymentDetailHomeComponent,
+    PaymentDetailFormComponent
   ],
   imports: [
     BrowserModule,
