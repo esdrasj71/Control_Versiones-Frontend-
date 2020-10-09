@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { PaymentTypeDetail } from '../interfaces/payment-type-detail';
 import { ActivatedRoute } from '@angular/router';
 import { Payment } from '../../payment/interfaces/payment';
+import { Bill_header } from '../../sales/interfaces/bill-header';
 
 @Component({
   selector: 'app-payment-type-form',
@@ -24,6 +25,7 @@ export class PaymentTypeFormComponent implements OnInit {
   editing: boolean = false; //Este campo ayuda a saber cuando estamos editando y cuando estamos ingresando
   postarr: PaymentTypeDetail[]; //Este campo nos ayudara a traer los datos cuando queremos editar
   payment: Payment[];
+  bill_header: Bill_header[];
   constructor(private paymentServicie: PaymentTypeDetailService, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
     this.id = this.activatedRoute.snapshot.params['id']; //Este es el parametro que se definio en la ruta de app.module.ts
     if (this.id) {
@@ -43,6 +45,12 @@ export class PaymentTypeFormComponent implements OnInit {
     .subscribe((data: Payment[]) =>{
       this.payment = data;
       console.log(this.payment);
+    })
+
+    httpClient.get(this.API_ENDPOINT + 'bill_header')
+    .subscribe((data: Bill_header[]) =>{
+      this.bill_header = data;
+      console.log(this.bill_header);
     })
   }
 

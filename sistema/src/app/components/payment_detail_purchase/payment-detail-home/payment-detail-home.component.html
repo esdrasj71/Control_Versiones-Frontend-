@@ -19,8 +19,8 @@
             <td>{{paymentDetail.Description}}</td>
             <td>{{paymentDetail.Payment_Purchase_Id}}</td>
             <td>{{paymentDetail.Purchase_Header_Id}}</td>
-            <td><a class="btn btn-warning btnsm" routerLink="/payment-type-form/{{paymentDetail.Payment_Detail_Purchase_Id}}">Editar</a> 
-                <a class="btn btn-danger btnsm" (click)="delete(paymentDetail.Payment_Detail_Purchase_Id)">Eliminar</a></td>
+            <td><a class="btn btn-warning btn-sm" routerLink="/payment-detail-purchase-form/{{paymentDetail.Payment_Detail_Purchase_Id}}">Editar</a> 
+                <a class="btn btn-danger btn-sm" (click)="delete(paymentDetail.Payment_Detail_Purchase_Id)">Eliminar</a></td>
         </tr>
     </tbody>
 </table>

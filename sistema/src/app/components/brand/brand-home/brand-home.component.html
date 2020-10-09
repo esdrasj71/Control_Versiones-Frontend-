@@ -25,8 +25,8 @@
             <tr *ngFor="let brand of brands | filter:rootBrand" (click)="myFn(brand.Brand_Id)">
                 <td>{{brand.Brand_Id}}</td>
                 <td>{{brand.Name}}</td>
-                <td><a class="btn btn-warning btnsm" routerLink="/brand-form/{{brand.Brand_Id}}">Editar</a>
-                    <a class="btn btn-danger btnsm" (click)="delete(brand.Brand_Id)" routerLink="/brand-home"
+                <td><a class="btn btn-warning btn-sm" routerLink="/brand-form/{{brand.Brand_Id}}">Editar</a>
+                    <a class="btn btn-danger btn-sm" (click)="delete(brand.Brand_Id)" routerLink="/brand-home"
                         style="color:white;">Eliminar</a>
                 </td>
             </tr>

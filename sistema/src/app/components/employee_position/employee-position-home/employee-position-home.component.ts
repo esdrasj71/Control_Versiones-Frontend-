@@ -12,6 +12,7 @@ export class EmployeePositionHomeComponent implements OnInit {
 
   API_ENDPOINT = 'http://localhost:3000/';
   employeePosition: EmployeePosition[];
+  searchTerm: string;
   constructor(
     private employeePositionService: EmployeePositionService,
     private httpClient: HttpClient

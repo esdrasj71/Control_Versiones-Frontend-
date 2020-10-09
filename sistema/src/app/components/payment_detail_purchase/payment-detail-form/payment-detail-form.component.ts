@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { PaymentDetail } from '../interfaces/payment-detail';
 import { ActivatedRoute } from '@angular/router';
 import { PaymentPurhcase } from '../../payment_purchase/interfaces/payment-purhcase';
+import { Purchase_Header } from '../../purchase/interfaces/purchase-header';
 
 @Component({
   selector: 'app-payment-detail-form',
@@ -24,6 +25,8 @@ export class PaymentDetailFormComponent implements OnInit {
   editing: boolean = false; //Este campo ayuda a saber cuando estamos editando y cuando estamos ingresando
   postarr: PaymentDetail[]; //Este campo nos ayudara a traer los datos cuando queremos editar
   payment: PaymentPurhcase[];
+  purchase_header: Purchase_Header[];
+
   constructor(private paymentServicie: PaymentDetailService, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
     this.id = this.activatedRoute.snapshot.params['id']; //Este es el parametro que se definio en la ruta de app.module.ts
     if (this.id) {
@@ -43,6 +46,12 @@ export class PaymentDetailFormComponent implements OnInit {
     .subscribe((data: PaymentPurhcase[]) =>{
       this.payment = data;
       console.log(this.payment);
+    })
+
+    httpClient.get(this.API_ENDPOINT + 'purchase_header')
+    .subscribe((data: Purchase_Header[]) =>{
+      this.purchase_header = data;
+      console.log(this.purchase_header);
     })
   }
 

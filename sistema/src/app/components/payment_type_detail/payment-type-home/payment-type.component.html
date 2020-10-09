@@ -19,8 +19,8 @@
             <td>{{paymentType.Description}}</td>
             <td>{{paymentType.Payment_Id}}</td>
             <td>{{paymentType.Bill_header_Id}}</td>
-            <td><a class="btn btn-warning btnsm" routerLink="/payment-type-form/{{paymentType.Type_Detail_Id}}">Editar</a> <a
-                    class="btn btn-danger btnsm" (click)="delete(paymentType.Type_Detail_Id)">Eliminar</a></td>
+            <td><a class="btn btn-warning btn-sm" routerLink="/payment-type-form/{{paymentType.Type_Detail_Id}}">Editar</a> <a
+                    class="btn btn-danger btn-sm" (click)="delete(paymentType.Type_Detail_Id)">Eliminar</a></td>
         </tr>
     </tbody>
 </table>

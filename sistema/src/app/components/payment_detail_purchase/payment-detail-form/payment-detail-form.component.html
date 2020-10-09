@@ -8,7 +8,7 @@
                 <div class="col-md-9">
                     <input [(ngModel)]="paymentDetail.Total_Amount" type="number" id="Total_Amount" class="form-control">
                 </div>
-            </div>
+            </div> 
 
             <div class="form-group row">
                 <label class="col-md-3 form-controllabel" for="Description">Descripcion</label>
@@ -23,14 +23,14 @@
                     {{payment.Method_Name}}
                  </option>
             </select>
-            
-            <div class="form-group row">
-                <label class="col-md-3 form-controllabel" for="Purchase_Header_Id">Seleccione encabezado de factura</label>
-                <div class="col-md-9">
-                    <input [(ngModel)]="paymentDetail.Purchase_Header_Id" type="number" id="Total_Amount" class="form-control" disabled>
-                </div>
-            </div>
-                       
+
+            <label class="col-md-3 form-controllabel" for="Lot"> Seleccione encabezado de compra: </label>
+            <select id="pay" name="pay" [(ngModel)]="paymentDetail.Purchase_Header_Id" [ngModelOptions]="{standalone: true}"style="width:700px" >
+                <option *ngFor="let purchase_header of purchase_header" value="{{purchase_header.Purchase_Header_Id}}" style="height: 1200px">
+                    {{purchase_header.Correlative_Number}}
+                 </option>
+            </select>
+                          
             <div class="form-group row">
                 <div class="col-md-12">
                     <button (click)="savePaymentDetail()" class="btn btn-primary btnblock" routerLink="/payment-detail-purchase-home">Guardar</button>
