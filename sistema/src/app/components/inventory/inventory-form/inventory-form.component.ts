@@ -24,8 +24,7 @@ export class InventoryFormComponent implements OnInit {
   editing: boolean = false;
   inventoryarr: Inventory[];
   //Product
-  filtrado_product = '';
-  product_select: any[];
+  selectedProductId: number;
   product: Products[];
 
   constructor(private inventoryService: InventoryService, private productsService: ProductsService, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
@@ -36,6 +35,7 @@ export class InventoryFormComponent implements OnInit {
         this.inventoryarr = data;
         console.log(this.inventoryarr);
         this.inventory = this.inventoryarr.find((m) => { return m.Inventory_Id == this.id });
+        this.selectedProductId = this.inventory.Product_Id;
       }, (error) => {
         console.log(error);
       });
@@ -43,22 +43,18 @@ export class InventoryFormComponent implements OnInit {
     else {
       this.editing = false;
     }
+    httpClient.get(this.API_ENDPOINT + 'product')
+      .subscribe((data: Products[]) => {
+        this.product = data;
+      })
   }
 
   ngOnInit() {
-    this.productsService.getProduct().subscribe((data: Products[]) => {
-      return this.product = data;
-    })
+
   }
   saveInventory() {
-    //console.log(this.product_select[0].Product_Id);
-  //Agregar otro IF
-  if( this.product_select[0].Product_Id != this.inventory.Product_Id){
-    this.inventory.Product_Id = this.product_select[0].Product_Id;
-  }
- 
-  //
     if (this.editing) {
+      this.inventory.Product_Id = this.selectedProductId;
       this.inventoryService.put(this.inventory).subscribe((data) => {
         alert('Inventario actualizado');
         console.log(data)
@@ -68,7 +64,7 @@ export class InventoryFormComponent implements OnInit {
       });
     }
     else {
-      this.inventory.Product_Id = this.product_select[0].Product_Id;
+      this.inventory.Product_Id = this.selectedProductId;
       this.inventoryService.save(this.inventory).subscribe((data) => {
         alert('Inventario guardado');
         console.log(data)
@@ -78,12 +74,8 @@ export class InventoryFormComponent implements OnInit {
       });
     }
   }
-
-  getProductId(id) {
-    this.productsService.getProductsId(id).subscribe((data: Products[]) => {
-      this.product_select = data;
-      return this.product_select = Array.of(this.product_select);
-
-    });
+  searchProduct(filter: string, product) {
+    filter = filter.toLocaleLowerCase();
+    return (product.Complete.toLocaleLowerCase().indexOf(filter) > -1);
   }
 }

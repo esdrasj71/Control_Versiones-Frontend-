@@ -25,6 +25,7 @@ export class BrandHomeComponent implements OnInit {
     this.brandsService.delete(id).subscribe(
       (data) => {
         alert('Marca Eliminado');
+        window.location.reload();
       },
       (error) => {
         console.log(error);
