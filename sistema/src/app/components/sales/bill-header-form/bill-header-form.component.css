@@ -7,3 +7,11 @@
 .table-wrapper-scroll-y {
     display: block;
 }
+
+#alcontado {
+    display: none;
+}
+
+#alcredito {
+    display: none;
+}
