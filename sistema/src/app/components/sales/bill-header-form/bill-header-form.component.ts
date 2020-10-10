@@ -11,9 +11,12 @@ import {EmployeeService} from '../../employee/servicios/employee.service';
 import { ActivatedRoute, Data } from '@angular/router';
 import {BillDetails} from '../interfaces/bill-detail';
 import {Bill_header} from '../interfaces/bill-header';
+import {Payment_detail} from '../interfaces/payment-detail';
 import {BillsService} from '../servicios/bills.service';
 import {ProcedureSaleService} from '../servicios/procedure-sale.service';
 import {Procedure_Sale} from '../interfaces/procedure-sale';
+import {PaymentDetailService} from '../servicios/payment-detail.service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-bill-header-form',
@@ -24,7 +27,12 @@ export class BillHeaderFormComponent implements OnInit {
 
   values: number = 0;
   total: number = 0;
-
+  pago_detalle: Payment_detail = {
+    Total_Amount: null,
+    Description: null,
+    Payment_Id: null,
+    Bill_header_Id: null,
+  }
   encabezado_factura: Bill_header = {
     Correlative_Number: null,
     Serie: null,
@@ -74,8 +82,16 @@ export class BillHeaderFormComponent implements OnInit {
   date = new Date();
   mes = this.date.getMonth()+ 1 
   fecha = this.date.getDate() + "/" +  this.mes.toString()   + "/" + this.date.getFullYear();
-
-
+  //formas de pago
+  pago_aldebito: boolean = false;
+  pago_alcredito: boolean = false;
+  total_cobroalcredito: number = 0;
+  total_cobroalcontado: number = 0;
+  total_cobro: number = 0;
+  cadena_pago: string = "total";
+  descripcion_pagoalcontado: string = "";
+  descripcion_pagoalcredito: string = "";
+  encabezadoid: number = 0;
   constructor(
     private billsService: BillsService,
     private employeeService: EmployeeService, 
@@ -85,6 +101,7 @@ export class BillHeaderFormComponent implements OnInit {
     private productsService: ProductsService, 
     private inventoryService: InventoryService,
     private proceduresaleService: ProcedureSaleService,
+    private paymentdetailService: PaymentDetailService,
     ) { 
      
   
@@ -143,6 +160,23 @@ export class BillHeaderFormComponent implements OnInit {
     datos[0].Subtotal = value * precio;
     datos[0].Quantity = value;
     this.total += datos[0].Subtotal;  
+    this.total_cobro = this.total;
+  }
+  onPagoalcontado(value: number){
+    this.total_cobroalcontado = value;
+    this.total_cobro -= this.total_cobroalcontado;
+    
+    if(this.total_cobro <0){
+      this.total_cobro = Math.abs(this.total_cobro)
+      this.cadena_pago = "El vuelto es de: ";
+      //alert(this.cadena_pago);
+    }
+    
+  }
+  onPagoalcredito(value: number){
+    this.total_cobroalcredito = value;
+    this.total_cobro -= this.total_cobroalcredito;
+  
   }
   onDelete(datos: any){
     this.total -= datos[0].Subtotal;
@@ -151,9 +185,13 @@ export class BillHeaderFormComponent implements OnInit {
     })
     console.log(this.nuevo)
   }
-  getCustomerNIT(NIT){
-    console.log(NIT);
+  mostraraldebito(){
+    this.pago_aldebito = !this.pago_aldebito;
   }
+  mostraralcredito(){
+    this.pago_alcredito = !this.pago_alcredito;
+  }
+
 
   enviar(){
     this.encabezado_factura.Payment_Complete = 0;
@@ -162,10 +200,42 @@ export class BillHeaderFormComponent implements OnInit {
     this.encabezado_factura.Total = this.total;
     console.log(this.encabezado_factura.Employee_Id);
     this.encabezado_factura.Date = this.fecha;
+ 
     this.billsService.saveHeader(this.encabezado_factura).subscribe(
       (data)=>{
         alert('header guardado');
-        console.log(data);
+       // localStorage.setItem("id",data["id"]);
+        if(this.pago_aldebito){
+          this.pago_detalle.Total_Amount = this.total_cobroalcontado;
+          this.pago_detalle.Description = this.descripcion_pagoalcontado;
+          this.pago_detalle.Payment_Id = 1;
+          this.pago_detalle.Bill_header_Id = data["id"];
+          this.paymentdetailService.save(this.pago_detalle).subscribe(
+            (data)=>{
+              alert('Pago guardado');
+              console.log(data);
+            },
+            (error)=>{
+              console.log(error);
+              alert('Ocurrio un error');
+            });
+        
+        }
+        if(this.pago_alcredito){
+          this.pago_detalle.Total_Amount = this.total_cobroalcredito;
+          this.pago_detalle.Description = this.descripcion_pagoalcredito;
+          this.pago_detalle.Payment_Id = 2;
+          this.pago_detalle.Bill_header_Id = data["id"];
+          this.paymentdetailService.save(this.pago_detalle).subscribe(
+            (data)=>{
+              alert('Pago guardado');
+              console.log(data);
+            },
+            (error)=>{
+              console.log(error);
+              alert('Ocurrio un error');
+            });
+        }
       },
       (error)=>{
         console.log(error);
@@ -188,6 +258,8 @@ export class BillHeaderFormComponent implements OnInit {
             alert('Ocurrio un error');
           }
         )};
+        
+        //localStorage.removeItem("id");
   }
  
 }
