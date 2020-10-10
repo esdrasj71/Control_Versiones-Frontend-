@@ -10,19 +10,22 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CustomersFormComponent implements OnInit {
 @Output() Customers_Id = new EventEmitter<number>();
-API_ENDPOINT = 'http://localhost:3000/';
-  id: any;
-  editing: boolean = false; //Este campo ayuda a saber cuando estamos editando y cuando estamos ingresando
-  postarr: Customers[]; 
+
 customer: Customers ={
   Customers_Id: null,
   DPI: null,
-  Names: null,
+  Names: null, 
   Last_names: null,
   Phone_Number: null,
   NIT: null,
   Address: null,
-}
+};
+
+API_ENDPOINT = 'http://localhost:3000/';
+  id: any;
+  editing: boolean = false; //Este campo ayuda a saber cuando estamos editando y cuando estamos ingresando
+  postarr: Customers[]; 
+
 constructor(private customerService: CustomersService, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
   this.id = this.activatedRoute.snapshot.params['id']; //Este es el parametro que se definio en la ruta de app.module.ts
   if (this.id) {

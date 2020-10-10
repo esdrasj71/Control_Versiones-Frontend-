@@ -1,42 +1,14 @@
-<div class="container">
-    <h2>Crear Cliente</h2>
-    <div>
+ <div class="container">    
         <div class="form-group row">
-            <label class="col-md-3 form-controllabel" for="titulo">DPI</label>
             <div class="col-md-9">
-                <input [(ngModel)]="customer.DPI" type="text" id="DPI" class="form-control" placeholder="Ingrese el DPI">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-md-3 form-controllabel" for="titulo">Nombre</label>
-            <div class="col-md-9">
-                <input [(ngModel)]="customer.Names" type="text" id="Names" class="form-control" placeholder="Ingrese el nombre">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-md-3 form-controllabel" for="titulo">Apellido</label>
-            <div class="col-md-9">
-                <input [(ngModel)]="customer.Last_names" type="text" id="Last_names" class="form-control" placeholder="Ingrese el apellido">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-md-3 form-controllabel" for="titulo">Numero de telefono</label>
-            <div class="col-md-9">
-                <input [(ngModel)]="customer.Phone_Number" type="text" id="Phone_Number" class="form-control" placeholder="Ingrese el numero de telefono">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-md-3 form-controllabel" for="titulo">NIT: </label>
-            <div class="col-md-9">
-                <input [(ngModel)]="customer.NIT" type="text" id="NIT" class="form-control" placeholder="Ingrese el NIT">
                 <div class="container card">
                     <div class="card-body">
-                        <h2 class="alert alert-primary" role="alert">Editar Cliente</h2>
+                        <h2 class="alert alert-primary" role="alert">Editar/Crear Cliente</h2>
                         <div class="alert alert-warning" role="alert">
 
                             <div class="form-group row">
                                 <label class="col-md-3 form-controllabel" for="DPI">DPI</label>
-                                <div class="col-md-9">
+                                <div class="col-md-9"> 
                                     <input [(ngModel)]="customer.DPI" type="text" id="DPI" class="form-control">
                                 </div>
                             </div>
@@ -69,16 +41,13 @@
                                 </div>
 
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-3 form-controllabel" for="Address">Direccion: </label>
-                            <div class="col-md-9">
-
-                                <input [(ngModel)]="customer.Address" type="text" id="Direccion" class="form-control" placeholder="Ingrese la direccion ">
-                                <input [(ngModel)]="customer.Address" type="text" id="Address" class="form-control" placeholder="Ingrese la direccion ">
-
+                            <div class="form-group row">
+                                <label class="col-md-3 form-controllabel" for="Address">Direccion: </label>
+                                <div class="col-md-9">
+                                
+                                    <input [(ngModel)]="customer.Address" type="text" id="Address" class="form-control">
+                                </div>
                             </div>
-
                             <div class="form-group row">
                                 <div class="col-md-12">
                                     <button (click)="saveCustomer()" class="btn btn-primary btnblock" routerLink="/customers-home">Guardar</button>
@@ -88,4 +57,12 @@
                     </div>
                     <hr>
                 </div>
+
             </div>
+
+
+
+
+            </div>
+        </div>
+

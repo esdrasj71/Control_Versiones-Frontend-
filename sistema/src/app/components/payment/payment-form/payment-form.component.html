@@ -1,0 +1,20 @@
+<div class="container card">
+    <div class="card-body">
+        <h2 class="alert alert-primary" role="alert">Editar Pago</h2>
+        <div class="alert alert-warning" role="alert">
+
+            <div class="form-group row">
+                <label class="col-md-3 form-controllabel" for="Method_Name">Nombre de metodo</label>
+                <div class="col-md-9">
+                    <input [(ngModel)]="payment.Method_Name" type="text" id="Name" class="form-control">
+                </div>
+            </div>
+                       
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <button (click)="savePayment()" class="btn btn-primary btnblock" routerLink="/payment-home">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

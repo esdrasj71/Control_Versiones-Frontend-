@@ -55,23 +55,16 @@
             <div class="form-group row">
                 <label class="col-md-3 form-controllabel" for="Hire_date">Fecha Contrato</label>
                 <div class="col-md-9">
-                    <input [(ngModel)]="employee.Hire_date" type="text" id="Names" class="form-control">
+                    <input [(ngModel)]="employee.Hire_date" type="date" id="Names" class="form-control">
                 </div>
             </div>
 
-            <label class="col-md-3 form-controllabel" for="Lot"> Seleccione ID del posicion del empleado: </label>
+            <label class="col-md-3 form-controllabel" for="Lot"> Seleccione posicion del empleado: </label>
                 <select id="employee_pos" name="employee_pos" [(ngModel)]="employee.Employee_Position_Id" [ngModelOptions]="{standalone: true}"style="width:700px" >
                     <option *ngFor="let employeePos of employeePosition" value="{{employeePos.Employee_Position_Id}}" style="height: 1200px">
                         {{employeePos.Name}}
                      </option>
                 </select>
-
-            <div class="form-group row">
-                <label class="col-md-3 form-controllabel" for="Employee_Position_Id">Employee_Position_Id</label>
-                <div class="col-md-9">
-                    <input [(ngModel)]="employee.Employee_Position_Id" type="number" id="Employee_Position_Id" class="form-control" disabled>
-                </div>
-            </div> 
 
             <div class="form-group row">
                 <div class="col-md-12">
