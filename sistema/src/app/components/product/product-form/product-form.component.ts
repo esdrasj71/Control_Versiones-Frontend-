@@ -87,15 +87,14 @@ export class ProductFormComponent implements OnInit {
         this.lot.Product_Id = this.lastidproduct;
         alert('Producto guardado');
         console.log(data);
-        if(this.product.Perishable == true)
-        {
+        if (this.product.Perishable == true) {
           this.lotService.save(this.lot).subscribe((data) => {
             alert('Lot Guardado');
             console.log(data);
           }, (error) => {
             console.log(error);
             alert('.');
-          })          
+          })
         }
       }, (error) => {
         console.log(error);

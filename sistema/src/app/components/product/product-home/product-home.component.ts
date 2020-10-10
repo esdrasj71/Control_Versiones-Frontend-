@@ -10,6 +10,7 @@ import { Products } from '../interfaces/product';
 export class ProductHomeComponent implements OnInit {
   API_ENDPOINT = 'http://localhost:3000/';
   products: Products[]
+  filtrado_product = '';
   constructor(private productsService: ProductsService, private httpClient: HttpClient) {
     httpClient.get(this.API_ENDPOINT + 'product')
       .subscribe((data: Products[]) => {
