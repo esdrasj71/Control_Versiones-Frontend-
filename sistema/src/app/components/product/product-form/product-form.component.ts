@@ -4,20 +4,28 @@ import { Brands } from '../../brand/interfaces/brand';
 import { HttpClient } from '@angular/common/http';
 import { Product_Category } from '../../product_category/interfaces/product-category';
 import { Products } from '../interfaces/product';
+import { Lot } from '../../lot/interfaces/lot';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../servicios/products.service';
+import { LotService } from '../../lot/servicios/lot.service';
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.css']
 })
 export class ProductFormComponent implements OnInit {
+  //Product
   product: Products = {
     Name: null,
-    Perishable: null,
+    Perishable: false,
     Correlative_Product: null,
     Brand_Id: null,
     Product_Category_Id: null,
+  }
+  //Lot
+  lot: Lot = {
+    Due_Date: null,
+    Product_Id: null,
   }
   API_ENDPOINT = 'http://localhost:3000/';
   brands: Brands[];
@@ -26,9 +34,10 @@ export class ProductFormComponent implements OnInit {
   selectedCategoryId: number;
   //Update
   id: any;
+  lastidproduct: number;
   editing: boolean = false;
   productarr: Products[];
-  constructor(private fb: FormBuilder, private httpClient: HttpClient, private productService: ProductsService, private activatedRoute: ActivatedRoute) {
+  constructor(private fb: FormBuilder, private httpClient: HttpClient, private productService: ProductsService, private lotService: LotService, private activatedRoute: ActivatedRoute) {
     //Update
     this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
@@ -73,10 +82,21 @@ export class ProductFormComponent implements OnInit {
     else {
       this.product.Product_Category_Id = this.selectedCategoryId;
       this.product.Brand_Id = this.selectedBrandId;
-      this.product.Perishable = false;
       this.productService.saveproduct(this.product).subscribe((data) => {
+        this.lastidproduct = data['id'];
+        this.lot.Product_Id = this.lastidproduct;
         alert('Producto guardado');
-        console.log(data)
+        console.log(data);
+        if(this.product.Perishable == true)
+        {
+          this.lotService.save(this.lot).subscribe((data) => {
+            alert('Lot Guardado');
+            console.log(data);
+          }, (error) => {
+            console.log(error);
+            alert('.');
+          })          
+        }
       }, (error) => {
         console.log(error);
         alert('Ocurrio un error');

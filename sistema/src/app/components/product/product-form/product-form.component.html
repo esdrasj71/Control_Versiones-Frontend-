@@ -59,8 +59,11 @@
         <div class="form-group row">
             <label class="col-md-3 form-control-label" for="textinput">¿Es perecedero?</label>
             <div class="col-md-9">
-                <input type="checkbox" v-model="nombre" class="formcontrol" [(ngModel)]="product.Perishable"
-                    [ngModelOptions]="{standalone: true}">
+                <input #small type="checkbox" name="size" (change)="0" v-model="nombre" class="formcontrol"
+                    [(ngModel)]="product.Perishable" [ngModelOptions]="{standalone: true}">
+                    <br>
+                <label *ngIf="small.checked">Fecha de caducidad:</label>
+                <input *ngIf="small.checked" type="date" id="start" name="trip-start"  [(ngModel)]="lot.Due_Date" [ngModelOptions]="{standalone: true}">
             </div>
         </div>
         <div class="form-group row">
