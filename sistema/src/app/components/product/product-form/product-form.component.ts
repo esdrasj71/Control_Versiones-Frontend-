@@ -8,6 +8,7 @@ import { Lot } from '../../lot/interfaces/lot';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../servicios/products.service';
 import { LotService } from '../../lot/servicios/lot.service';
+import { Router} from '@angular/router';
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
@@ -37,7 +38,7 @@ export class ProductFormComponent implements OnInit {
   lastidproduct: number;
   editing: boolean = false;
   productarr: Products[];
-  constructor(private fb: FormBuilder, private httpClient: HttpClient, private productService: ProductsService, private lotService: LotService, private activatedRoute: ActivatedRoute) {
+  constructor(private fb: FormBuilder, private httpClient: HttpClient, private productService: ProductsService, private router: Router ,private lotService: LotService, private activatedRoute: ActivatedRoute) {
     //Update
     this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
@@ -73,7 +74,8 @@ export class ProductFormComponent implements OnInit {
       this.productService.put(this.product).subscribe((data) => {
         alert('Producto actualizado');
         console.log(this.product);
-        console.log(data)
+        console.log(data);
+        this.router.navigate(["/product-home"]);
       }, (error) => {
         console.log(error);
         alert('Ocurrio un error');
@@ -86,6 +88,7 @@ export class ProductFormComponent implements OnInit {
         this.lastidproduct = data['id'];
         this.lot.Product_Id = this.lastidproduct;
         alert('Producto guardado');
+        this.router.navigate(["/product-home"]);
         console.log(data);
         if (this.product.Perishable == true) {
           this.lotService.save(this.lot).subscribe((data) => {
