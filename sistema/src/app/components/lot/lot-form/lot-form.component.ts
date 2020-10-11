@@ -25,13 +25,13 @@ export class LotFormComponent implements OnInit {
   products: Products[];
   
   constructor(private lotService: LotService, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
-    this.id = this.activatedRoute.snapshot.params['id']; //Este es el parametro que se definio en la ruta de app.module.ts
+    this.id = this.activatedRoute.snapshot.params['id']; 
     if (this.id) {
       this.editing = true;
-      this.httpClient.get(this.API_ENDPOINT + 'lot').subscribe((data: Lot[]) => { //Aqui traemos el arreglo completo de datos
+      this.httpClient.get(this.API_ENDPOINT + 'lot').subscribe((data: Lot[]) => { 
         this.postarr = data;
         console.log(this.postarr);
-        this.lot = this.postarr.find((m) => { return m.Lot_Id == this.id }); //Aqui traemos solo el id que nos interesa
+        this.lot = this.postarr.find((m) => { return m.Lot_Id == this.id }); 
       }, (error) => {
         console.log(error);
       });

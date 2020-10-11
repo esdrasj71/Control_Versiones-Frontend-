@@ -8,7 +8,7 @@ import { Lot } from '../../lot/interfaces/lot';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../servicios/products.service';
 import { LotService } from '../../lot/servicios/lot.service';
-import { Router} from '@angular/router';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
@@ -33,12 +33,16 @@ export class ProductFormComponent implements OnInit {
   product_category: Product_Category[];
   selectedBrandId: number;
   selectedCategoryId: number;
+  selectedDueDate: Date = this.lot.Due_Date;
   //Update
   id: any;
+  id2: any;
   lastidproduct: number;
   editing: boolean = false;
   productarr: Products[];
-  constructor(private fb: FormBuilder, private httpClient: HttpClient, private productService: ProductsService, private router: Router ,private lotService: LotService, private activatedRoute: ActivatedRoute) {
+  lotarr: Lot[];
+  
+  constructor(private fb: FormBuilder, private httpClient: HttpClient, private productService: ProductsService, private router: Router, private lotService: LotService, private activatedRoute: ActivatedRoute) {
     //Update
     this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
@@ -48,13 +52,19 @@ export class ProductFormComponent implements OnInit {
         this.product = this.productarr.find((m) => { return m.Product_Id == this.id });
         this.selectedCategoryId = this.product.Product_Category_Id;
         this.selectedBrandId = this.product.Brand_Id;
-      }, (error) => {
-        console.log(error);
-      });
+        this.lot.Product_Id = this.product.Product_Id;
+        this.lot.Due_Date = this.selectedDueDate;
+        console.log(this.product);
+        console.log(this.lot);
+      },
+        (error) => {
+          console.log(error);
+        });
     }
     else {
       this.editing = false;
     }
+    
     httpClient.get(this.API_ENDPOINT + 'brands')
       .subscribe((data: Brands[]) => {
         this.brands = data;
@@ -72,9 +82,25 @@ export class ProductFormComponent implements OnInit {
       this.product.Product_Category_Id = this.selectedCategoryId;
       this.product.Brand_Id = this.selectedBrandId;
       this.productService.put(this.product).subscribe((data) => {
+        this.lastidproduct = data['id'];
+        //this.lot.Product_Id = this.lastidproduct;
         alert('Producto actualizado');
         console.log(this.product);
+        console.log(this.lot);
         console.log(data);
+        //
+        if (this.product.Perishable == true) {
+          console.log("Entro perro")
+          //this.selectedDueDate = this.lot.Due_Date;
+          this.lotService.put(this.lot).subscribe((data) => {
+            alert('Lot Actualizado');
+            console.log(data);
+          }, (error) => {
+            console.log(error);
+            alert('Ocurrio un error');
+          })
+        }
+        //
         this.router.navigate(["/product-home"]);
       }, (error) => {
         console.log(error);
@@ -96,7 +122,7 @@ export class ProductFormComponent implements OnInit {
             console.log(data);
           }, (error) => {
             console.log(error);
-            alert('.');
+            alert('Ocurrio un error');
           })
         }
       }, (error) => {
