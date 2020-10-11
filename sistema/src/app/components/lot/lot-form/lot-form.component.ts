@@ -17,7 +17,7 @@ export class LotFormComponent implements OnInit {
     Lot_Id:null,
     Due_Date: null,
     Product_Id: null,
-  }; //este arreglo define los campos que se van a ingresar en el formulario
+  }; 
   API_ENDPOINT = 'http://localhost:3000/';
   id: any;
   editing: boolean = false; 
@@ -36,7 +36,7 @@ export class LotFormComponent implements OnInit {
         console.log(error);
       });
     } else {
-      this.editing = false; 
+      this.editing = false;  
     }
 
     httpClient.get(this.API_ENDPOINT + 'product')

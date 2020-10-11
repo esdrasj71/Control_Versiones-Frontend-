@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeePositionService } from '../servicios/employee-position.service';
 import { HttpClient } from '@angular/common/http';
 import { EmployeePosition } from '../interfaces/employee-position';
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Component({
   selector: 'app-employee-position-home',
@@ -12,18 +13,20 @@ export class EmployeePositionHomeComponent implements OnInit {
 
   API_ENDPOINT = 'http://localhost:3000/';
   employeePosition: EmployeePosition[];
-  searchTerm: string;
+  
   constructor(
     private employeePositionService: EmployeePositionService,
     private httpClient: HttpClient
   ) {
-    httpClient
-      .get(this.API_ENDPOINT + 'employee_position')
-      .subscribe((data: EmployeePosition[]) => {
+    httpClient.get(this.API_ENDPOINT + 'employee_position')
+    .subscribe((data: EmployeePosition[]) => {
         this.employeePosition = data; 
         console.log(this.employeePosition);
       });
   }
+
+  searchTerm2:'';
+
   ngOnInit() {}
   
   delete(id) {

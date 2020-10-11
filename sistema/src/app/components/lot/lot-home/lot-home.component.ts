@@ -29,6 +29,7 @@ export class LotHomeComponent implements OnInit {
     this.lotService.delete(id).subscribe(
       (data) => {
         alert('Lote Eliminado');
+        window.location.reload();
       },
       (error) => {
         console.log(error);

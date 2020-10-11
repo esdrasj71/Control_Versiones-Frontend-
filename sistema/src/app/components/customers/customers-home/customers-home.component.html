@@ -1,5 +1,14 @@
-<a class="btn btn-success btnsm" routerLink="/customers-form" style="float: right;">Agregar +</a>
-<div style="height:50px;"></div>
+<div class="container">
+<form>
+    <div class="form-group row">
+        <div class="col-md-9">
+            <label class="col-md-1 form-control-label">Cliente: </label>&nbsp;&nbsp;
+            <input type="text" class="formcontrol" name="searchTerm" [(ngModel)]="searchTerm" placeholder="Buscar cliente" style="width: 250px;">&nbsp;&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-success btn-sm" routerLink="/customers-form">Agregar Cliente</a>
+        </div>
+    </div>
+</form>
+<br>
 <h1>Listado de clientes</h1>
 <table class="table">
     <thead class="thead-dark">
@@ -15,7 +24,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let customer of customers">
+        <tr *ngFor="let customer of customers | filtradocustomers:searchTerm">
             <th>{{customer.Customers_Id}}</th>
             <td>{{customer.DPI}}</td>
             <td>{{customer.Names}}</td>
@@ -29,3 +38,4 @@
     </tr>    
     </tbody>
 </table>
+</div>

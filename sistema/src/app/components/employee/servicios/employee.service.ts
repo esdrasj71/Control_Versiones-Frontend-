@@ -10,6 +10,7 @@ export class EmployeeService {
   API_ENDPOINT = 'http://localhost:3000/';
   
   employee=[];
+  filtradoEmpleados:'';
   constructor(private httpClient: HttpClient) {
     httpClient.get(this.API_ENDPOINT + 'employee')
       .subscribe((data: Employee[]) => {
