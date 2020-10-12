@@ -15,16 +15,16 @@ export class InventoryService {
     return this.httpClient.post(this.API_ENDPOINT + 'inventory', inventory, { headers: headers });
   }
 
-  put(inventory) { 
-    const headers = new HttpHeaders({ 'ContentType': 'application/json' }); 
+  put(inventory) {
+    const headers = new HttpHeaders({ 'ContentType': 'application/json' });
     return this.httpClient.put(this.API_ENDPOINT + 'inventory/' + inventory.Inventory_Id
-      , inventory, { headers: headers }); 
+      , inventory, { headers: headers });
   }
 
   delete(id) {
     const headers = new HttpHeaders({ 'ContentType': 'application/json' });
     return this.httpClient.delete(this.API_ENDPOINT + 'inventory/' + id, { headers: headers });
-  } 
+  }
 
   getInventory() {
     return this.httpClient.get(this.API_ENDPOINT + 'inventory');

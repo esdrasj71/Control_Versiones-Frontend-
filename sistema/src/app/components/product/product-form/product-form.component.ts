@@ -26,7 +26,7 @@ export class ProductFormComponent implements OnInit {
   //Lot
   lot: Lot = {
     Due_Date: null,
-    Inventory_Id: null,
+    Product_Id: null,
   }
   API_ENDPOINT = 'http://localhost:3000/';
   brands: Brands[];
@@ -41,7 +41,7 @@ export class ProductFormComponent implements OnInit {
   editing: boolean = false;
   productarr: Products[];
   lotarr: Lot[];
-  
+
   constructor(private fb: FormBuilder, private httpClient: HttpClient, private productService: ProductsService, private router: Router, private lotService: LotService, private activatedRoute: ActivatedRoute) {
     //Update
     console.log(this.lot);
@@ -67,7 +67,7 @@ export class ProductFormComponent implements OnInit {
     else {
       this.editing = false;
     }
-    
+
     httpClient.get(this.API_ENDPOINT + 'brands')
       .subscribe((data: Brands[]) => {
         this.brands = data;

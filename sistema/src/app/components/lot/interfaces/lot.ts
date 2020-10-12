@@ -1,5 +1,5 @@
 export interface Lot {
     Lot_Id?: number;
     Due_Date: Date;
-    Inventory_Id: number;
+    Product_Id: number;
 }

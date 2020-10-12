@@ -16,7 +16,7 @@ export class LotFormComponent implements OnInit {
   lot: Lot = {
     Lot_Id: null,
     Due_Date: null,
-    Inventory_Id: null,
+    Product_Id: null,
   }; //este arreglo define los campos que se van a ingresar en el formulario
   API_ENDPOINT = 'http://localhost:3000/';
   id: any;

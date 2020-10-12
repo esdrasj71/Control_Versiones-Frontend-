@@ -18,6 +18,7 @@ export class InventoryFormComponent implements OnInit {
     Retail_Price: null,
     Wholesale_Price: null,
     Product_Id: null,
+    Statuss: null,
   };
   API_ENDPOINT = 'http://localhost:3000/';
   id: any;
