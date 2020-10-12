@@ -26,7 +26,7 @@ export class ProductFormComponent implements OnInit {
   //Lot
   lot: Lot = {
     Due_Date: null,
-    Product_Id: null,
+    Inventory_Id: null,
   }
   API_ENDPOINT = 'http://localhost:3000/';
   brands: Brands[];
@@ -44,6 +44,7 @@ export class ProductFormComponent implements OnInit {
   
   constructor(private fb: FormBuilder, private httpClient: HttpClient, private productService: ProductsService, private router: Router, private lotService: LotService, private activatedRoute: ActivatedRoute) {
     //Update
+    console.log(this.lot);
     this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
       this.editing = true;
@@ -52,7 +53,9 @@ export class ProductFormComponent implements OnInit {
         this.product = this.productarr.find((m) => { return m.Product_Id == this.id });
         this.selectedCategoryId = this.product.Product_Category_Id;
         this.selectedBrandId = this.product.Brand_Id;
-        this.lot.Product_Id = this.product.Product_Id;
+        //
+        //
+        //this.lot.Product_Id = this.product.Product_Id;
         this.lot.Due_Date = this.selectedDueDate;
         console.log(this.product);
         console.log(this.lot);
@@ -85,8 +88,6 @@ export class ProductFormComponent implements OnInit {
         this.lastidproduct = data['id'];
         //this.lot.Product_Id = this.lastidproduct;
         alert('Producto actualizado');
-        console.log(this.product);
-        console.log(this.lot);
         console.log(data);
         //
         if (this.product.Perishable == true) {
@@ -112,7 +113,7 @@ export class ProductFormComponent implements OnInit {
       this.product.Brand_Id = this.selectedBrandId;
       this.productService.saveproduct(this.product).subscribe((data) => {
         this.lastidproduct = data['id'];
-        this.lot.Product_Id = this.lastidproduct;
+        //this.lot.Product_Id = this.lastidproduct;
         alert('Producto guardado');
         this.router.navigate(["/product-home"]);
         console.log(data);

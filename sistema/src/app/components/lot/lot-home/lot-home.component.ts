@@ -19,12 +19,12 @@ export class LotHomeComponent implements OnInit {
     httpClient
       .get(this.API_ENDPOINT + 'lot')
       .subscribe((data: Lot[]) => {
-        this.lot = data; 
+        this.lot = data;
         console.log(this.lot);
       });
   }
-  ngOnInit() {}
-  
+  ngOnInit() { }
+
   delete(id) {
     this.lotService.delete(id).subscribe(
       (data) => {
@@ -35,6 +35,5 @@ export class LotHomeComponent implements OnInit {
       }
     );
   }
-
 }
 

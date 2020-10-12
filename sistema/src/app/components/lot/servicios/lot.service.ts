@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders } from '@angular/common/http';
-import {Lot} from '../interfaces/lot';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Lot } from '../interfaces/lot';
 
 @Injectable({
   providedIn: 'root'
@@ -8,33 +8,32 @@ import {Lot} from '../interfaces/lot';
 export class LotService {
 
   API_ENDPOINT = 'http://localhost:3000/';
-  
-  lot=[];
+  lot = [];
   constructor(private httpClient: HttpClient) {
     httpClient.get(this.API_ENDPOINT + 'lot')
       .subscribe((data: Lot[]) => {
         this.lot = data;
       });
-   }
-   getLot(){
-    return this.httpClient.get(this.API_ENDPOINT + 'lot' );
   }
-   save(lot: Lot){
-     console.log(lot);
-     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-     return this.httpClient.post(this.API_ENDPOINT + 'lot', lot, {headers: headers});
-   }
-   put(lot) { //Le llamaremos put para fines practicos
-    const headers = new HttpHeaders({ 'ContentType': 'application/json' }); 
-    return this.httpClient.put(this.API_ENDPOINT + 'lot/' + lot.Lot_Id, lot, { headers: headers }); 
+  getLot() {
+    return this.httpClient.get(this.API_ENDPOINT + 'lot');
+  }
+  save(lot: Lot) {
+    console.log(lot);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.httpClient.post(this.API_ENDPOINT + 'lot', lot, { headers: headers });
+  }
+  put(lot) { //Le llamaremos put para fines practicos
+    const headers = new HttpHeaders({ 'ContentType': 'application/json' });
+    return this.httpClient.put(this.API_ENDPOINT + 'lot/' + lot.Lot_Id, lot, { headers: headers });
   }
   delete(id) {
     const headers = new HttpHeaders({ 'ContentType': 'application/json' });
-    return this.httpClient.delete(this.API_ENDPOINT + 'lot/' + id,{headers:headers});
+    return this.httpClient.delete(this.API_ENDPOINT + 'lot/' + id, { headers: headers });
   }
 
-  findPresentation(lot: Lot){
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+  findPresentation(lot: Lot) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.httpClient.get(this.API_ENDPOINT + 'lot/:Lot_Id')
   }
 }
