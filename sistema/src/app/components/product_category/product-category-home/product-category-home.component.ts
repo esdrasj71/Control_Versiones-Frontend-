@@ -19,11 +19,15 @@ export class ProductCategoryHomeComponent implements OnInit {
         console.log(this.product_category);
       });
   }
+
+searchTerm6 = '';
+
   ngOnInit() {
   }
   delete(id) {
     this.productcategoryService.delete(id).subscribe((data) => {
       alert('Categoria de producto eliminada');
+      window.location.reload();
     }, (error) => {
       console.log(error);
     });

@@ -42,6 +42,10 @@ import { PaymentDetailHomeComponent } from './components/payment_detail_purchase
 import { PaymentDetailFormComponent } from './components/payment_detail_purchase/payment-detail-form/payment-detail-form.component';
 import { FiltradoEmpleadosPipe } from './pipes/filtrado-empleados.pipe';
 import { FilterEmployeePosPipe } from './pipes/filter-employee-pos.pipe';
+import { FilterProvidersPipe } from './pipes/filter-providers.pipe';
+import { FilterBrandPipe } from './pipes/filter-brand.pipe';
+import { FilterProductCatPipe } from './pipes/filter-product-cat.pipe';
+import { FilterLotPipe } from './pipes/filter-lot.pipe';
 
 const routes: Route[] = [
   //Brand
@@ -143,7 +147,11 @@ const routes: Route[] = [
     PaymentDetailHomeComponent,
     PaymentDetailFormComponent,
     FiltradoEmpleadosPipe,
-    FilterEmployeePosPipe
+    FilterEmployeePosPipe,
+    FilterProvidersPipe,
+    FilterBrandPipe,
+    FilterProductCatPipe,
+    FilterLotPipe
   ],
   imports: [
     BrowserModule,

@@ -2,8 +2,8 @@
 <form>
     <div class="form-group row">
         <div class="col-md-9">
-            <label class="col-md-1 form-control-label">Cliente: </label>&nbsp;&nbsp;
-            <input type="text" class="formcontrol" name="searchTerm" [(ngModel)]="searchTerm" placeholder="Buscar cliente" style="width: 250px;">&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="submit" style="background-color: lightskyblue;"><i class="fa fa-search"></i></button>
+            <input type="text" class="formcontrol" name="searchTerm5" [(ngModel)]="searchTerm5" placeholder="Buscar cliente" style="width: 250px;">&nbsp;&nbsp;&nbsp;&nbsp;
             <a class="btn btn-success btn-sm" routerLink="/customers-form">Agregar Cliente</a>
         </div>
     </div>
@@ -24,7 +24,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let customer of customers | filtradocustomers:searchTerm">
+        <tr *ngFor="let customer of customers | filtradocustomers:searchTerm5">
             <th>{{customer.Customers_Id}}</th>
             <td>{{customer.DPI}}</td>
             <td>{{customer.Names}}</td>

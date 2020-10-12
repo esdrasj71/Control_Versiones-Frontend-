@@ -14,7 +14,7 @@
         <tr *ngFor="let payment of paymentPurchase">
             <th>{{payment.Payment_Purchase_Id}}</th>
             <td>{{payment.Method_Name}}</td>    
-            <td><a class="btn btn-warning btn-sm" routerLink="/payment-purchase-form/{{payment.Payment_Purchase_Id}}">Editar</a> &nbsp;
+            <td><a class="btn btn-warning btn-sm" routerLink="/payment-purchase-form/{{payment.Payment_Purchase_Id}}">Editar</a>
                 <a class="btn btn-danger btn-sm" (click)="delete(payment.Payment_Purchase_Id)" style="color:white;">Eliminar</a>
             </td>
         </tr> 

@@ -11,7 +11,6 @@ import { Brands } from '../interfaces/brand';
 export class BrandHomeComponent implements OnInit {
   API_ENDPOINT = 'http://localhost:3000/';
   brands: Brands[];
-  rootBrand = ''; 
   constructor(private brandsService: BrandsService, private httpClient: HttpClient) {
    
     httpClient.get(this.API_ENDPOINT + 'brands')
@@ -21,23 +20,20 @@ export class BrandHomeComponent implements OnInit {
     })
    }
 
-   delete(id) {
-    this.brandsService.delete(id).subscribe(
-      (data) => {
-        alert('Marca Eliminado');
-        window.location.reload();
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  } 
+searchTerm4 = '';
 
   ngOnInit(): void {
   }
-  findbrand(brandOne){
-    this.rootBrand = brandOne;
-    console.log(this.rootBrand);
-    }
+    delete(id) {
+      this.brandsService.delete(id).subscribe(
+        (data) => {
+          alert('Marca Eliminado');
+          window.location.reload();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    } 
 
 }

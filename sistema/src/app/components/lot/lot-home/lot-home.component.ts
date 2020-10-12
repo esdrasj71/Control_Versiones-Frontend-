@@ -23,8 +23,10 @@ export class LotHomeComponent implements OnInit {
         console.log(this.lot);
       });
   }
+
+searchTerm7: '';
+
   ngOnInit() {}
-  
   delete(id) {
     this.lotService.delete(id).subscribe(
       (data) => {
