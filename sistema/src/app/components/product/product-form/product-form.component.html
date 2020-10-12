@@ -1,71 +1,22 @@
-<div class="container card">
-  <div class="card-body">
-  <h2 class="alert alert-primary" role="alert">Ingreso de productos</h2>
-  <div class="alert alert-warning" role="alert">
-    <div class="form-group row">
-        <label class="col-md-3 form-control-label" for="textinput"
-          >Numero correlativo:</label
-        >
-        <div class="col-md-9">
-          <input
-            type="text"
-            [(ngModel)]="product.Correlative_Product"
-            class="form-control"
-            placeholder="Ingrese el numero correlativo"
-            [ngModelOptions]="{ standalone: true }"
-          />
-        </div>
+<div class="container">
+  <h1>Ingreso de productos</h1>
+  <form>
+      <div class="form-group row">
+          <label class="col-md-3 form-control-label" for="textinput">Nombre del producto:</label>
+          <div class="col-md-9">
+              <input class="form-control" type="text" [(ngModel)]="product.Name" class="formcontrol"
+                  placeholder="Ingrese el nombre del producto" [ngModelOptions]="{standalone: true}">
+          </div>
       </div>
-    <div class="form-group row">
-      <label class="col-md-3 form-control-label" for="textinput"
-        >Nombre del producto:</label
-      >
-      <div class="col-md-9">
-        <input
-          class="form-control"
-          type="text"
-          [(ngModel)]="product.Name"
-          placeholder="Ingrese el nombre del producto"
-          [ngModelOptions]="{ standalone: true }"
-        />
+      <div class="form-group row">
+          <label class="col-md-3 form-control-label" for="textinput">Numero correlativo:</label>
+          <div class="col-md-9">
+              <input type="text" [(ngModel)]="product.Correlative_Product" class="formcontrol"
+                  placeholder="Ingrese el numero correlativo" [ngModelOptions]="{standalone: true}">
+          </div>
       </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-md-3 form-control-label" for="textinput"
-          >¿Es perecedero?</label
-        >
-        <div class="col-md-9">
-          <input
-            type="checkbox"
-            v-model="nombre"
-            class="form-control"
-            [(ngModel)]="product.Perishable"
-            [ngModelOptions]="{ standalone: true }"
-          />
-        </div>
-      </div>
-    <!--Brand-->
-    <div class="form-group row">
-      <div style="width: 300px; height: 200px" class="col-md-9">
-        <label class="col-md-3 form-control-label"> Seleccione la marca</label>
-        <ng-select
-          [searchFn]="searchBrand"
-          id="brand"
-          name="brand"
-          [items]="brands"
-          [virtualScroll]="true"
-          bindLabel="Name"
-          bindValue="Brand_Id"
-          placeholder="Marca"
-          [(ngModel)]="selectedBrandId"
-        >
-          <ng-template ng-header-tmp>
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-md-6">Marca</div>
-              </div>
-                     <!--Brand-->
-        <div style="width:300px; height:100px">
+      <!--Brand-->
+      <div style="width:300px; height:100px">
           <label> Seleccione la marca</label>
           <ng-select [searchFn]="searchBrand" id="brand" name="brand" [items]="brands" [virtualScroll]="true"
               bindLabel="Name" bindValue="Brand_Id" placeholder="Marca" [(ngModel)]="selectedBrandId">
@@ -108,64 +59,18 @@
       <div class="form-group row">
           <label class="col-md-3 form-control-label" for="textinput">¿Es perecedero?</label>
           <div class="col-md-9">
-              <input type="checkbox" v-model="nombre" class="formcontrol" [(ngModel)]="product.Perishable"
-                  [ngModelOptions]="{standalone: true}">
-            </div>
-          </ng-template>
-          <ng-template ng-label-tmp let-item="item">
-            <span>{{ item.Name }}</span>
-          </ng-template>
-          <ng-template ng-option-tmp let-item="item" let-index="index">
-            {{ item.Name }}
-          </ng-template>
-        </ng-select>
+              <input #small type="checkbox" name="size" (change)="0" v-model="nombre" class="formcontrol"
+                  [(ngModel)]="product.Perishable" [ngModelOptions]="{standalone: true}">
+                  <br>
+              <label *ngIf="small.checked">Fecha de caducidad:</label>
+              <input *ngIf="small.checked" type="date" id="start" name="trip-start"  [(ngModel)]="lot.Due_Date" [ngModelOptions]="{standalone: true}">
+          </div>
       </div>
-    </div>
-    <!--Product Category-->
-    <div class="form-group row">
-      <div style="width: 300px; height: 200px" class="col-md-9">
-        <label class="col-md-3 form-controllabel">
-          Seleccione la categoria</label
-        >
-        <ng-select
-          [searchFn]="searchCategory"
-          id="product_category"
-          name="product_category"
-          [items]="product_category"
-          [virtualScroll]="true"
-          bindLabel="Product_Category_Id"
-          bindValue="Product_Category_Id"
-          placeholder="Categoria"
-          [(ngModel)]="selectedCategoryId"
-        >
-          <ng-template ng-header-tmp>
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-md-6">Categoria</div>
-              </div>
-            </div>
-          </ng-template>
-          <ng-template ng-label-tmp let-item="item">
-            <span>{{ item.Name }}</span>
-          </ng-template>
-          <ng-template ng-option-tmp let-item="item" let-index="index">
-            {{ item.Name }}
-          </ng-template>
-        </ng-select>
+      <div class="form-group row">
+          <div class="col-md-12">
+              <button type="submit" (click)="saveProduct()" class="btn btn-primary btnblock">Registrar</button>
+          </div>
       </div>
-    </div>
-    <div class="form-group row">
-      <div class="col-md-12">
-        <button
-          type="submit"
-          (click)="saveProduct()"
-          class="btn btn-primary btnblock"
-        >
-          Registrar
-        </button>
-      </div>
-    </div>
-    <hr />
-  </div>
-</div>
+  </form>
+  <hr>
 </div>

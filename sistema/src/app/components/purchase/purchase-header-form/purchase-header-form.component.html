@@ -149,7 +149,7 @@
       </div>
     </div>
     <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
-      <div class="card" style="width: 45rem; right: 5rem">
+      <div class="card" style="width: 49rem; right: 8rem">
         <div class="card-body">
           <h5 class="card-title">Busqueda de producto</h5>
           <hr>
@@ -160,6 +160,7 @@
                 Buscar Producto
               </button>
             </div>
+            <hr>
             <h5 class="card-title">Detalle de la compra</h5>
  
               <table class="table table-dark" style="table-layout: fixed; word-wrap: break-word;" id="table">
@@ -168,6 +169,7 @@
                         <th scope="col">ID Producto</th>
                         <th scope="col">No. Correlativo</th>
                         <th scope="col">Producto</th>
+                        <th scope="col">No. Lote</th>
                         <th scope="col">Cantidad</th>
                         <th scope="col">Precio</th>
                         <th scope="col">Subtotal</th>
@@ -179,14 +181,18 @@
                         <td>{{inventario[0].Product_Id}}</td>
                         <td>{{inventario[0].Correlative_Product}}</td>
                         <th>{{inventario[0].Name}}</th>
+                        <th>{{inventario[0].Lot_Id}}</th>
                         <td><input type="number" class="form-control"  [(ngModel)]="cantidad[i]"/></td>
                         <td><input type="number" class="form-control" [(ngModel)]="precio[i]" #box (keyup.enter)="onEnter(cantidad[i], precio[i], inventario)"/></td>
                         <td>{{inventario[0].Subtotal}}</td>
-                        <td><button class="btn btn-danger"  type="button" (click)="EliminarDetalle(i,inventario)" onClick="EliminarFila(this)">Eliminar</button></td>
+                        <td><button class="btn btn-danger"  type="button" (click)="EliminarDetalle(i,inventario)" onClick="EliminarFila(this)">X</button></td>
                     </tr>
                 </tbody>
             </table>
-            <button type="button" class="btn btn-success" (click)="savePost()" >Registrar Compra</button>
+            <button type="button" class="btn btn-success"
+            (click)="savePost()"
+
+            >Registrar Compra</button>
         </div>
         </div>
       </div>
@@ -240,7 +246,7 @@
               </tr>
           </thead>
           <tbody>
-              <tr *ngFor="let provider of providers | filtradoprovider:filtrado_proveedor | paginate: { itemsPerPage: 3, currentPage: paginaActual }">
+              <tr *ngFor="let provider of providers | filtradoprovider:filtrado_proveedor">
                   <td height="10">{{provider.Providers_Id}}</td>
                   <td height="10">{{provider.NIT}}</td>
                   <td height="10">{{provider.Fiscal_Name}}</td>
@@ -253,8 +259,8 @@
               </tr>
           </tbody>
       </table>
-      <pagination-controls (pageChange)="paginaActual = $event" previousLabel="Anterior"
-      nextLabel="Siguiente" maxSize="9" autoHide="true"></pagination-controls>
+      <!--<pagination-controls (pageChange)="paginaActual = $event" previousLabel="Anterior"
+      nextLabel="Siguiente" maxSize="9" autoHide="true"></pagination-controls>-->
     </div>
       </div>
       <div class="modal-footer">
@@ -292,23 +298,30 @@
           <thead>
               <tr>
                   <th scope="col">#</th>
+                  <th scope="col">IDproducto</th>
                   <th scope="col">Correlativo Producto</th>
                   <th scope="col">Nombre Producto</th>
-                  <th scope="col"></th>
+                  <th scope="col">Marca</th>
+                  <th scope="col">No. Lote</th>
+                  <th scope="col">Fecha Caducidad</th>
               </tr>
           </thead>
           <tbody>
-              <tr *ngFor="let produ of product | fitradoproduct:filtrado_product | paginate: { itemsPerPage: 3, currentPage: paginaActualp }">
-                  <td height="10">{{produ.Product_Id}}</td>
-                  <td height="10">{{produ.Correlative_Product}}</td>
-                  <td height="10">{{produ.Name}}</td>
-                  <td><a class="btn btn-primary btn-sm"  (click)="getProductId(produ.Product_Id)" data-dismiss="modal">Seleccionar</a> &nbsp; 
+              <tr *ngFor="let inv of inventory | fitradoproduct:filtrado_product">
+                <td height="10">{{inv.Inventory_Id}}</td>
+                  <td height="10">{{inv.Product_Id}}</td>
+                  <td height="10">{{inv.Correlative_Product}}</td>
+                  <td height="10">{{inv.Name}}</td>
+                  <td height="10">{{inv.Marca}}</td>
+                  <td height="10">{{inv.Lot_Id}}</td>
+                  <td height="10">{{inv.Due_Date}}</td>
+                  <td><a class="btn btn-primary btn-sm"  (click)="getProductId(inv.Inventory_Id)" data-dismiss="modal">Seleccionar</a> &nbsp; 
                   </td>
               </tr>
           </tbody>
       </table>
-      <pagination-controls (pageChange)="paginaActualp = $event" previousLabel="Anterior"
-      nextLabel="Siguiente" maxSize="9" autoHide="true"></pagination-controls>
+     <!-- <pagination-controls (pageChange)="paginaActualp = $event" previousLabel="Anterior"
+      nextLabel="Siguiente" maxSize="9" autoHide="true"></pagination-controls>-->
     </div>
       </div>
       <div class="modal-footer">
@@ -356,5 +369,109 @@
         <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
+  </div>
+</div>
+<!-- MODO DE PAGO DE COMPRAS-->
+<div class="modal fade bd-cobro-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content modal-dialog  " style="width: px;">
+          <div class="modal-header d-flex justify-content-center">
+              <h5 class="heading">Registre el tipo de pago de esta compra</h5>
+              <button type="button" class="close" (click)="cerrarpago()" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+    </button>
+          </div>
+          <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y:auto;">
+              <div class="container">
+                  <h3 style="text-align: center;">Tipo de pago</h3>
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group row">
+                              <div class="col-sm-4">
+                                  <input type="checkbox" ngDefaultControl (click)="mostraralcredito()" class="form-control" tabindex="1" />
+                              </div>
+                              <label for="correlativo" class="col-form-label">Al credito</label>
+
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group row">
+                              <div class="col-sm-4">
+                                  <input type="checkbox" (click)="mostraralcontado()" ngDefaultControl class="form-control" tabindex="1" />
+                              </div>
+                              <label for="serie" class="col-form-label">Al contado</label>
+                          </div>
+                      </div>
+                  </div>
+                  <hr />
+                  <h3 style="text-align: center;">Monto</h3>
+                  <div *ngIf="pago_alcontado">
+                    <hr>
+                      <b style="font-size: 23px; color:red;">Al contado</b>
+                      <br>
+                      <div class="row">
+                          <div class="col-md-5">
+                              <div class="form-group row">
+                                  <label for="correlativo" class="col-form-label">Monto:</label>
+                                  <div class="col-md-6">
+                                      <input type="number" min="0" #boxalcontado (keyup.enter)="onPagoalcontado(boxalcontado.value)" ngDefaultControl name="monto" id="monto" class="form-control" placeholder=" " tabindex="1" />
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="form-group row">
+                                  <label for="serie" class="col-form-label">Descripcion:</label>
+                                  <div class="col-sm-7">
+                                      <textarea ngDefaultControl name="descripcion" [ngModel]="descripcion_pagoalcontado" id="descripcion" class="form-control" placeholder="" tabindex="1"></textarea>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <hr>
+                  </div>
+                  <div *ngIf="pago_alcredito">
+                    <hr>
+                      <b style="font-size: 23px; color:red;">Al credito</b>
+                      <br>
+                      <div class="row">
+                          <div class="col-md-5">
+                              <div class="form-group row">
+                                  <label for="" class="col-form-label">Monto:</label>
+                                  <div class="col-md-6">
+                                      <input type="number" min="0" max="total_cobro" #boxalcredito (keyup.enter)="onPagoalcredito(boxalcredito.value)" ngDefaultControl name="monto" id="monto" class="form-control" placeholder="" tabindex="1" />
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="form-group row">
+                                  <label for="" class="col-form-label">Descripcion:</label>
+                                  <div class="col-sm-7">
+                                      <textarea ngDefaultControl name="descripcion" [ngModel]="descripcion_pagoalcredito" id="descripcion" class="form-control" placeholder="" tabindex="1"></textarea>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <hr>
+                  </div>
+                  <hr />
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group row">
+                              <label  style="font-size: 20px; color:blue;" class="col-form-label">Monto Total:</label>
+                              <div class="col-sm-4">
+                                  <label  style="font-size: 20px; color:blue;" class="col-form-label"> Q{{total_cobro}}</label>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group ">
+                              <button type="button" 
+                               class="btn btn-primary ">Enviar</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
   </div>
 </div>
