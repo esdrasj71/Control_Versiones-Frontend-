@@ -5,7 +5,7 @@ import { Products } from '../../product/interfaces/product';
 import { ProductsService } from '../../product/servicios/products.service';
 import { InventoryService } from '../servicios/inventory.service';
 import { ActivatedRoute } from '@angular/router';
-
+import { Router} from '@angular/router';
 @Component({
   selector: 'app-inventory-form',
   templateUrl: './inventory-form.component.html',
@@ -18,6 +18,7 @@ export class InventoryFormComponent implements OnInit {
     Retail_Price: null,
     Wholesale_Price: null,
     Product_Id: null,
+    Statuss: null,
   };
   API_ENDPOINT = 'http://localhost:3000/';
   id: any;
@@ -27,7 +28,7 @@ export class InventoryFormComponent implements OnInit {
   selectedProductId: number;
   product: Products[];
 
-  constructor(private inventoryService: InventoryService, private productsService: ProductsService, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
+  constructor(private inventoryService: InventoryService, private productsService: ProductsService, private router: Router, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
     this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
       this.editing = true;
@@ -57,6 +58,7 @@ export class InventoryFormComponent implements OnInit {
       this.inventory.Product_Id = this.selectedProductId;
       this.inventoryService.put(this.inventory).subscribe((data) => {
         alert('Inventario actualizado');
+        this.router.navigate(["/inventory-home"]);
         console.log(data)
       }, (error) => {
         console.log(error);
@@ -67,6 +69,7 @@ export class InventoryFormComponent implements OnInit {
       this.inventory.Product_Id = this.selectedProductId;
       this.inventoryService.save(this.inventory).subscribe((data) => {
         alert('Inventario guardado');
+        this.router.navigate(["/inventory-home"]);
         console.log(data)
       }, (error) => {
         console.log(error);

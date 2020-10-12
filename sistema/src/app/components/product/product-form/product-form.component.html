@@ -1,76 +1,77 @@
 <div class="container">
-  <h1>Ingreso de productos</h1>
-  <form>
-      <div class="form-group row">
-          <label class="col-md-3 form-control-label" for="textinput">Nombre del producto:</label>
-          <div class="col-md-9">
-              <input class="form-control" type="text" [(ngModel)]="product.Name" class="formcontrol"
-                  placeholder="Ingrese el nombre del producto" [ngModelOptions]="{standalone: true}">
-          </div>
-      </div>
-      <div class="form-group row">
-          <label class="col-md-3 form-control-label" for="textinput">Numero correlativo:</label>
-          <div class="col-md-9">
-              <input type="text" [(ngModel)]="product.Correlative_Product" class="formcontrol"
-                  placeholder="Ingrese el numero correlativo" [ngModelOptions]="{standalone: true}">
-          </div>
-      </div>
-      <!--Brand-->
-      <div style="width:300px; height:100px">
-          <label> Seleccione la marca</label>
-          <ng-select [searchFn]="searchBrand" id="brand" name="brand" [items]="brands" [virtualScroll]="true"
-              bindLabel="Name" bindValue="Brand_Id" placeholder="Marca" [(ngModel)]="selectedBrandId">
-              <ng-template ng-header-tmp>
-                  <div class="container-fluid">
-                      <div class="row">
-                          <div class="col-md-6">Marca</div>
-                      </div>
-                  </div>
-              </ng-template>
-              <ng-template ng-label-tmp let-item="item">
-                  <span>{{item.Name}}</span>
-              </ng-template>
-              <ng-template ng-option-tmp let-item="item" let-index="index">
-                  {{item.Name}}
-              </ng-template>
-          </ng-select>
-      </div>
-      <!--Product Category-->
-      <div style="width:300px; height:100px">
-          <label> Seleccione la categoria</label>
-          <ng-select [searchFn]="searchCategory" id="product_category" name="product_category"
-              [items]="product_category" [virtualScroll]="true" bindLabel="Name" bindValue="Product_Category_Id"
-              placeholder="Categoria" [(ngModel)]="selectedCategoryId">
-              <ng-template ng-header-tmp>
-                  <div class="container-fluid">
-                      <div class="row">
-                          <div class="col-md-6">Categoria</div>
-                      </div>
-                  </div>
-              </ng-template>
-              <ng-template ng-label-tmp let-item="item">
-                  <span>{{item.Name}}</span>
-              </ng-template>
-              <ng-template ng-option-tmp let-item="item" let-index="index">
-                  {{item.Name}}
-              </ng-template>
-          </ng-select>
-      </div>
-      <div class="form-group row">
-          <label class="col-md-3 form-control-label" for="textinput">¿Es perecedero?</label>
-          <div class="col-md-9">
-              <input #small type="checkbox" name="size" (change)="0" v-model="nombre" class="formcontrol"
-                  [(ngModel)]="product.Perishable" [ngModelOptions]="{standalone: true}">
-                  <br>
-              <label *ngIf="small.checked">Fecha de caducidad:</label>
-              <input *ngIf="small.checked" type="date" id="start" name="trip-start"  [(ngModel)]="lot.Due_Date" [ngModelOptions]="{standalone: true}">
-          </div>
-      </div>
-      <div class="form-group row">
-          <div class="col-md-12">
-              <button type="submit" (click)="saveProduct()" class="btn btn-primary btnblock">Registrar</button>
-          </div>
-      </div>
-  </form>
-  <hr>
+<h1>Ingreso de productos</h1>
+<form>
+    <div class="form-group row">
+        <label class="col-md-3 form-control-label" for="textinput">Nombre del producto:</label>
+        <div class="col-md-9">
+            <input class="form-control" type="text" [(ngModel)]="procedure_saveproduct.Name"
+                placeholder="Ingrese el nombre del producto" [ngModelOptions]="{standalone: true}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-3 form-control-label" for="textinput">Numero correlativo:</label>
+        <div class="col-md-9">
+            <input class="form-control" type="text" [(ngModel)]="procedure_saveproduct.Correlative_Product"
+                placeholder="Ingrese el numero correlativo" [ngModelOptions]="{standalone: true}">
+        </div>
+    </div>
+    <!--Brand-->
+    <div style="width:300px; height:100px">
+        <label> Seleccione la marca</label>
+        <ng-select [searchFn]="searchBrand" id="brand" name="brand" [items]="brands" [virtualScroll]="true"
+            bindLabel="Name" bindValue="Brand_Id" placeholder="Marca" [(ngModel)]="selectedBrandId">
+            <ng-template ng-header-tmp>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">Marca</div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template ng-label-tmp let-item="item">
+                <span>{{item.Name}}</span>
+            </ng-template>
+            <ng-template ng-option-tmp let-item="item" let-index="index">
+                {{item.Name}}
+            </ng-template>
+        </ng-select>
+    </div>
+    <!--Product Category-->
+    <div style="width:300px; height:100px">
+        <label> Seleccione la categoria</label>
+        <ng-select [searchFn]="searchCategory" id="product_category" name="product_category"
+            [items]="product_category" [virtualScroll]="true" bindLabel="Name" bindValue="Product_Category_Id"
+            placeholder="Categoria" [(ngModel)]="selectedCategoryId">
+            <ng-template ng-header-tmp>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">Categoria</div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template ng-label-tmp let-item="item">
+                <span>{{item.Name}}</span>
+            </ng-template>
+            <ng-template ng-option-tmp let-item="item" let-index="index">
+                {{item.Name}}
+            </ng-template>
+        </ng-select>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-3 form-control-label" for="textinput">¿Es perecedero?</label>
+        <div class="col-md-9">
+            <input #small type="checkbox" name="size" (change)="0" v-model="nombre" class="formcontrol"
+                [(ngModel)]="procedure_saveproduct.Perishable" [ngModelOptions]="{standalone: true}">
+                <br>
+                <br>
+            <label *ngIf="small.checked">Fecha de caducidad:</label>
+            <input *ngIf="small.checked" type="date" id="start" name="trip-start"  [(ngModel)]="procedure_saveproduct.Due_Date" [ngModelOptions]="{standalone: true}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-12">
+            <button type="submit" (click)="saveProduct()" class="btn btn-dark">Registrar</button>
+        </div>
+    </div>
+</form>
+<hr>
 </div>
