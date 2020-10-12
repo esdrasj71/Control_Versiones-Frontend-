@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Products } from '../interfaces/product'
+import { Products } from '../interfaces/product';
+import { Procedure_SaveProduct} from '../interfaces/procedure_saveproduct';
 @Injectable({
   providedIn: 'root'
 })
@@ -9,6 +10,10 @@ export class ProductsService {
 
   constructor(private httpClient: HttpClient) {
 
+  }
+  saveprocedure(procedure_product: Procedure_SaveProduct) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.httpClient.post(this.API_ENDPOINT + 'procedure_product', procedure_product, { headers: headers });
   }
   saveproduct(product: Products) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });

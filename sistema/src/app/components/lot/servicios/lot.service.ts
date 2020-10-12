@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Lot } from '../interfaces/lot';
-
+import { Procedure_SaveProduct} from '../../product/interfaces/procedure_saveproduct';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,6 +17,10 @@ export class LotService {
   }
   getLot() {
     return this.httpClient.get(this.API_ENDPOINT + 'lot');
+  }
+  saveprocedure(procedure_product: Procedure_SaveProduct) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.httpClient.post(this.API_ENDPOINT + 'procedure_product', procedure_product, { headers: headers });
   }
   save(lot: Lot) {
     console.log(lot);
