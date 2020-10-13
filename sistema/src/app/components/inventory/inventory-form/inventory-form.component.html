@@ -5,10 +5,8 @@
             <div class="form-group row">
                 <label for="product" class="col-form-label">Producto: </label>
                 <!--Product-->
-                <div style="width:300px; height:10px; left: 10px"  left= "300px">
-                    <ng-select [searchFn]="searchProduct" id="product" name="product" [items]="product"
-                        [virtualScroll]="true" bindLabel="Name" bindValue="Product_Id" placeholder="Producto"
-                        [(ngModel)]="selectedProductId" >
+                <div style="width:300px; height:10px; left: 10px" left="300px">
+                    <ng-select [searchFn]="searchProduct" id="product" name="product" [items]="product" [virtualScroll]="true" bindLabel="Name" bindValue="Product_Id" placeholder="Producto" [(ngModel)]="selectedProductId">
                         <ng-template ng-header-tmp>
                             <div class="container-fluid">
                                 <div class="row">
@@ -28,29 +26,25 @@
             <div class="form-group row">
                 <label class="col-md-3 form-controllabel" for="Stock">Stock:</label>
                 <div class="col-md-9">
-                    <input [(ngModel)]="inventory.Stock" type="number" id="Stock" class="form-control"
-                        placeholder="Ingrese el stock" min="10" max="100">
+                    <input [(ngModel)]="inventory.Stock" type="number" id="Stock" class="form-control" placeholder="Ingrese el stock" min="10" max="100">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-md-3 form-controllabel" for="Unit_Price">Precio Unitario:</label>
                 <div class="col-md-9">
-                    <input [(ngModel)]="inventory.Unit_Price" type="number" id="Unit_Price" class="form-control"
-                        placeholder="Ingrese el precio unitario" min="10" max="100">
+                    <input [(ngModel)]="inventory.Unit_Price" type="number" id="Unit_Price" class="form-control" placeholder="Ingrese el precio unitario" min="10" max="100">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-md-3 form-controllabel" for="Retail_Price">Precio Minorista:</label>
                 <div class="col-md-9">
-                    <input [(ngModel)]="inventory.Retail_Price" type="number" id="Retail_Price" class="form-control"
-                        placeholder="Ingrese el precio minorista" min="10" max="100">
+                    <input [(ngModel)]="inventory.Retail_Price" type="number" id="Retail_Price" class="form-control" placeholder="Ingrese el precio minorista" min="10" max="100">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-md-3 form-controllabel" for="Wholesale_Price">Precio Mayorista:</label>
                 <div class="col-md-9">
-                    <input [(ngModel)]="inventory.Wholesale_Price" type="number" id="Wholesale_Price"
-                        class="form-control" placeholder="Ingrese el precio mayorista" min="10" max="100">
+                    <input [(ngModel)]="inventory.Wholesale_Price" type="number" id="Wholesale_Price" class="form-control" placeholder="Ingrese el precio mayorista" min="10" max="100">
                 </div>
             </div>
             <br>
