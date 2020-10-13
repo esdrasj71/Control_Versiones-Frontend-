@@ -5,14 +5,14 @@
             <label class="col-md-3 form-control-label" for="textinput">Nombre del producto:</label>
             <div class="col-md-9">
                 <input class="form-control" type="text" [(ngModel)]="procedure_saveproduct.Name"
-                    placeholder="Ingrese el nombre del producto" [ngModelOptions]="{standalone: true}">
+                    placeholder="Ingrese el nombre del producto" [ngModelOptions]="{standalone: true}" required="">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-md-3 form-control-label" for="textinput">Numero correlativo:</label>
             <div class="col-md-9">
                 <input class="form-control" type="text" [(ngModel)]="procedure_saveproduct.Correlative_Product"
-                    placeholder="Ingrese el numero correlativo" [ngModelOptions]="{standalone: true}">
+                    placeholder="Ingrese el numero correlativo" [ngModelOptions]="{standalone: true}" required="">
             </div>
         </div>
         <!--Brand-->
