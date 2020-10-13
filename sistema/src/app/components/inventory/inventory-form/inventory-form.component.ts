@@ -17,7 +17,7 @@ export class InventoryFormComponent implements OnInit {
     Unit_Price: null,
     Retail_Price: null,
     Wholesale_Price: null,
-    Product_Id: null,
+    Lot_Id: null,
     Statuss: null,
   };
   API_ENDPOINT = 'http://localhost:3000/';
@@ -36,7 +36,7 @@ export class InventoryFormComponent implements OnInit {
         this.inventoryarr = data;
         console.log(this.inventoryarr);
         this.inventory = this.inventoryarr.find((m) => { return m.Inventory_Id == this.id });
-        this.selectedProductId = this.inventory.Product_Id;
+        this.selectedProductId = this.inventory.Lot_Id;
       }, (error) => {
         console.log(error);
       });
@@ -55,7 +55,7 @@ export class InventoryFormComponent implements OnInit {
   }
   saveInventory() {
     if (this.editing) {
-      this.inventory.Product_Id = this.selectedProductId;
+      this.inventory.Lot_Id = this.selectedProductId;
       this.inventoryService.put(this.inventory).subscribe((data) => {
         alert('Inventario actualizado');
         this.router.navigate(["/inventory-home"]);
@@ -66,7 +66,7 @@ export class InventoryFormComponent implements OnInit {
       });
     }
     else {
-      this.inventory.Product_Id = this.selectedProductId;
+      this.inventory.Lot_Id = this.selectedProductId;
       this.inventoryService.save(this.inventory).subscribe((data) => {
         alert('Inventario guardado');
         this.router.navigate(["/inventory-home"]);

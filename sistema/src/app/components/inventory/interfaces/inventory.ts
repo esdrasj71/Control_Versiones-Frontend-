@@ -5,6 +5,6 @@ export interface Inventory{
     Retail_Price: number;
     Wholesale_Price: number;
     Statuss: boolean;
-    Product_Id: number;
+    Lot_Id: number;
    }
    
