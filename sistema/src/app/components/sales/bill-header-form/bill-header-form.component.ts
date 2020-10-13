@@ -9,14 +9,21 @@ import { ProductsService } from '../../product/servicios/products.service';
 import { InventoryService } from '../../inventory/servicios/inventory.service';
 import { EmployeeService } from '../../employee/servicios/employee.service';
 import { ActivatedRoute, Data } from '@angular/router';
-import { BillDetails } from '../interfaces/bill-detail';
-import { Bill_header } from '../interfaces/bill-header';
-import { Payment_detail } from '../interfaces/payment-detail';
-import { BillsService } from '../servicios/bills.service';
-import { ProcedureSaleService } from '../servicios/procedure-sale.service';
-import { Procedure_Sale } from '../interfaces/procedure-sale';
-import { PaymentDetailService } from '../servicios/payment-detail.service';
+
+import {BillDetails} from '../interfaces/bill-detail';
+import {Bill_header} from '../interfaces/bill-header';
+import {Payment_detail} from '../interfaces/payment-detail';
+import {NoFactura} from '../interfaces/nofactura';
+import {BillsService} from '../servicios/bills.service';
+import {ProcedureSaleService} from '../servicios/procedure-sale.service';
+import {Procedure_Sale} from '../interfaces/procedure-sale';
+import {PaymentDetailService} from '../servicios/payment-detail.service';
+
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
+
+
+
 
 @Component({
   selector: 'app-bill-header-form',
@@ -91,7 +98,13 @@ export class BillHeaderFormComponent implements OnInit {
   cadena_pago: string = "total";
   descripcion_pagoalcontado: string = "";
   descripcion_pagoalcredito: string = "";
-  encabezadoid: number = 0;
+  encabezadoid: number = 0; 
+  //No factura
+  nofacturas: NoFactura[];
+  nofactura: number = 0;
+
+  //Precio ponderado
+
   constructor(
     private billsService: BillsService,
     private employeeService: EmployeeService,
@@ -102,7 +115,14 @@ export class BillHeaderFormComponent implements OnInit {
     private inventoryService: InventoryService,
     private proceduresaleService: ProcedureSaleService,
     private paymentdetailService: PaymentDetailService,
-  ) {
+
+    ) { 
+    httpClient.get(this.API_ENDPOINT + 'nofactura')
+    .subscribe((data: NoFactura[])=>{
+      this.nofacturas = data;
+      this.encabezado_factura.Correlative_Number =  data[0].NoFactura.toString();
+    }) 
+  
 
 
   }
@@ -115,9 +135,12 @@ export class BillHeaderFormComponent implements OnInit {
     this.productsService.getProduct().subscribe((data: Products[]) => {
       return this.producto = data;
     })
-    this.inventoryService.getInventory().subscribe((data: Inventory[]) => {
-      return this.inventario = data;
-    })
+
+    this.inventoryService.getInventory().subscribe((data: Inventory[])=>{
+      console.log(data);
+      let estado: boolean = true;
+      }) ;
+  
     this.employeeService.getEmployee().subscribe((data: Employee[]) => {
       return this.empleados = data;
     })
@@ -192,11 +215,17 @@ export class BillHeaderFormComponent implements OnInit {
   }
 
 
+
+
+ 
+
   enviar() {
+
     this.encabezado_factura.Payment_Complete = 0;
     this.encabezado_factura.Refund = 0;
     this.encabezado_factura.Annulment_State = 0;
     this.encabezado_factura.Total = this.total;
+
     console.log(this.encabezado_factura.Employee_Id);
     this.encabezado_factura.Date = this.fecha;
 

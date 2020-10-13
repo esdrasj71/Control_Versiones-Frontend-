@@ -11,8 +11,9 @@
                             <div class="col-md-7">
                                 <div class="form-group row">
                                     <label for="correlativo" class="col-form-label">No de Factura:</label>
-                                    <div class="col-sm-7">
-                                        <input type="text" [(ngModel)]="encabezado_factura.Correlative_Number" ngDefaultControl name="correlativo" id="correlativo" class="form-control" placeholder="No" tabindex="1" />
+                                    <div class="col-sm-7" *ngFor="let nofactura of nofacturas">
+
+                                        <h3 [(ngModel)]="encabezado_factura.Correlative_Number" ngDefaultControl>{{nofactura.NoFactura}}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +110,7 @@
                                     <div class="form-group row">
                                         <h1>Total:</h1>
                                         <div class="col">
-                                            <h1 [(ngModel)]="encabezado_factura.Total" ngDefaultControl>{{total}}</h1>
+                                            <h1 [(ngModel)]="encabezado_factura.Total" ngDefaultControl>Q{{total}}</h1>
                                         </div>
                                     </div>
                                     <button class="btn btn-primary btn-sm" data-toggle="modal" data-target=".bd-cobro-modal-lg" data-dismiss="modal">Cobrar</button>
@@ -147,10 +148,10 @@
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let inventario of nuevo">
-                                                <td for="inventarios">{{inventario[0].Product}}</td>
-                                                <td for="inventarios"><input type="number" #box (keyup.enter)="onEnter(box.value, inventario[0].Unit_Price, inventario)" min="0" max="{{inventario[0].Stock}}" value="1" /></td>
-                                                <td for="inventarios">{{inventario[0].Unit_Price}}</td>
-                                                <td>{{inventario[0].Subtotal}}</td>
+                                                <td for="">{{inventario[0].Product}}</td>
+                                                <td for=""><input type="number" #box (keyup.enter)="onEnter(box.value, inventario[0].Unit_Price, inventario)" min="0" max="{{inventario[0].Stock}}" value="1" /></td>
+                                                <td for="">Q. {{inventario[0].Unit_Price}}</td>
+                                                <td>Q. {{inventario[0].Subtotal}}</td>
                                                 <td><button (click)="onDelete(inventario)" class="btn btn-danger">x</button></td>
                                                 <td>
                                                 </td>
@@ -252,6 +253,7 @@
                                 <th scope="col">Correlativo producto</th>
                                 <th scope="col">Nombre producto</th>
                                 <th scope="col">Precio Unitario</th>
+                                <th scope="col">Estado</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -260,6 +262,7 @@
                                 <td height="10">{{inventario.Correlative_Product}}</td>
                                 <td height="10">{{inventario.Product}}</td>
                                 <td height="10">{{inventario.Unit_Price}}</td>
+                                <td height="10">{{inventario.Statuss}}</td>
                                 <td><a class="btn btn-primary btn-sm" (click)="getInventoryId(inventario.Inventory_Id)" data-dismiss="modal">Seleccionar</a> &nbsp;
                                 </td>
                             </tr>
