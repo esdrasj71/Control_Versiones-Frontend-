@@ -1,20 +1,20 @@
-<a class="btn btn-success btnsm" routerLink="/lot-form" style="float: right;">Agregar +</a>
+<a class="btn btn-success btnsm" routerLink="/lot-form" style="float: right;">Agregar</a>
 <div style="height:50px;"></div>
 <h1>Listado de lotes</h1>
-<table class="table table-dark">
-    <thead>
+<table class="table">
+    <thead class="thead-dark">
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">Fecha_Caudicidad</th>
-            <th scope="col">Providers_Id</th>
-            <th scope="col"></th>
+            <th scope="col">ID</th>
+            <th scope="col">Producto - Marca - Fecha</th>
+            <th scope="col">Fecha de caducidad</th>
+            <th scope="col">Acciones</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let lot of lot">
             <td>{{lot.Lot_Id}}</td>
-            <td>{{lot.Due_Date}}</td>
-            <td>{{lot.Product_Id}}</td>
+            <td>{{lot.Complete}}</td>
+            <td>{{lot.Due_Date|date:'d-M-y'}}</td>
             <td><a class="btn btn-primary btn-sm" routerLink="/lot-form/{{lot.Lot_Id}}">Editar</a> &nbsp;
             </td>
         </tr>
