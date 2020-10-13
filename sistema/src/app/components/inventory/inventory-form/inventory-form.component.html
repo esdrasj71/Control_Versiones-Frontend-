@@ -49,19 +49,13 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-md-3 form-controllabel" for="Statuss">Estado:</label>
+                <label class="col-md-3 form-controllabel" for="Status">Estado:</label>
                 <div class="col-md-9">
-                    <input [(ngModel)]="inventory.Statuss" type="number" id="Statuss"
+                    <input [(ngModel)]="inventory.Status" type="number" id="Status"
                         class="form-control" placeholder="Ingrese el precio mayorista" min="10" max="100">
                 </div>
             </div>
-            <label class="col-md-3 form-controllabel" for="Lot_id"> Seleccione fecha del Lote: </label>
-                <select id="Lot_id" name="Lot_id" [(ngModel)]="inventory.Lot_Id" [ngModelOptions]="{standalone: true}"style="width:700px" >
-                    <option *ngFor="let lot of lot" value="{{lot.Lot_Id}}" style="height: 1200px">
-                        {{lot.Due_Date}}
-                     </option>
-                </select>
-
+            
             <br>
             <div class="form-group row">
                 <div class="col-md-12">
