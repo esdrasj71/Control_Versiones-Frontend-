@@ -23,6 +23,7 @@ export class LotFormComponent implements OnInit {
   postarr: Lot[];
   products: Products[];
   selectedProductId: number;
+  
 
   constructor(private lotService: LotService, private activatedRoute: ActivatedRoute, private router: Router,private httpClient: HttpClient) {
     this.id = this.activatedRoute.snapshot.params['id'];
