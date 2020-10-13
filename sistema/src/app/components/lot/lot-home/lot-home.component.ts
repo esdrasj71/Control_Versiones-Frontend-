@@ -19,25 +19,19 @@ export class LotHomeComponent implements OnInit {
     httpClient
       .get(this.API_ENDPOINT + 'lot')
       .subscribe((data: Lot[]) => {
-        this.lot = data; 
+        this.lot = data;
         console.log(this.lot);
       });
   }
-
-searchTerm7: '';
-
-  ngOnInit() {}
-  delete(id) {
-    this.lotService.delete(id).subscribe(
-      (data) => {
-        alert('Lote Eliminado');
-        window.location.reload();
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+  ngOnInit(): void {
   }
-
+  delete(id) {
+    this.lotService.delete(id).subscribe((data) => {
+      alert('Lot eliminado');
+      window.location.reload();
+    }, (error) => {
+      console.log(error);
+    });
+  }
 }
 

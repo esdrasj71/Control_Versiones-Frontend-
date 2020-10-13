@@ -51,7 +51,7 @@ const routes: Route[] = [
   //Brand
   { path: 'brand-form', component: BrandFormComponent },
   { path: 'brand-home', component: BrandHomeComponent },
-  { path: 'brand-form/:id', component: BrandFormComponent },
+  { path: 'brand-form/:id', component: BrandFormComponent }, 
   //Provider
   { path: 'providers-home', component: ProvidersHomeComponent },
   { path: 'providers-form', component: ProvidersFormComponent },
