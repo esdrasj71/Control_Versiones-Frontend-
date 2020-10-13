@@ -17,14 +17,14 @@
 <table class="table">
     <thead class="thead-dark">
         <tr>
-            <th scope="col">ID Inventario</th>
+            <th scope="col">ID</th>
             <th scope="col">No. Correlativo</th>
+            <th scope="col">Producto - Marca - Categoria</th>
             <th scope="col">Stock</th>
             <th scope="col">Precio unitario</th>
             <th scope="col">Precio minorista</th>
             <th scope="col">Precio mayorista</th>
-            <th scope="col">Estado</th>
-            <th scope="col">ID Lote</th>
+            <th scope="col">Fecha de vencimiento</th>
             <th scope="col">Acciones</th>
         </tr>
     </thead>
@@ -32,14 +32,14 @@
         <tr *ngFor="let inventory of inventories">
             <th>{{inventory.Inventory_Id}}</th>
             <th>{{inventory.Correlative_Product}}</th>
+            <th>{{inventory.ProductComplete}}</th>
             <td>{{inventory.Stock}}</td>
             <td>{{inventory.Unit_Price}}</td>
             <td>{{inventory.Retail_Price}}</td>
             <td>{{inventory.Wholesale_Price}}</td>
-            <th>{{inventory.Status}}</th>
-            <th>{{inventory.Lot_Id}}</th>
-            <td><a class="btn btn-warning btnsm" routerLink="/inventory-form/{{inventory.Inventory_Id}}">Editar</a> 
-                <a class="btn btn-danger btnsm" (click)="delete(inventory.Inventory_Id)">Eliminar</a></td>
+            <td>{{inventory.DueDate|date:'d-M-y'}}</td>
+            <td><a class="btn btn-warning btnsm" routerLink="/inventory-form/{{inventory.Inventory_Id}}">Editar</a> <a
+                    class="btn btn-danger btnsm" (click)="delete(inventory.Inventory_Id)">Eliminar</a></td>
         </tr>
     </tbody>
 </table>

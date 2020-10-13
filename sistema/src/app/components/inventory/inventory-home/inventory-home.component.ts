@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InventoryService } from '../servicios/inventory.service';
 import { HttpClient } from '@angular/common/http';
 import { Inventory } from '../interfaces/inventory';
-import { Router} from '@angular/router';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './inventory-home.component.html',
@@ -16,7 +16,7 @@ export class InventoryHomeComponent implements OnInit {
 
     httpClient.get(this.API_ENDPOINT + 'inventory')
       .subscribe((data: Inventory[]) => {
-        this.inventories = data; //Se debe acceder al arreglo de este modo, oAngular lo reconocera como un objeto del tipo Post
+        this.inventories = data; 
         console.log(this.inventories);
       });
   }
@@ -34,7 +34,7 @@ export class InventoryHomeComponent implements OnInit {
     this.rootInventory = inventoryOne;
     console.log(this.rootInventory);
   }
-  add(){
+  add() {
     this.router.navigate(["/inventory-form"]);
   }
 }
