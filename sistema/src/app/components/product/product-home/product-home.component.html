@@ -1,6 +1,8 @@
   
 <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y:auto;">
     <div class="container">
+    <h1 style="text-align: center; font-weight: bold;">Listado de Productos</h1>
+    <h2 style="text-align: center;">____________________</h2><br><br>
         <div class="form-group row">
             <label for="product" class="col-form-label">Producto:</label>
             <div class="col">
@@ -14,8 +16,8 @@
     </div>
 </div>
 <!---->
-<h1>Listado de productos</h1>
-<table class="table" id="searchTextResults">
+
+<table class="table table-hover" style="background-color:#F8F9F9;" id="searchTextResults">
     <thead class="thead-dark">
         <tr>
             <th scope="col">ID</th>
@@ -37,8 +39,8 @@
             <td>{{product.Category}}</td>
             <td>{{product.Perishable}}</td>
             <td>{{product.DueDate|date:'d-M-y'}}</td>
-            <td><a class="btn btn-warning btnsm" routerLink="/product-form/{{product.Product_Id}}">Editar</a> <a
-                    class="btn btn-danger btnsm" (click)="delete(product.Product_Id)">Eliminar</a></td>
+            <td><a class="btn btn-info btn-sm" style="background-color: #6cb3aa;" routerLink="/product-form/{{product.Product_Id}}">Editar</a> <a
+                    class="btn btn-danger btn-sm" (click)="delete(product.Product_Id)">Eliminar</a></td>
         </tr>
     </tbody>
 </table>

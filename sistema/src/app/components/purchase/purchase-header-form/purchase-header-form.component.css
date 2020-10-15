@@ -1,0 +1,32 @@
+.my-custom-scrollbar {
+    position: relative;
+    height: 200px;
+    overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+}
+
+#alcontado {
+    display: none;
+}
+
+#alcredito {
+    display: none;
+}
+label.col-form-label {
+    color: black;
+  }
+h5.card-title {
+    color: black;
+}
+h1{
+    color: black;
+}
+h1.title{
+    color: white;
+}
+h3{
+    color: black;
+}
