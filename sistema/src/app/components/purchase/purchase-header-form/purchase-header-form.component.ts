@@ -13,6 +13,8 @@ import { Procedure_Purchase } from '../interfaces/procedure-purchase';
 import { Products } from '../../product/interfaces/product';
 import { ProductsService } from '../../product/servicios/products.service';
 import {PaymentDetailService} from '../../payment_detail_purchase/servicios/payment-detail.service';
+import { Lot } from '../../lot/interfaces/lot';
+import { LotService } from '../../lot/servicios/lot.service';
 @Component({
   selector: 'app-purchase-header-form',
   templateUrl: './purchase-header-form.component.html',
@@ -73,7 +75,8 @@ export class PurchaseHeaderFormComponent implements OnInit {
     private purchase_headerservice: PurchaseHeaderService,
     private procedure_purchaseservice: ProcedurePurchaseService,
     private productService:ProductsService,
-    private payment_detail_purchase:PaymentDetailService
+    private payment_detail_purchase:PaymentDetailService,
+    private lotService:LotService
   ) {}
   ngOnInit() {
     this.providerService.getProviders().subscribe((data: Providers[]) => {
@@ -93,24 +96,47 @@ export class PurchaseHeaderFormComponent implements OnInit {
     });
     
   }
-  getProductId(id) {
+  lot
+  getLotId(id){
     this.inventoryService.getInventory().subscribe((data: Inventory[]) => {
       this.inventory = data;
     });
-    this.inventoryService.getInventoryId(id).subscribe((data: Inventory[]) => {
+    this.lotService.findPresentation(id).subscribe((data:Lot[])=>
+    {
+      let datos: any =data;
+      datos.Subtotal=0;
+      datos.Quantity=0;
+      datos.Price=0;
+
+      this.inventorys = Array.of(datos);
+      this.vista_detail.push(this.inventorys);
+      console.log(this.vista_detail);
+    })
+  }
+
+  getProductId(id) {
+    
+    this.inventoryService.getInventory().subscribe((data: Inventory[]) => {
+      this.inventory = data;
+    });
+    this.productService.getProductsId(id).subscribe((data: Products[]) => {
+      console.log(data);
+      //console.log(idd);
       let datos: any = data;
       datos.Subtotal = 0;
       datos.Quantity=0;
       datos.Price=0;
+      //datos.Inventory_Id=idd;
       this.inventorys = Array.of(datos);
       this.vista_detail.push(this.inventorys);
       console.log(this.vista_detail);
       return this.vista_detail;
     });
+    
   }
   savePost() {
     //HEADER
-    /*this.header.Providers_Id=this.proveedor_seleccionado[0].Providers_Id;
+    this.header.Providers_Id=this.proveedor_seleccionado[0].Providers_Id;
     this.header.Refund=0;
     this.header.Annulment_State=0;
     this.header.Total=this.total;
@@ -119,22 +145,25 @@ export class PurchaseHeaderFormComponent implements OnInit {
       (data) => {
         alert('Compra guardada');
         console.log(data);
+        window.location.reload();
       },
       (error) => {
         console.log(error);
         alert('Ocurrio un error');
-      });*/
+      });
+
     //DETAIL
     for(let misdatos of this.vista_detail)
     {
+  
       this.purchase.Quantity=misdatos[0].Quantity;
       this.purchase.Unit_Price=misdatos[0].Price;
       this.purchase.Subtotal=misdatos[0].Subtotal;
-      this.purchase.Inventory_Id=misdatos[0].Inventory_Id;
+      this.purchase.Inventory_Id=misdatos[0].Lot_Id;
       console.log(this.purchase);
 
       //console.log(this.purchase);
-     /* this.procedure_purchaseservice.save(this.purchase).subscribe(
+     this.procedure_purchaseservice.save(this.purchase).subscribe(
         (data) => {
           //alert('procedimiento almacenado guardado');
           console.log(data);
@@ -142,7 +171,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
         (error) => {
           console.log(error);
           alert('Ocurrio un error');
-        });*/
+        });
     }
   }
   cantidad = [];

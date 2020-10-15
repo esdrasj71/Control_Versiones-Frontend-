@@ -40,6 +40,7 @@ import { PaymentPurchaseHomeComponent } from './components/payment_purchase/paym
 import { PaymentPurchaseFormComponent } from './components/payment_purchase/payment-purchase-form/payment-purchase-form.component';
 import { PaymentDetailHomeComponent } from './components/payment_detail_purchase/payment-detail-home/payment-detail-home.component';
 import { PaymentDetailFormComponent } from './components/payment_detail_purchase/payment-detail-form/payment-detail-form.component';
+import { FiltradoinventoryPipe } from './pipes/filtradoinventory.pipe';
 
 
 const routes: Route[] = [
@@ -140,7 +141,8 @@ const routes: Route[] = [
     PaymentPurchaseHomeComponent,
     PaymentPurchaseFormComponent,
     PaymentDetailHomeComponent,
-    PaymentDetailFormComponent
+    PaymentDetailFormComponent,
+    FiltradoinventoryPipe
   ],
   imports: [
     BrowserModule,

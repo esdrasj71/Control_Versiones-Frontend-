@@ -128,14 +128,16 @@ export class ProductFormComponent implements OnInit {
       this.procedure_saveproduct.Brand_Id = this.selectedBrandId;
       this.productService.saveprocedure(this.procedure_saveproduct).subscribe(
         (data) => {
+       
           //this.lastidproduct = data['id'];
           //
           //this.procedure_saveproduct.Product_Id = this.lastidproduct;
-          console.log(this.procedure_saveproduct.Product_Id);
+          //console.log(this.procedure_saveproduct.Product_Id);
           alert('Producto guardado con el procedimiento almacenado');
-          console.log(this.procedure_saveproduct);
-          this.router.navigate(['/product-home']);
-          console.log(data);
+          this.Product_Id.emit(data['Correlative_Product']);
+          //console.log(this.procedure_saveproduct);
+          //this.router.navigate(['/product-home']);
+          //console.log(data);
         },
         (error) => {
           console.log(error);

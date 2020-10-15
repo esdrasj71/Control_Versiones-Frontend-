@@ -180,7 +180,7 @@
                     <tr *ngFor="let inventario of vista_detail; let i=index;">
                         <td>{{inventario[0].Product_Id}}</td>
                         <td>{{inventario[0].Correlative_Product}}</td>
-                        <th>{{inventario[0].Name}}</th>
+                        <th>{{inventario[0].Complete}}</th>
                         <th>{{inventario[0].Lot_Id}}</th>
                         <td><input type="number" class="form-control"  [(ngModel)]="cantidad[i]"/></td>
                         <td><input type="number" class="form-control" [(ngModel)]="precio[i]" #box (keyup.enter)="onEnter(cantidad[i], precio[i], inventario)"/></td>
@@ -189,9 +189,10 @@
                     </tr>
                 </tbody>
             </table>
+            <!--data-target=".bd-cobro-modal-lg"           (click)="savePost()" -->
             <button type="button" class="btn btn-success"
-            (click)="savePost()"
-
+            data-toggle="modal"
+            data-target=".bd-cobro-modal-lg"
             >Registrar Compra</button>
         </div>
         </div>
@@ -291,6 +292,9 @@
             placeholder="Buscar producto" [(ngModel)]="filtrado_product" tabindex="9" />
             <button type="button" class="btn btn-primary"  data-toggle="modal" data-target=".bd-agregarproducto-modal-lg">
               + Agregar Producto
+            </button> &nbsp;
+            <button type="button" class="btn btn-primary"  data-toggle="modal" data-target=".bd-lote-modal-lg">
+              + Añadir lote nuevo
             </button>
           </div>
         </div>
@@ -300,22 +304,20 @@
                   <th scope="col">#</th>
                   <th scope="col">IDproducto</th>
                   <th scope="col">Correlativo Producto</th>
-                  <th scope="col">Nombre Producto</th>
-                  <th scope="col">Marca</th>
+                  <th scope="col">Producto-Marca-Categoria</th>
                   <th scope="col">No. Lote</th>
                   <th scope="col">Fecha Caducidad</th>
               </tr>
           </thead>
           <tbody>
-              <tr *ngFor="let inv of inventory | fitradoproduct:filtrado_product">
+              <tr *ngFor="let inv of inventory | filtradoinventory: filtrado_product">
                 <td height="10">{{inv.Inventory_Id}}</td>
                   <td height="10">{{inv.Product_Id}}</td>
                   <td height="10">{{inv.Correlative_Product}}</td>
-                  <td height="10">{{inv.Name}}</td>
-                  <td height="10">{{inv.Marca}}</td>
+                  <td height="10">{{inv.ProductComplete}}</td>
                   <td height="10">{{inv.Lot_Id}}</td>
-                  <td height="10">{{inv.Due_Date}}</td>
-                  <td><a class="btn btn-primary btn-sm"  (click)="getProductId(inv.Inventory_Id)" data-dismiss="modal">Seleccionar</a> &nbsp; 
+                  <td height="10">{{inv.DueDate|date:'d-M-y'}}</td>
+                  <td><a class="btn btn-primary btn-sm"  (click)="getProductId(inv.Product_Id)" data-dismiss="modal">Seleccionar</a> &nbsp; 
                   </td>
               </tr>
           </tbody>
@@ -363,6 +365,26 @@
       </div>
       <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y:auto;">
         <app-product-form (Product_Id)="getProductId($event)"></app-product-form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--MODAL AGREGAR PRODUCTO-->
+<div class="modal fade bd-lote-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px;">
+    <div class="modal-content"style="width: 900px;">
+      <div class="modal-header"style="width: 900px;">
+        <h5 class="modal-title" id="exampleModalLongTitle">Agregue de forma rapido su producto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y:auto;">
+        <app-lot-form (Lot_Id)="getLotId($event)"></app-lot-form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
