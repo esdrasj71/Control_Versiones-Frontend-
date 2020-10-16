@@ -117,10 +117,11 @@
                     >¿Esta pagado?</label
                   >
                   <div class="col">
-                    <input type="checkbox" v-model="Payment_Complete" 
+                    <input #small type="checkbox" id="Payment_Complete" v-model="Payment_Complete" 
                     class="formcontrol"  [(ngModel)]="header.Payment_Complete" 
-                    class="form-control" placeholder="No"
-                    [ngModelOptions]="{standalone: true}">
+                    class="form-control"
+                    data-toggle="modal"
+                    data-target=".bd-cobro-modal-lg">
                   </div>
                 </div>
               </div>
@@ -190,9 +191,7 @@
                 </tbody>
             </table>
             <!--data-target=".bd-cobro-modal-lg"           (click)="savePost()" -->
-            <button type="button" class="btn btn-success"
-            data-toggle="modal"
-            data-target=".bd-cobro-modal-lg"
+            <button type="button" class="btn btn-success" (click)="savePost()"
             >Registrar Compra</button>
         </div>
         </div>
@@ -400,7 +399,8 @@
           <div class="modal-header d-flex justify-content-center">
               <h5 class="heading">Registre el tipo de pago de esta compra</h5>
               <button type="button" class="close" (click)="cerrarpago()" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+
+                <span aria-hidden="true">&times;</span>
     </button>
           </div>
           <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y:auto;">
@@ -410,7 +410,8 @@
                       <div class="col-md-6">
                           <div class="form-group row">
                               <div class="col-sm-4">
-                                  <input type="checkbox" ngDefaultControl (click)="mostraralcredito()" class="form-control" tabindex="1" />
+                                  <input type="checkbox" ngDefaultControl (click)="mostraralcredito()"
+                                  [(ngModel)]="pago_alcredito" class="form-control" tabindex="1" />
                               </div>
                               <label for="correlativo" class="col-form-label">Al credito</label>
 
@@ -419,7 +420,7 @@
                       <div class="col-md-6">
                           <div class="form-group row">
                               <div class="col-sm-4">
-                                  <input type="checkbox" (click)="mostraralcontado()" ngDefaultControl class="form-control" tabindex="1" />
+                                  <input type="checkbox" (click)="mostraralcontado()" [(ngModel)]="pago_alcontado" ngDefaultControl class="form-control" tabindex="1" />
                               </div>
                               <label for="serie" class="col-form-label">Al contado</label>
                           </div>
@@ -444,7 +445,7 @@
                               <div class="form-group row">
                                   <label for="serie" class="col-form-label">Descripcion:</label>
                                   <div class="col-sm-7">
-                                      <textarea ngDefaultControl name="descripcion" [ngModel]="descripcion_pagoalcontado" id="descripcion" class="form-control" placeholder="" tabindex="1"></textarea>
+                                      <textarea ngDefaultControl name="descripcion" [ngModel]="payment.Description" id="descripcion" class="form-control" placeholder="" tabindex="1"></textarea>
                                   </div>
                               </div>
                           </div>
@@ -468,7 +469,7 @@
                               <div class="form-group row">
                                   <label for="" class="col-form-label">Descripcion:</label>
                                   <div class="col-sm-7">
-                                      <textarea ngDefaultControl name="descripcion" [ngModel]="descripcion_pagoalcredito" id="descripcion" class="form-control" placeholder="" tabindex="1"></textarea>
+                                      <textarea ngDefaultControl name="descripcion" [ngModel]="payment.Description" id="descripcion" class="form-control" placeholder="" tabindex="1"></textarea>
                                   </div>
                               </div>
                           </div>
@@ -488,7 +489,7 @@
                       <div class="col-md-6">
                           <div class="form-group ">
                               <button type="button" 
-                               class="btn btn-primary ">Enviar</button>
+                               class="btn btn-primary" (click)="Payment()">Enviar</button>
                           </div>
                       </div>
                   </div>
