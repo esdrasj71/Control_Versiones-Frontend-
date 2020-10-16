@@ -20,6 +20,8 @@ import {Procedure_Sale} from '../interfaces/procedure-sale';
 import {PaymentDetailService} from '../servicios/payment-detail.service';
 
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { equal } from 'assert';
+import { summaryFileName } from '@angular/compiler/src/aot/util';
 
 
 
@@ -80,7 +82,8 @@ export class BillHeaderFormComponent implements OnInit {
   //inventario
   inventario: Inventory[];
   inventarios: any[];
-
+ nuevo_inventario: any [];
+ arreglo = [];
   //empleado
   empleados: Employee[];
 
@@ -88,7 +91,9 @@ export class BillHeaderFormComponent implements OnInit {
 
   date = new Date();
   mes = this.date.getMonth() + 1
-  fecha = this.date.getDate() + "/" + this.mes.toString() + "/" + this.date.getFullYear();
+  //fecha = this.date.getDate() + "/" + this.mes.toString() + "/" + this.date.getFullYear();
+  fecha = this.date.getFullYear()  + "/" + this.mes.toString() + "/" + this.date.getDate();
+  
   //formas de pago
   pago_aldebito: boolean = false;
   pago_alcredito: boolean = false;
@@ -123,7 +128,7 @@ export class BillHeaderFormComponent implements OnInit {
       this.encabezado_factura.Correlative_Number =  data[0].NoFactura.toString();
     }) 
   
-
+ 
 
   }
 
@@ -137,8 +142,45 @@ export class BillHeaderFormComponent implements OnInit {
     })
 
     this.inventoryService.getInventory().subscribe((data: Inventory[])=>{
-      console.log(data);
-      let estado: boolean = true;
+    
+     
+      
+      let nuevo1: any = [];
+      let prueba = [];
+      
+      let estado: boolean = false;
+      data.forEach((m)=>{
+      
+      if(m["Stock"] != 0){
+        nuevo1 = m;
+        nuevo1["Subtotal"] = m["Stock"] * m["Unit_Price"];    
+          prueba.push(nuevo1);
+          prueba.forEach(a=>{
+            estado = false;
+            if(m["Product_Id"] == a["Product_Id"] && m["Inventory_Id"] != a["Inventory_Id"] ){
+              a["Stock"] += m["Stock"];
+              a["Subtotal"] += m["Stock"] * m["Unit_Price"]; 
+              a["Unit_Price"] = (a["Subtotal"] / a["Stock"]).toFixed(2);
+              estado = true;
+             // console.log("entro");
+            }
+          })
+          if(estado == true){
+            prueba.pop()
+            
+          }
+          var hash = {};
+          let array = prueba.filter(function(current){
+            var exists = !hash[current.Product_Id];
+            hash[current.Product_Id] = true;
+            return exists;
+          });
+          this.nuevo_inventario = array;
+          console.log(this.nuevo_inventario);
+      }
+      });
+
+      return this.nuevo_inventario;
       }) ;
   
     this.employeeService.getEmployee().subscribe((data: Employee[]) => {
@@ -163,10 +205,12 @@ export class BillHeaderFormComponent implements OnInit {
       return this.productos = Array.of(this.productos);
     })
   }
-  getInventoryId(id) {
+  getInventoryId(id, price, stock) {
     this.inventoryService.getInventoryId(id).subscribe((data: Inventory[]) => {
       let datos: any = data;
       datos.Subtotal = 0;
+      datos.Unit_Price = price;
+      datos.Stock = stock;
       this.inventarios = Array.of(datos);
       this.nuevo.push(this.inventarios)
       console.log(this.nuevo)
@@ -177,12 +221,17 @@ export class BillHeaderFormComponent implements OnInit {
     console.log(this.detalle_factura);
   }
   onEnter(value: number, precio: number, datos: any) {
-    console.log(datos)
-    this.total -= datos[0].Subtotal;
-    datos[0].Subtotal = value * precio;
-    datos[0].Quantity = value;
-    this.total += datos[0].Subtotal;
-    this.total_cobro = this.total;
+    if(value >= datos[0].Stock || value <= 0){
+      alert("Solo hay en existencia: "+ datos[0].Stock);
+    }else{
+      console.log(datos)
+      this.total -= datos[0].Subtotal;
+      datos[0].Subtotal = Math.round( value * precio);
+      datos[0].Quantity = value;
+      this.total += datos[0].Subtotal;
+      this.total_cobro = this.total;
+    }
+
   }
   onPagoalcontado(value: number) {
     this.total_cobroalcontado = value;
@@ -201,6 +250,7 @@ export class BillHeaderFormComponent implements OnInit {
 
   }
   onDelete(datos: any) {
+    this.total_cobro -= datos[0].Subtotal;
     this.total -= datos[0].Subtotal;
     this.nuevo = this.nuevo.filter((m) => {
       return m != datos
@@ -224,10 +274,10 @@ export class BillHeaderFormComponent implements OnInit {
     this.encabezado_factura.Payment_Complete = 0;
     this.encabezado_factura.Refund = 0;
     this.encabezado_factura.Annulment_State = 0;
-    this.encabezado_factura.Total = this.total;
+    this.encabezado_factura.Total = parseFloat(this.total.toFixed(2));
 
     console.log(this.encabezado_factura.Employee_Id);
-    this.encabezado_factura.Date = this.fecha;
+    this.encabezado_factura.Date = this.date.toString();
 
     this.billsService.saveHeader(this.encabezado_factura).subscribe(
       (data) => {

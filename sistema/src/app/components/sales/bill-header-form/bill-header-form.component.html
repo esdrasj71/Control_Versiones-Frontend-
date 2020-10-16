@@ -148,8 +148,8 @@
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let inventario of nuevo">
-                                                <td for="">{{inventario[0].Product}}</td>
-                                                <td for=""><input type="number" #box (keyup.enter)="onEnter(box.value, inventario[0].Unit_Price, inventario)" min="0" max="{{inventario[0].Stock}}" value="1" /></td>
+                                                <td for="">{{inventario[0].ProductComplete}}</td>
+                                                <td for=""><input type="number" #box (keyup.enter)="onEnter(box.value, inventario[0].Unit_Price, inventario)" min="0" max="{{inventario[0].Stock}}" value="" /></td>
                                                 <td for="">Q. {{inventario[0].Unit_Price}}</td>
                                                 <td>Q. {{inventario[0].Subtotal}}</td>
                                                 <td><button (click)="onDelete(inventario)" class="btn btn-danger">x</button></td>
@@ -253,17 +253,19 @@
                                 <th scope="col">Correlativo producto</th>
                                 <th scope="col">Nombre producto</th>
                                 <th scope="col">Precio Unitario</th>
+                                <th scope="col">Stock</th>
                                 <th scope="col">Estado</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let inventario of inventario | fitradoproduct:filtrado_productos">
+                            <tr *ngFor="let inventario of nuevo_inventario | fitradoproduct:filtrado_productos">
                                 <td height="10">{{inventario.Inventory_Id}}</td>
                                 <td height="10">{{inventario.Correlative_Product}}</td>
                                 <td height="10">{{inventario.Product}}</td>
                                 <td height="10">{{inventario.Unit_Price}}</td>
+                                <th height="10">{{inventario.Stock}}</th>
                                 <td height="10">{{inventario.Statuss}}</td>
-                                <td><a class="btn btn-primary btn-sm" (click)="getInventoryId(inventario.Inventory_Id)" data-dismiss="modal">Seleccionar</a> &nbsp;
+                                <td><a class="btn btn-primary btn-sm" (click)="getInventoryId(inventario.Inventory_Id, inventario.Unit_Price, inventario.Stock)" data-dismiss="modal">Seleccionar</a> &nbsp;
                                 </td>
                             </tr>
                         </tbody>
