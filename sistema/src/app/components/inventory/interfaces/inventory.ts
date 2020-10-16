@@ -1,4 +1,4 @@
-export interface Inventory{
+export interface Inventory {
     Inventory_Id?: number;
     Stock: number;
     Unit_Price: number;
@@ -6,5 +6,4 @@ export interface Inventory{
     Wholesale_Price: number;
     Lot_Id: number;
     Statuss: boolean;
-   }
-   
+}
