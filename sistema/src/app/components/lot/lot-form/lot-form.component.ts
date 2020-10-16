@@ -34,7 +34,6 @@ export class LotFormComponent implements OnInit {
   products: Products[];
   selectedProductId: number;
 
-
   constructor(private invetoryService: InventoryService, private lotService: LotService, private activatedRoute: ActivatedRoute, private router: Router, private httpClient: HttpClient) {
     this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {

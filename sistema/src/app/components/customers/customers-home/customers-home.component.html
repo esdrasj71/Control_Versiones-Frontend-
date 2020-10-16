@@ -1,41 +1,64 @@
 <div class="container">
-    <h1 style="text-align: center; font-weight: bold;">Listado de Clientes</h1>
-    <h2 style="text-align: center;">____________________</h2><br><br>
-<form>
+  <h1 style="text-align: center; font-weight: bold">Listado de Clientes</h1>
+  <h2 style="text-align: center">____________________</h2>
+  <br /><br />
+  <form>
     <div class="form-group row">
-        <div class="col-md-9">
-            <button type="submit" style="background-color:rgb(124, 204, 253);"><i class="fa fa-search"></i></button>
-            <input type="text" class="formcontrol" name="searchTerm5" [(ngModel)]="searchTerm5" placeholder="Buscar cliente" style="width: 250px;">&nbsp;&nbsp;&nbsp;&nbsp;
-            <a class="btn btn-success btnsm" routerLink="/customers-form">Agregar Cliente</a>
-        </div>
+      <div class="col-md-9">
+        <button type="submit" style="background-color: rgb(124, 204, 253)">
+          <i class="fa fa-search"></i>
+        </button>
+        <input
+          type="text"
+          class="formcontrol"
+          name="searchTerm5"
+          [(ngModel)]="searchTerm5"
+          placeholder="Buscar cliente"
+          style="width: 250px"
+        />&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="btn btn-success btnsm" routerLink="/customers-form"
+          >Agregar Cliente</a
+        >
+      </div>
     </div>
-</form>
-<table class="table table-hover" style="background-color:#F8F9F9;">
+  </form>
+  <table class="table table-hover" style="background-color: #f8f9f9">
     <thead class="thead-dark">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">DPI</th>
-            <th scope="col">Nombres</th>
-            <th scope="col">Apellidos</th>
-            <th scope="col">Numero de telefono</th>
-            <th scope="col">Nit</th>
-            <th scope="col">Direccion</th>
-            <th scope="col">Acciones</th>
-        </tr>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">DPI</th>
+        <th scope="col">Nombres</th>
+        <th scope="col">Apellidos</th>
+        <th scope="col">Numero de telefono</th>
+        <th scope="col">Nit</th>
+        <th scope="col">Direccion</th>
+        <th scope="col">Acciones</th>
+      </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let customer of customers | filtradocustomers:searchTerm5">
-            <th>{{customer.Customers_Id}}</th>
-            <td>{{customer.DPI}}</td>
-            <td>{{customer.Names}}</td>
-            <td>{{customer.Last_names}}</td>
-            <td>{{customer.Phone_Number}}</td>
-            <td>{{customer.NIT}}</td>
-            <td>{{customer.Address}}</td>
-        <td><a class="btn btn-info btn-sm" style="background-color: #6cb3aa;" routerLink="/customers-form/{{customer.Customers_Id}}">Editar</a> 
-           <a class="btn btn-danger btn-sm" (click)="delete(customer.Customers_Id)" style="color:white; ">Eliminar</a>
+      <tr *ngFor="let customer of customers | filtradocustomers: searchTerm5">
+        <th>{{ customer.Customers_Id }}</th>
+        <td>{{ customer.DPI }}</td>
+        <td>{{ customer.Names }}</td>
+        <td>{{ customer.Last_names }}</td>
+        <td>{{ customer.Phone_Number }}</td>
+        <td>{{ customer.NIT }}</td>
+        <td>{{ customer.Address }}</td>
+        <td>
+          <a
+            class="btn btn-info btn-sm"
+            style="background-color: #6cb3aa"
+            routerLink="/customers-form/{{ customer.Customers_Id }}"
+            >Editar</a
+          >
+          <a
+            class="btn btn-danger btn-sm"
+            (click)="delete(customer.Customers_Id)"
+            style="color: white"
+            >Eliminar</a
+          >
         </td>
-    </tr>    
+      </tr>
     </tbody>
-</table>
+  </table>
 </div>
