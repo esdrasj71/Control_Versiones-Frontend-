@@ -1,0 +1,27 @@
+section.featured {
+    padding: 60px 0 40px;
+    margin-top: -30px;
+	background: #6cb3aa;
+	color: #fdfdfd;
+}
+section.section {
+	margin:0;
+	padding: 80px 0 60px 0;
+}
+
+.bg-white {
+	background-color: #fff;
+}
+
+/* --- section heading --- */
+.section-header {
+	text-align: center;
+}
+.section-header h2.section-heading {
+	text-transform: uppercase;
+	font-weight: 700;
+}
+
+.navbar{
+    background-color:#407a74;
+  } 

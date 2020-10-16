@@ -2,14 +2,17 @@
 <html lang="en">
 
 <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bienvenido</title>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">laravel + Angular</a>
+
+  <nav class="navbar navbar-expand-lg navbar navbar-dark bg-#00806F py-4" > 
+    <a class="navbar-brand" href="#">Node + Angular</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" datatarget="#navbarSupportedContent"
       ariacontrols="navbarSupportedContent" aria-expanded="false" arialabel="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -19,15 +22,58 @@
         <li class="nav-item active">
           <a class="nav-link" routerLink="/brand-home">Home <span class="sronly">(current)</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/brand-form">Form</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Ventas
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="/bill-header-form">Encabezado Factura</a>
+            <a class="dropdown-item" routerLink="/customers-home">Clientes</a>
+            <a class="dropdown-item" routerLink="/employee-home">Empleados</a>
+            <a class="dropdown-item" routerLink="/employee-position-home">Posicion Empleado</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Compras
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="/payment-home">Pagos</a>
+            <a class="dropdown-item" routerLink="/payment-type-home">Tipo de Pago</a>
+            <a class="dropdown-item" routerLink="/payment-purchase-home">Pago Compra</a>
+            <a class="dropdown-item" routerLink="/payment-detail-purchase-home">Detalle de pago compra</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Inventario
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="/brand-home">Marca</a>
+            <a class="dropdown-item" routerLink="/product-home">Producto</a>
+            <a class="dropdown-item" routerLink="/product-category-home">Categoria producto</a>
+            <a class="dropdown-item" routerLink="/lot-home">Lote</a>
+            <a class="dropdown-item" routerLink="/inventory-home">Inventario</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Otros
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="/providers-home">Proveedores</a>
+          </div>
         </li>
       </ul>
     </div>
-  </nav>
+  </nav> 
+
   <br>
-  <div class="container">
-    <router-outlet></router-outlet>
-  </div>
+  <section class="featured">
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div> 
+  </section>
+  
 </body>
 </html>

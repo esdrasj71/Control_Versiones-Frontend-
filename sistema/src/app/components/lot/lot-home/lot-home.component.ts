@@ -23,17 +23,15 @@ export class LotHomeComponent implements OnInit {
         console.log(this.lot);
       });
   }
-  ngOnInit() { }
-
+  ngOnInit(): void {
+  }
   delete(id) {
-    this.lotService.delete(id).subscribe(
-      (data) => {
-        alert('Lote Eliminado');
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this.lotService.delete(id).subscribe((data) => {
+      alert('Lot eliminado');
+      window.location.reload();
+    }, (error) => {
+      console.log(error);
+    });
   }
 }
 

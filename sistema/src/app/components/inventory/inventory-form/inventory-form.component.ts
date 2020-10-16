@@ -5,7 +5,7 @@ import { Products } from '../../product/interfaces/product';
 import { ProductsService } from '../../product/servicios/products.service';
 import { InventoryService } from '../servicios/inventory.service';
 import { ActivatedRoute } from '@angular/router';
-import { Router} from '@angular/router';
+import { Router} from '@angular/router'; 
 @Component({
   selector: 'app-inventory-form',
   templateUrl: './inventory-form.component.html',

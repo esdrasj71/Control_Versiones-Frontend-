@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../servicios/employee.service';
 import { HttpClient } from '@angular/common/http';
 import { Employee } from '../interfaces/employee';
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Component({
   selector: 'app-employee-home',
@@ -16,13 +17,15 @@ export class EmployeeHomeComponent implements OnInit {
     private employeeService: EmployeeService,
     private httpClient: HttpClient
   ) {
-    httpClient
-      .get(this.API_ENDPOINT + 'employee')
+    httpClient.get(this.API_ENDPOINT + 'employee')
       .subscribe((data: Employee[]) => {
         this.employee = data; 
         console.log(this.employee);
       });
   }
+  
+  searchTerm = '';
+  
   ngOnInit() {}
   delete(id) {
     this.employeeService.delete(id).subscribe(

@@ -1,7 +1,10 @@
-<a class="btn btn-success btnsm" routerLink="/payment-detail-purchase-form" style="float: right;">Agregar +</a>
-<div style="height:50px;"></div>
-<h1>Listado detalle de pago de compra</h1>
-<table class="table" id="searchTextResults">
+<div class="container">
+    <h1 style="text-align: center; font-weight: bold;">Listado detalle pago de compra</h1>
+    <h2 style="text-align: center;">____________________</h2><br><br>
+<a class="btn btn-success btnsm" routerLink="/payment-detail-purchase-form">Agregar +</a>
+<div style="height:20px;"></div>
+
+<table class="table table-hover" style="background-color:#F8F9F9;" id="searchTextResults">
     <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
@@ -19,8 +22,9 @@
             <td>{{paymentDetail.Description}}</td>
             <td>{{paymentDetail.Payment_Purchase_Id}}</td>
             <td>{{paymentDetail.Purchase_Header_Id}}</td>
-            <td><a class="btn btn-warning btn-sm" routerLink="/payment-detail-purchase-form/{{paymentDetail.Payment_Detail_Purchase_Id}}">Editar</a> 
+            <td><a class="btn btn-info btn-sm" style="background-color: #6cb3aa;" routerLink="/payment-detail-purchase-form/{{paymentDetail.Payment_Detail_Purchase_Id}}">Editar</a> 
                 <a class="btn btn-danger btn-sm" (click)="delete(paymentDetail.Payment_Detail_Purchase_Id)">Eliminar</a></td>
         </tr>
     </tbody>
 </table>
+</div>

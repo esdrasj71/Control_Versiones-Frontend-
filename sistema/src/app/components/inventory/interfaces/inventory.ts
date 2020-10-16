@@ -6,6 +6,5 @@ export interface Inventory{
     Wholesale_Price: number;
     Lot_Id: number;
     Statuss: boolean;
-
    }
    

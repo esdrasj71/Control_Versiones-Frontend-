@@ -17,7 +17,7 @@ export class EmployeePositionService {
       });
    }
 
-   getLot(){
+   getPosition(){
     return this.httpClient.get(this.API_ENDPOINT + 'employee_position' );
   }
 

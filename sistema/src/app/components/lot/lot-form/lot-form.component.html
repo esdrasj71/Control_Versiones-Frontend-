@@ -1,38 +1,38 @@
-<h1>Fecha de vencimiento </h1>
-<div class="form-group row">
-    <input type="date" name="fecha_vencimiento">
-</div>
-<div class="container card">
-    <div class="card-body">
-        <h2 class="alert alert-primary" role="alert">Editar Lote</h2>
-        <div class="alert alert-warning" role="alert">
-            <div class="form-group row">
-                <label class="col-md-3 form-controllabel" for="Lot">Fecha: </label>
-                <div class="col-md-9">
-                    <input [(ngModel)]="lot.Due_Date" type="date" id="Due_Date" class="form-control">
-                </div>
-
-                <label class="col-md-3 form-controllabel" for="Lot"> Seleccione ID del producto: </label>
-                <select id="product" name="product" [(ngModel)]="lot.Product_Id" [ngModelOptions]="{standalone: true}"
-                    style="width:700px">
-                    <option *ngFor="let product of products" value="{{product.Product_Id}}" style="height: 1200px">
-                        {{product.Product}}
-                    </option>
-                </select>
-
-                <label class="col-md-3 form-controllabel" for="Lot">Product_Id: </label>
-                <div class="col-md-9">
-                    <input [(ngModel)]="lot.Product_Id" type="number" id="Product_Id" class="form-control" disabled>
-                </div>
-
-            </div>
-
-            <div class="form-group row">
-                <div class="col-md-12">
-                    <button (click)="savePost()" class="btn btn-primary btnblock"
-                        routerLink="/lot-home">Guardar</button>
-                </div>
+<div class="container">
+    <h1>Ingreso de lotes</h1>
+    <form>
+        <!--Product-->
+        <div style="width:300px; height:100px">
+            <label> Seleccione el producto</label>
+            <ng-select [searchFn]="searchProduct" id="product" name="products" [items]="products" [virtualScroll]="true"
+                bindLabel="Name" bindValue="Product_Id" placeholder="Producto" [(ngModel)]="selectedProductId">
+                <ng-template ng-header-tmp>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">Producto</div>
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template ng-label-tmp let-item="item">
+                    <span>{{item.Complete}}</span>
+                </ng-template>
+                <ng-template ng-option-tmp let-item="item" let-index="index">
+                    {{item.Complete}}
+                </ng-template>
+            </ng-select>
+        </div>
+        <div class="form-group row">
+            <label>Fecha de caducidad:</label>
+            <div class="col-md-9">
+                <input type="date" id="start" name="trip-start" [(ngModel)]="lot.Due_Date"
+                    [ngModelOptions]="{standalone: true}">
             </div>
         </div>
-    </div>
+        <div class="form-group row">
+            <div class="col-md-12">
+                <button type="submit" (click)="savePost()" class="btn btn-dark">Registrar</button>
+            </div>
+        </div>
+    </form>
+    <hr>
 </div>

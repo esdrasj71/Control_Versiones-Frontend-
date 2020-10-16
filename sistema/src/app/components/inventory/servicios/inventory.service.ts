@@ -7,8 +7,15 @@ import { Inventory } from '../interfaces/inventory';
 })
 export class InventoryService {
   API_ENDPOINT = 'http://localhost:3000/';
+
+  inventory=[];
   constructor(private httpClient: HttpClient) {
-  }
+    httpClient.get(this.API_ENDPOINT + 'inventory')
+      .subscribe((data: Inventory[]) => {
+        this.inventory = data;
+      });
+   }
+
 
   save(inventory: Inventory) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });

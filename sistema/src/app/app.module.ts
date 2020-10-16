@@ -40,13 +40,18 @@ import { PaymentPurchaseHomeComponent } from './components/payment_purchase/paym
 import { PaymentPurchaseFormComponent } from './components/payment_purchase/payment-purchase-form/payment-purchase-form.component';
 import { PaymentDetailHomeComponent } from './components/payment_detail_purchase/payment-detail-home/payment-detail-home.component';
 import { PaymentDetailFormComponent } from './components/payment_detail_purchase/payment-detail-form/payment-detail-form.component';
-
+import { FiltradoEmpleadosPipe } from './pipes/filtrado-empleados.pipe';
+import { FilterEmployeePosPipe } from './pipes/filter-employee-pos.pipe';
+import { FilterProvidersPipe } from './pipes/filter-providers.pipe';
+import { FilterBrandPipe } from './pipes/filter-brand.pipe';
+import { FilterProductCatPipe } from './pipes/filter-product-cat.pipe';
+import { FilterLotPipe } from './pipes/filter-lot.pipe';
 
 const routes: Route[] = [
   //Brand
   { path: 'brand-form', component: BrandFormComponent },
   { path: 'brand-home', component: BrandHomeComponent },
-  { path: 'brand-form/:id', component: BrandFormComponent },
+  { path: 'brand-form/:id', component: BrandFormComponent }, 
   //Provider
   { path: 'providers-home', component: ProvidersHomeComponent },
   { path: 'providers-form', component: ProvidersFormComponent },
@@ -140,7 +145,13 @@ const routes: Route[] = [
     PaymentPurchaseHomeComponent,
     PaymentPurchaseFormComponent,
     PaymentDetailHomeComponent,
-    PaymentDetailFormComponent
+    PaymentDetailFormComponent,
+    FiltradoEmpleadosPipe,
+    FilterEmployeePosPipe,
+    FilterProvidersPipe,
+    FilterBrandPipe,
+    FilterProductCatPipe,
+    FilterLotPipe
   ],
   imports: [
     BrowserModule,

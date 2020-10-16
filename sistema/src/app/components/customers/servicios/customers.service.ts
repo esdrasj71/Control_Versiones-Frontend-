@@ -35,4 +35,5 @@ export class CustomersService {
     const headers = new HttpHeaders({ 'ContentType': 'application/json' });
     return this.httpClient.delete(this.API_ENDPOINT + 'customer/' + id,{headers:headers});
   }
+
 }

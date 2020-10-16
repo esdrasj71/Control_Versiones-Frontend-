@@ -1,11 +1,13 @@
-<a class="btn btn-success btnsm" routerLink="/lot-form" style="float: right;">Agregar</a>
-<div style="height:50px;"></div>
-<h1>Listado de lotes</h1>
-<table class="table">
+<div class="container">
+    <h1 style="text-align: center; font-weight: bold;">Listado de Lotes</h1>
+    <h2 style="text-align: center;">____________________</h2><br><br>
+<a class="btn btn-success btnsm" routerLink="/lot-form">Agregar Lote</a>
+<br><br>
+<table class="table table-hover" style="background-color:#F8F9F9;">
     <thead class="thead-dark">
         <tr>
             <th scope="col">ID</th>
-            <th scope="col">Producto - Marca - Fecha</th>
+            <th scope="col">Producto - Marca - Categoria</th>
             <th scope="col">Fecha de caducidad</th>
             <th scope="col">Acciones</th>
         </tr>
@@ -15,9 +17,10 @@
             <td>{{lot.Lot_Id}}</td>
             <td>{{lot.Complete}}</td>
             <td>{{lot.Due_Date|date:'d-M-y'}}</td>
-            <td><a class="btn btn-primary btn-sm" routerLink="/lot-form/{{lot.Lot_Id}}">Editar</a> &nbsp;
+            <td><a class="btn btn-info btn-sm" style="background-color: #6cb3aa;" routerLink="/lot-form/{{lot.Lot_Id}}">Editar</a> 
+                <a class="btn btn-danger btn-sm" (click)="delete(lot.Lot_Id)">Eliminar</a>
             </td>
         </tr>
     </tbody>
 </table>
-
+</div>
