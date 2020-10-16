@@ -23,9 +23,9 @@ export class LotService {
     return this.httpClient.post(this.API_ENDPOINT + 'procedure_product', procedure_product, { headers: headers });
   }
   save(lot: Lot) {
-    console.log(lot);
+    //console.log(lot);
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.httpClient.post(this.API_ENDPOINT + 'procedure_lot', lot, { headers: headers });
+    return this.httpClient.post(this.API_ENDPOINT + 'lot', lot, { headers: headers });
   }
   put(lot) { //Le llamaremos put para fines practicos
     const headers = new HttpHeaders({ 'ContentType': 'application/json' });
@@ -37,8 +37,7 @@ export class LotService {
     return this.httpClient.delete(this.API_ENDPOINT + 'lot/' + id, { headers: headers });
   }
 
-  findPresentation(lot: Lot) {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.httpClient.get(this.API_ENDPOINT + 'lot/:Lot_Id')
+  findPresentation(id) {
+    return this.httpClient.get(this.API_ENDPOINT + 'lot/' + id);
   }
 }

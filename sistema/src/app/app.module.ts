@@ -46,6 +46,7 @@ import { FilterProvidersPipe } from './pipes/filter-providers.pipe';
 import { FilterBrandPipe } from './pipes/filter-brand.pipe';
 import { FilterProductCatPipe } from './pipes/filter-product-cat.pipe';
 import { FilterLotPipe } from './pipes/filter-lot.pipe';
+import { FiltradoinventoryPipe } from './pipes/filtradoinventory.pipe';
 
 const routes: Route[] = [
   //Brand
@@ -151,7 +152,8 @@ const routes: Route[] = [
     FilterProvidersPipe,
     FilterBrandPipe,
     FilterProductCatPipe,
-    FilterLotPipe
+    FilterLotPipe,
+    FiltradoinventoryPipe
   ],
   imports: [
     BrowserModule,

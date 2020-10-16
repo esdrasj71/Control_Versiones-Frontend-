@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PaymentFormComponent implements OnInit {
   payment: Payment = {
-    Payment_Id:null,
+    Payment_Purchase_Id:null,
     Method_Name: null,
   }; //este arreglo define los campos que se van a ingresar en el formulario
   API_ENDPOINT = 'http://localhost:3000/';
@@ -25,7 +25,7 @@ export class PaymentFormComponent implements OnInit {
       this.httpClient.get(this.API_ENDPOINT + 'payment').subscribe((data: Payment[]) => { //Aqui traemos el arreglo completo de datos
         this.postarr = data;
         console.log(this.postarr);
-        this.payment = this.postarr.find((m) => { return m.Payment_Id == this.id }); //Aqui traemos solo el id que nos interesa
+        this.payment = this.postarr.find((m) => { return m.Payment_Purchase_Id == this.id }); //Aqui traemos solo el id que nos interesa
       }, (error) => {
         console.log(error);
       });
