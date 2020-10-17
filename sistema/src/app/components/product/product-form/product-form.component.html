@@ -15,16 +15,15 @@
                     placeholder="Ingrese el numero correlativo" [ngModelOptions]="{standalone: true}" required="">
             </div>
         </div>
-        <!--Brand-->
-        <div style="width:300px; height:100px">
-            <label> Seleccione la marca</label>
-            <ng-select [searchFn]="searchBrand" id="brand" name="brand" [items]="brands" [virtualScroll]="true"
-                bindLabel="Name" bindValue="Brand_Id" placeholder="Marca" [(ngModel)]="selectedBrandId">
-                <ng-template ng-header-tmp>
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-6">Marca</div>
-                        </div>
+    <!--Brand-->
+    <div style="width:300px; height:100px">
+        <label> Seleccione la marca</label>
+        <ng-select [searchFn]="searchBrand" id="brand" name="brand" [items]="brands" [virtualScroll]="true"
+            bindLabel="Name" bindValue="Brand_Id" placeholder="Marca" [(ngModel)]="selectedBrandId">
+            <ng-template ng-header-tmp>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">Marca</div>
                     </div>
                 </ng-template>
                 <ng-template ng-label-tmp let-item="item">
