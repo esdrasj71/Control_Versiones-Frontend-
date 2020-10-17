@@ -1,7 +1,7 @@
 <div class="container card">
-    <div class="card-body">
-        <h2 class="alert alert-primary" role="alert">Editar Empleado</h2>
-        <div class="alert alert-warning" role="alert">
+    <div class="card-body" style="height: 755px;">
+        <h2 class="alert alert-primary" role="alert" style="text-align: center;">Editar/Crear Empleado</h2>
+        <div class="alert alert-warning" role="alert" style="background-color:#699DBF">
 
             <div class="form-group row">
                 <label class="col-md-3 form-controllabel" for="DPI">DPI</label>
@@ -55,20 +55,20 @@
             <div class="form-group row">
                 <label class="col-md-3 form-controllabel" for="Hire_date">Fecha Contrato</label>
                 <div class="col-md-9">
-                    <input [(ngModel)]="employee.Hire_date" type="date" id="Names" class="form-control">
+                    <input [(ngModel)]="employee.Hire_date" type="date" id="Names" class="form-control" style="width: 300px;">
                 </div>
-            </div>
-
+            </div> 
+            &nbsp;&nbsp;
             <label class="col-md-3 form-controllabel" for="Lot"> Seleccione posicion del empleado: </label>
-                <select id="employee_pos" name="employee_pos" [(ngModel)]="employee.Employee_Position_Id" [ngModelOptions]="{standalone: true}"style="width:700px" >
+                <select id="employee_pos" name="employee_pos" [(ngModel)]="employee.Employee_Position_Id" [ngModelOptions]="{standalone: true}"style="width:300px" >
                     <option *ngFor="let employeePos of employeePosition" value="{{employeePos.Employee_Position_Id}}" style="height: 1200px">
                         {{employeePos.Name}}
                      </option>
                 </select>
-
+                <br><br>
             <div class="form-group row">
                 <div class="col-md-12">
-                    <button (click)="savePost()" class="btn btn-primary btnblock" routerLink="/employee-home">Guardar</button>
+                    <button (click)="savePost()" class="btn btn-success btnblock" routerLink="/employee-home">Guardar</button>
                 </div>
             </div> 
         </div>
