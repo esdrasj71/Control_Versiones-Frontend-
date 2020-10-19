@@ -1,10 +1,15 @@
 <div class="container">
-    <h2>Ingresar Inventario</h2>
+
+    <div class="container card">
+        <div class="card-body" style="height: 555px;">
+            <h2 class="alert alert-primary" role="alert" style="text-align: center;">Editar/Crear Inventario</h2>
+            <div class="alert alert-warning" role="alert" style="background-color:#699DBF">
+
     <div>
         <div class="col-md-12">
             <div class="form-group row">
-                <label for="product" class="col-form-label">Producto: </label>
-                <!--Product-->
+                <label for="product" class="col-md-3 form-controllabel">Producto: </label>
+                <!--Product--> &nbsp;&nbsp;&nbsp;&nbsp;
                 <div style="width:300px; height:10px; left: 10px" left="300px">
                     <ng-select [searchFn]="searchProduct" id="product" name="product" [items]="product"
                         [virtualScroll]="true" bindLabel="Name" bindValue="Product_Id" placeholder="Producto"
@@ -69,5 +74,8 @@
                 </div>
             </div>
         </div>
+        </div>
+        </div>
         <hr>
+        </div>
     </div>

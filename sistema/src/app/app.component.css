@@ -1,7 +1,6 @@
 section.featured {
     padding: 60px 0 40px;
     margin-top: -30px;
-	background: #6cb3aa;
 	color: #fdfdfd;
 }
 section.section {
@@ -23,5 +22,13 @@ section.section {
 }
 
 .navbar{
-    background-color:#407a74;
+    background-color:#4c918a;
   } 
+
+body {
+	background-image: url("../assets/images/Scroll1.jpg");
+	background-repeat: repeat-x;
+	height: auto;
+	background-color: #48776D;
+  }
+

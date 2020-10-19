@@ -41,7 +41,7 @@ export class EmployeeFormComponent implements OnInit {
         console.log(error);
       });
     } else {
-      this.editing = false;
+      this.editing = false; 
     }
 
     httpClient.get(this.API_ENDPOINT + 'employee_position')

@@ -1,9 +1,13 @@
 <div class="container">
-    <h1>Ingreso de lotes</h1>
+    <div class="container card">
+        <div class="card-body" style="height: 350px;">
+            <h2 class="alert alert-primary" role="alert" style="text-align: center;">Editar/Crear Lote</h2>
+            <div class="alert alert-warning" role="alert" style="background-color:#699DBF">
+
     <form>
         <!--Product-->
         <div style="width:300px; height:100px">
-            <label> Seleccione el producto</label>
+            <label style="color: white;"> Seleccione el producto</label>
             <ng-select [searchFn]="searchProduct" id="product" name="products" [items]="products" [virtualScroll]="true"
                 bindLabel="Name" bindValue="Product_Id" placeholder="Producto" [(ngModel)]="selectedProductId">
                 <ng-template ng-header-tmp>
@@ -21,18 +25,21 @@
                 </ng-template>
             </ng-select>
         </div>
-        <div class="form-group row">
-            <label>Fecha de caducidad:</label>
-            <div class="col-md-9">
+        <div class="form-group row">   &nbsp;&nbsp;&nbsp;&nbsp;
+            <label style="color: white;">Fecha de caducidad:</label>
+            <div class="col-md-9"> 
                 <input type="date" id="start" name="trip-start" [(ngModel)]="lot.Due_Date"
-                    [ngModelOptions]="{standalone: true}">
+                    [ngModelOptions]="{standalone: true}" class="form-control" style="width: 300px;">
             </div>
         </div>
         <div class="form-group row">
             <div class="col-md-12">
-                <button type="submit" (click)="savePost()" class="btn btn-dark">Registrar</button>
+                <button type="submit" (click)="savePost()" class="btn btn-success">Registrar</button>
             </div>
         </div>
     </form>
+    </div>
+    </div>
     <hr>
+    </div>
 </div>
