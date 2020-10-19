@@ -1,7 +1,7 @@
 <div class="container card">
-    <div class="card-body">
-        <h2 class="alert alert-primary" role="alert">Editar detalle tipo de pago</h2>
-        <div class="alert alert-warning" role="alert">
+    <div class="card-body" style="height: 450px;">
+        <h2 class="alert alert-primary" role="alert" style="text-align: center;">Editar detalle tipo de pago</h2>
+        <div class="alert alert-warning" role="alert" style="background-color:#699DBF">
 
             <div class="form-group row">
                 <label class="col-md-3 form-controllabel" for="Total_Amount">Cantidad Total</label>
@@ -17,26 +17,27 @@
                 </div>
             </div> 
 
-            <label class="col-md-3 form-controllabel" for="Lot"> Seleccione el tipo de pago: </label>
-            <select id="pay" name="pay" [(ngModel)]="paymentDetail.Payment_Id" [ngModelOptions]="{standalone: true}"style="width:700px" >
+            <label class="col-md-3 form-controllabel" for="Lot"> Seleccione el tipo de pago: </label>&nbsp;
+            <select id="pay" name="pay" [(ngModel)]="paymentDetail.Payment_Id" [ngModelOptions]="{standalone: true}"style="width:350px; height: 30px;">
                 <option *ngFor="let payment of payment" value="{{payment.Payment_Id}}" style="height: 1200px">
                     {{payment.Method_Name}}
                  </option>
             </select>
 
-            <label class="col-md-3 form-controllabel" for="Lot"> Seleccione encabezado de factura: </label>
-            <select id="bill_header" name="bill_header" [(ngModel)]="paymentDetail.Bill_header_Id" [ngModelOptions]="{standalone: true}"style="width:700px" >
+            <label class="col-md-3 form-controllabel" for="Lot"> Seleccione encabezado de factura: </label>&nbsp;
+            <select id="bill_header" name="bill_header" [(ngModel)]="paymentDetail.Bill_header_Id" [ngModelOptions]="{standalone: true}"style="width:350px; height: 30px;" >
                 <option *ngFor="let bill_header of bill_header" value="{{bill_header.Bill_header_Id}}" style="height: 1200px">
                     {{bill_header.Correlative_Number}}
                  </option>
             </select>
-                       
+            <br><br>
             <div class="form-group row">
                 <div class="col-md-12">
-                    <button (click)="savePaymentDetail()" class="btn btn-primary btnblock" routerLink="/payment-type-home">Guardar</button>
+                    <button (click)="savePaymentDetail()" class="btn btn-success btnblock" routerLink="/payment-type-home">Guardar</button>
                 </div>
             </div>
         </div>
     </div>
+    <hr>
 </div>
 

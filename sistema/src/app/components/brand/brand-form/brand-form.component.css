@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+.col-md-3{
+    color: white;
+    }
+.container{
+    justify-content: center;
+    width: 800px;
+    }
+
+.btn{
+    color:#fff;
+    background-color:#e74c3c;
+    outline: none;
+    border: 0;
+    color: #fff;
+    padding:4px 8px;
+    text-transform:uppercase;
+    border-radius:2px;
+    cursor:pointer;
+    position:relative;
+    }
+
+h2{
+    font-family: 'Cairo', sans-serif
+}
+
+#hey{
+    font-family: 'Roboto', sans-serif;
+}

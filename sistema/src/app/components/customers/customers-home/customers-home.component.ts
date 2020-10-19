@@ -17,10 +17,10 @@ export class CustomersHomeComponent implements OnInit {
     .subscribe((data: Customers[])=>{
       this.customers = data;
       console.log(this.customers);
-    });
+      });
    }
 
-searchTerm5: '';
+  searchTerm5= '';
 
   ngOnInit() {}
   delete(id) {
