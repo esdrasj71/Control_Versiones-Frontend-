@@ -1,5 +1,5 @@
 <div class="container card">
-    <div class="card-body" style="height: 755px;">
+    <div class="card-body" style="height: 730px;">
         <h2 class="alert alert-primary" role="alert" style="text-align: center;">Editar/Crear Empleado</h2>
         <div class="alert alert-warning" role="alert" style="background-color:#699DBF">
 
@@ -23,7 +23,7 @@
                     <input [(ngModel)]="employee.Last_names" type="text" id="Last_names" class="form-control">
                 </div>
             </div>
-           
+
             <div class="form-group row">
                 <label class="col-md-3 form-controllabel" for="Phone_number">Numero Telefonico</label>
                 <div class="col-md-9">
@@ -34,7 +34,8 @@
             <div class="form-group row">
                 <label class="col-md-3 form-controllabel" for="Cellphone_number">Numero Movil</label>
                 <div class="col-md-9">
-                    <input [(ngModel)]="employee.Cellphone_number" type="text" id="Cellphone_number" class="form-control">
+                    <input [(ngModel)]="employee.Cellphone_number" type="text" id="Cellphone_number"
+                        class="form-control">
                 </div>
             </div>
 
@@ -44,34 +45,47 @@
                     <input [(ngModel)]="employee.Email" type="text" id="Email" class="form-control">
                 </div>
             </div>
-
+            <!-- 
             <div class="form-group row">
                 <label class="col-md-3 form-controllabel" for="Gender">Genero</label>
                 <div class="col-md-9">
                     <input [(ngModel)]="employee.Gender" type="text" id="Gender" class="form-control">
                 </div>
+            </div> -->
+            <div class="form-group row">
+                <label class="col-md-3 form-controllabel">Genero </label>
+                &nbsp;&nbsp;&nbsp;&nbsp;<label for="male" style="color: white;">Masculino</label>&nbsp;
+                <input type="radio" [(ngModel)]="employee.Gender" name="gender" id="male" value="1" checked>&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="female" style="color: white;">Femenino</label>&nbsp;
+                <input type="radio" [(ngModel)]="employee.Gender" name="gender" id="female" value="0">
             </div>
+            <!-- TAKE 1-->
 
             <div class="form-group row">
                 <label class="col-md-3 form-controllabel" for="Hire_date">Fecha Contrato</label>
                 <div class="col-md-9">
-                    <input [(ngModel)]="employee.Hire_date" type="date" id="Names" class="form-control" style="width: 300px;">
+                    <input [(ngModel)]="employee.Hire_date" type="date" id="Names" class="form-control"
+                        style="width: 300px;">
                 </div>
-            </div> 
+            </div>
+
             &nbsp;&nbsp;
             <label class="col-md-3 form-controllabel" for="Lot"> Seleccione posicion del empleado: </label>
-                <select id="employee_pos" name="employee_pos" [(ngModel)]="employee.Employee_Position_Id" [ngModelOptions]="{standalone: true}"style="width:300px" >
-                    <option *ngFor="let employeePos of employeePosition" value="{{employeePos.Employee_Position_Id}}" style="height: 1200px">
-                        {{employeePos.Name}}
-                     </option>
-                </select>
-                <br><br>
+            <select id="employee_pos" name="employee_pos" [(ngModel)]="employee.Employee_Position_Id"
+                [ngModelOptions]="{standalone: true}" style="width:300px">
+                <option *ngFor="let employeePos of employeePosition" value="{{employeePos.Employee_Position_Id}}"
+                    style="height: 1200px">
+                    {{employeePos.Name}}
+                </option>
+            </select>
+
+            <br><br>
             <div class="form-group row">
                 <div class="col-md-12">
-                    <button (click)="savePost()" class="btn btn-success btnblock" routerLink="/employee-home">Guardar</button>
+                    <button (click)="savePost()" class="btn btn-success btnblock"
+                        routerLink="/employee-home">Guardar</button>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
 </div>
-
