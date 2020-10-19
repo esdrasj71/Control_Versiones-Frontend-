@@ -81,24 +81,6 @@
                         </div>
                     </div>
                 <hr>
-                <div class="form-group row">
-                    <label class="col-md-3 form-control-label" for="textinput">¿Es perecedero?</label>
-                    <div class="col-md-9">
-                        <input #small type="checkbox" name="size" (change)="0" v-model="nombre" class="formcontrol"
-                            [(ngModel)]="procedure_saveproduct.Perishable" [ngModelOptions]="{standalone: true}">
-                        <br>
-                        <br>
-                        <label *ngIf="small.checked" style="color: white;">Fecha de caducidad:</label>
-                        <input *ngIf="small.checked" type="date" id="start" name="trip-start"
-                            [(ngModel)]="procedure_saveproduct.Due_Date" [ngModelOptions]="{standalone: true}">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-md-12">
-                        <button type="submit" (click)="saveProduct()"
-                            class="btn btn-success btnblock">Registrar</button>
-                    </div>
-                </div>
                 </form>
             </div>
         </div>
