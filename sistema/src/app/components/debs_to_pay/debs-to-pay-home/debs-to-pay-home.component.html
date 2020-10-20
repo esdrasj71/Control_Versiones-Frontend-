@@ -4,7 +4,7 @@
   <form>
     <div class="form-group row">
       &nbsp;&nbsp;&nbsp;<i class="fa fa-search"></i> &nbsp;&nbsp;&nbsp;
-      <input type="text" class="form-control" placeholder="Buscar proveedor"
+      <input type="text" class="form-control" name="searchTerm3" [(ngModel)]="searchTerm3" placeholder="Buscar proveedor"
         style="width: 250px;">&nbsp;&nbsp;&nbsp;&nbsp;
     </div>
   </form>
@@ -20,7 +20,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let debstopay of debstopay">
+      <tr *ngFor="let debstopay of debstopay | filterProviders:searchTerm3">
         <td>{{debstopay.Fiscal_Name}}</td>
         <td>{{debstopay.NIT}}</td>
         <td>{{debstopay.Phone_Number1}}</td>

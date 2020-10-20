@@ -25,6 +25,8 @@ export class DebsToPayHomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  searchTerm3 = '';
+  
   mostrar_facturas(providersId){
     this.httpClient.get(this.API_ENDPOINT + 'DebstoPay/'+ providersId)
     .subscribe((data:DebstoPay[])=>{
