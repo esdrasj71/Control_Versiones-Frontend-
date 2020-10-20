@@ -1,0 +1,35 @@
+<div class="container" style="left: 100px;">
+    <h1 style="text-align: center; font-weight: bold;">Cuentas por Pagar</h1>
+    <h2 style="text-align: center;">____________________</h2><br><br>
+    <form>
+        <div class="form-group row">
+            &nbsp;&nbsp;&nbsp;<i class="fa fa-search"></i> &nbsp;&nbsp;&nbsp;
+            <input type="text" class="form-control" placeholder="Buscar proveedor"
+                style="width: 250px;">&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+    </form>
+
+    <table class="table table-hover" style="background-color:#F8F9F9;">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nombre Fiscal</th>
+                <th scope="col">NIT</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Método de Pago</th>
+                <th scope="col">Total a Pagar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let debstopay of debstopay">
+                <td>{{debstopay.Fiscal_Name}}</td>
+                <td>{{debstopay.NIT}}</td>
+                <td>{{debstopay.Phone_Number1}}</td>
+                <td>{{debstopay.Method_Name}}</td>
+                <td>Q. {{debstopay.Pay}}</td>
+                <td><a class="btn btn-info btn-sm" style="background-color: #6cb3aa;"
+                        routerLink="/employee-form/{{debstopay.Providers_Id}}">Ver Detalle</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -19,14 +19,14 @@ export class EmployeeHomeComponent implements OnInit {
   ) {
     httpClient.get(this.API_ENDPOINT + 'employee')
       .subscribe((data: Employee[]) => {
-        this.employee = data; 
+        this.employee = data;
         console.log(this.employee);
       });
   }
-  
+
   searchTerm = '';
-  
-  ngOnInit() {}
+
+  ngOnInit() { }
   delete(id) {
     this.employeeService.delete(id).subscribe(
       (data) => {
@@ -39,4 +39,3 @@ export class EmployeeHomeComponent implements OnInit {
     );
   }
 }
- 
