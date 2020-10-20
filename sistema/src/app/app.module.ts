@@ -111,6 +111,7 @@ const routes: Route[] = [
   //Debs to Pay
   { path: 'debs-to-pay-home', component: DebsToPayHomeComponent },
   { path: 'debs-to-pay-form', component: DebsToPayFormComponent },
+  { path: 'debs-to-pay-form/:id', component: DebsToPayFormComponent },
 ];
 
 @NgModule({

@@ -237,7 +237,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
         console.log(error);
         alert('Ocurrio un error');
       }
-    );
+     );
 
     //DETAIL
     for (let misdatos of this.vista_detail) {
