@@ -15,6 +15,7 @@ export class DebsToPayFormComponent implements OnInit {
     Total: null,
     Statuss: null,
     Date: null,
+    Purchase_Header_Id: null,
   };
   
   API_ENDPOINT = 'http://localhost:3000/';

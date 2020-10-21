@@ -16,6 +16,9 @@ import { Lot } from '../../lot/interfaces/lot';
 import { LotService } from '../../lot/servicios/lot.service';
 import { PaymentDetail } from '../../payment_detail_purchase/interfaces/payment-detail';
 import { PaymentDetailService } from '../../payment_detail_purchase/servicios/payment-detail.service';
+import { DebstoPay } from '../../debs_to_pay/interfaces/debs-to-pay';
+import { DebsToPayService} from '../../debs_to_pay/servicios/debs-to-pay.service';
+
 @Component({
   selector: 'app-purchase-header-form',
   templateUrl: './purchase-header-form.component.html',
@@ -93,6 +96,15 @@ export class PurchaseHeaderFormComponent implements OnInit {
     Email: null,
     Address: null,
   };
+  //DebstoPay
+  debstopay: DebstoPay ={
+    Quantity: null,
+    Total: null,
+    Statuss: null,
+    Date: null,
+    Purchase_Header_Id: null,
+  };
+
   constructor(
     private inventoryService: InventoryService,
     private providerService: ProvidersService,
@@ -102,7 +114,8 @@ export class PurchaseHeaderFormComponent implements OnInit {
     private procedure_purchaseservice: ProcedurePurchaseService,
     private productService: ProductsService,
     private payment_detail_purchase: PaymentDetailService,
-    private lotService: LotService
+    private lotService: LotService,
+    private debstopayService: DebsToPayService,
   ) {}
   ngOnInit() {
     this.providerService.getProviders().subscribe((data: Providers[]) => {
@@ -172,6 +185,19 @@ export class PurchaseHeaderFormComponent implements OnInit {
         console.log(data);
         //window.location.reload();
         if (this.SiPago == true) {
+          ///DebsToPay
+          this.debstopay.Date = "0000-00-00";
+          this.debstopay.Quantity = 0;
+          this.debstopay.Total = this.total_cobroalcredito;
+          this.debstopay.Statuss = false;
+          this.debstopay.Purchase_Header_Id = data['id'] ;
+          console.log(data['id']);
+          this.debstopayService.save(this.debstopay).subscribe((data)=>{
+            alert("Cuenta por pagar guardada");
+          },(error)=>{
+            alert("Cuenta por pagar error"); 
+          })
+          ///
           this.payment.Purchase_Header_Id = data['id'];
           if (this.forma1 == true) {
             this.payment.Payment_Purchase_Id = 1;
