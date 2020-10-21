@@ -189,7 +189,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
           this.debstopay.Date = "0000-00-00";
           this.debstopay.Quantity = 0;
           this.debstopay.Total = this.total_cobroalcredito;
-          this.debstopay.Statuss = false;
+          this.debstopay.Statuss = true;
           this.debstopay.Purchase_Header_Id = data['id'] ;
           console.log(data['id']);
           this.debstopayService.save(this.debstopay).subscribe((data)=>{

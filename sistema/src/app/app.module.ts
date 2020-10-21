@@ -48,7 +48,6 @@ import { FilterProductCatPipe } from './pipes/filter-product-cat.pipe';
 import { FilterLotPipe } from './pipes/filter-lot.pipe';
 import { FiltradoinventoryPipe } from './pipes/filtradoinventory.pipe';
 import { DebsToPayHomeComponent } from './components/debs_to_pay/debs-to-pay-home/debs-to-pay-home.component';
-import { DebsToPayFormComponent } from './components/debs_to_pay/debs-to-pay-form/debs-to-pay-form.component';
 
 const routes: Route[] = [
   //Brand
@@ -110,8 +109,6 @@ const routes: Route[] = [
   { path: 'payment-detail-purchase-form/:id', component: PaymentDetailFormComponent },
   //Debs to Pay
   { path: 'debs-to-pay-home', component: DebsToPayHomeComponent },
-  { path: 'debs-to-pay-form', component: DebsToPayFormComponent },
-  { path: 'debs-to-pay-form/:id', component: DebsToPayFormComponent },
 ];
 
 @NgModule({
@@ -161,7 +158,6 @@ const routes: Route[] = [
     FilterLotPipe,
     FiltradoinventoryPipe,
     DebsToPayHomeComponent,
-    DebsToPayFormComponent
   ],
   imports: [
     BrowserModule,
