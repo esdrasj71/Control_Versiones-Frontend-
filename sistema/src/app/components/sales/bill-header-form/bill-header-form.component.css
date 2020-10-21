@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap');
 .my-custom-scrollbar {
     position: relative;
     height: 200px;
@@ -30,6 +31,7 @@ h1.title{
 }
 h3{
     color: black;
+    font-family: 'Cairo', sans-serif
 }
 h2{
     font-family: 'Montserrat', sans-serif;

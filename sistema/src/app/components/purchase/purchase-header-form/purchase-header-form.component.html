@@ -4,15 +4,13 @@
     <div class="col-sm-5 col-md-6">
       <div class="card" style="width: 31rem; right: 5rem">
         <div class="card-body">
-          <h5 class="card-title">Datos Compra</h5>
+          <h5 class="card-title"><b>DATOS COMPRA</b></h5>
           <div class="container">
             <hr />
             <div class="row">
               <div class="col-md-7">
                 <div class="form-group row">
-                  <label for="Correlative_Number" class="col-form-label"
-                    >No Factura:</label
-                  >
+                  <label for="Correlative_Number" class="col-form-label">No Factura:</label>
                   <div class="col-sm-7">
                     <input
                       [(ngModel)]="header.Correlative_Number"
@@ -127,13 +125,13 @@
                   <label
                     for="Total"
                     class="col-form-label"
-                    style="font-size: 45px; color: red"
+                    style="font-size: 35px; color: red"
                     >Total:</label
                   >
                   <div class="col">
                     <label
                       [(ngModel)]="header.Total"
-                      style="font-size: 45px; color: red"
+                      style="font-size: 35px; color: red"
                       id="Total"
                       class="form-control"
                       value="0"
@@ -152,7 +150,7 @@
     <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
       <div class="card" style="width: 49rem; right: 8rem">
         <div class="card-body">
-          <h5 class="card-title">Busqueda de producto</h5>
+          <h5 class="card-title"><b>Busqueda de producto</b></h5>
           <hr />
           <div class="form-group">
             <div class="col">
@@ -168,7 +166,7 @@
               </button>
             </div>
             <hr />
-            <h5 class="card-title">Detalle de la compra</h5>
+            <h5 class="card-title"><b>Detalle de la compra</b></h5>
 
             <table
               class="table table-dark"
@@ -257,7 +255,7 @@
     style="width: 900px"
   >
     <div class="modal-content" style="width: 900px">
-      <div class="modal-header" style="width: 900px">
+      <div class="modal-header" style="width: 900px" style="background-color:#EC7063">
         <h5 class="modal-title" id="exampleModalLongTitle">
           Encuentre su proveedor
         </h5>
@@ -287,10 +285,11 @@
                 [(ngModel)]="filtrado_proveedor"
                 tabindex="4"
               />
+              <br>
               <button
                 type="button"
-                class="btn btn-primary"
-                data-toggle="modal"
+                class="btn btn-danger" 
+                data-toggle="modal" style="background-color:#EC7063;"
                 data-target=".bd-agregarproveedor-modal-lg"
               >
                 + Agregar Proveedor
@@ -298,11 +297,11 @@
             </div>
           </div>
           <table
-            class="table table-dark"
-            style="table-layout: fixed; word-wrap: break-word"
+            class="table table-hover"
+            style="table-layout: fixed; word-wrap: break-word; background-color:#F8F9F9;"
             id="table"
           >
-            <thead>
+            <thead class="thead-dark">
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">NIT</th>
@@ -311,7 +310,7 @@
                 <th scope="col">Otro número de telefono</th>
                 <th scope="col">Correo electronico</th>
                 <th scope="col">Dirección</th>
-                <th scope="col"></th>
+                <th scope="col">Acción</th>
               </tr>
             </thead>
             <tbody>
@@ -330,7 +329,7 @@
                 <td>{{ provider.Address }}</td>
                 <td>
                   <a
-                    class="btn btn-primary btn-sm"
+                    class="btn btn-warning btn-sm" style="background-color:#F7985B; color: white;"
                     (click)="getProviderId(provider.Providers_Id)"
                     data-dismiss="modal"
                     >Seleccionar</a
@@ -348,7 +347,7 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
           Cerrar
         </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-danger" style="background-color:#EC7063;">Guardar Cambios</button>
       </div>
     </div>
   </div>
@@ -368,7 +367,7 @@
     style="width: 900px"
   >
     <div class="modal-content" style="width: 900px">
-      <div class="modal-header" style="width: 900px">
+      <div class="modal-header" style="width: 900px" style="background-color:#EC7063">
         <h5 class="modal-title" id="exampleModalLongTitle">
           Encuentre su producto
         </h5>
@@ -397,10 +396,10 @@
                 placeholder="Buscar producto"
                 [(ngModel)]="filtrado_product"
                 tabindex="9"
-              />
+              /><br>
               <button
                 type="button"
-                class="btn btn-primary"
+                class="btn btn-danger btn-sm" style="background-color:#EC7063;"
                 data-toggle="modal"
                 data-target=".bd-agregarproducto-modal-lg"
               >
@@ -409,7 +408,7 @@
               &nbsp;
               <button
                 type="button"
-                class="btn btn-primary"
+                class="btn btn-danger btn-sm" style="background-color:#EC7063;"
                 data-toggle="modal"
                 data-target=".bd-lote-modal-lg"
               >
@@ -418,11 +417,11 @@
             </div>
           </div>
           <table
-            class="table table-dark"
-            style="table-layout: fixed; word-wrap: break-word"
+            class="table table-hover"
+            style="table-layout: fixed; word-wrap: break-word; background-color:#F8F9F9;" 
             id="table"
           >
-            <thead>
+            <thead class="thead-dark">
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">IDproducto</th>
@@ -446,7 +445,8 @@
                 <td height="10">{{ inv.DueDate | date: "d-M-y" }}</td>
                 <td>
                   <a
-                    class="btn btn-primary btn-sm"
+                    class="btn btn-warning btn-sm" 
+                    style="background-color:#F7985B; color: white;"
                     (click)="getProductId(inv.Product_Id)"
                     data-dismiss="modal"
                     >Seleccionar</a
@@ -464,7 +464,8 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
           Cerrar
         </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-danger" style="background-color:#EC7063;"
+        >Guardar Cambios</button>
       </div>
     </div>
   </div>
@@ -613,8 +614,8 @@
 >
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content modal-dialog" style="width: px">
-      <div class="modal-header d-flex justify-content-center">
-        <h5 class="heading" style="color: black; position: center">
+      <div class="modal-header d-flex justify-content-center" style="background-color:#EC7063">
+        <h5 class="heading" style="color: white; position: center">
           Registre el tipo de pago de esta compra
         </h5>
         <button
@@ -678,7 +679,7 @@
 >
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content modal-dialog" style="width: px">
-      <div class="modal-header d-flex justify-content-center">
+      <div class="modal-header d-flex justify-content-center" style="background-color:#EC7063">
         <h5 class="heading">Registre el tipo de pago de esta compra</h5>
         <button
           type="button"

@@ -12,19 +12,19 @@
             </div>
         </div>
     </div>
-
+<div class="table-wrapper-scroll-y my-custom-scrollbar">
 <table  class="table table-hover" style="background-color:#F8F9F9;">
     <thead class="thead-dark">
         <tr>
-            <th scope="col">ID</th>
-            <th scope="col">No. Correlativo</th>
-            <th scope="col">Producto - Marca - Categoria</th>
-            <th scope="col">Stock</th>
-            <th scope="col">Precio unitario</th>
-            <th scope="col">Precio minorista</th>
-            <th scope="col">Precio mayorista</th>
-            <th scope="col">Fecha de vencimiento</th>
-            <th scope="col">Acciones</th>
+            <th class="header" scope="col">ID</th>
+            <th class="header" scope="col">No. Correlativo</th>
+            <th class="header" scope="col">Producto - Marca - Categoria</th>
+            <th class="header" scope="col">Stock</th>
+            <th class="header" scope="col">Precio unitario</th>
+            <th class="header" scope="col">Precio minorista</th>
+            <th class="header" scope="col">Precio mayorista</th>
+            <th class="header" scope="col">Fecha de vencimiento</th>
+            <th class="header" scope="col">Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -41,4 +41,5 @@
                     class="btn btn-danger btnsm" (click)="delete(inventory.Inventory_Id)">Eliminar</a></td>
         </tr>
     </tbody>
-</table><br><br>
+</table>
+</div>

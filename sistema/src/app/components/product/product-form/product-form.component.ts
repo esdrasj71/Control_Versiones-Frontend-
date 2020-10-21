@@ -114,6 +114,8 @@ export class ProductFormComponent implements OnInit {
           //
           this.lot.Product_Id = this.lastidproduct;
           alert('Producto actualizado');
+          location.reload();
+          //window.location.reload();
           console.log(data);
           console.log(this.product);
           this.router.navigate(['/product-home']);

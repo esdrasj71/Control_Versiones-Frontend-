@@ -6,3 +6,16 @@ h1{
 h2{
     color: #fdfdfd;
 }
+.my-custom-scrollbar {
+    position: relative;
+    height: 490px;
+    overflow: auto;
+    }
+.table-wrapper-scroll-y {
+    display: block;
+    }
+
+.header{
+    position:sticky;
+    top: 0 ;
+}
