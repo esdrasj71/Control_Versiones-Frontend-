@@ -1,21 +1,24 @@
-<div class="container card">
-    <div class="card-body" style="height: 250px;">
-        <h2 class="alert alert-primary" role="alert" style="text-align: center;">Editar/Crear Pago de compra</h2>
-        <div class="alert alert-warning" role="alert" style="background-color:#699DBF">
+<div class="container">
+    <div class="container card">
+        <div class="card-body" style="height: 100%;">
+            <h2 class="alert alert-primary" role="alert" style="text-align: center;">Editar/Crear Pago de compra</h2>
+            <div class="alert alert-warning" role="alert" style="background-color:#699DBF; height: 100%;">
 
-            <div class="form-group row">
-                <label class="col-md-3 form-controllabel" for="Method_Name">Nombre de metodo</label>
-                <div class="col-md-9">
-                    <input [(ngModel)]="payment.Method_Name" type="text" id="Name" class="form-control">
+                <div class="form-group row">
+                    <label class="col-md-3 form-controllabel" for="Method_Name">Nombre de Método</label>
+                    <div class="col-md-9">
+                        <input [(ngModel)]="payment.Method_Name" type="text" id="Name" class="form-control">
+                    </div>
                 </div>
-            </div>
-                       
-            <div class="form-group row">
-                <div class="col-md-12">
-                    <button (click)="savePayment()" class="btn btn-success btnblock" routerLink="/payment-purchase-home">Guardar</button>
+
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <button (click)="savePayment()" class="btn btn-success btnblock"
+                            routerLink="/payment-purchase-home">Guardar</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <hr>
-</div> 
+    <br><br><br>
+</div>

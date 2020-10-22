@@ -4,9 +4,9 @@
     color: white;
     }
 .container{
-    justify-content: center;
-    width: 800px;
-    }
+    min-width: 300px;
+    max-width: 900px;
+}
 
 .btn{
     color:#fff;
