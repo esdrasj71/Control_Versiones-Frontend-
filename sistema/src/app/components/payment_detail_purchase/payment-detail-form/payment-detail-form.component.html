@@ -16,14 +16,6 @@
                     <input [(ngModel)]="paymentDetail.Description" type="text" id="Description" class="form-control">
                 </div>
             </div>
-
-            <label class="col-md-3 form-controllabel" for="Lot"> Seleccione el tipo de pago compra: </label>&nbsp;
-            <select id="pay" name="pay" [(ngModel)]="paymentDetail.Payment_Purchase_Id" [ngModelOptions]="{standalone: true}"style="width:350px; height: 30px;" >
-                <option *ngFor="let payment of payment" value="{{payment.Payment_Purchase_Id}}" style="height: 1200px">
-                    {{payment.Method_Name}}
-                 </option>
-            </select>
-
             <label class="col-md-3 form-controllabel" for="Lot"> Seleccione encabezado de compra: </label>&nbsp;
             <select id="pay" name="pay" [(ngModel)]="paymentDetail.Purchase_Header_Id" [ngModelOptions]="{standalone: true}"style="width:350px; height: 30px;" >
                 <option *ngFor="let purchase_header of purchase_header" value="{{purchase_header.Purchase_Header_Id}}" style="height: 1200px">

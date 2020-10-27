@@ -17,7 +17,7 @@ import { LotService } from '../../lot/servicios/lot.service';
 import { PaymentDetail } from '../../payment_detail_purchase/interfaces/payment-detail';
 import { PaymentDetailService } from '../../payment_detail_purchase/servicios/payment-detail.service';
 import { DebstoPay } from '../../debs_to_pay/interfaces/debs-to-pay';
-import { DebsToPayService} from '../../debs_to_pay/servicios/debs-to-pay.service';
+import { DebsToPayService } from '../../debs_to_pay/servicios/debs-to-pay.service';
 
 @Component({
   selector: 'app-purchase-header-form',
@@ -60,7 +60,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
   payment: PaymentDetail = {
     Total_Amount: null,
     Description: null,
-    Payment_Purchase_Id: null,
+    Method_Name: 0,
     Purchase_Header_Id: null,
   };
   header: Purchase_Header = {
@@ -97,11 +97,11 @@ export class PurchaseHeaderFormComponent implements OnInit {
     Address: null,
   };
   //DebstoPay
-  debstopay: DebstoPay ={
+  debstopay: DebstoPay = {
     Quantity: null,
     Total: null,
     Statuss: null,
-    Date: null,
+    Description: null,
     Purchase_Header_Id: null,
   };
 
@@ -116,7 +116,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
     private payment_detail_purchase: PaymentDetailService,
     private lotService: LotService,
     private debstopayService: DebsToPayService,
-  ) {}
+  ) { }
   ngOnInit() {
     this.providerService.getProviders().subscribe((data: Providers[]) => {
       this.providers = data;
@@ -177,6 +177,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
     this.header.Providers_Id = this.proveedor_seleccionado[0].Providers_Id;
     this.header.Refund = 0;
     this.header.Annulment_State = 0;
+    this.header.Payment_Complete = 0;
     this.header.Total = this.total;
     console.log(this.header);
     this.purchase_headerservice.save(this.header).subscribe(
@@ -184,86 +185,72 @@ export class PurchaseHeaderFormComponent implements OnInit {
         alert('Compra guardada');
         console.log(data);
         //window.location.reload();
+        this.payment.Purchase_Header_Id = data['id']; //176 Andres
         if (this.SiPago == true) {
           ///DebsToPay
-          this.debstopay.Date = "0000-00-00";
+          this.debstopay.Description = " ";
           this.debstopay.Quantity = 0;
-          this.debstopay.Total = this.total_cobroalcredito;
+          this.debstopay.Total = this.total_cobro;
+          console.log(this.debstopay.Total);
           this.debstopay.Statuss = true;
-          this.debstopay.Purchase_Header_Id = data['id'] ;
+          this.debstopay.Purchase_Header_Id = data['id'];
           console.log(data['id']);
-          this.debstopayService.save(this.debstopay).subscribe((data)=>{
+          this.debstopayService.save(this.debstopay).subscribe((data) => {
             alert("Cuenta por pagar guardada");
-          },(error)=>{
-            alert("Cuenta por pagar error"); 
+          }, (error) => {
+            alert("Cuenta por pagar error");
           })
           ///
-          this.payment.Purchase_Header_Id = data['id'];
-          if (this.forma1 == true) {
-            this.payment.Payment_Purchase_Id = 1;
-            this.payment_detail_purchase.save(this.payment).subscribe(
-              (data) => {
-                alert('El metodo de pago al credito se registro correctamente');
-                console.log(data);
-              },
-              (error) => {
-                console.log(error);
-                alert('Ocurrio un error');
-              }
-            );
-            console.log(this.payment);
-            this.forma1 = false;
-            this.forma2 = false;
-            this.forma3 = false;
-          } else if (this.forma2 == true) {
-            this.payment.Payment_Purchase_Id = 2;
-            this.payment_detail_purchase.save(this.payment).subscribe(
-              (data) => {
-                alert(
-                  'El metodo de pago al contado se ha registrado correctamente'
-                );
-                console.log(data);
-              },
-              (error) => {
-                console.log(error);
-                alert('Ocurrio un error');
-              }
-            );
-            console.log(this.payment);
-            this.forma1 = false;
-            this.forma2 = false;
-            this.forma3 = false;
-          } else if (this.forma3 == true) {
-            this.payment.Payment_Purchase_Id = 2;
-            alert(
-              'El metodo de pago tanto al credito como al contado se registro correctamente'
-            );
-            for (let formapago of this.pago) {
-              this.payment.Total_Amount = formapago;
-              this.payment_detail_purchase.save(this.payment).subscribe(
-                (data) => {
-                  console.log(data);
-                },
-                (error) => {
-                  console.log(error);
-                  alert('Ocurrio un error');
-                }
-              );
-              this.payment.Payment_Purchase_Id = 1;
+          this.payment.Method_Name = 1; //al credito
+          this.payment_detail_purchase.save(this.payment).subscribe(
+            (data) => {
+              console.log(data);
+            },
+            (error) => {
+              console.log(error);
+              alert('Ocurrio un error');
             }
-            console.log(this.payment);
-            this.forma1 = false;
-            this.forma2 = false;
-            this.forma3 = false;
-            this.SiPago = false;
-          }
+          );
+          console.log(this.payment);
+          this.payment.Method_Name = 0; // al contado
+          this.payment.Total_Amount = this.total_cobroalcontado;
+          this.payment_detail_purchase.save(this.payment).subscribe(
+            (data) => {
+              console.log(data);
+              alert(
+                'El metodo de pago se ha registrado correctamente'
+              );
+            },
+            (error) => {
+              console.log(error);
+              alert('Ocurrio un error');
+            }
+          );
+          console.log(this.payment);
         }
+        else {
+          this.payment.Method_Name = 0; // al contado todooo
+          this.payment.Total_Amount = this.total;
+          this.payment_detail_purchase.save(this.payment).subscribe(
+            (data) => {
+              alert(
+                'El metodo de pago al contado se ha registrado correctamente'
+              );
+              console.log(data);
+            },
+            (error) => {
+              console.log(error);
+              alert('Ocurrio un error');
+            }
+          );
+          console.log(this.payment);
+        }//
       },
       (error) => {
         console.log(error);
         alert('Ocurrio un error');
       }
-     );
+    );
 
     //DETAIL
     for (let misdatos of this.vista_detail) {
@@ -288,6 +275,10 @@ export class PurchaseHeaderFormComponent implements OnInit {
   }
 
   onEnter(cantidad, precio, datos: any) {
+    if (typeof (cantidad) == 'undefined' || typeof (precio) == 'undefined') {
+      console.log('hola');
+      return this.total = 0;
+    }
     this.total -= datos[0].Subtotal;
     datos[0].Quantity = cantidad;
     datos[0].Price = precio;
@@ -310,32 +301,6 @@ export class PurchaseHeaderFormComponent implements OnInit {
   }
   pago = [];
   SiPago: boolean = false;
-  Payment() {
-    this.pago = [];
-    this.SiPago = true;
-    if (this.pago_alcredito == true && this.pago_alcontado == false) {
-      this.payment.Total_Amount = this.total;
-      this.pago.push(this.payment.Total_Amount);
-      this.forma1 = true;
-    } else if (this.pago_alcredito == false && this.pago_alcontado == true) {
-      this.payment.Total_Amount = this.total_cobroalcontado;
-      this.pago.push(this.payment.Total_Amount);
-      this.forma2 = true;
-    } else if (this.pago_alcontado == true && this.pago_alcontado == true) {
-      this.payment.Total_Amount = this.total_cobroalcontado;
-      this.pago.push(this.payment.Total_Amount);
-      this.payment.Total_Amount = this.total_cobroalcredito;
-      this.pago.push(this.payment.Total_Amount);
-      this.forma3 = true;
-      console.log(this.pago);
-      for (let formapago of this.pago) {
-        this.payment.Total_Amount = formapago;
-        console.log(this.payment.Total_Amount);
-      }
-    }
-    console.log(this.pago);
-    alert('Sistema: Se registro su metodo de pago exitosamente!');
-  }
   mostraralcredito() {
     this.pago = [];
     this.pago_alcredito = !this.pago_alcredito;
@@ -346,8 +311,11 @@ export class PurchaseHeaderFormComponent implements OnInit {
   }
   onPagoalcontado(value: number) {
     this.total_cobroalcontado = value;
-    if (this.total_cobro >= this.total_cobroalcontado)
+    if (this.total_cobro >= this.total_cobroalcontado) {
       this.total_cobro -= this.total_cobroalcontado;
+      this.payment.Total_Amount = this.total_cobro;
+      this.SiPago = true;
+    }
     else
       alert(
         'Error: El pago al contado supera el monto total de lo que se esta comprando'

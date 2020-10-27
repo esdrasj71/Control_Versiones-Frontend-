@@ -3,6 +3,6 @@ export interface DebstoPay{
     Quantity: number;
     Total: number;
     Statuss: boolean;
-    Date: String;
+    Description: String;
     Purchase_Header_Id: number;
    }

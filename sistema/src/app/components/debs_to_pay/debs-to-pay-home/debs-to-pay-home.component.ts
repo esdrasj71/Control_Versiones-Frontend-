@@ -19,6 +19,7 @@ export class DebsToPayHomeComponent implements OnInit {
   procedure_debstopay: Procedure_DebstoPay = {
     Providers_Id: null,
     Quantity: null,
+    Description: null,
   };
 
   cont = 0;
