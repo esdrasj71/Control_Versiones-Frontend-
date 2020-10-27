@@ -15,13 +15,13 @@ export class DebsToPayHomeComponent implements OnInit {
   debstopay: DebstoPay[];
   bills: DebstoPay[];
   billsdetail: DebstoPay[];
-
   //Debs to pay
   procedure_debstopay: Procedure_DebstoPay = {
     Providers_Id: null,
     Quantity: null,
   };
 
+  cont = 0;
   constructor(private debstopayService: DebsToPayService, private httpClient: HttpClient) {
     httpClient.get(this.API_ENDPOINT + 'DebstoPay')
       .subscribe((data: DebstoPay[]) => {
@@ -34,32 +34,45 @@ export class DebsToPayHomeComponent implements OnInit {
   }
 
   searchTerm3 = '';
+  //Modal Detail 1
+  Fiscal_Name = "";
+  Nit = "";
+  Total_Debs = 0;
+  //Modal Detail 2
+  Total = 0;
 
-  mostrar_facturas(providersId) {
+  mostrar_facturas(providersId, fiscal_name, nit, total_debs) {
     this.procedure_debstopay.Providers_Id = providersId;
     this.httpClient.get(this.API_ENDPOINT + 'DebstoPay/' + providersId)
       .subscribe((data: DebstoPay[]) => {
         this.bills = data;
-        console.log(this.bills);
-        console.log(providersId);
+        this.cont = this.bills.length;
       })
+    this.Fiscal_Name = fiscal_name;
+    this.Nit = nit;
+    this.Total_Debs = total_debs;
   }
 
-  mostrar_facturas_detalle(purchaseheaderId) {
+  mostrar_facturas_detalle(purchaseheaderId, total) {
     this.httpClient.get(this.API_ENDPOINT + 'DebstoPayPurchase/' + purchaseheaderId)
       .subscribe((data: DebstoPay[]) => {
         this.billsdetail = data;
         console.log(this.billsdetail);
         console.log(purchaseheaderId);
       })
+    this.Total = total;
   }
-
-  saveDebs(){
-    this.debstopayService.saveprocedure(this.procedure_debstopay).subscribe((data)=>{
-      alert('Pago existoso');
-    },(error)=>{
-      console.log(error);
-      alert('Ocurrio un error en pago');
-    })
+  saveDebs() {
+    if (this.procedure_debstopay.Quantity > this.Total_Debs) {
+      alert("La cantidad excede a la requerida")
+    }
+    else {
+      this.debstopayService.saveprocedure(this.procedure_debstopay).subscribe((data) => {
+        alert('Pago existoso');
+      }, (error) => {
+        console.log(error);
+        alert('Ocurrio un error en pago');
+      })
+    }
   }
 }

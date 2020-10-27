@@ -4,8 +4,8 @@
   <form>
     <div class="form-group row">
       &nbsp;&nbsp;&nbsp;<i class="fa fa-search"></i> &nbsp;&nbsp;&nbsp;
-      <input type="text" class="form-control" name="searchTerm3" [(ngModel)]="searchTerm3" placeholder="Buscar proveedor"
-        style="width: 250px;">&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="text" class="form-control" name="searchTerm3" [(ngModel)]="searchTerm3"
+        placeholder="Buscar proveedor" style="width: 250px;">&nbsp;&nbsp;&nbsp;&nbsp;
     </div>
   </form>
 
@@ -14,9 +14,9 @@
       <tr>
         <th scope="col">Nombre Fiscal</th>
         <th scope="col">NIT</th>
-        <th scope="col">Telefono</th>
-        <th scope="col">Método de Pago</th>
+        <th scope="col">Teléfono</th>
         <th scope="col">Total a Pagar</th>
+        <th scope="col">Acciones</th>
       </tr>
     </thead>
     <tbody>
@@ -24,10 +24,11 @@
         <td>{{debstopay.Fiscal_Name}}</td>
         <td>{{debstopay.NIT}}</td>
         <td>{{debstopay.Phone_Number1}}</td>
-        <td>Crédito</td>
         <td>Q. {{debstopay.Pay}}</td>
         <td><a class="btn btn-info btn-sm" style="background-color: #6cb3aa;" data-toggle="modal"
-            data-target=".bd-purchase-modal-lg" (click)="mostrar_facturas(debstopay.Providers_Id)">Ver Detalle</a>
+            data-target=".bd-purchase-modal-lg"
+            (click)="mostrar_facturas(debstopay.Providers_Id, debstopay.Fiscal_Name, debstopay.NIT, debstopay.Pay)">Ver
+            Detalle</a>
         </td>
       </tr>
     </tbody>
@@ -49,8 +50,21 @@
       </div>
       <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y: auto">
         <div class="container">
-          <div class="form-group row">
-            <label for="bills" style="color: black;" class="col-form-label">Facturas:</label>
+          <div class="form-group row col-md-4">
+            <h6 style="color: black;"><strong>Nombre Fiscal:</strong></h6>
+            <h6 style="color: black;">{{Fiscal_Name}}</h6>
+          </div>
+          <div class="form-group row col-md-4">
+            <h6 style="color: black;"><strong>NIT:</strong></h6>
+            <h6 style="color: black;">{{Nit}}</h6>
+          </div>
+          <div class="form-group row row col-md-4">
+            <h6 style="color: black;"><strong>Total Cuentas por Pagar:</strong></h6>
+            <h6 style="color: black;">Q.{{Total_Debs}}</h6>
+          </div>
+          <div class="form-group row row col-md-4">
+            <h6 for="bills" style="color: black;"><strong>Facturas a pagar: </strong> </h6>
+            <h6 for="bills" style="color: black;"> {{cont}} </h6>
           </div>
           <table class="table table-hover" style="background-color:#F8F9F9;">
             <thead class="thead-dark">
@@ -59,8 +73,8 @@
                 <th scope="col">Número de Factura</th>
                 <th scope="col">Serie</th>
                 <th scope="col">Fecha de emisión</th>
-                <th scope="col">Método de Pago</th>
                 <th scope="col">Total a Pagar</th>
+                <th scope="col">Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -69,11 +83,10 @@
                 <td>{{bills.Correlative_Number}}</td>
                 <td>{{bills.Serie}}</td>
                 <td>{{bills.Date_Purchase|date:'d-M-y'}}</td>
-                <td>Crédito</td>
                 <td>Q. {{bills.Pay}}</td>
                 <td><a class="btn btn-info btn-sm" style="background-color: #6cb3aa;" data-toggle="modal"
                     data-target=".bd-purchasedetail-modal-lg"
-                    (click)="mostrar_facturas_detalle(bills.Purchase_Header_Id)">Ver Detalle</a>
+                    (click)="mostrar_facturas_detalle(bills.Purchase_Header_Id, bills.Pay)">Ver Detalle</a>
                 </td>
               </tr>
             </tbody>
@@ -84,8 +97,16 @@
         <div class="form-group row">
           <label for="" class="col-form-label" style="color: black;"><strong>Monto a pagar: </strong></label>
           <div class="col-sm-7">
-            <input type="text" name="" id="" class="form-control" [(ngModel)]="procedure_debstopay.Quantity" placeholder="Total a pagar" tabindex="1" />
+            <input type="text" name="" id="" class="form-control" [(ngModel)]="procedure_debstopay.Quantity"
+              placeholder="Total a pagar" tabindex="1" />
           </div>
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Descripción:</span>
+          </div>
+          <input type="text" class="form-control" aria-label="Default" placeholder="Añada una descripción..."
+            aria-describedby="inputGroup-sizing-default">
         </div>
         <button type="button" class="btn btn-primary" (click)="saveDebs()">
           Cobrar
@@ -121,14 +142,15 @@
       <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y: auto">
         <div class="container">
           <div class="form-group row">
-            <label for="billsdetail" style="color: black;" class="col-form-label">Detalle de Factura:</label>
+            <h5 style="color: black;"><strong>Total a pagar de la factura: </strong> </h5>
+            <h5 style="color: black;"> Q. {{Total}}</h5>
           </div>
           <table class="table table-hover" style="background-color:#F8F9F9;">
             <thead class="thead-dark">
               <tr>
-                <th scope="col">Numero de Factura</th>
+                <th scope="col">No. de Factura</th>
                 <th scope="col">Producto</th>
-                <th scope="col">Número de Lote</th>
+                <th scope="col">No. de Lote</th>
                 <th scope="col">Cantidad</th>
                 <th scope="col">Precio</th>
                 <th scope="col">SubTotal</th>
