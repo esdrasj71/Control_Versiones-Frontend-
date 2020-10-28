@@ -171,7 +171,7 @@ const routes: Route[] = [
     FiltradoinventoryPipe,
     AccountsReceivableComponent,
     HomeComponent,
-    LoginComponent,
+    LoginFormComponent,
     DebsToPayHomeComponent,
     UserFormComponent
   ],
