@@ -43,10 +43,10 @@
                                     <label for="Empleado" class="col-form-label">Empleado</label>
                                     <div class="col">
                                         <select name="empleado" id="empleado" [(ngModel)]="encabezado_factura.Employee_Id" ngDefaultControl tabindex="8" class="form-control">
-                      <option *ngFor="let empleado of empleados" value="{{empleado.Employee_Id}}">
-                        {{empleado.Names + " " +empleado.Last_names}}
-                      </option>
-                    </select>
+                                            <option *ngFor="let empleado of empleados" value="{{empleado.Employee_Id}}">
+                                            {{empleado.Names+" "+empleado.Last_names}}
+                                        </option>
+                                    </select>
                                     </div>
                                 </div>
                             </div>
@@ -287,7 +287,7 @@
 <!--Modal de cobrar-->
 <div class="modal fade bd-cobro-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content modal-dialog  " style="width: px;">
+        <div class="modal-content modal-dialog  " style="width: 900px;">
 
 <div class="modal-header d-flex justify-content-center" style="background-color:#EC7063;">
     <h5 class="heading">Cobro</h5>
@@ -305,11 +305,11 @@
                         <p>Al contado</p>
                         <div class="row">
 
-                            <div class="col-md-5">
+                            <div class="col-md-12">
                                 <div class="form-group row">
                                 <h3>Monto:</h3>
                                 <div class="col-md-6">
-                                    <input type="number" min="0" #boxalcontado (keyup.enter)="onPagoalcontado(boxalcontado.value)" ngDefaultControl name="monto" id="monto" class="form-control" placeholder=" "value=0 tabindex="1" />
+                                    <input type="number" min="0"  #boxalcontado (keyup.enter)="onPagoalcontado(boxalcontado.value)" ngDefaultControl name="monto" id="monto" class="form-control" placeholder=" "value=0 tabindex="1" />
                                 </div>
                             </div>
                             <hr>
