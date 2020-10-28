@@ -47,6 +47,8 @@ import { FilterBrandPipe } from './pipes/filter-brand.pipe';
 import { FilterProductCatPipe } from './pipes/filter-product-cat.pipe';
 import { FilterLotPipe } from './pipes/filter-lot.pipe';
 import { FiltradoinventoryPipe } from './pipes/filtradoinventory.pipe';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Route[] = [
   //Brand
@@ -106,6 +108,10 @@ const routes: Route[] = [
   { path: 'payment-detail-purchase-home', component: PaymentDetailHomeComponent },
   { path: 'payment-detail-purchase-form', component: PaymentDetailFormComponent },
   { path: 'payment-detail-purchase-form/:id', component: PaymentDetailFormComponent },
+  //Home
+  { path: 'home', component: HomeComponent },
+  //Login
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({
@@ -153,7 +159,9 @@ const routes: Route[] = [
     FilterBrandPipe,
     FilterProductCatPipe,
     FilterLotPipe,
-    FiltradoinventoryPipe
+    FiltradoinventoryPipe,
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

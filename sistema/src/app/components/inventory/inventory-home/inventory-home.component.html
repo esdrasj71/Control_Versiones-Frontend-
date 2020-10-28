@@ -1,17 +1,15 @@
     <div class="container">
         <h1 style="text-align: center; font-weight: bold;">Listado de Inventario</h1>
         <h2 style="text-align: center;">____________________</h2><br><br><br>
+        <form>
         <div class="form-group row">
             &nbsp;&nbsp;&nbsp;<i class="fa fa-search" style="left: 300px;"></i>&nbsp;&nbsp;&nbsp;
             <div class="col">
                 <input type="text" name="inventory" id="inventory" class="form-control"
                     placeholder="Buscar en el inventario" tabindex="4" />
             </div>
-            <div class="col">
-                <button type="button" class="btn btn-success" (click)="add()">Agregar</button>
-            </div>
         </div>
-    </div>
+    </form>
 <div class="table-wrapper-scroll-y my-custom-scrollbar">
 <table  class="table table-hover" style="background-color:#F8F9F9;">
     <thead class="thead-dark">
@@ -42,4 +40,5 @@
         </tr>
     </tbody>
 </table>
+</div>
 </div>
