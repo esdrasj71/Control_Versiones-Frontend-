@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DebsToPayService } from '../servicios/debs-to-pay.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DebstoPay } from '../interfaces/debs-to-pay';
 import { Procedure_DebstoPay } from '../interfaces/procedure_debstopay';
 
@@ -23,8 +23,10 @@ export class DebsToPayHomeComponent implements OnInit {
   };
 
   cont = 0;
+
   constructor(private debstopayService: DebsToPayService, private httpClient: HttpClient) {
-    httpClient.get(this.API_ENDPOINT + 'DebstoPay')
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
+    httpClient.get(this.API_ENDPOINT + 'DebstoPay', {headers})
       .subscribe((data: DebstoPay[]) => {
         this.debstopay = data;
         console.log(this.debstopay);
