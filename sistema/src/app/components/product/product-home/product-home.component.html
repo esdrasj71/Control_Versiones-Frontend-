@@ -1,46 +1,48 @@
-  
-<div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y:auto;">
-    <div class="container">
+<div class="container">
     <h1 style="text-align: center; font-weight: bold;">Listado de Productos</h1>
     <h2 style="text-align: center;">____________________</h2><br><br>
-        <div class="form-group row">
-            <label for="product" class="col-form-label">Producto:</label>
-            <div class="col">
-                <input type="text" name="product" id="product" class="form-control"
-                    placeholder="Buscar producto" tabindex="4"  [(ngModel)]="filtrado_product"/>
-            </div>
-            <div class="col">
-                <button type="button" class="btn btn-success" (click)="add()">Agregar Producto</button>
-            </div>
+    <form>
+    <div class="form-group row">
+        &nbsp;&nbsp;&nbsp;<i class="fa fa-search" style="left: 300px;"></i>&nbsp;&nbsp;&nbsp;
+        <div class="col">
+            <input type="text" name="product" id="product" class="form-control" placeholder="Buscar producto"
+                tabindex="4" [(ngModel)]="filtrado_product" />
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-success" (click)="add()">Agregar Producto</button>
         </div>
     </div>
-</div>
-<!---->
+</form>
 
-<table class="table table-hover" style="background-color:#F8F9F9;" id="searchTextResults">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">No. correlativo</th>
-            <th scope="col">Producto</th>
-            <th scope="col">Marca</th>
-            <th scope="col">Categoria</th>
-            <th scope="col">Perecedero</th>
-            <th scope="col">Fecha de vencimiento</th>
-            <th scope="col">Acciones </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let product of products| fitradoproduct: filtrado_product">
-            <td>{{product.Product_Id}}</td>
-            <td>{{product.Correlative_Product}}</td>
-            <td>{{product.Name}}</td>
-            <td>{{product.Brand}}</td>
-            <td>{{product.Category}}</td>
-            <td>{{product.Perishable}}</td>
-            <td>{{product.DueDate|date:'d-M-y'}}</td>
-            <td><a class="btn btn-info btn-sm" style="background-color: #6cb3aa;" routerLink="/product-form/{{product.Product_Id}}">Editar</a> <a
-                    class="btn btn-danger btn-sm" (click)="delete(product.Product_Id)">Eliminar</a></td>
-        </tr>
-    </tbody>
-</table>
+<!---->
+<div class="table-wrapper-scroll-y my-custom-scrollbar">
+    <table class="table table-hover" style="background-color:#F8F9F9;" id="searchTextResults">
+        <thead class="thead-dark">
+            <tr>
+                <th class="header" scope="col">ID</th>
+                <th class="header" scope="col">No. correlativo</th>
+                <th class="header" scope="col">Producto</th>
+                <th class="header" scope="col">Marca</th>
+                <th class="header" scope="col">Categoría</th>
+                <th class="header" scope="col">Perecedero</th>
+                <th class="header" scope="col">Fecha de vencimiento</th>
+                <th class="header" scope="col">Acciones </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products| fitradoproduct: filtrado_product">
+                <td>{{product.Product_Id}}</td>
+                <td>{{product.Correlative_Product}}</td>
+                <td>{{product.Name}}</td>
+                <td>{{product.Brand}}</td>
+                <td>{{product.Category}}</td>
+                <td>{{product.Perish}}</td>
+                <td>{{product.DueDate|date:'d-M-y'}}</td>
+                <td><a class="btn btn-info btn-sm" style="background-color: #6cb3aa;"
+                        routerLink="/product-form/{{product.Product_Id}}">Editar</a> <a class="btn btn-danger btn-sm"
+                        (click)="delete(product.Product_Id)">Eliminar</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>

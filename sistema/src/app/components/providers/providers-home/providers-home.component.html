@@ -3,25 +3,24 @@
     <h2 style="text-align: center;">____________________</h2><br><br>
 <form>
     <div class="form-group row">
-        <div class="col-md-9">
-            <button type="submit" style="background-color: rgb(124, 204, 253);"><i class="fa fa-search"></i></button>
-            <input type="text" class="formcontrol" name="searchTerm3" [(ngModel)]="searchTerm3" placeholder="Buscar proveedor" style="width: 250px;">&nbsp;&nbsp;&nbsp;&nbsp;
-            <a class="btn btn-success btnsm" routerLink="/providers-form">Agregar Proveedor</a>
-        </div>
+        &nbsp;&nbsp;&nbsp;<i class="fa fa-search" style="left: 300px;"></i>&nbsp;&nbsp;&nbsp;
+        <input type="text" class="form-control" name="searchTerm3" [(ngModel)]="searchTerm3" placeholder="Buscar proveedor" style="width: 250px;">&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="btn btn-success btnsm" routerLink="/providers-form">Agregar Proveedor</a>
     </div> 
 </form>
 <br>
+<div class="table-wrapper-scroll-y my-custom-scrollbar">
 <table class="table table-hover" style="background-color:#F8F9F9;">
     <thead class="thead-dark">
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">NIT</th>
-            <th scope="col">Nombre Fiscal</th>
-            <th scope="col">Número de telefono</th>
-            <th scope="col">Otro número de telefono</th>
-            <th scope="col">Correo electronico</th>
-            <th scope="col">Dirección</th>
-            <th scope="col"></th>
+            <th class="header" scope="col">#</th>
+            <th class="header" scope="col">NIT</th>
+            <th class="header" scope="col">Nombre Fiscal</th>
+            <th class="header" scope="col">Número de teléfono</th>
+            <th class="header" scope="col">Otro número de teléfono</th>
+            <th class="header" scope="col">Correo electrónico</th>
+            <th class="header" scope="col">Dirección</th>
+            <th class="header" scope="col">Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -39,4 +38,5 @@
         </tr>
     </tbody>
 </table>
+</div>
 </div>

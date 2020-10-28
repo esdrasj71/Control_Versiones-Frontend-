@@ -1,4 +1,4 @@
-import { Component, OnInit,Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { LotService } from '../servicios/lot.service';
 import { HttpClient } from '@angular/common/http';
 import { Lot } from '../interfaces/lot';
@@ -33,9 +33,8 @@ export class LotFormComponent implements OnInit {
   postarr: Lot[];
   products: Products[];
   selectedProductId: number;
-  
 
-  constructor(private invetoryService:InventoryService,private lotService: LotService, private activatedRoute: ActivatedRoute, private router: Router,private httpClient: HttpClient) {
+  constructor(private invetoryService: InventoryService, private lotService: LotService, private activatedRoute: ActivatedRoute, private router: Router, private httpClient: HttpClient) {
     this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
       this.editing = true;
@@ -75,11 +74,12 @@ export class LotFormComponent implements OnInit {
         alert('Lote guardado');
         //this.router.navigate(["/lot-home"]);
         this.Lot_Id.emit(data['id']);
+
         this.inventory.Lot_Id= data['id'];
+
         this.inventory.Statuss= false;
         console.log(this.inventory);
-        this.invetoryService.save(this.inventory).subscribe((date)=>
-        {
+        this.invetoryService.save(this.inventory).subscribe((date) => {
           alert('Inventario guardado');
           console.log(date)
         });
@@ -95,4 +95,3 @@ export class LotFormComponent implements OnInit {
     return (product.Complete.toLocaleLowerCase().indexOf(filter) > -1);
   }
 }
-

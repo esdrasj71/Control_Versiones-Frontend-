@@ -1,7 +1,8 @@
+<div class="container">
 <div class="container card">
-    <div class="card-body">
-        <h2 class="alert alert-primary" role="alert">Editar/Agregar detalle de pago compra</h2>
-        <div class="alert alert-warning" role="alert">
+    <div class="card-body" style="height: 100%;">
+        <h2 class="alert alert-primary" role="alert" style="text-align: center;">Editar/Agregar detalle de pago compra</h2>
+        <div class="alert alert-warning" role="alert" style="background-color:#699DBF; height: 100%;">
 
             <div class="form-group row">
                 <label class="col-md-3 form-controllabel" for="Total_Amount">Cantidad Total</label>
@@ -11,32 +12,34 @@
             </div> 
 
             <div class="form-group row">
-                <label class="col-md-3 form-controllabel" for="Description">Descripcion</label>
+                <label class="col-md-3 form-controllabel" for="Description">Descripción</label>
                 <div class="col-md-9">
                     <input [(ngModel)]="paymentDetail.Description" type="text" id="Description" class="form-control">
                 </div>
             </div>
 
-            <label class="col-md-3 form-controllabel" for="Lot"> Seleccione el tipo de pago compra: </label>
-            <select id="pay" name="pay" [(ngModel)]="paymentDetail.Payment_Purchase_Id" [ngModelOptions]="{standalone: true}"style="width:700px" >
+            <label class="col-md-3 form-controllabel" for="Lot"> Seleccione el tipo de pago compra: </label>&nbsp;
+            <select id="pay" name="pay" [(ngModel)]="paymentDetail.Payment_Purchase_Id" [ngModelOptions]="{standalone: true}"style="width:50%; height: 30px;" >
                 <option *ngFor="let payment of payment" value="{{payment.Payment_Purchase_Id}}" style="height: 1200px">
                     {{payment.Method_Name}}
                  </option>
             </select>
 
-            <label class="col-md-3 form-controllabel" for="Lot"> Seleccione encabezado de compra: </label>
-            <select id="pay" name="pay" [(ngModel)]="paymentDetail.Purchase_Header_Id" [ngModelOptions]="{standalone: true}"style="width:700px" >
+            <label class="col-md-3 form-controllabel" for="Lot"> Seleccione encabezado de compra: </label>&nbsp;
+            <select id="pay" name="pay" [(ngModel)]="paymentDetail.Purchase_Header_Id" [ngModelOptions]="{standalone: true}"style="width:50%; height: 30px;" >
                 <option *ngFor="let purchase_header of purchase_header" value="{{purchase_header.Purchase_Header_Id}}" style="height: 1200px">
                     {{purchase_header.Correlative_Number}}
                  </option>
             </select>
-                          
+            <br><br>
             <div class="form-group row">
                 <div class="col-md-12">
-                    <button (click)="savePaymentDetail()" class="btn btn-primary btnblock" routerLink="/payment-detail-purchase-home">Guardar</button>
+                    <button (click)="savePaymentDetail()" class="btn btn-success btnblock" routerLink="/payment-detail-purchase-home">Guardar</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+</div>
+<div style="height: 100px;"></div>
 

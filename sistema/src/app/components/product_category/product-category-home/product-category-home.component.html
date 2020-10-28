@@ -1,22 +1,22 @@
 <div class="container">
-    <h1 style="text-align: center; font-weight: bold;">Listado Categoria de Producto</h1>
+    <h1 style="text-align: center; font-weight: bold;">Listado Categoría de Producto</h1>
     <h2 style="text-align: center;">____________________</h2><br><br>
     <form>
         <div class="form-group row">
-            <div class="col-md-9">
-                <button type="submit" style="background-color: rgb(124, 204, 253);"><i class="fa fa-search"></i></button>
-                <input type="text" class="formcontrol" name="searchTerm6" [(ngModel)]="searchTerm6" placeholder="Buscar categoria de producto" style="width: 250px;">&nbsp;&nbsp;&nbsp;&nbsp;
-                <a class="btn btn-success btnsm" routerLink="/product-category-form">Agregar Categoria</a>
-            </div>
+            &nbsp;&nbsp;&nbsp;<i class="fa fa-search" style="left: 300px;"></i>&nbsp;&nbsp;&nbsp;
+            <input type="text" class="form-control" name="searchTerm6" [(ngModel)]="searchTerm6" placeholder="Buscar categoría de producto" style="width: 250px;">&nbsp;&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-success btnsm" routerLink="/product-category-form">Agregar Categoría</a>
+        
         </div> 
     </form>
     <br>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
 <table class="table table-hover" style="background-color:#F8F9F9;">
     <thead class="thead-dark">
         <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Acciones</th>
+            <th class="header" scope="col">ID</th>
+            <th class="header" scope="col">Nombre</th>
+            <th class="header" scope="col">Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -28,4 +28,5 @@
         </tr>
     </tbody>
 </table>
+</div>
 </div>
