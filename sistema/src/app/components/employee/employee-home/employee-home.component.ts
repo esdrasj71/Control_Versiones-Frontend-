@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../servicios/employee.service';
-import { HttpClient } from '@angular/common/http';
 import { Employee } from '../interfaces/employee';
 import { Pipe, PipeTransform } from '@angular/core';
 
@@ -15,9 +14,9 @@ export class EmployeeHomeComponent implements OnInit {
   employee: Employee[];
   constructor(
     private employeeService: EmployeeService,
-    private httpClient: HttpClient
   ) {
-    httpClient.get(this.API_ENDPOINT + 'employee')
+
+    this.employeeService.getEmployee()
       .subscribe((data: Employee[]) => {
         this.employee = data;
         console.log(this.employee);

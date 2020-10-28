@@ -124,7 +124,7 @@ export class LoginFormComponent implements OnInit {
       //this.IsLogued.emit('Logueado');
     
       alert('Login guardado');
-      this.router.navigate(['//home']);
+      this.router.navigate(['/home']);
       
      // console.log(data)
     }, (error) => {

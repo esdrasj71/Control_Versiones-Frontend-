@@ -15,12 +15,12 @@ export class DebsToPayService {
    }
    save(debstopay: DebstoPay) {
     console.log(debstopay);
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json','accesstoken':localStorage.getItem('token') });
     return this.httpClient.post(this.API_ENDPOINT + 'DebstoPay', debstopay, { headers: headers });
   }
 
   saveprocedure(procedure_debstopay: Procedure_DebstoPay) {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json','accesstoken':localStorage.getItem('token') });
     return this.httpClient.post(this.API_ENDPOINT + 'procedure_debs', procedure_debstopay, { headers: headers });
   }
 }
