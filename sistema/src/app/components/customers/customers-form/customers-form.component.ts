@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {Customers} from '../interfaces/customer';
 import {CustomersService} from '../servicios/customers.service';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-customers-form',
   templateUrl: './customers-form.component.html',
@@ -27,10 +27,11 @@ API_ENDPOINT = 'http://localhost:3000/';
   postarr: Customers[]; 
 
 constructor(private customerService: CustomersService, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
+  const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
   this.id = this.activatedRoute.snapshot.params['id']; //Este es el parametro que se definio en la ruta de app.module.ts
   if (this.id) {
     this.editing = true;
-    this.httpClient.get(this.API_ENDPOINT + 'customer').subscribe((data: Customers[]) => { //Aqui traemos el arreglo completo de datos
+    this.httpClient.get(this.API_ENDPOINT + 'customer',{headers}).subscribe((data: Customers[]) => { //Aqui traemos el arreglo completo de datos
       this.postarr = data;
       console.log(this.postarr);
       this.customer = this.postarr.find((m) => { return m.Customers_Id == this.id }); //Aqui traemos solo el id que nos interesa

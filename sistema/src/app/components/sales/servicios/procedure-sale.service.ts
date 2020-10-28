@@ -10,7 +10,7 @@ export class ProcedureSaleService {
 
   constructor(private httpClient: HttpClient) { }
   save(procedure_sale: Procedure_Sale) {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
     return this.httpClient.post(this.API_ENDPOINT + 'procedure_sale', procedure_sale, { headers: headers });
   }
 }

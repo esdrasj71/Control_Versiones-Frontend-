@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Procedure_AccountsReceivable} from '../interfaces/procedure_accounts_receivable';
 import {AccountsRecivable} from '../interfaces/accounts-receivable';
 import {Payment} from '../interfaces/payment';
@@ -37,12 +37,14 @@ export class AccountsReceivableComponent implements OnInit {
   //filtro para buscar cliente
   filtrado_clientes = '';
   constructor(private accountsReceivableService: AccountsReceivableService, private httpClient: HttpClient, private procedure_accountsService: ProcedureAccountsreceivableService) {
-    httpClient.get(this.API_ENDPOINT + 'accounts_receivable')
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
+    httpClient.get(this.API_ENDPOINT + 'accounts_receivable',{headers})
     .subscribe((data: AccountsRecivable[])=>{
       this.accounts_recivable = data;
     })
     
-    httpClient.get(this.API_ENDPOINT + 'payment')
+    httpClient.get(this.API_ENDPOINT + 'payment',{headers})
+    
     .subscribe((data: Payment[])=>{
       this.tipos_pagos = data;
     })
@@ -52,8 +54,9 @@ export class AccountsReceivableComponent implements OnInit {
   }
 
   mostrar_facturas(idcliente, nombre, nit, total_cobrar){
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
     this.procedure_accountsReceivable.Customers_Id = idcliente;
-    this.httpClient.get(this.API_ENDPOINT + 'accounts_receivable/'+idcliente)
+    this.httpClient.get(this.API_ENDPOINT + 'accounts_receivable/'+idcliente,{headers})
     .subscribe((data:AccountsRecivable[])=>{
       this.facturas = data;
       this.contador = this.facturas.length;
@@ -64,7 +67,8 @@ export class AccountsReceivableComponent implements OnInit {
   }
   
   mostrarDetalle_facturas(idbillHeader){
-    this.httpClient.get(this.API_ENDPOINT + 'accounts_receivablee/'+ idbillHeader)
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
+    this.httpClient.get(this.API_ENDPOINT + 'accounts_receivablee/'+ idbillHeader, {headers})
     .subscribe((data:AccountsRecivable[])=>{
       this.datalles_facturas = data;
     })
