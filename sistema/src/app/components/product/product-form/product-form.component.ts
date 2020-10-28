@@ -106,7 +106,6 @@ export class ProductFormComponent implements OnInit {
     if (this.editing) {
       console.log(this.product);
       this.product.Product_Category_Id = this.selectedCategoryId;
-      this.product.Product_Category_Id = this.selectedCategoryId;
       this.product.Brand_Id = this.selectedBrandId;
       this.productService.put(this.product).subscribe(
         (data) => {

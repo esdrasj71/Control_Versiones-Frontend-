@@ -1,5 +1,4 @@
 <div class="container">
-  <h2 style="text-align: center; color: white; font-weight: bold;">Sistema de Compras</h2><br>
   <div class="row">
     <div class="col-sm-5 col-md-6">
       <div class="card" style="width: 31rem; right: 5rem">
@@ -12,14 +11,8 @@
                 <div class="form-group row">
                   <label for="Correlative_Number" class="col-form-label">No Factura:</label>
                   <div class="col-sm-7">
-                    <input
-                      [(ngModel)]="header.Correlative_Number"
-                      type="text"
-                      id="Correlative_Number"
-                      class="form-control"
-                      placeholder="No.Correlativo"
-                      tabindex="1"
-                    />
+                    <input [(ngModel)]="header.Correlative_Number" type="text" id="Correlative_Number"
+                      class="form-control" placeholder="No.Correlativo" tabindex="1" />
                   </div>
                 </div>
               </div>
@@ -27,14 +20,8 @@
                 <div class="form-group row">
                   <label for="Serie" class="col-form-label">Serie:</label>
                   <div class="col-sm-9">
-                    <input
-                      [(ngModel)]="header.Serie"
-                      type="text"
-                      id="Serie"
-                      class="form-control"
-                      placeholder="Serie"
-                      tabindex="2"
-                    />
+                    <input [(ngModel)]="header.Serie" type="text" id="Serie" class="form-control" placeholder="Serie"
+                      tabindex="2" />
                   </div>
                 </div>
               </div>
@@ -42,18 +29,10 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="Date_Purchase" class="col-form-label"
-                    >Fecha de realizacion:</label
-                  >
+                  <label for="Date_Purchase" class="col-form-label">Fecha de realizacion:</label>
                   <div class="col">
-                    <input
-                      [(ngModel)]="header.Date_Purchase"
-                      type="date"
-                      id="Date_Purchase"
-                      class="form-control"
-                      placeholder="Fecha de compra"
-                      tabindex="3"
-                    />
+                    <input [(ngModel)]="header.Date_Purchase" type="date" id="Date_Purchase" class="form-control"
+                      placeholder="Fecha de compra" tabindex="3" />
                   </div>
                 </div>
               </div>
@@ -61,35 +40,22 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="Providers_Id" class="col-form-label"
-                    >Proveedor:</label
-                  >
+                  <label for="Providers_Id" class="col-form-label">Proveedor:</label>
                   <div class="col">
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      data-toggle="modal"
-                      data-target=".bd-example-modal-lg"
-                    >
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                      data-target=".bd-example-modal-lg">
                       Buscar Proveedor
                     </button>
                     <br />
                     <div *ngFor="let select of proveedor_seleccionado">
-                      <label for="Providers_Id" class="col-form-label"
-                        >ID: {{ select.Providers_Id }}</label
-                      >
+                      <label for="Providers_Id" class="col-form-label">ID: {{ select.Providers_Id }}</label>
                       <br />
-                      <label for="proveedores" class="col-form-label"
-                        >Nombre Fiscal :{{ select.Fiscal_Name }}
+                      <label for="proveedores" class="col-form-label">Nombre Fiscal :{{ select.Fiscal_Name }}
                       </label>
                       <br />
-                      <label for="proveedores" class="col-form-label"
-                        >NIT: {{ select.NIT }}</label
-                      >
+                      <label for="proveedores" class="col-form-label">NIT: {{ select.NIT }}</label>
                       <br />
-                      <label for="proveedores" class="col-form-label"
-                        >Dirección: {{ select.Address }}</label
-                      >
+                      <label for="proveedores" class="col-form-label">Dirección: {{ select.Address }}</label>
                     </div>
                   </div>
                 </div>
@@ -101,18 +67,10 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="Observations" class="col-form-label"
-                    >Observaciónes:</label
-                  >
+                  <label for="Observations" class="col-form-label">Observaciónes:</label>
                   <div class="col">
-                    <textarea
-                      [(ngModel)]="header.Observations"
-                      class="form-control"
-                      id="Observations"
-                      rows="2"
-                      placeholder="Escribas las observaciónes de la compra"
-                      tabindex="7"
-                    ></textarea>
+                    <textarea [(ngModel)]="header.Observations" class="form-control" id="Observations" rows="2"
+                      placeholder="Escribas las observaciónes de la compra" tabindex="7"></textarea>
                   </div>
                 </div>
               </div>
@@ -122,739 +80,429 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group row">
-                  <label
-                    for="Total"
-                    class="col-form-label"
-                    style="font-size: 35px; color: red"
-                    >Total:</label
-                  >
-                  <div class="col">
-                    <label
-                      [(ngModel)]="header.Total"
-                      style="font-size: 35px; color: red"
-                      id="Total"
-                      class="form-control"
-                      value="0"
-                      tabindex="8"
-                      ngDefaultControl
-                      >Q{{ total }}</label
-                    >
-                  </div>
+                  <<<<<<< HEAD <label for="Total" class="col-form-label" style="font-size: 35px; color: red">
+                    Total:</label>
+                    <div class="col">
+                      <label [(ngModel)]="header.Total" style="font-size: 35px; color: red" id="Total"
+                        class="form-control" value="0" tabindex="8" ngDefaultControl>Q{{ total }}</label>
+                      =======
+                      <label for="Total" class="col-form-label" style="font-size: 45px; color: red">Total:</label>
+                      <div class="col">
+                        <label [(ngModel)]="header.Total" style="font-size: 45px; color: red" id="Total"
+                          class="form-control" value="0" tabindex="8" ngDefaultControl>Q{{ total }}</label>
+                        >>>>>>> Ramajulio
+                      </div>
+                    </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
-      <div class="card" style="width: 49rem; right: 8rem">
-        <div class="card-body">
-          <h5 class="card-title"><b>Busqueda de producto</b></h5>
-          <hr />
-          <div class="form-group">
-            <div class="col">
-              <label for="product" class="col-form-label">Producto:</label>
-              &nbsp;
-              <button
-                type="button"
-                class="btn btn-primary"
-                data-toggle="modal"
-                data-target=".bd-producto-modal-lg"
-              >
-                Buscar Producto
+      <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+        <div class="card" style="width: 49rem; right: 8rem">
+          <div class="card-body">
+            <h5 class="card-title"><b>Busqueda de producto</b></h5>
+            <hr />
+            <div class="form-group">
+              <div class="col">
+                <label for="product" class="col-form-label">Producto:</label>
+                &nbsp;
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-producto-modal-lg">
+                  Buscar Producto
+                </button>
+              </div>
+              <hr />
+              <h5 class="card-title"><b>Detalle de la compra</b></h5>
+
+              <table class="table table-dark" style="table-layout: fixed; word-wrap: break-word" id="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">ID Producto</th>
+                    <th scope="col">No. Correlativo</th>
+                    <th scope="col">Producto</th>
+                    <th scope="col">No. Lote</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Subtotal</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let inventario of vista_detail; let i = index">
+                    <td>{{ inventario[0].Product_Id }}</td>
+                    <td>{{ inventario[0].Correlative_Product }}</td>
+                    <th>{{ inventario[0].Complete }}</th>
+                    <th>{{ inventario[0].Lot_Id }}</th>
+                    <td>
+                      <input type="number" class="form-control" [(ngModel)]="cantidad[i]" />
+                    </td>
+                    <td>
+                      <input type="number" class="form-control" [(ngModel)]="precio[i]" #box (keyup.enter)="
+                        onEnter(cantidad[i], precio[i], inventario)
+                      " />
+                    </td>
+                    <td>{{ inventario[0].Subtotal }}</td>
+                    <td>
+                      <button class="btn btn-danger" type="button" (click)="EliminarDetalle(i, inventario)"
+                        onClick="EliminarFila(this)">
+                        X
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <!--data-toggle="modal"
+            data-target=".bd-cobro-modal-lg"       (click)="savePost()" -->
+              <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bd-cobro-modal-lg">
+                Continuar compra
               </button>
             </div>
-            <hr />
-            <h5 class="card-title"><b>Detalle de la compra</b></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-            <table
-              class="table table-dark"
-              style="table-layout: fixed; word-wrap: break-word"
-              id="table"
-            >
+  <!--MODALS PROVEEDORES-->
+  <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px">
+      <div class="modal-content" style="width: 900px">
+        <div class="modal-header" style="width: 900px" style="background-color:#EC7063">
+          <h5 class="modal-title" id="exampleModalLongTitle">
+            Encuentre su proveedor
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y: auto">
+          <div class="container">
+            <div class="form-group row">
+              <label for="proveedores" class="col-form-label">Proveedor:</label>
+              <div class="col">
+                <input type="text" name="proveedores" id="proveedores" class="form-control"
+                  placeholder="Buscar proveedor" [(ngModel)]="filtrado_proveedor" tabindex="4" />
+                <br>
+                <button type="button" class="btn btn-danger" data-toggle="modal" style="background-color:#EC7063;"
+                  data-target=".bd-agregarproveedor-modal-lg">
+                  + Agregar Proveedor
+                </button>
+              </div>
+            </div>
+            <table class="table table-hover"
+              style="table-layout: fixed; word-wrap: break-word; background-color:#F8F9F9;" id="table">
               <thead class="thead-dark">
                 <tr>
-                  <th scope="col">ID Producto</th>
-                  <th scope="col">No. Correlativo</th>
-                  <th scope="col">Producto</th>
-                  <th scope="col">No. Lote</th>
-                  <th scope="col">Cantidad</th>
-                  <th scope="col">Precio</th>
-                  <th scope="col">Subtotal</th>
-                  <th scope="col"></th>
+                  <th scope="col">#</th>
+                  <th scope="col">NIT</th>
+                  <th scope="col">Nombre Fiscal</th>
+                  <th scope="col">Número de telefono</th>
+                  <th scope="col">Otro número de telefono</th>
+                  <th scope="col">Correo electronico</th>
+                  <th scope="col">Dirección</th>
+                  <th scope="col">Acción</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let inventario of vista_detail; let i = index">
-                  <td>{{ inventario[0].Product_Id }}</td>
-                  <td>{{ inventario[0].Correlative_Product }}</td>
-                  <th>{{ inventario[0].Complete }}</th>
-                  <th>{{ inventario[0].Lot_Id }}</th>
+                <tr *ngFor="
+                  let provider of providers
+                    | filtradoprovider: filtrado_proveedor
+                ">
+                  <td height="10">{{ provider.Providers_Id }}</td>
+                  <td height="10">{{ provider.NIT }}</td>
+                  <td height="10">{{ provider.Fiscal_Name }}</td>
+                  <td height="10">{{ provider.Phone_Number1 }}</td>
+                  <td>{{ provider.Phone_Number2 }}</td>
+                  <td>{{ provider.Email }}</td>
+                  <td>{{ provider.Address }}</td>
                   <td>
-                    <input
-                      type="number"
-                      class="form-control"
-                      [(ngModel)]="cantidad[i]"
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="number"
-                      class="form-control"
-                      [(ngModel)]="precio[i]"
-                      #box
-                      (keyup.enter)="
-                        onEnter(cantidad[i], precio[i], inventario)
-                      "
-                    />
-                  </td>
-                  <td>{{ inventario[0].Subtotal }}</td>
-                  <td>
-                    <button
-                      class="btn btn-danger"
-                      type="button"
-                      (click)="EliminarDetalle(i, inventario)"
-                      onClick="EliminarFila(this)"
-                    >
-                      X
-                    </button>
+                    <<<<<<< HEAD <a class="btn btn-warning btn-sm" style="background-color:#F7985B; color: white;"
+                      (click)="getProviderId(provider.Providers_Id)" data-dismiss="modal">Seleccionar</a>
+                      =======
+                      <a class="btn btn-primary btn-sm" (click)="getProviderId(provider.Providers_Id)"
+                        data-dismiss="modal">Seleccionar</a>
+                      >>>>>>> Ramajulio
+                      &nbsp;
                   </td>
                 </tr>
               </tbody>
             </table>
-            <!--data-toggle="modal"
-            data-target=".bd-cobro-modal-lg"       (click)="savePost()" -->
-            <button
-              type="button"
-              class="btn btn-success"
-              data-toggle="modal"
-              data-target=".bd-registro-modal-lg"
-            >
-              Registrar Compra
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--MODALS PROVEEDORES-->
-<div
-  class="modal fade bd-example-modal-lg"
-  id="exampleModalCenter"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="myLargeModalLabel"
-  aria-hidden="true"
->
-  <div
-    class="modal-dialog modal-lg modal-dialog-centered"
-    role="document"
-    style="width: 900px"
-  >
-    <div class="modal-content" style="width: 900px">
-      <div class="modal-header" style="width: 900px" style="background-color:#EC7063">
-        <h5 class="modal-title" id="exampleModalLongTitle">
-          Encuentre su proveedor
-        </h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div
-        class="modal-body"
-        style="max-height: 900px; max-width: 900px; overflow-y: auto"
-      >
-        <div class="container">
-          <div class="form-group row">
-            <label for="proveedores" class="col-form-label">Proveedor:</label>
-            <div class="col">
-              <input
-                type="text"
-                name="proveedores"
-                id="proveedores"
-                class="form-control"
-                placeholder="Buscar proveedor"
-                [(ngModel)]="filtrado_proveedor"
-                tabindex="4"
-              />
-              <br>
-              <button
-                type="button"
-                class="btn btn-danger" 
-                data-toggle="modal" style="background-color:#EC7063;"
-                data-target=".bd-agregarproveedor-modal-lg"
-              >
-                + Agregar Proveedor
-              </button>
-            </div>
-          </div>
-          <table
-            class="table table-hover"
-            style="table-layout: fixed; word-wrap: break-word; background-color:#F8F9F9;"
-            id="table"
-          >
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">NIT</th>
-                <th scope="col">Nombre Fiscal</th>
-                <th scope="col">Número de telefono</th>
-                <th scope="col">Otro número de telefono</th>
-                <th scope="col">Correo electronico</th>
-                <th scope="col">Dirección</th>
-                <th scope="col">Acción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                *ngFor="
-                  let provider of providers
-                    | filtradoprovider: filtrado_proveedor
-                "
-              >
-                <td height="10">{{ provider.Providers_Id }}</td>
-                <td height="10">{{ provider.NIT }}</td>
-                <td height="10">{{ provider.Fiscal_Name }}</td>
-                <td height="10">{{ provider.Phone_Number1 }}</td>
-                <td>{{ provider.Phone_Number2 }}</td>
-                <td>{{ provider.Email }}</td>
-                <td>{{ provider.Address }}</td>
-                <td>
-                  <a
-                    class="btn btn-warning btn-sm" style="background-color:#F7985B; color: white;"
-                    (click)="getProviderId(provider.Providers_Id)"
-                    data-dismiss="modal"
-                    >Seleccionar</a
-                  >
-                  &nbsp;
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <!--<pagination-controls (pageChange)="paginaActual = $event" previousLabel="Anterior"
+            <!--<pagination-controls (pageChange)="paginaActual = $event" previousLabel="Anterior"
       nextLabel="Siguiente" maxSize="9" autoHide="true"></pagination-controls>-->
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-          Cerrar
-        </button>
-        <button type="button" class="btn btn-danger" style="background-color:#EC7063;">Guardar Cambios</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!--MODALS PRODUCTOS-->
-<div
-  class="modal fade bd-producto-modal-lg"
-  id="exampleModalCenter"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="myLargeModalLabel"
-  aria-hidden="true"
->
-  <div
-    class="modal-dialog modal-lg modal-dialog-centered"
-    role="document"
-    style="width: 900px"
-  >
-    <div class="modal-content" style="width: 900px">
-      <div class="modal-header" style="width: 900px" style="background-color:#EC7063">
-        <h5 class="modal-title" id="exampleModalLongTitle">
-          Encuentre su producto
-        </h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div
-        class="modal-body"
-        style="max-height: 900px; max-width: 900px; overflow-y: auto"
-      >
-        <div class="container">
-          <div class="form-group row">
-            <label for="proveedores" class="col-form-label">Producto:</label>
-            <div class="col">
-              <input
-                type="text"
-                name="product"
-                id="product"
-                class="form-control"
-                placeholder="Buscar producto"
-                [(ngModel)]="filtrado_product"
-                tabindex="9"
-              /><br>
-              <button
-                type="button"
-                class="btn btn-danger btn-sm" style="background-color:#EC7063;"
-                data-toggle="modal"
-                data-target=".bd-agregarproducto-modal-lg"
-              >
-                + Agregar Producto
-              </button>
-              &nbsp;
-              <button
-                type="button"
-                class="btn btn-danger btn-sm" style="background-color:#EC7063;"
-                data-toggle="modal"
-                data-target=".bd-lote-modal-lg"
-              >
-                + Añadir lote nuevo
-              </button>
-            </div>
-          </div>
-          <table
-            class="table table-hover"
-            style="table-layout: fixed; word-wrap: break-word; background-color:#F8F9F9;" 
-            id="table"
-          >
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">IDproducto</th>
-                <th scope="col">Correlativo Producto</th>
-                <th scope="col">Producto-Marca-Categoria</th>
-                <th scope="col">No. Lote</th>
-                <th scope="col">Fecha Caducidad</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                *ngFor="
-                  let inv of inventory | filtradoinventory: filtrado_product
-                "
-              >
-                <td height="10">{{ inv.Inventory_Id }}</td>
-                <td height="10">{{ inv.Product_Id }}</td>
-                <td height="10">{{ inv.Correlative_Product }}</td>
-                <td height="10">{{ inv.ProductComplete }}</td>
-                <td height="10">{{ inv.Lot_Id }}</td>
-                <td height="10">{{ inv.DueDate | date: "d-M-y" }}</td>
-                <td>
-                  <a
-                    class="btn btn-warning btn-sm" 
-                    style="background-color:#F7985B; color: white;"
-                    (click)="getProductId(inv.Product_Id)"
-                    data-dismiss="modal"
-                    >Seleccionar</a
-                  >
-                  &nbsp;
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <!-- <pagination-controls (pageChange)="paginaActualp = $event" previousLabel="Anterior"
-      nextLabel="Siguiente" maxSize="9" autoHide="true"></pagination-controls>-->
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-          Cerrar
-        </button>
-        <button type="button" class="btn btn-danger" style="background-color:#EC7063;"
-        >Guardar Cambios</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!--MODAL AGREGAR PROVEEDORES-->
-<div
-  class="modal fade bd-agregarproveedor-modal-lg"
-  id="exampleModalCenter"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="myLargeModalLabel"
-  aria-hidden="true"
->
-  <div
-    class="modal-dialog modal-lg modal-dialog-centered"
-    role="document"
-    style="width: 900px"
-  >
-    <div class="modal-content" style="width: 900px">
-      <div class="modal-header" style="width: 900px">
-        <h5 class="modal-title" id="exampleModalLongTitle">
-          Encuentre su proveedor
-        </h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div
-        class="modal-body"
-        style="max-height: 900px; max-width: 900px; overflow-y: auto"
-      >
-        <app-providers-form
-          (Provider_Id)="getProviderId($event)"
-        ></app-providers-form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-          Cerrar
-        </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!--MODAL AGREGAR PRODUCTO-->
-<div
-  class="modal fade bd-agregarproducto-modal-lg"
-  id="exampleModalCenter"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="myLargeModalLabel"
-  aria-hidden="true"
->
-  <div
-    class="modal-dialog modal-lg modal-dialog-centered"
-    role="document"
-    style="width: 900px"
-  >
-    <div class="modal-content" style="width: 900px">
-      <div class="modal-header" style="width: 900px">
-        <h5 class="modal-title" id="exampleModalLongTitle">
-          Agregue de forma rapido su producto
-        </h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div
-        class="modal-body"
-        style="max-height: 900px; max-width: 900px; overflow-y: auto"
-      >
-        <app-product-form
-          (Product_Id)="getProductId($event)"
-        ></app-product-form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-          Cerrar
-        </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!--MODAL AGREGAR PRODUCTO-->
-<div
-  class="modal fade bd-lote-modal-lg"
-  id="exampleModalCenter"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="myLargeModalLabel"
-  aria-hidden="true"
->
-  <div
-    class="modal-dialog modal-lg modal-dialog-centered"
-    role="document"
-    style="width: 900px"
-  >
-    <div class="modal-content" style="width: 900px">
-      <div class="modal-header" style="width: 900px">
-        <h5 class="modal-title" id="exampleModalLongTitle">
-          Agregue de forma rapido su producto
-        </h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div
-        class="modal-body"
-        style="max-height: 900px; max-width: 900px; overflow-y: auto"
-      >
-        <app-lot-form (Lot_Id)="getLotId($event)"></app-lot-form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-          Cerrar
-        </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- MODAL ANTES DE REGISTRAR LA COMPRA -->
-<div
-  class="modal fade bd-registro-modal-lg"
-  id="exampleModalCenter"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="myLargeModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-    <div class="modal-content modal-dialog" style="width: px">
-      <div class="modal-header d-flex justify-content-center" style="background-color:#EC7063">
-        <h5 class="heading" style="color: white; position: center">
-          Registre el tipo de pago de esta compra
-        </h5>
-        <button
-          (click)="cerrarpago()"
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div
-        class="modal-body"
-        style="max-height: 900px; max-width: 900px; overflow-y: auto"
-      >
-        <div class="container">
-          <div class="form-group">
-            <label for="Observations" class="col-form-label" style="font-size: 2rem;"
-              ><b>¿Esta pagado?</b></label
-            >
-            <div class="col">
-              <p style="color:blue;">De click al cuadro para afirmar que esta pagado, en caso contrario de click al botón de registrar la compra</p>
-              <input
-                #small
-                type="checkbox"
-                id="Payment_Complete"
-                v-model="Payment_Complete"
-                class="formcontrol"
-                [(ngModel)]="header.Payment_Complete"
-                class="form-control"
-                data-toggle="modal"
-                data-target=".bd-cobro-modal-lg"
-              />
-            </div>
-          </div>
-
-          <div class="form-group">
-            <button type="button" class="btn btn-primary" (click)="savePost()">
-              Registrar la compra
-            </button>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" (click)="cerrarpago()" data-dismiss="modal">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
             Cerrar
           </button>
+          <button type="button" class="btn btn-danger" style="background-color:#EC7063;">Guardar Cambios</button>
         </div>
       </div>
     </div>
   </div>
-</div>
-<!-- MODO DE PAGO DE COMPRAS-->
-<div
-  class="modal fade bd-cobro-modal-lg"
-  id="exampleModalCenter"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="myLargeModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-    <div class="modal-content modal-dialog" style="width: px">
-      <div class="modal-header d-flex justify-content-center" style="background-color:#EC7063">
-        <h5 class="heading">Registre el tipo de pago de esta compra</h5>
-        <button
-          type="button"
-          class="close"
-          (click)="cerrarpago()"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div
-        class="modal-body"
-        style="max-height: 900px; max-width: 900px; overflow-y: auto"
-      >
-        <div class="container">
-          <h3 style="text-align: center">Tipo de pago</h3>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group row">
-                <div class="col-sm-4">
-                  <input
-                    type="checkbox"
-                    ngDefaultControl
-                    (click)="mostraralcredito()"
-                    [(ngModel)]="pago_alcredito"
-                    class="form-control"
-                    tabindex="1"
-                  />
-                </div>
-                <label for="correlativo" class="col-form-label"
-                  >Al credito</label
-                >
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group row">
-                <div class="col-sm-4">
-                  <input
-                    type="checkbox"
-                    (click)="mostraralcontado()"
-                    [(ngModel)]="pago_alcontado"
-                    ngDefaultControl
-                    class="form-control"
-                    tabindex="1"
-                  />
-                </div>
-                <label for="serie" class="col-form-label">Al contado</label>
-              </div>
-            </div>
-          </div>
-          <hr />
-          <h3 style="text-align: center">Monto</h3>
-          <div *ngIf="pago_alcontado">
-            <hr />
-            <b style="font-size: 23px; color: red">Al contado</b>
-            <br />
-            <div class="row">
-              <div class="col-md-5">
-                <div class="form-group row">
-                  <label for="correlativo" class="col-form-label">Monto:</label>
-                  <div class="col-md-6">
-                    <input
-                      type="number"
-                      min="0"
-                      #boxalcontado
-                      (keyup.enter)="onPagoalcontado(boxalcontado.value)"
-                      ngDefaultControl
-                      name="monto"
-                      id="monto"
-                      class="form-control"
-                      placeholder=" "
-                      tabindex="1"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label for="serie" class="col-form-label">Descripcion:</label>
-                  <div class="col-sm-7">
-                    <textarea
-                      ngDefaultControl
-                      name="descripcion"
-                      [ngModel]="payment.Description"
-                      id="descripcion"
-                      class="form-control"
-                      placeholder=""
-                      tabindex="1"
-                    ></textarea>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <hr />
-          </div>
-          <div *ngIf="pago_alcredito">
-            <hr />
-            <b style="font-size: 23px; color: red">Al credito</b>
-            <br />
-            <div class="row">
-              <div class="col-md-5">
-                <div class="form-group row">
-                  <label for="" class="col-form-label">Monto:</label>
-                  <div class="col-md-6">
-                    <input
-                      type="number"
-                      min="0"
-                      max="total_cobro"
-                      #boxalcredito
-                      (keyup.enter)="onPagoalcredito(boxalcredito.value)"
-                      ngDefaultControl
-                      name="monto"
-                      id="monto"
-                      class="form-control"
-                      placeholder=""
-                      tabindex="1"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label for="" class="col-form-label">Descripcion:</label>
-                  <div class="col-sm-7">
-                    <textarea
-                      ngDefaultControl
-                      name="descripcion"
-                      [ngModel]="payment.Description"
-                      id="descripcion"
-                      class="form-control"
-                      placeholder=""
-                      tabindex="1"
-                    ></textarea>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <hr />
-          </div>
-          <hr />
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group row">
-                <label
-                  style="font-size: 20px; color: blue"
-                  class="col-form-label"
-                  >Monto Total:</label
-                >
-                <div class="col-sm-4">
-                  <label
-                    style="font-size: 20px; color: blue"
-                    class="col-form-label"
-                  >
-                    Q{{ total_cobro }}</label
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  (click)="Payment()"
-                  data-dismiss="modal"
-                >
-                  Registrar Pago
+  <!--MODALS PRODUCTOS-->
+  <div class="modal fade bd-producto-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px">
+      <div class="modal-content" style="width: 900px">
+        <div class="modal-header" style="width: 900px" style="background-color:#EC7063">
+          <h5 class="modal-title" id="exampleModalLongTitle">
+            Encuentre su producto
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y: auto">
+          <div class="container">
+            <div class="form-group row">
+              <label for="proveedores" class="col-form-label">Producto:</label>
+              <div class="col">
+                <<<<<<< HEAD <input type="text" name="product" id="product" class="form-control"
+                  placeholder="Buscar producto" [(ngModel)]="filtrado_product" tabindex="9" /><br>
+                <button type="button" class="btn btn-danger btn-sm" style="background-color:#EC7063;"
+                  data-toggle="modal" data-target=".bd-agregarproducto-modal-lg">
+                  + Agregar Producto
                 </button>
+                &nbsp;
+                <button type="button" class="btn btn-danger btn-sm" style="background-color:#EC7063;"
+                  data-toggle="modal" data-target=".bd-lote-modal-lg">
+                  =======
+                  <input type="text" name="product" id="product" class="form-control" placeholder="Buscar producto"
+                    [(ngModel)]="filtrado_product" tabindex="9" />
+                  <button type="button" class="btn btn-primary" data-toggle="modal"
+                    data-target=".bd-agregarproducto-modal-lg">
+                    + Agregar Producto
+                  </button>
+                  &nbsp;
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-lote-modal-lg">
+                    >>>>>>> Ramajulio
+                    + Añadir lote nuevo
+                  </button>
               </div>
             </div>
+            <<<<<<< HEAD <table class="table table-hover"
+              style="table-layout: fixed; word-wrap: break-word; background-color:#F8F9F9;" id="table">
+              <thead class="thead-dark">
+                =======
+                <table class="table table-dark" style="table-layout: fixed; word-wrap: break-word" id="table">
+                  <thead>
+                    >>>>>>> Ramajulio
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">IDproducto</th>
+                      <th scope="col">Correlativo Producto</th>
+                      <th scope="col">Producto-Marca-Categoria</th>
+                      <th scope="col">No. Lote</th>
+                      <th scope="col">Fecha Caducidad</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="
+                  let inv of inventory | filtradoinventory: filtrado_product
+                ">
+                      <td height="10">{{ inv.Inventory_Id }}</td>
+                      <td height="10">{{ inv.Product_Id }}</td>
+                      <td height="10">{{ inv.Correlative_Product }}</td>
+                      <td height="10">{{ inv.ProductComplete }}</td>
+                      <td height="10">{{ inv.Lot_Id }}</td>
+                      <td height="10">{{ inv.DueDate | date: "d-M-y" }}</td>
+                      <td>
+                        <<<<<<< HEAD <a class="btn btn-warning btn-sm" style="background-color:#F7985B; color: white;"
+                          (click)="getProductId(inv.Product_Id)" data-dismiss="modal">Seleccionar</a>
+                          =======
+                          <a class="btn btn-primary btn-sm" (click)="getProductId(inv.Product_Id)"
+                            data-dismiss="modal">Seleccionar</a>
+                          >>>>>>> Ramajulio
+                          &nbsp;
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- <pagination-controls (pageChange)="paginaActualp = $event" previousLabel="Anterior"
+      nextLabel="Siguiente" maxSize="9" autoHide="true"></pagination-controls>-->
           </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Cerrar
+          </button>
+          <button type="button" class="btn btn-danger" style="background-color:#EC7063;">Guardar Cambios</button>
         </div>
       </div>
     </div>
   </div>
-</div>
-<div style="height: 100px;"></div>
+  <!--MODAL AGREGAR PROVEEDORES-->
+  <div class="modal fade bd-agregarproveedor-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px">
+      <div class="modal-content" style="width: 900px">
+        <div class="modal-header" style="width: 900px">
+          <h5 class="modal-title" id="exampleModalLongTitle">
+            Encuentre su proveedor
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y: auto">
+          <app-providers-form (Provider_Id)="getProviderId($event)"></app-providers-form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Cerrar
+          </button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--MODAL AGREGAR PRODUCTO-->
+  <div class="modal fade bd-agregarproducto-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px">
+      <div class="modal-content" style="width: 900px">
+        <div class="modal-header" style="width: 900px">
+          <h5 class="modal-title" id="exampleModalLongTitle">
+            Agregue de forma rapido su producto
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y: auto">
+          <app-product-form (Product_Id)="getProductId($event)"></app-product-form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Cerrar
+          </button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--MODAL AGREGAR PRODUCTO-->
+  <div class="modal fade bd-lote-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px">
+      <div class="modal-content" style="width: 900px">
+        <div class="modal-header" style="width: 900px">
+          <h5 class="modal-title" id="exampleModalLongTitle">
+            Agregue de forma rapido su producto
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y: auto">
+          <app-lot-form (Lot_Id)="getLotId($event)"></app-lot-form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Cerrar
+          </button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- MODAL ANTES DE REGISTRAR LA COMPRA -->
+  <<<<<<< HEAD <div class="modal fade bd-registro-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content modal-dialog" style="width: px">
+        <div class="modal-header d-flex justify-content-center" style="background-color:#EC7063">
+          <h5 class="heading" style="color: white; position: center">
+            Registre el tipo de pago de esta compra
+          </h5>
+          <button (click)="cerrarpago()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y: auto">
+          <div class="container">
+            <div class="form-group">
+              <label for="Observations" class="col-form-label" style="font-size: 2rem;"><b>¿Esta pagado?</b></label>
+              <div class="col">
+                <p style="color:blue;">De click al cuadro para afirmar que esta pagado, en caso contrario de click al
+                  botón de registrar la compra</p>
+                <input #small type="checkbox" id="Payment_Complete" v-model="Payment_Complete" class="formcontrol"
+                  [(ngModel)]="header.Payment_Complete" class="form-control" data-toggle="modal"
+                  data-target=".bd-cobro-modal-lg" />
+              </div>
+            </div>
+            =======
+            >>>>>>> Ramajulio
+
+            <!-- MODO DE PAGO DE COMPRAS-->
+            <div class="modal fade bd-cobro-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+              aria-labelledby="myLargeModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content modal-dialog" style="width: px">
+                  <div class="modal-header d-flex justify-content-center" style="background-color:#EC7063">
+                    <h5 class="heading">Registre el tipo de pago de esta compra</h5>
+                    <button type="button" class="close" (click)="cerrarpago()" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y: auto">
+                    <div class="container">
+                      <h3 style="text-align: center">Tipo de pago</h3>
+                      <hr />
+                      <h3 style="color: red; text-align: center">Al contado</h3>
+                      <br />
+                      <div class="row">
+                        <div class="col-md-5">
+                          <div class="form-group row">
+                            <label for="correlativo" class="col-form-label">Abono:</label>
+                            <div class="col-md-8">
+                              <input type="number" min="0" #boxalcontado
+                                (keyup.enter)="onPagoalcontado(boxalcontado.value)" ngDefaultControl name="monto"
+                                id="monto" class="form-control" placeholder=" " tabindex="1" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group row">
+                            <label for="Description" class="col-form-label">Descripcion:</label>
+                            <div class="col-md-12">
+                              <textarea rows="2" [(ngModel)]="payment.Description" id="Description" class="form-control"
+                                placeholder="" tabindex="2"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label style="font-size: 20px; color: blue" class="col-form-label">Monto total a
+                              pagar:</label>
+                            <div class="col-sm-4">
+                              <label style="font-size: 20px; color: blue" class="col-form-label">
+                                Q{{ total_cobro }}</label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <button type="button" class="btn btn-primary" (click)="savePost()" data-dismiss="modal">
+                              Registrar Compra
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <<<<<<< HEAD </div>
+                <div style="height: 100px;"></div>
+                =======
+            </div>
+            >>>>>>> Ramajulio

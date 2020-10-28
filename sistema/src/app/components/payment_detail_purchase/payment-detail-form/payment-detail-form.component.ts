@@ -14,10 +14,9 @@ import { Purchase_Header } from '../../purchase/interfaces/purchase-header';
 export class PaymentDetailFormComponent implements OnInit {
 
   paymentDetail: PaymentDetail = {
-    Payment_Detail_Purchase_Id: null,
     Total_Amount: null,
     Description: null,
-    Payment_Purchase_Id: null,
+    Method_Name: null,
     Purchase_Header_Id: null,
   }; //este arreglo define los campos que se van a ingresar en el formulario
   API_ENDPOINT = 'http://localhost:3000/';

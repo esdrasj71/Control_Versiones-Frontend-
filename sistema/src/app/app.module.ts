@@ -50,6 +50,7 @@ import { FiltradoinventoryPipe } from './pipes/filtradoinventory.pipe';
 import { AccountsReceivableComponent } from './components/accounts_receivable/accounts-receivable/accounts-receivable.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { DebsToPayHomeComponent } from './components/debs_to_pay/debs-to-pay-home/debs-to-pay-home.component';
 
 
 const routes: Route[] = [
@@ -115,6 +116,8 @@ const routes: Route[] = [
   { path: 'home', component: HomeComponent },
   //Login
   { path: 'login', component: LoginComponent },
+  //Debs to Pay
+  { path: 'debs-to-pay-home', component: DebsToPayHomeComponent },
 
 ];
 
@@ -166,7 +169,8 @@ const routes: Route[] = [
     FiltradoinventoryPipe,
     AccountsReceivableComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    DebsToPayHomeComponent,
   ],
   imports: [
     BrowserModule,

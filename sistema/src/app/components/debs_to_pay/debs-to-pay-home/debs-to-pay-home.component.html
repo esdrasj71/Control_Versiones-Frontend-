@@ -1,0 +1,183 @@
+<div class="container" style="left: 100px;">
+  <h1 style="text-align: center; font-weight: bold;">Cuentas por Pagar</h1>
+  <h2 style="text-align: center;">____________________</h2><br><br>
+  <form>
+    <div class="form-group row">
+      &nbsp;&nbsp;&nbsp;<i class="fa fa-search"></i> &nbsp;&nbsp;&nbsp;
+      <input type="text" class="form-control" name="searchTerm3" [(ngModel)]="searchTerm3"
+        placeholder="Buscar proveedor" style="width: 250px;">&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
+  </form>
+
+  <table class="table table-hover" style="background-color:#F8F9F9;">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Nombre Fiscal</th>
+        <th scope="col">NIT</th>
+        <th scope="col">Teléfono</th>
+        <th scope="col">Total a Pagar</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let debstopay of debstopay | filterProviders:searchTerm3">
+        <td>{{debstopay.Fiscal_Name}}</td>
+        <td>{{debstopay.NIT}}</td>
+        <td>{{debstopay.Phone_Number1}}</td>
+        <td>Q. {{debstopay.Pay}}</td>
+        <td><a class="btn btn-info btn-sm" style="background-color: #6cb3aa;" data-toggle="modal"
+            data-target=".bd-purchase-modal-lg"
+            (click)="mostrar_facturas(debstopay.Providers_Id, debstopay.Fiscal_Name, debstopay.NIT, debstopay.Pay)">Ver
+            Detalle</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--MODAL Factura-->
+<div class="modal fade bd-purchase-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+  aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px">
+    <div class="modal-content" style="width: 900px">
+      <div class="modal-header" style="width: 900px">
+        <h5 class="modal-title" id="exampleModalLongTitle" style="color: black;">
+          Detalle de Facturas
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y: auto">
+        <div class="container">
+          <div class="form-group row col-md-4">
+            <h6 style="color: black;"><strong>Nombre Fiscal:</strong></h6>
+            <h6 style="color: black;">{{Fiscal_Name}}</h6>
+          </div>
+          <div class="form-group row col-md-4">
+            <h6 style="color: black;"><strong>NIT:</strong></h6>
+            <h6 style="color: black;">{{Nit}}</h6>
+          </div>
+          <div class="form-group row row col-md-4">
+            <h6 style="color: black;"><strong>Total Cuentas por Pagar:</strong></h6>
+            <h6 style="color: black;">Q.{{Total_Debs}}</h6>
+          </div>
+          <div class="form-group row row col-md-4">
+            <h6 for="bills" style="color: black;"><strong>Facturas a pagar: </strong> </h6>
+            <h6 for="bills" style="color: black;"> {{cont}} </h6>
+          </div>
+          <table class="table table-hover" style="background-color:#F8F9F9;">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Nombre Fiscal</th>
+                <th scope="col">Número de Factura</th>
+                <th scope="col">Serie</th>
+                <th scope="col">Fecha de emisión</th>
+                <th scope="col">Total a Pagar</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let bills of bills">
+                <td>{{bills.Fiscal_Name}}</td>
+                <td>{{bills.Correlative_Number}}</td>
+                <td>{{bills.Serie}}</td>
+                <td>{{bills.Date_Purchase|date:'d-M-y'}}</td>
+                <td>Q. {{bills.Pay}}</td>
+                <td><a class="btn btn-info btn-sm" style="background-color: #6cb3aa;" data-toggle="modal"
+                    data-target=".bd-purchasedetail-modal-lg"
+                    (click)="mostrar_facturas_detalle(bills.Purchase_Header_Id, bills.Pay, bills.Total)">Ver Detalle</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="form-group row">
+          <label for="" class="col-form-label" style="color: black;"><strong>Monto a pagar: </strong></label>
+          <div class="col-sm-7">
+            <input type="text" name="" id="" class="form-control" [(ngModel)]="procedure_debstopay.Quantity"
+              placeholder="Total a pagar" tabindex="1" />
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default"  [(ngModel)]="procedure_debstopay.Description">Descripción:</span>
+          </div>
+          <input type="text" class="form-control" aria-label="Default" placeholder="Añada una descripción..."
+            aria-describedby="inputGroup-sizing-default">
+        </div>
+        <button type="button" class="btn btn-primary" (click)="saveDebs()">
+          Cobrar
+          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cash" fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M15 4H1v8h14V4zM1 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H1z" />
+            <path
+              d="M13 4a2 2 0 0 0 2 2V4h-2zM3 4a2 2 0 0 1-2 2V4h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 12a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" />
+          </svg>
+        </button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--MODAL Factura Detalle-->
+<div class="modal fade bd-purchasedetail-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+  aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px">
+    <div class="modal-content" style="width: 900px">
+      <div class="modal-header" style="width: 900px">
+        <h5 class="modal-title" id="exampleModalLongTitle" style="color: black;">
+          Detalle de Facturas Detallado
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y: auto">
+        <div class="container">
+          <div class="form-group row">
+            <h5 style="color: black;"><strong>Total de la factura: </strong> </h5>
+            <h5 style="color: black;"> Q. {{TotalPurchase}}</h5>
+          </div>
+          <div class="form-group row">
+            <h5 style="color: black;"><strong>Total a pagar de la factura: </strong> </h5>
+            <h5 style="color: black;"> Q. {{Total}}</h5>
+          </div>
+          <table class="table table-hover" style="background-color:#F8F9F9;">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">No. de Factura</th>
+                <th scope="col">Producto</th>
+                <th scope="col">No. de Lote</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Precio</th>
+                <th scope="col">SubTotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let billsdetail of billsdetail">
+                <td>{{billsdetail.Correlative_Number}}</td>
+                <td>{{billsdetail.ProductComplete}}</td>
+                <td>{{billsdetail.Lot_Id}}</td>
+                <td>{{billsdetail.Quantity}}</td>
+                <td>Q. {{billsdetail.Unit_Price}}</td>
+                <td>Q. {{billsdetail.SubTotal}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
