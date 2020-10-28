@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DebsToPayService } from '../servicios/debs-to-pay.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DebstoPay } from '../interfaces/debs-to-pay';
 import { Procedure_DebstoPay } from '../interfaces/procedure_debstopay';
 
@@ -24,7 +24,8 @@ export class DebsToPayHomeComponent implements OnInit {
 
   cont = 0;
   constructor(private debstopayService: DebsToPayService, private httpClient: HttpClient) {
-    httpClient.get(this.API_ENDPOINT + 'DebstoPay')
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json','accesstoken':localStorage.getItem('token') });
+    httpClient.get(this.API_ENDPOINT + 'DebstoPay',{headers})
       .subscribe((data: DebstoPay[]) => {
         this.debstopay = data;
         console.log(this.debstopay);
@@ -44,8 +45,10 @@ export class DebsToPayHomeComponent implements OnInit {
   TotalPurchase = 0;
 
   mostrar_facturas(providersId, fiscal_name, nit, total_debs) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json','accesstoken':localStorage.getItem('token') });
+
     this.procedure_debstopay.Providers_Id = providersId;
-    this.httpClient.get(this.API_ENDPOINT + 'DebstoPay/' + providersId)
+    this.httpClient.get(this.API_ENDPOINT + 'DebstoPay/' + providersId,{headers})
       .subscribe((data: DebstoPay[]) => {
         this.bills = data;
         this.cont = this.bills.length;
@@ -56,7 +59,9 @@ export class DebsToPayHomeComponent implements OnInit {
   }
 
   mostrar_facturas_detalle(purchaseheaderId, total, totalpurchase) {
-    this.httpClient.get(this.API_ENDPOINT + 'DebstoPayPurchase/' + purchaseheaderId)
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json','accesstoken':localStorage.getItem('token') });
+
+    this.httpClient.get(this.API_ENDPOINT + 'DebstoPayPurchase/' + purchaseheaderId,{headers})
       .subscribe((data: DebstoPay[]) => {
         this.billsdetail = data;
         console.log(this.billsdetail);

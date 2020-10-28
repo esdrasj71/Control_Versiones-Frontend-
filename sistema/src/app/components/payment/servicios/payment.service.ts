@@ -11,29 +11,28 @@ export class PaymentService {
 
   payment = []; 
   constructor(private httpClient: HttpClient) {
-    httpClient.get(this.API_ENDPOINT + 'payment')
-      .subscribe((data: Payment[]) => {
-        this.payment = data;
-      }); 
+
    } 
   getPayment() {
-    return this.httpClient.get(this.API_ENDPOINT + 'payment');
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
+
+    return this.httpClient.get(this.API_ENDPOINT + 'payment',{headers});
   }
   save(payment: Payment) {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
     return this.httpClient.post(this.API_ENDPOINT + 'payment', payment, { headers: headers });
   }
   put(id) { //Le llamaremos put para fines practicos
-    const headers = new HttpHeaders({ 'ContentType': 'application/json' });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
     return this.httpClient.put(this.API_ENDPOINT + 'payment/' + id.Payment_Id, id, { headers: headers });
   }
   delete(id) {
-    const headers = new HttpHeaders({ 'ContentType': 'application/json' });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
     return this.httpClient.delete(this.API_ENDPOINT + 'payment/' + id, { headers: headers });
   }
   findbrand(payment: Payment) {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.httpClient.get(this.API_ENDPOINT + 'payment/:Payment_Id');
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
+    return this.httpClient.get(this.API_ENDPOINT + 'payment/:Payment_Id',{headers});
   }
 }
  

@@ -22,7 +22,7 @@ export class PaymentFormComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.params['id']; //Este es el parametro que se definio en la ruta de app.module.ts
     if (this.id) {
       this.editing = true;
-      this.httpClient.get(this.API_ENDPOINT + 'payment').subscribe((data: Payment[]) => { //Aqui traemos el arreglo completo de datos
+      this.paymentServicie.getPayment().subscribe((data: Payment[]) => { //Aqui traemos el arreglo completo de datos
         this.postarr = data;
         console.log(this.postarr);
         this.payment = this.postarr.find((m) => { return m.Payment_Purchase_Id == this.id }); //Aqui traemos solo el id que nos interesa
