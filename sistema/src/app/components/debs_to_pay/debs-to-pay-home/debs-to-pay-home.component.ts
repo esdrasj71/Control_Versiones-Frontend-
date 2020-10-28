@@ -41,6 +41,7 @@ export class DebsToPayHomeComponent implements OnInit {
   Total_Debs = 0;
   //Modal Detail 2
   Total = 0;
+  TotalPurchase = 0;
 
   mostrar_facturas(providersId, fiscal_name, nit, total_debs) {
     this.procedure_debstopay.Providers_Id = providersId;
@@ -54,7 +55,7 @@ export class DebsToPayHomeComponent implements OnInit {
     this.Total_Debs = total_debs;
   }
 
-  mostrar_facturas_detalle(purchaseheaderId, total) {
+  mostrar_facturas_detalle(purchaseheaderId, total, totalpurchase) {
     this.httpClient.get(this.API_ENDPOINT + 'DebstoPayPurchase/' + purchaseheaderId)
       .subscribe((data: DebstoPay[]) => {
         this.billsdetail = data;
@@ -62,6 +63,7 @@ export class DebsToPayHomeComponent implements OnInit {
         console.log(purchaseheaderId);
       })
     this.Total = total;
+    this.TotalPurchase = totalpurchase;
   }
   saveDebs() {
     if (this.procedure_debstopay.Quantity > this.Total_Debs) {

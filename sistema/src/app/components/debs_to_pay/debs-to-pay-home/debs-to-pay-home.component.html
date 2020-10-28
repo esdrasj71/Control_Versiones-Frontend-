@@ -86,7 +86,7 @@
                 <td>Q. {{bills.Pay}}</td>
                 <td><a class="btn btn-info btn-sm" style="background-color: #6cb3aa;" data-toggle="modal"
                     data-target=".bd-purchasedetail-modal-lg"
-                    (click)="mostrar_facturas_detalle(bills.Purchase_Header_Id, bills.Pay)">Ver Detalle</a>
+                    (click)="mostrar_facturas_detalle(bills.Purchase_Header_Id, bills.Pay, bills.Total)">Ver Detalle</a>
                 </td>
               </tr>
             </tbody>
@@ -141,6 +141,10 @@
       </div>
       <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y: auto">
         <div class="container">
+          <div class="form-group row">
+            <h5 style="color: black;"><strong>Total de la factura: </strong> </h5>
+            <h5 style="color: black;"> Q. {{TotalPurchase}}</h5>
+          </div>
           <div class="form-group row">
             <h5 style="color: black;"><strong>Total a pagar de la factura: </strong> </h5>
             <h5 style="color: black;"> Q. {{Total}}</h5>
