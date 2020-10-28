@@ -1,9 +1,7 @@
-import { NumberSymbol } from '@angular/common';
-
 export interface PaymentDetail {
     Payment_Detail_Purchase_Id?: number;
     Method_Name:number;
     Total_Amount: number;
-    Description: string;
+    Description: string; 
     Purchase_Header_Id:number;
 }

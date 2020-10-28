@@ -6,7 +6,10 @@ import {LoginService} from './components/login/servicios/login.service'
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
+
 export class AppComponent implements OnInit {
+
   title = 'sistema';
   isLog=true;
   usuario="";

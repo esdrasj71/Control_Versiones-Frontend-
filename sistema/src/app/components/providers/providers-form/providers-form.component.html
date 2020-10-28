@@ -1,49 +1,99 @@
-<div class="container card">
-    <button routerLink="/providers-home"> <- Regresar</button>
-    <div class="card-body">
-        <h2 class="alert alert-primary" role="alert">Nuevo Proveedor</h2>
-        <div class="alert alert-warning" role="alert">
-            <div class="form-group row">
-                <label class="col-md-3 form-controllabel" for="Nit">NIT</label>
-                <div class="col-md-9">
-                    <input [(ngModel)]="providers.NIT" type="text" id="Nit" class="form-control">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 form-controllabel" for="Fiscal_Name">Nombre Fiscal</label>
-                <div class="col-md-9">
-                    <input [(ngModel)]="providers.Fiscal_Name" type="text" id="Fiscal_Name" class="form-control">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 form-controllabel" for="Phone_Number1">Número de telefono</label>
-                <div class="col-md-9">
-                    <input [(ngModel)]="providers.Phone_Number1" type="text" id="Phone_Number1" class="form-control">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 form-controllabel" for="Phone_Number2">Otro número de telefono</label>
-                <div class="col-md-9">
-                    <input [(ngModel)]="providers.Phone_Number2" type="text" id="Phone_Number2" class="form-control">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 form-controllabel" for="Email">Correo electronico</label>
-                <div class="col-md-9">
-                    <input [(ngModel)]="providers.Email" type="text" id="Email" class="form-control">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 form-controllabel" for="Address">Dirección</label>
-                <div class="col-md-9">
-                    <input [(ngModel)]="providers.Address" type="text" id="Address" class="form-control">
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-md-12">
-                    <button (click)="savePost()"  class="btn btn-primary btnblock">Guardar</button>
-                </div>
-            </div>
+<div class="container">
+  <div class="container card">
+    <div class="card-body" style="height: 100%">
+      <h2 class="alert alert-primary" role="alert" style="text-align: center">
+        Editar/Agregar Proveedor
+      </h2>
+      <div
+        class="alert alert-warning"
+        role="alert"
+        style="background-color: #699dbf; height: 100%"
+      >
+        <div class="form-group row">
+          <label class="col-md-3 form-controllabel" for="Nit">NIT</label>
+          <div class="col-md-9">
+            <input
+              [(ngModel)]="providers.NIT"
+              type="text"
+              id="Nit"
+              class="form-control"
+            />
+          </div>
         </div>
+        <div class="form-group row">
+          <label class="col-md-3 form-controllabel" for="Fiscal_Name"
+            >Nombre Fiscal</label
+          >
+          <div class="col-md-9">
+            <input
+              [(ngModel)]="providers.Fiscal_Name"
+              type="text"
+              id="Fiscal_Name"
+              class="form-control"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 form-controllabel" for="Phone_Number1"
+            >Número de teléfono</label
+          >
+          <div class="col-md-9">
+            <input
+              [(ngModel)]="providers.Phone_Number1"
+              type="text"
+              id="Phone_Number1"
+              class="form-control"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 form-controllabel" for="Phone_Number2"
+            >Otro número de teléfono</label
+          >
+          <div class="col-md-9">
+            <input
+              [(ngModel)]="providers.Phone_Number2"
+              type="text"
+              id="Phone_Number2"
+              class="form-control"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 form-controllabel" for="Email"
+            >Correo electrónico</label
+          >
+          <div class="col-md-9">
+            <input
+              [(ngModel)]="providers.Email"
+              type="text"
+              id="Email"
+              class="form-control"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 form-controllabel" for="Address"
+            >Dirección</label
+          >
+          <div class="col-md-9">
+            <input
+              [(ngModel)]="providers.Address"
+              type="text"
+              id="Address"
+              class="form-control"
+            />
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-md-12">
+            <button (click)="savePost()" class="btn btn-success btnblock">
+              Guardar
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

@@ -107,7 +107,6 @@ export class ProductFormComponent implements OnInit {
     if (this.editing) {
       console.log(this.product);
       this.product.Product_Category_Id = this.selectedCategoryId;
-      this.product.Product_Category_Id = this.selectedCategoryId;
       this.product.Brand_Id = this.selectedBrandId;
       this.productService.put(this.product).subscribe(
         (data) => {
@@ -115,6 +114,8 @@ export class ProductFormComponent implements OnInit {
           //
           this.lot.Product_Id = this.lastidproduct;
           alert('Producto actualizado');
+          location.reload();
+          //window.location.reload();
           console.log(data);
           console.log(this.product);
           this.router.navigate(['/product-home']);

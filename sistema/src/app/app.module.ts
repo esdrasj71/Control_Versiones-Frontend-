@@ -50,6 +50,11 @@ import { FiltradoinventoryPipe } from './pipes/filtradoinventory.pipe';
 import { LoginFormComponent } from './components/login/login-form/login-form.component';
 import { CheckloginGuard } from './guards/checklogin.guard';
 import { UserFormComponent } from './components/user/user-form/user-form.component';
+import { AccountsReceivableComponent } from './components/accounts_receivable/accounts-receivable/accounts-receivable.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { DebsToPayHomeComponent } from './components/debs_to_pay/debs-to-pay-home/debs-to-pay-home.component';
+
 const routes: Route[] = [
   //Brand
   { path: 'brand-form', component: BrandFormComponent ,canActivate:[CheckloginGuard] },
@@ -111,7 +116,11 @@ const routes: Route[] = [
   //Login
   { path: 'login', component: LoginFormComponent},
   //user
-  {path: 'user',component:UserFormComponent},
+  {path: 'user',component:UserFormComponent,canActivate:[CheckloginGuard]},
+    //accounts receivable
+  { path: 'accounts-receivable', component: AccountsReceivableComponent,canActivate:[CheckloginGuard]},
+  { path: 'home', component: HomeComponent,canActivate:[CheckloginGuard] },
+  { path: 'debs-to-pay-home', component: DebsToPayHomeComponent,canActivate:[CheckloginGuard] },
 ];
 
 @NgModule({
@@ -160,7 +169,10 @@ const routes: Route[] = [
     FilterProductCatPipe,
     FilterLotPipe,
     FiltradoinventoryPipe,
-    LoginFormComponent,
+    AccountsReceivableComponent,
+    HomeComponent,
+    LoginComponent,
+    DebsToPayHomeComponent,
     UserFormComponent
   ],
   imports: [

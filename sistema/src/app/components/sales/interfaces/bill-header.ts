@@ -6,7 +6,7 @@ export interface Bill_header {
    Total: number;
    Refund: number;
    Annulment_State: number;
-   Payment_Complete: number;
+   Payment_Complete: boolean;
    Customers_Id: number;
    Employee_Id: number;
 }

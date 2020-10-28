@@ -1,7 +1,8 @@
+<div class="contariner">
 <div class="container card">
-    <div class="card-body">
-        <h2 class="alert alert-primary" role="alert">Editar Empleado</h2>
-        <div class="alert alert-warning" role="alert">
+    <div class="card-body" style="height: 100%;">
+        <h2 class="alert alert-primary" role="alert" style="text-align: center;">Editar/Crear Empleado</h2>
+        <div class="alert alert-warning" role="alert" style="background-color:#699DBF; height: 100%;">
 
             <div class="form-group row">
                 <label class="col-md-3 form-controllabel" for="DPI">DPI</label>
@@ -23,55 +24,70 @@
                     <input [(ngModel)]="employee.Last_names" type="text" id="Last_names" class="form-control">
                 </div>
             </div>
-           
+
             <div class="form-group row">
-                <label class="col-md-3 form-controllabel" for="Phone_number">Numero Telefonico</label>
+                <label class="col-md-3 form-controllabel" for="Phone_number">Número Telefónico</label>
                 <div class="col-md-9">
                     <input [(ngModel)]="employee.Phone_number" type="text" id="Phone_number" class="form-control">
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="col-md-3 form-controllabel" for="Cellphone_number">Numero Movil</label>
+                <label class="col-md-3 form-controllabel" for="Cellphone_number">Número Móvil</label>
                 <div class="col-md-9">
-                    <input [(ngModel)]="employee.Cellphone_number" type="text" id="Cellphone_number" class="form-control">
+                    <input [(ngModel)]="employee.Cellphone_number" type="text" id="Cellphone_number"
+                        class="form-control">
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="col-md-3 form-controllabel" for="Email">Correo Electronico</label>
+                <label class="col-md-3 form-controllabel" for="Email">Correo Electrónico</label>
                 <div class="col-md-9">
                     <input [(ngModel)]="employee.Email" type="text" id="Email" class="form-control">
                 </div>
             </div>
-
+            <!-- 
             <div class="form-group row">
                 <label class="col-md-3 form-controllabel" for="Gender">Genero</label>
                 <div class="col-md-9">
                     <input [(ngModel)]="employee.Gender" type="text" id="Gender" class="form-control">
                 </div>
+            </div> -->
+            <div class="form-group row">
+                <label class="col-md-3 form-controllabel">Genero </label>
+                &nbsp;&nbsp;&nbsp;&nbsp;<label for="male" style="color: white;">Masculino</label>&nbsp;
+                <input type="radio" [(ngModel)]="employee.Gender" name="gender" id="male" value="1" checked>&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="female" style="color: white;">Femenino</label>&nbsp;
+                <input type="radio" [(ngModel)]="employee.Gender" name="gender" id="female" value="0">
             </div>
+            <!-- TAKE 1-->
 
             <div class="form-group row">
                 <label class="col-md-3 form-controllabel" for="Hire_date">Fecha Contrato</label>
                 <div class="col-md-9">
-                    <input [(ngModel)]="employee.Hire_date" type="date" id="Names" class="form-control">
+                    <input [(ngModel)]="employee.Hire_date" type="date" id="Names" class="form-control"
+                        style="width: 80%;">
                 </div>
             </div>
 
-            <label class="col-md-3 form-controllabel" for="Lot"> Seleccione posicion del empleado: </label>
-                <select id="employee_pos" name="employee_pos" [(ngModel)]="employee.Employee_Position_Id" [ngModelOptions]="{standalone: true}"style="width:700px" >
-                    <option *ngFor="let employeePos of employeePosition" value="{{employeePos.Employee_Position_Id}}" style="height: 1200px">
-                        {{employeePos.Name}}
-                     </option>
-                </select>
+            &nbsp;&nbsp;
+            <label class="col-md-3 form-controllabel" for="Lot"> Seleccione posición del empleado: </label>
+            <select id="employee_pos" name="employee_pos" [(ngModel)]="employee.Employee_Position_Id"
+                [ngModelOptions]="{standalone: true}" style="width:60%;">
+                <option *ngFor="let employeePos of employeePosition" value="{{employeePos.Employee_Position_Id}}"
+                    style="height: 1200px">
+                    {{employeePos.Name}}
+                </option>
+            </select>
 
+            <br><br>
             <div class="form-group row">
                 <div class="col-md-12">
-                    <button (click)="savePost()" class="btn btn-primary btnblock" routerLink="/employee-home">Guardar</button>
+                    <button (click)="savePost()" class="btn btn-success btnblock"
+                        routerLink="/employee-home">Guardar</button>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
 </div>
-
+</div>

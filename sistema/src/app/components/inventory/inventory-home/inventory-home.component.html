@@ -1,32 +1,28 @@
-<div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y:auto;">
     <div class="container">
         <h1 style="text-align: center; font-weight: bold;">Listado de Inventario</h1>
-        <h2 style="text-align: center;">____________________</h2><br><br>
+        <h2 style="text-align: center;">____________________</h2><br><br><br>
+        <form>
         <div class="form-group row">
-            <label for="inventory" class="col-form-label">Inventario:</label>
+            &nbsp;&nbsp;&nbsp;<i class="fa fa-search" style="left: 300px;"></i>&nbsp;&nbsp;&nbsp;
             <div class="col">
                 <input type="text" name="inventory" id="inventory" class="form-control"
                     placeholder="Buscar en el inventario" tabindex="4" />
             </div>
-            <div class="col">
-                <button type="button" class="btn btn-success" (click)="add()">Agregar</button>
-            </div>
         </div>
-    </div>
-</div>
-
+    </form>
+<div class="table-wrapper-scroll-y my-custom-scrollbar">
 <table  class="table table-hover" style="background-color:#F8F9F9;">
     <thead class="thead-dark">
         <tr>
-            <th scope="col">ID</th>
-            <th scope="col">No. Correlativo</th>
-            <th scope="col">Producto - Marca - Categoria</th>
-            <th scope="col">Stock</th>
-            <th scope="col">Precio unitario</th>
-            <th scope="col">Precio minorista</th>
-            <th scope="col">Precio mayorista</th>
-            <th scope="col">Fecha de vencimiento</th>
-            <th scope="col">Acciones</th>
+            <th class="header" scope="col">ID</th>
+            <th class="header" scope="col">No. Correlativo</th>
+            <th class="header" scope="col">Producto - Marca - Categoria</th>
+            <th class="header" scope="col">Stock</th>
+            <th class="header" scope="col">Precio unitario</th>
+            <th class="header" scope="col">Precio minorista</th>
+            <th class="header" scope="col">Precio mayorista</th>
+            <th class="header" scope="col">Fecha de vencimiento</th>
+            <th class="header" scope="col">Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -44,3 +40,5 @@
         </tr>
     </tbody>
 </table>
+</div>
+</div>

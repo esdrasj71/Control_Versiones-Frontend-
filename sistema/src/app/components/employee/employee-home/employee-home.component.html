@@ -1,31 +1,29 @@
-<div class="container">
+<div class="container" style="left: 100px;">
     <h1 style="text-align: center; font-weight: bold;">Listado de Empleados</h1>
     <h2 style="text-align: center;">____________________</h2><br><br>
 <form>
     <div class="form-group row">
-        <div class="col-md-9">
-            <button type="submit" style="background-color: rgb(124, 204, 253);"><i class="fa fa-search"></i></button>
-            <input type="text" class="formcontrol" name="searchTerm" [(ngModel)]="searchTerm" placeholder="Buscar empleado" style="width: 250px;">&nbsp;&nbsp;&nbsp;&nbsp;
-            <a class="btn btn-success btnsm" routerLink="/employee-form">Agregar Empleado</a>
-        </div>
+        &nbsp;&nbsp;&nbsp;<i class="fa fa-search"></i> &nbsp;&nbsp;&nbsp;
+        <input type="text" class="form-control" name="searchTerm" [(ngModel)]="searchTerm" placeholder="Buscar empleado" style="width: 250px;">&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="btn btn-success btnsm" routerLink="/employee-form">Agregar Empleado</a>
     </div> 
 </form>
-
+<div class="table-wrapper-scroll-y my-custom-scrollbar">
 <table class="table table-hover" style="background-color:#F8F9F9;">
     <thead class="thead-dark">
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">DPI</th> 
-            <th scope="col">Nombres</th>
-            <th scope="col">Apellidos</th>
-            <th scope="col">Numero telefonico</th>
-            <th scope="col">Numero movil</th>
-            <th scope="col">Correo</th>
-            <th scope="col">Genero</th> 
-            <th scope="col">Fecha_Contrato</th>
-            <th scope="col">Employee_Position_Id</th>
-            <th scope="col">Acciones</th>
-        </tr>
+            <th class="header" scope="col">#</th>
+            <th class="header" scope="col">DPI</th> 
+            <th class="header" scope="col">Nombres</th>
+            <th class="header" scope="col">Apellidos</th>
+            <th class="header" scope="col">Número telefónico</th>
+            <th class="header" scope="col">Número móvil</th>
+            <th class="header" scope="col">Correo</th>
+            <th class="header" scope="col">Genero</th> 
+            <th class="header" scope="col">Fecha Contratado</th>
+            <th class="header" scope="col">Posición Empleado</th>
+            <th class="header" scope="col">Acciones</th>
+        </tr> 
     </thead>
     <tbody>
         <tr *ngFor="let employee of employee | filtradoEmpleados:searchTerm">
@@ -36,13 +34,14 @@
             <td>{{employee.Phone_number}}</td>
             <td>{{employee.Cellphone_number}}</td>
             <td>{{employee.Email}}</td>
-            <td>{{employee.Gender}}</td>
-            <td>{{employee.Hire_date}}</td>
-            <td>{{employee.Employee_Position_Id}}</td>
+            <td>{{employee.SEXO}}</td>
+            <td>{{employee.Hire_date|date:'d-M-y'}}</td>
+            <td>{{employee.Posicion}}</td>
             <td><a class="btn btn-info btn-sm" style="background-color: #6cb3aa;" routerLink="/employee-form/{{employee.Employee_Id}}">Editar</a> 
                 <a class="btn btn-danger btn-sm" (click)="delete(employee.Employee_Id)" style="color:white;">Eliminar</a>
             </td>
         </tr>
     </tbody>
 </table>
+</div>
 </div>

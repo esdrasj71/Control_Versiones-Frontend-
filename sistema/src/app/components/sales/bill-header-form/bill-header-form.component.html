@@ -1,11 +1,11 @@
-<h1 style="text-align: center; color: white; font-weight: bold;">Sistema de Ventas</h1>
+<h2 style="text-align: center; color: white; font-weight: bold;">Sistema de Ventas</h2>
 <br>
 <div class="container">
     <div class="row">
         <div class="col-sm-5 col-md-6">
             <div class="card" style="width: 31rem; right: 5rem">
                 <div class="card-body">
-                    <h5 class="card-title">Facturacion</h5>
+                    <h5 class="card-title"><b>FACTURACIÓN</b></h5>
                     <div class="container">
                         <hr />
                         <div class="row">
@@ -33,7 +33,6 @@
                                     <label for="date" class="col-form-label">Fecha de realizacion:</label>
                                     <div class="col">
                                         <input type="text" value="{{fecha}}" readonly="true" name="creation_date" [(ngModel)]="encabezado_factura.Date" ngDefaultControl id="creation_date" class="form-control" placeholder="{{fecha}}" tabindex="3" />
-                                        <h3>{{fecha}}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -53,30 +52,12 @@
                             </div>
                         </div>
                         <hr />
-                        <!--
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group row">
-                                    <label for="correlativo" class="col-form-label">Nota de credito:</label>
-                                    <div class="col-sm-6">
-                                        <input type="checkbox" [(ngModel)]="encabezado_factura.Refund" ngDefaultControl name="correlativo" id="correlativo" class="form-control" placeholder="No" tabindex="5" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group row">
-                                    <label for="serie" class="col-form-label">Anular factura:</label>
-                                    <div class="col-sm-6">
-                                        <input type="checkbox" [(ngModel)]="encabezado_factura.Annulment_State" ngDefaultControl name="serie" id="serie" class="form-control" placeholder="Serie" tabindex="6" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>-->
 
+                       
                         <div class="row">
-                            <h3>Datos cliente</h3>
+                            <h5 class="card-title"><b>Datos Cliente</b></h5>
                             <div class="col-md-12">
-                                <div class="form-group row">
+                                <div class="form-group row"> 
                                     <label for="clientes" class="col-form-label">Clientes:</label>
                                     <div class="col">
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
@@ -109,12 +90,13 @@
 
                                 <div class="col-md-12">
                                     <div class="form-group row">
-                                        <h1>Total:</h1>
+                                        <h3 style="color: red;">Total:</h3>
                                         <div class="col">
-                                            <h1 [(ngModel)]="encabezado_factura.Total" ngDefaultControl>Q{{total}}</h1>
+
+                                            <h1 [(ngModel)]="encabezado_factura.Total" ngDefaultControl style="color: red;">{{total | currency:"GTQ":"Q"}}</h1>
                                         </div>
                                     </div>
-                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target=".bd-cobro-modal-lg" data-dismiss="modal">Cobrar</button>
+                                    <button class="btn btn-primary btnsm" data-toggle="modal" data-target=".bd-cobro-modal-lg" data-dismiss="modal">Cobrar</button>
                                 </div>
                             </div>
 
@@ -127,7 +109,7 @@
         <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
             <div class="card" style="width: 40rem; right: 5rem">
                 <div class="card-body">
-                    <h5 class="card-title">DETALLE DE LA FACTURA</h5>
+                    <h5 class="card-title"><b>Detalle De La Factura</b></h5>
 
                     <div class="container">
                         <div class="row">
@@ -151,8 +133,8 @@
                                             <tr *ngFor="let inventario of nuevo">
                                                 <td for="">{{inventario[0].ProductComplete}}</td>
                                                 <td for=""><input type="number" #box (keyup.enter)="onEnter(box.value, inventario[0].Unit_Price, inventario)" min="0" max="{{inventario[0].Stock}}" value="" /></td>
-                                                <td for="">Q. {{inventario[0].Unit_Price}}</td>
-                                                <td>Q. {{inventario[0].Subtotal}}</td>
+                                                <td for="">{{inventario[0].Unit_Price | currency:"GTQ":"Q"}}</td>
+                                                <td>{{inventario[0].Subtotal | currency:"GTQ":"Q"}}</td>
                                                 <td><button (click)="onDelete(inventario)" class="btn btn-danger">x</button></td>
                                                 <td>
                                                 </td>
@@ -176,7 +158,7 @@
 <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px;">
         <div class="modal-content" style="width: 900px;">
-            <div class="modal-header" style="width: 900px;">
+            <div class="modal-header" style="width: 900px;" style="background-color:#EC7063">
                 <h5 class="modal-title" id="exampleModalLongTitle">Buscar Cliente</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -191,8 +173,8 @@
                         </div>
                     </div>
                     <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                        <table class="table table-bordered table-striped mb-0" style="table-layout: fixed; word-wrap: break-word;" id="table">
-                            <thead>
+                        <table class="table table-hover" style="table-layout: fixed; word-wrap: break-word; background-color:#F8F9F9 ;" id="table">
+                            <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">DPI</th>
@@ -213,7 +195,7 @@
                                     <td height="10">{{cliente.Phone_Number}}</td>
                                     <td height="10">{{cliente.NIT}}</td>
                                     <td height="10">{{cliente.Address}}</td>
-                                    <td><a class="btn btn-primary btn-sm" data-dismiss="modal" (click)="getCustomerId(cliente.Customers_Id)">Seleccionar</a> &nbsp;
+                                    <td><a class="btn btn-warning btn-sm" style="background-color:#F7985B; color: white;" data-dismiss="modal" (click)="getCustomerId(cliente.Customers_Id)">Seleccionar</a> &nbsp;
                                     </td>
                                 </tr>
                             </tbody>
@@ -221,9 +203,9 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target=".bd-cliente-modal-lg" data-dismiss="modal">Agregar Cliente</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button class="btn btn-danger btnsm" style="background-color:#EC7063;" data-toggle="modal" data-target=".bd-cliente-modal-lg" data-dismiss="modal">Agregar Cliente</button>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -233,7 +215,7 @@
 <div class="modal fade bd-producto-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px;">
         <div class="modal-content" style="width: 900px;">
-            <div class="modal-header" style="width: 900px;">
+            <div class="modal-header" style="width: 900px; background-color:#EC7063;">
                 <h5 class="modal-title" id="exampleModalLongTitle">Buscar producto</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -247,8 +229,8 @@
                             <input type="text" name="productos" id="productos" class="form-control" placeholder="Ingrese id de producto" [(ngModel)]="filtrado_productos" tabindex="4" />
                         </div>
                     </div>
-                    <table class="table table-dark" style="table-layout: fixed; word-wrap: break-word;" id="table">
-                        <thead>
+                    <table class="table table-hover" style="table-layout: fixed; word-wrap: break-word;" id="table">
+                        <thead class="thead-dark">
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Correlativo producto</th>
@@ -263,10 +245,10 @@
                                 <td height="10">{{inventario.Inventory_Id}}</td>
                                 <td height="10">{{inventario.Correlative_Product}}</td>
                                 <td height="10">{{inventario.Product}}</td>
-                                <td height="10">{{inventario.Unit_Price}}</td>
+                                <td height="10">{{inventario.Unit_Price | currency:"GTQ":"Q"}}</td>
                                 <th height="10">{{inventario.Stock}}</th>
                                 <td height="10">{{inventario.Statuss}}</td>
-                                <td><a class="btn btn-primary btn-sm" (click)="getInventoryId(inventario.Inventory_Id, inventario.Unit_Price, inventario.Stock)" data-dismiss="modal">Seleccionar</a> &nbsp;
+                                <td><a class="btn btn-warning btn-sm" style="background-color:#F7985B; color: white;" (click)="getInventoryId(inventario.Inventory_Id, inventario.Unit_Price, inventario.Stock)" data-dismiss="modal">Seleccionar</a> &nbsp;
                                 </td>
                             </tr>
                         </tbody>
@@ -275,7 +257,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-danger" style="background-color:#EC7063;">Agregar Producto</button>
             </div>
         </div>
     </div>
@@ -306,109 +288,58 @@
 <div class="modal fade bd-cobro-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content modal-dialog  " style="width: px;">
-            <div class="modal-header d-flex justify-content-center">
-                <h5 class="heading">Cobro</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+<div class="modal-header d-flex justify-content-center" style="background-color:#EC7063;">
+    <h5 class="heading">Cobro</h5>
+    <button type="button" class="close"(click)="setear()"  data-dismiss="modal" aria-label="Close">
+
             <span aria-hidden="true">&times;</span>
       </button>
             </div>
             <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y:auto;">
                 <div class="container">
 
-
-
-                    <h3 style="text-align: center;">Tipo de pago</h3>
-                    <div class="row">
-
-                        <div class="col-md-6">
-                            <div class="form-group row">
-                                <div class="col-sm-4">
-                                    <input type="checkbox" ngDefaultControl (click)="mostraralcredito()" class="form-control" tabindex="1" />
-                                </div>
-                                <label for="correlativo" class="col-form-label">Al credito:</label>
-
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group row">
-                                <div class="col-sm-4">
-                                    <input type="checkbox" (click)="mostraraldebito()" ngDefaultControl class="form-control" tabindex="1" />
-                                </div>
-                                <label for="serie" class="col-form-label">Al contado</label>
-
-                            </div>
-                        </div>
-                    </div>
-                    <hr />
-                    <h3 style="text-align: center;">Monto</h3>
-                    <div *ngIf="pago_aldebito">
+                
+                               
+                    <h3 style="text-align: center;"><b>Monto</b></h3>
                         <p>Al contado</p>
                         <div class="row">
 
                             <div class="col-md-5">
                                 <div class="form-group row">
-
-                                    <label for="correlativo" class="col-form-label">Monto:</label>
-                                    <div class="col-md-6">
-                                        <input type="number" min="0" #boxalcontado (keyup.enter)="onPagoalcontado(boxalcontado.value)" ngDefaultControl name="monto" id="monto" class="form-control" placeholder=" " tabindex="1" />
-                                    </div>
-
+                                <h3>Monto:</h3>
+                                <div class="col-md-6">
+                                    <input type="number" min="0" #boxalcontado (keyup.enter)="onPagoalcontado(boxalcontado.value)" ngDefaultControl name="monto" id="monto" class="form-control" placeholder=" "value=0 tabindex="1" />
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group row">
+                            <hr>
+                        <div class="col-md-10">
+                            <div class="form-group row">
 
-                                    <label for="serie" class="col-form-label">Descripcion:</label>
-                                    <div class="col-sm-7">
-                                        <textarea ngDefaultControl name="descripcion" [ngModel]="descripcion_pagoalcontado" id="descripcion" class="form-control" placeholder="" tabindex="1"></textarea>
-                                    </div>
-
+                                <h3>Descripcion:</h3>
+                                <div class="col-sm-7">
+                                    <textarea  name="descripcion" [(ngModel)]="pago_detalle.Description" ngDefaultControl id="descripcion" class="form-control" placeholder="" tabindex="1"></textarea>
                                 </div>
+
                             </div>
-
-                        </div>
-
-                    </div>
-                    <div *ngIf="pago_alcredito">
-                        <p>Al credito</p>
-                        <div class="row">
-
-                            <div class="col-md-5">
-                                <div class="form-group row">
-
-                                    <label for="" class="col-form-label">Monto:</label>
-                                    <div class="col-md-6">
-                                        <input type="number" min="0" max="total_cobro" #boxalcredito (keyup.enter)="onPagoalcredito(boxalcredito.value)" ngDefaultControl name="monto" id="monto" class="form-control" placeholder="" tabindex="1" />
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group row">
-
-                                    <label for="" class="col-form-label">Descripcion:</label>
-                                    <div class="col-sm-7">
-                                        <textarea ngDefaultControl name="descripcion" [ngModel]="descripcion_pagoalcredito" id="descripcion" class="form-control" placeholder="" tabindex="1"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+                        </div>            
+                  
+                
                     <hr />
                     <div class="row">
 
                         <div class="col-md-6">
                             <div class="form-group row">
-                                <label for="" class="col-form-label">{{cadena_pago}}</label>
+                                <h1 >{{cadena_pago}}</h1>
                                 <div class="col-sm-4">
-                                    <label for="" class="col-form-label">{{total_cobro}}</label>
+                                    <h1>{{total_cobro | currency:"GTQ":"Q"}}</h1>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group ">
-                                <button type="button" (click)="enviar()" class="btn btn-primary ">Enviar</button>
+                            <div class="form-group" style="text-align: right;">
+                                <button type="button" (click)="enviar()" class="btn btn-primary">Enviar</button>
+
                             </div>
                         </div>
                     </div>
@@ -417,3 +348,6 @@
         </div>
     </div>
 </div>
+</div>
+</div>
+<div style="height: 50px;"></div>

@@ -78,8 +78,8 @@ export class LotFormComponent implements OnInit {
         this.Lot_Id.emit(data['id']);
 
         this.inventory.Lot_Id= data['id'];
-        this.inventory.Statuss=false;
 
+        this.inventory.Statuss= false;
         console.log(this.inventory);
         this.invetoryService.save(this.inventory).subscribe((date) => {
           alert('Inventario guardado');
