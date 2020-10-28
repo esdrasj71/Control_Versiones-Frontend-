@@ -1,3 +1,3 @@
 export interface NoFactura{
-    NoFactura: number;
+    NoFactura: number|null;
 }

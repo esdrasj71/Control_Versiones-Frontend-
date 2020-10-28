@@ -4,28 +4,22 @@ import { Products } from '../../product/interfaces/product';
 import { Inventory } from '../../inventory/interfaces/inventory';
 import { Employee } from '../../employee/interfaces/employee';
 import { HttpClient } from '@angular/common/http';
-import { CustomersService } from '../../customers/servicios/customers.service';
-import { ProductsService } from '../../product/servicios/products.service';
-import { InventoryService } from '../../inventory/servicios/inventory.service';
-import { EmployeeService } from '../../employee/servicios/employee.service';
 import { ActivatedRoute, Data } from '@angular/router';
-
 import {BillDetails} from '../interfaces/bill-detail';
 import {Bill_header} from '../interfaces/bill-header';
 import {Payment_detail} from '../interfaces/payment-detail';
 import {NoFactura} from '../interfaces/nofactura';
+import {AccountsRecivable} from '../../accounts_receivable/interfaces/accounts-receivable';
+
 import {BillsService} from '../servicios/bills.service';
 import {ProcedureSaleService} from '../servicios/procedure-sale.service';
 import {Procedure_Sale} from '../interfaces/procedure-sale';
 import {PaymentDetailService} from '../servicios/payment-detail.service';
-
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { equal } from 'assert';
-import { summaryFileName } from '@angular/compiler/src/aot/util';
-
-
-
-
+import { CustomersService } from '../../customers/servicios/customers.service';
+import { ProductsService } from '../../product/servicios/products.service';
+import { InventoryService } from '../../inventory/servicios/inventory.service';
+import { EmployeeService } from '../../employee/servicios/employee.service';
+import {AccountsReceivableService} from '../../accounts_receivable/servicios/accounts-receivable.service';
 
 @Component({
   selector: 'app-bill-header-form',
@@ -36,6 +30,15 @@ export class BillHeaderFormComponent implements OnInit {
 
   values: number = 0;
   total: number = 0;
+  //insertar cuentas por cobrar
+  accounts_receivable: AccountsRecivable = {
+    
+    Quantity: null,
+    Total: null,
+    Statuss: null,
+    Bill_header_Id: null,
+  }
+
   pago_detalle: Payment_detail = {
     Total_Amount: null,
     Description: null,
@@ -100,15 +103,11 @@ export class BillHeaderFormComponent implements OnInit {
   total_cobroalcredito: number = 0;
   total_cobroalcontado: number = 0;
   total_cobro: number = 0;
-  cadena_pago: string = "total";
-  descripcion_pagoalcontado: string = "";
-  descripcion_pagoalcredito: string = "";
+  cadena_pago: string = "Total:";
   encabezadoid: number = 0; 
   //No factura
   nofacturas: NoFactura[];
   nofactura: number = 0;
-
-  //Precio ponderado
 
   constructor(
     private billsService: BillsService,
@@ -120,19 +119,26 @@ export class BillHeaderFormComponent implements OnInit {
     private inventoryService: InventoryService,
     private proceduresaleService: ProcedureSaleService,
     private paymentdetailService: PaymentDetailService,
+    private accountsRecivableService: AccountsReceivableService,
 
     ) { 
     httpClient.get(this.API_ENDPOINT + 'nofactura')
     .subscribe((data: NoFactura[])=>{
-      this.nofacturas = data;
-      this.encabezado_factura.Correlative_Number =  data[0].NoFactura.toString();
+      if(data[0].NoFactura == null){
+        this.nofacturas = [{"NoFactura": 1}];
+        this.encabezado_factura.Correlative_Number =  "1";
+        
+      }else{
+        this.nofacturas = data;
+        this.encabezado_factura.Correlative_Number =  data[0].NoFactura.toString();
+      }
+    
     }) 
-  
- 
 
   }
 
   ngOnInit(): void {
+
     this.customersService.getCustomer().subscribe((data: Customers[]) => {
       return this.cliente = data;
     })
@@ -262,30 +268,52 @@ export class BillHeaderFormComponent implements OnInit {
   }
   mostraralcredito() {
     this.pago_alcredito = !this.pago_alcredito;
+    console.log(this.pago_alcredito);
+  }
+  setear(){
+    this.total_cobro = this.total;
   }
 
-
-
-
- 
-
   enviar() {
-
-    this.encabezado_factura.Payment_Complete = 0;
+if(this.encabezado_factura.Correlative_Number == " " || this.encabezado_factura.Serie == null || this.encabezado_factura.Date == "" || this.encabezado_factura.Customers_Id == null || this.encabezado_factura.Employee_Id == NaN || this.encabezado_factura.Total == 0){
+  alert("Precaucion!!!!!!, algun dato no fue ingresado ");    
+}else{
+  console.log(this.total_cobroalcontado);
+    if(this.total_cobroalcontado >= this.total){
+      //pago completo
+      this.encabezado_factura.Payment_Complete = true;
+    }else{
+      //pago incompleto
+        this.encabezado_factura.Payment_Complete = false;
+    }
+    
     this.encabezado_factura.Refund = 0;
     this.encabezado_factura.Annulment_State = 0;
     this.encabezado_factura.Total = parseFloat(this.total.toFixed(2));
 
-    console.log(this.encabezado_factura.Employee_Id);
-    this.encabezado_factura.Date = this.date.toString();
+    console.log(this.fecha);
+    this.encabezado_factura.Date = this.fecha; 
 
     this.billsService.saveHeader(this.encabezado_factura).subscribe(
       (data) => {
         alert('header guardado');
-        // localStorage.setItem("id",data["id"]);
-        if (this.pago_aldebito) {
+        if(this.encabezado_factura.Payment_Complete == false){
+          this.accounts_receivable.Quantity =  0;
+          this.accounts_receivable.Total = this.total_cobro;
+          this.accounts_receivable.Statuss = true;
+          this.accounts_receivable.Bill_header_Id =  data["id"];
+          this.accountsRecivableService.saveAccountRecivable(this.accounts_receivable).subscribe((data)=>{
+            alert('Cuenta por cobrar guardada');
+          }, (error)=>{
+            alert("cuentas por cobrar Error");
+          })
+     
+        }
+        if (this.encabezado_factura.Payment_Complete == true) {
+          if(this.total_cobroalcontado > this.total){
+            this.total_cobroalcontado = this.total;      
+          }
           this.pago_detalle.Total_Amount = this.total_cobroalcontado;
-          this.pago_detalle.Description = this.descripcion_pagoalcontado;
           this.pago_detalle.Payment_Id = 1;
           this.pago_detalle.Bill_header_Id = data["id"];
           this.paymentdetailService.save(this.pago_detalle).subscribe(
@@ -298,22 +326,50 @@ export class BillHeaderFormComponent implements OnInit {
               alert('Ocurrio un error');
             });
 
+        }else{
+          //console.log(typeof(this.total_cobroalcontado))
+          if (this.total_cobroalcontado == 0) {
+            this.pago_detalle.Total_Amount = this.total_cobro;
+            this.pago_detalle.Payment_Id = 2;
+            this.pago_detalle.Bill_header_Id = data["id"];
+            this.paymentdetailService.save(this.pago_detalle).subscribe(
+              (data) => {
+                alert('Pago guardado');
+                console.log(data);
+              },
+              (error) => {
+                console.log(error);
+                alert('Ocurrio un error');
+              });
+          }else{
+            this.pago_detalle.Total_Amount = this.total_cobroalcontado;
+            this.pago_detalle.Payment_Id = 1;
+            this.pago_detalle.Bill_header_Id = data["id"];
+            this.paymentdetailService.save(this.pago_detalle).subscribe(
+              (data) => {
+                alert('Pago guardado');
+                console.log(data);
+              },
+              (error) => {
+                console.log(error);
+                alert('Ocurrio un error');
+              });
+              this.pago_detalle.Total_Amount = this.total_cobro;
+              this.pago_detalle.Payment_Id = 2;
+              this.pago_detalle.Bill_header_Id = data["id"];
+              this.paymentdetailService.save(this.pago_detalle).subscribe(
+                (data) => {
+                  alert('Pago guardado');
+                  console.log(data);
+                },
+                (error) => {
+                  console.log(error);
+                  alert('Ocurrio un error');
+                });
+
+          }
         }
-        if (this.pago_alcredito) {
-          this.pago_detalle.Total_Amount = this.total_cobroalcredito;
-          this.pago_detalle.Description = this.descripcion_pagoalcredito;
-          this.pago_detalle.Payment_Id = 2;
-          this.pago_detalle.Bill_header_Id = data["id"];
-          this.paymentdetailService.save(this.pago_detalle).subscribe(
-            (data) => {
-              alert('Pago guardado');
-              console.log(data);
-            },
-            (error) => {
-              console.log(error);
-              alert('Ocurrio un error');
-            });
-        }
+      
       },
       (error) => {
         console.log(error);
@@ -340,5 +396,6 @@ export class BillHeaderFormComponent implements OnInit {
 
     //localStorage.removeItem("id");
   }
-
+  
+}
 }

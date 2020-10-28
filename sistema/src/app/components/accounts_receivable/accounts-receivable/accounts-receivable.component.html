@@ -1,0 +1,206 @@
+<div class="container">
+    <h1>Cuentas por cobrar</h1>
+    <div class="row">
+        <div class="col-sm-5 col-md-6">
+            <div class="card" style="width: 75rem; right: 5rem">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label for="" class="col-form-label">Buscar cliente:</label>
+                        <div class="col">
+                            <input type="text" name="" id="" class="form-control" placeholder="Buscar NIT o Nombre del cliente" [(ngModel)]="filtrado_clientes" tabindex="1" />
+                        </div>
+                    </div>
+                    <table class="table table-dark" style="table-layout: fixed; word-wrap: break-word;" id="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nit</th>
+                                <th scope="col">Nombre Cliente</th>
+                                <th scope="col">Total a cobrar</th>
+                                <th scope="col">Ver facturas</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let cuenta of accounts_recivable | filtradocustomers:filtrado_clientes">
+                                <td height="10">{{cuenta.NIT}}</td>
+                                <td height="10">{{cuenta.Names}}</td>
+                                <td height="10">{{cuenta.Total | currency:"GTQ":"Q"}}</td>
+                                <td height="10">
+                                    <a class="btn btn-primary btn-sm" ngDefaultControl data-toggle="modal" data-target="#detalle_cliente" (click)="mostrar_facturas(cuenta.Customers_Id, cuenta.Names, cuenta.NIT, cuenta.Total)">
+                                        Ver más
+                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-journal-text" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+                                            <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+                                            <path fill-rule="evenodd" d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+<!--Detalle de facturas-->
+<div class="modal fade" id="detalle_cliente" tabindex="" role="" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 60rem;">
+        <div class="modal-content" style="width: 60rem;">
+            <h1 style="text-align: center;">Facturas detalladas</h1>
+            <div class="modal-header" style="width:60rem;">
+
+                <div class="form-group row col-md-4">
+                    <h4>Nombre:</h4>
+                    <h4>{{nombre_cliente}}</h4>
+                </div>
+
+                <div class="form-group row col-md-3">
+                    <h4>Nit:</h4>
+                    <h4>{{Nit}}</h4>
+                </div>
+                <div class="form-group row col-md-3">
+                    <h4>Total:</h4>
+                    <h4>{{total_cobrar | currency:"GTQ":"Q"}}</h4>
+                </div>
+                <div class="form-group row col-md-3">
+                    <h4>No Facturas:</h4>
+                    <h4>{{contador}}</h4>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body" style="max-height: 60rem; max-width:60rem; overflow-y:auto;">
+                <div class="container">
+                    <div class="form-group row">
+                        <div class="col">
+                            <table class="table table-dark" style="table-layout: fixed; word-wrap: break-word;" id="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">NoFactura</th>
+                                        <th scope="col">Serie</th>
+                                        <th scope="col">Total al credito </th>
+                                        <th scope="col">Fecha venta</th>
+                                        <th scope="col">Mas detalles</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let factura of facturas">
+                                        <td height="10">{{factura.Correlative_Number}}</td>
+                                        <td height="10">{{factura.Serie}}</td>
+                                        <td height="10">{{factura.Total | currency:"GTQ":"Q"}}</td>
+                                        <td height="10">{{factura.Date}}</td>
+
+                                        <td height="10">
+                                            <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#detalle_factura" (click)="mostrarDetalle_facturas(factura.Bill_header_Id)">
+                                                Ver detalles
+                                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-journals" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M3 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1H1a2 2 0 0 1 2-2z"/>
+                                                    <path d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2zM1 6v-.5a.5.5 0 0 1 1 0V6h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V9h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+                                                  </svg>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="form-group row">
+
+                    <label for="" class="col-form-label"><strong>Monto a cobrar: </strong></label>
+                    <div class="col-sm-7">
+                        <input type="number" name="" id="" class="form-control" placeholder="Monto de pagar" [(ngModel)]="procedure_accountsReceivable.Quantity" ngDefaultControl max="{{total_cobrar}}" tabindex="1" />
+                    </div>
+                    <div class="col-sm-4">
+                        <select name="" id="" [(ngModel)]="procedure_accountsReceivable.Payment_Id" ngDefaultControl tabindex="1" class="form-control">
+                            <option *ngFor="let tipoPago of tipos_pagos" value="{{tipoPago.Payment_Id}}">
+                              {{tipoPago.Method_Name}}
+                            </option>
+                          </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="text" name="" id="" class="form-control" placeholder="Descripcion" [(ngModel)]="procedure_accountsReceivable.Description" ngDefaultControl tabindex="1" />
+                    </div>
+                </div>
+                <h1 >{{cadena_pago}}</h1>
+                <button (click)="saveProcedure()" type="button" class="btn btn-primary">
+                Cobrar
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M15 4H1v8h14V4zM1 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H1z"/>
+                    <path d="M13 4a2 2 0 0 0 2 2V4h-2zM3 4a2 2 0 0 1-2 2V4h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 12a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
+                  </svg>
+                </button>
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Detalle de cada factura-->
+<div class="modal fade" id="detalle_factura" tabindex="" role="" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 60rem;">
+        <div class="modal-content" style="width: 60rem;">
+            <h1 style="text-align: center;">Detalle de la factura</h1>
+            <div class="modal-header" style="width:60rem;">
+
+                <div class="form-group row col-md-4">
+                    <h4>Nombre:</h4>
+                    <h4>{{nombre_cliente}}</h4>
+                </div>
+
+                <div class="form-group row col-md-4">
+                    <h4>Nit:</h4>
+                    <h4>{{Nit}}</h4>
+                </div>
+                <div class="form-group row col-md-4">
+                    <h4>Total:</h4>
+                    <h4>{{total_cobrar| currency:"GTQ":"Q"}}</h4>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body" style="max-height: 60rem; max-width:60rem; overflow-y:auto;">
+                <div class="container">
+                    <div class="form-group row">
+                        <div class="col">
+                            <table class="table table-dark" style="table-layout: fixed; word-wrap: break-word;" id="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nombre Producto</th>
+                                        <th scope="col">Precio Venta</th>
+                                        <th scope="col">Cantidad </th>
+                                        <th scope="col">Subtotal</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let detalles of datalles_facturas">
+                                        <td height="10">{{detalles.Name}}</td>
+                                        <td height="10">{{detalles.Price | currency:"GTQ":"Q"}}</td>
+                                        <td height="10">{{detalles.Quantity}}</td>
+                                        <td height="10">{{detalles.Subtotal | currency:"GTQ":"Q"}}</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

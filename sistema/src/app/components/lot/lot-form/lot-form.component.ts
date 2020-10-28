@@ -25,7 +25,7 @@ export class LotFormComponent implements OnInit {
     Retail_Price: 0,
     Wholesale_Price: 0,
     Lot_Id: null,
-    Statuss: 0,
+    Statuss: false,
   };
   API_ENDPOINT = 'http://localhost:3000/';
   id: any;
@@ -76,7 +76,7 @@ export class LotFormComponent implements OnInit {
         //this.router.navigate(["/lot-home"]);
         this.Lot_Id.emit(data['id']);
         this.inventory.Lot_Id= data['id'];
-        this.inventory.Statuss=0;
+        this.inventory.Statuss= false;
         console.log(this.inventory);
         this.invetoryService.save(this.inventory).subscribe((date)=>
         {
