@@ -30,7 +30,7 @@ constructor(private customerService: CustomersService, private activatedRoute: A
   this.id = this.activatedRoute.snapshot.params['id']; //Este es el parametro que se definio en la ruta de app.module.ts
   if (this.id) {
     this.editing = true;
-    this.httpClient.get(this.API_ENDPOINT + 'customer').subscribe((data: Customers[]) => { //Aqui traemos el arreglo completo de datos
+    this.customerService.getCustomer().subscribe((data: Customers[]) => { //Aqui traemos el arreglo completo de datos
       this.postarr = data;
       console.log(this.postarr);
       this.customer = this.postarr.find((m) => { return m.Customers_Id == this.id }); //Aqui traemos solo el id que nos interesa
