@@ -9,30 +9,30 @@ export class CustomersService {
   API_ENDPOINT = 'http://localhost:3000/';
 
   customer = []; 
+  
   constructor(private httpClient: HttpClient) {
-    httpClient.get(this.API_ENDPOINT + 'customer')
-      .subscribe((data: Customers[]) => {
-        this.customer = data;
-      });
    } 
    saveCustomer(customer: Customers){
-     const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
      return this.httpClient.post(this.API_ENDPOINT + 'customer', customer, {headers: headers});
    }
    getCustomer() {
-    return this.httpClient.get(this.API_ENDPOINT + 'customer');
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
+    return this.httpClient.get(this.API_ENDPOINT + 'customer',{headers});
+
 
   }
   getCustomerId(id) {
-    return this.httpClient.get(this.API_ENDPOINT + 'customer/' + id);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
+    return this.httpClient.get(this.API_ENDPOINT + 'customer/' + id, {headers});
   }
   put(customer) { //Le llamaremos put para fines practicos
-    const headers = new HttpHeaders({ 'ContentType': 'application/json' }); 
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
     return this.httpClient.put(this.API_ENDPOINT + 'customer/' + customer.Customers_Id, customer, { headers: headers }); 
   }
 
   delete(id) {
-    const headers = new HttpHeaders({ 'ContentType': 'application/json' });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
     return this.httpClient.delete(this.API_ENDPOINT + 'customer/' + id,{headers:headers});
   }
 

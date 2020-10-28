@@ -3,7 +3,7 @@ import { Customers } from '../../customers/interfaces/customer';
 import { Products } from '../../product/interfaces/product';
 import { Inventory } from '../../inventory/interfaces/inventory';
 import { Employee } from '../../employee/interfaces/employee';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Data } from '@angular/router';
 import {BillDetails} from '../interfaces/bill-detail';
 import {Bill_header} from '../interfaces/bill-header';
@@ -122,12 +122,12 @@ export class BillHeaderFormComponent implements OnInit {
     private accountsRecivableService: AccountsReceivableService,
 
     ) { 
-    httpClient.get(this.API_ENDPOINT + 'nofactura')
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
+    httpClient.get(this.API_ENDPOINT + 'nofactura', {headers})
     .subscribe((data: NoFactura[])=>{
       if(data[0].NoFactura == null){
         this.nofacturas = [{"NoFactura": 1}];
         this.encabezado_factura.Correlative_Number =  "1";
-        
       }else{
         this.nofacturas = data;
         this.encabezado_factura.Correlative_Number =  data[0].NoFactura.toString();
@@ -148,9 +148,6 @@ export class BillHeaderFormComponent implements OnInit {
     })
 
     this.inventoryService.getInventory().subscribe((data: Inventory[])=>{
-    
-     
-      
       let nuevo1: any = [];
       let prueba = [];
       

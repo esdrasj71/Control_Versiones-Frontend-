@@ -16,8 +16,7 @@ export class LotHomeComponent implements OnInit {
     private lotService: LotService,
     private httpClient: HttpClient
   ) {
-    httpClient
-      .get(this.API_ENDPOINT + 'lot')
+    this.lotService.getLot()
       .subscribe((data: Lot[]) => {
         this.lot = data;
         console.log(this.lot);

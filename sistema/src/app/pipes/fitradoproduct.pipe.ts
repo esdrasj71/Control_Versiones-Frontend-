@@ -12,7 +12,7 @@ export class FitradoproductPipe implements PipeTransform {
       {
         resultado_product.push(product);
       }
-     if(product.Name.toLowerCase().indexOf(arg.toLowerCase())> -1)
+     if(product.Product.toLowerCase().indexOf(arg.toLowerCase())> -1)
       {
         resultado_product.push(product);
       }
