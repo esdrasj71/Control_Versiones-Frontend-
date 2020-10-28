@@ -52,33 +52,10 @@
                             </div>
                         </div>
                         <hr />
-<<<<<<< HEAD
-                     <div class="row">
-                            <h3>Datos cliente</h3>
-=======
-                        <!--
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group row">
-                                    <label for="correlativo" class="col-form-label">Nota de credito:</label>
-                                    <div class="col-sm-6">
-                                        <input type="checkbox" [(ngModel)]="encabezado_factura.Refund" ngDefaultControl name="correlativo" id="correlativo" class="form-control" placeholder="No" tabindex="5" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group row">
-                                    <label for="serie" class="col-form-label">Anular factura:</label>
-                                    <div class="col-sm-6">
-                                        <input type="checkbox" [(ngModel)]="encabezado_factura.Annulment_State" ngDefaultControl name="serie" id="serie" class="form-control" placeholder="Serie" tabindex="6" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>-->
 
+                       
                         <div class="row">
                             <h5 class="card-title"><b>Datos Cliente</b></h5>
->>>>>>> 8b81f7196ae344f007059c7beab18173800feb2e
                             <div class="col-md-12">
                                 <div class="form-group row"> 
                                     <label for="clientes" class="col-form-label">Clientes:</label>
@@ -115,11 +92,8 @@
                                     <div class="form-group row">
                                         <h3 style="color: red;">Total:</h3>
                                         <div class="col">
-<<<<<<< HEAD
-                                            <h1 [(ngModel)]="encabezado_factura.Total" ngDefaultControl>{{total | currency:"GTQ":"Q"}}</h1>
-=======
-                                            <h3 [(ngModel)]="encabezado_factura.Total" ngDefaultControl style="color: red;">Q{{total}}</h3>
->>>>>>> 8b81f7196ae344f007059c7beab18173800feb2e
+
+                                            <h1 [(ngModel)]="encabezado_factura.Total" ngDefaultControl style="color: red;">{{total | currency:"GTQ":"Q"}}</h1>
                                         </div>
                                     </div>
                                     <button class="btn btn-primary btnsm" data-toggle="modal" data-target=".bd-cobro-modal-lg" data-dismiss="modal">Cobrar</button>
@@ -325,60 +299,20 @@
             <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y:auto;">
                 <div class="container">
 
-                    <h3 style="text-align: center;"><b>Tipo de pago</b></h3>
-                    <br>
-                    <div class="row">
-
-                        <div class="col-md-6">
-                            <div class="form-group row">
-                                <div class="col-sm-4">
-                                    <input type="checkbox" ngDefaultControl (click)="mostraralcredito()" class="form-control" tabindex="1" />
-                                </div>
-                                <label for="correlativo" class="col-form-label">Al credito</label>
-
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group row">
-                                <div class="col-sm-4">
-                                    <input type="checkbox" (click)="mostraraldebito()" ngDefaultControl class="form-control" tabindex="1" />
-                                </div>
-                                <label for="serie" class="col-form-label" style="color: black;">Al contado</label>
-
-                            </div>
-                        </div>
-                    </div>
-                    <hr />
+                
+                               
                     <h3 style="text-align: center;"><b>Monto</b></h3>
-                    <div *ngIf="pago_aldebito">
                         <p>Al contado</p>
                         <div class="row">
 
                             <div class="col-md-5">
                                 <div class="form-group row">
-
-                                    <label for="correlativo" class="col-form-label">Monto:</label>
-                                    <div class="col-md-6">
-                                        <input type="number" min="0" #boxalcontado (keyup.enter)="onPagoalcontado(boxalcontado.value)" ngDefaultControl name="monto" id="monto" class="form-control" placeholder=" " tabindex="1" />
-                                    </div>
-
                                 <h3>Monto:</h3>
                                 <div class="col-md-6">
                                     <input type="number" min="0" #boxalcontado (keyup.enter)="onPagoalcontado(boxalcontado.value)" ngDefaultControl name="monto" id="monto" class="form-control" placeholder=" "value=0 tabindex="1" />
                                 </div>
-
                             </div>
                             <hr>
-                            <div class="col-md-6">
-                                <div class="form-group row">
-
-                                    <label for="serie" class="col-form-label">Descripcion:</label>
-                                    <div class="col-sm-7">
-                                        <textarea ngDefaultControl name="descripcion" [ngModel]="descripcion_pagoalcontado" id="descripcion" class="form-control" placeholder="" tabindex="1"></textarea>
-                                    </div>
-
-                            </div>
-                        </div>
                         <div class="col-md-10">
                             <div class="form-group row">
 
@@ -389,7 +323,7 @@
 
                             </div>
                         </div>            
-                    </div>
+                  
                 
                     <hr />
                     <div class="row">

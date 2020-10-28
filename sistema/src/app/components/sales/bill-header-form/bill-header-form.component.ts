@@ -190,7 +190,9 @@ export class BillHeaderFormComponent implements OnInit {
       }) ;
   
     this.employeeService.getEmployee().subscribe((data: Employee[]) => {
+      console.log(data);
       return this.empleados = data;
+    
     })
 
 
