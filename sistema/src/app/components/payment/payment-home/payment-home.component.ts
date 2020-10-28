@@ -14,10 +14,8 @@ export class PaymentHomeComponent implements OnInit {
   payment: Payment[];
   constructor( 
     private paymentService: PaymentService,
-    private httpClient: HttpClient
   ) {
-    httpClient
-      .get(this.API_ENDPOINT + 'payment')
+    this.paymentService.getPayment()
       .subscribe((data: Payment[]) => {
         this.payment = data; 
         console.log(this.payment);
