@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InventoryService } from '../servicios/inventory.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inventory } from '../interfaces/inventory';
 import { Router } from '@angular/router';
 @Component({
@@ -13,8 +13,9 @@ export class InventoryHomeComponent implements OnInit {
   inventories: Inventory[];
   rootInventory = '';
   constructor(private inventoryService: InventoryService, private router: Router, private httpClient: HttpClient) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json','accesstoken': localStorage.getItem('token') });
 
-    httpClient.get(this.API_ENDPOINT + 'inventory')
+    httpClient.get(this.API_ENDPOINT + 'inventory',{headers})
       .subscribe((data: Inventory[]) => {
         this.inventories = data; 
         console.log(this.inventories);

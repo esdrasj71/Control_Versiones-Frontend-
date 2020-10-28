@@ -27,7 +27,7 @@ export class ProvidersFormComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.params['id']; //Este es el parametro que se definio en la ruta de app.module.ts
     if (this.id) {
       this.editing = true;
-      this.httpClient.get(this.API_ENDPOINT + 'providers').subscribe((data: Providers[]) => { //Aqui traemos el arreglo completo de datos
+      this.providersService.getProviders().subscribe((data: Providers[]) => { //Aqui traemos el arreglo completo de datos
         this.postarr = data;
         console.log(this.postarr);
         this.providers = this.postarr.find((m) => { return m.Providers_Id == this.id }); //Aqui traemos solo el id que nos interesa

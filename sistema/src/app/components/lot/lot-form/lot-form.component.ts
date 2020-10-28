@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { LotService } from '../servicios/lot.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Lot } from '../interfaces/lot';
 import { ActivatedRoute } from '@angular/router';
 import { Products } from '../../product/interfaces/product';
@@ -36,9 +36,11 @@ export class LotFormComponent implements OnInit {
 
   constructor(private invetoryService: InventoryService, private lotService: LotService, private activatedRoute: ActivatedRoute, private router: Router, private httpClient: HttpClient) {
     this.id = this.activatedRoute.snapshot.params['id'];
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
+
     if (this.id) {
       this.editing = true;
-      this.httpClient.get(this.API_ENDPOINT + 'lot').subscribe((data: Lot[]) => {
+      this.httpClient.get(this.API_ENDPOINT + 'lot',{headers}).subscribe((data: Lot[]) => {
         this.postarr = data;
         console.log(this.postarr);
         this.lot = this.postarr.find((m) => { return m.Lot_Id == this.id });
@@ -49,7 +51,7 @@ export class LotFormComponent implements OnInit {
       this.editing = false;
     }
 
-    httpClient.get(this.API_ENDPOINT + 'product')
+    httpClient.get(this.API_ENDPOINT + 'product',{headers})
       .subscribe((data: Products[]) => {
         this.products = data;
         console.log(this.products);

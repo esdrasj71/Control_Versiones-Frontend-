@@ -12,21 +12,21 @@ import { EmployeePosition } from '../../employee_position/interfaces/employee-po
 export class EmployeeFormComponent implements OnInit {
 
   employee: Employee = {
-    Employee_Id:null,
+    Employee_Id: null,
     DPI: null,
     Names: null,
     Last_names: null,
     Phone_number: null,
-    Cellphone_number: null, 
+    Cellphone_number: null,
     Email: null,
     Gender: null,
     Hire_date: null,
-    Employee_Position_Id: null, 
-  }; 
+    Employee_Position_Id: null,
+  };
   API_ENDPOINT = 'http://localhost:3000/';
   id: any;
-  editing: boolean = false; //Este campo ayuda a saber cuando estamos editando y cuando estamos ingresando
-  postarr: Employee[]; //Este campo nos ayudara a traer los datos cuando queremos editar
+  editing: boolean = false; 
+  postarr: Employee[]; 
   employeePosition: EmployeePosition[];
 
   constructor(private employeeService: EmployeeService, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
@@ -41,14 +41,14 @@ export class EmployeeFormComponent implements OnInit {
         console.log(error);
       });
     } else {
-      this.editing = false; 
+      this.editing = false;
     }
 
     httpClient.get(this.API_ENDPOINT + 'employee_position')
-    .subscribe((data: EmployeePosition[]) =>{
-      this.employeePosition = data;
-      console.log(this.employeePosition);
-    })
+      .subscribe((data: EmployeePosition[]) => {
+        this.employeePosition = data;
+        console.log(this.employeePosition);
+      })
   }
   ngOnInit() {
   }
@@ -58,7 +58,7 @@ export class EmployeeFormComponent implements OnInit {
         alert('Empleado actualizado');
         console.log(data)
       }, (error) => {
-        console.log(error);  
+        console.log(error);
         alert('Ocurrio un error');
       });
     }
@@ -72,5 +72,5 @@ export class EmployeeFormComponent implements OnInit {
         alert('Ocurrio un error');
       });
     }
-  } 
+  }
 }

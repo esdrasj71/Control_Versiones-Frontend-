@@ -16,7 +16,9 @@ export class LotService {
       });
   }
   getLot() {
-    return this.httpClient.get(this.API_ENDPOINT + 'lot');
+    const headers = new HttpHeaders({ 'ContentType': 'application/json','accesstoken':localStorage.getItem('token') });
+
+    return this.httpClient.get(this.API_ENDPOINT + 'lot',{headers});
   }
   saveprocedure(procedure_product: Procedure_SaveProduct) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -24,20 +26,22 @@ export class LotService {
   }
   save(lot: Lot) {
     //console.log(lot);
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken':localStorage.getItem('token') });
     return this.httpClient.post(this.API_ENDPOINT + 'lot', lot, { headers: headers });
   }
   put(lot) { //Le llamaremos put para fines practicos
-    const headers = new HttpHeaders({ 'ContentType': 'application/json' });
+    const headers = new HttpHeaders({ 'ContentType': 'application/json','accesstoken':localStorage.getItem('token') });
     return this.httpClient.put(this.API_ENDPOINT + 'lot/' + lot.Lot_Id, lot, { headers: headers });
   }
 
   delete(id) {
-    const headers = new HttpHeaders({ 'ContentType': 'application/json' });
+    const headers = new HttpHeaders({ 'ContentType': 'application/json','accesstoken':localStorage.getItem('token') });
     return this.httpClient.delete(this.API_ENDPOINT + 'lot/' + id, { headers: headers });
   }
 
   findPresentation(id) {
-    return this.httpClient.get(this.API_ENDPOINT + 'lot/' + id);
+    const headers = new HttpHeaders({ 'ContentType': 'application/json','accesstoken':localStorage.getItem('token') });
+
+    return this.httpClient.get(this.API_ENDPOINT + 'lot/' + id,{headers});
   }
 }

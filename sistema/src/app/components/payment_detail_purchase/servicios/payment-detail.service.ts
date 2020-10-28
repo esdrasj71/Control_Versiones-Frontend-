@@ -11,29 +11,28 @@ export class PaymentDetailService {
 
   paymentDetail = []; 
   constructor(private httpClient: HttpClient) {
-    httpClient.get(this.API_ENDPOINT + 'payment_detail_purchase')
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
+    httpClient.get(this.API_ENDPOINT + 'payment_detail_purchase',{headers})
       .subscribe((data: PaymentDetail[]) => {
         this.paymentDetail = data;
       }); 
    } 
   getPayment() {
-    return this.httpClient.get(this.API_ENDPOINT + 'payment_detail_purchase');
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
+    return this.httpClient.get(this.API_ENDPOINT + 'payment_detail_purchase',{headers});
   }
   save(paymentDetail: PaymentDetail) {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
     return this.httpClient.post(this.API_ENDPOINT + 'payment_detail_purchase', paymentDetail, { headers: headers });
   }
   put(id) { //Le llamaremos put para fines practicos
-    const headers = new HttpHeaders({ 'ContentType': 'application/json' });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
     return this.httpClient.put(this.API_ENDPOINT + 'payment_detail_purchase/' + id.Payment_Detail_Purchase_Id, id, { headers: headers });
   }
   delete(id) {
-    const headers = new HttpHeaders({ 'ContentType': 'application/json' });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
     return this.httpClient.delete(this.API_ENDPOINT + 'payment_detail_purchase/' + id, { headers: headers });
   }
-  findbrand(paymentDetail: PaymentDetail) {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.httpClient.get(this.API_ENDPOINT + 'payment_detail_purchase/:Payment_Detail_Purchase_Id');
-  }
+
 }
  

@@ -22,7 +22,7 @@ export class ProductCategoryFormComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.params['id']; 
     if (this.id) {
       this.editing = true;
-      this.httpClient.get(this.API_ENDPOINT + 'product_category').subscribe((data: Product_Category[]) => { 
+      this.productcategoryService.getCategory().subscribe((data: Product_Category[]) => { 
         this.postarr = data;
         console.log(this.postarr);
         this.product_category = this.postarr.find((m) => { return m.Product_Category_Id == this.id }); 

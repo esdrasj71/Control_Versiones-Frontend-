@@ -13,7 +13,7 @@ export class BrandHomeComponent implements OnInit {
   brands: Brands[];
   constructor(private brandsService: BrandsService, private httpClient: HttpClient) {
    
-    httpClient.get(this.API_ENDPOINT + 'brands')
+    this.brandsService.getBrand()
     .subscribe((data: Brands[]) =>{
       this.brands = data;
       console.log(this.brands);

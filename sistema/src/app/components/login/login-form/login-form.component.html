@@ -1,0 +1,210 @@
+<ng-container *ngIf="Existe>0; else viewUser">
+<div>
+  <div class="form-group row">
+    <label class="col-md-3 form-controllabel" for="Username">Username</label>
+    <div class="col-md-9">
+      <input
+        [(ngModel)]="login.Username"
+        type="text"
+        id="Username"
+        class="form-control"
+      />
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-md-3 form-controllabel" for="Password">Password</label>
+    <div class="col-md-9">
+      <input
+        [(ngModel)]="login.Password"
+        type="text"
+        id="Password"
+        class="form-control"
+      />
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-12">
+      <button (click)="savePost()" class="btn btn-primary btnblock">
+        Guardar
+      </button>
+    </div>
+  </div>
+</div>
+</ng-container>
+
+
+
+<ng-template #viewUser>
+  <h3>CREAR UN USUARIO NUEVO</h3>
+  <div class="form-group row">
+    <label class="col-md-3 form-controllabel" for="DPI">No. DPI</label>
+    <div class="col-md-9">
+      <input
+        [(ngModel)]="employee.DPI"
+        type="text"
+        id="DPI"
+        class="form-control"
+      />
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-md-3 form-controllabel" for="Names">Nombres</label>
+    <div class="col-md-9">
+      <input
+        [(ngModel)]="employee.Names"
+        type="text"
+        id="Names"
+        class="form-control"
+      />
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-md-3 form-controllabel" for="Last_names">Apellidos</label>
+    <div class="col-md-9">
+      <input
+        [(ngModel)]="employee.Last_names"
+        type="text"
+        id="Last_names"
+        class="form-control"
+      />
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-md-3 form-controllabel" for="Phone_number"
+      >No. Telefono</label
+    >
+    <div class="col-md-9">
+      <input
+        [(ngModel)]="employee.Phone_number"
+        type="text"
+        id="Phone_number"
+        class="form-control"
+      />
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-md-3 form-controllabel" for="Cellphone_number"
+      >No. Celular</label
+    >
+    <div class="col-md-9">
+      <input
+        [(ngModel)]="employee.Cellphone_number"
+        type="text"
+        id="Cellphone_number"
+        class="form-control"
+      />
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-md-3 form-controllabel" for="Email"
+      >Correo Electronico</label
+    >
+    <div class="col-md-9">
+      <input
+        [(ngModel)]="employee.Email"
+        type="text"
+        id="Email"
+        class="form-control"
+      />
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-md-3 form-controllabel" for="Gender">Genero</label>
+    <div class="col-md-9">
+      <input
+        [(ngModel)]="employee.Gender"
+        type="text"
+        id="Gender"
+        class="form-control"
+      />
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-md-3 form-controllabel" for="Hire_date"
+      >Fecha de contratación</label
+    >
+    <div class="col-md-9">
+      <input
+        [(ngModel)]="employee.Hire_date"
+        type="text"
+        id="Hire_date"
+        class="form-control"
+      />
+    </div>
+  </div>
+  <button
+    type="button"
+    class="btn btn-success"
+    data-toggle="modal"
+    data-target=".bd-user-modal-lg"
+  >
+    Seguir al registro de usuario
+  </button>
+</ng-template>
+
+<div
+  class="modal fade bd-user-modal-lg"
+  id="exampleModalCenter"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myLargeModalLabel"
+  aria-hidden="true"
+  style=" color:black;"
+>
+  <div
+    class="modal-dialog modal-lg modal-dialog-centered"
+    role="document"
+    style="width: 900px"
+  >
+    <div class="modal-content" style="width: 900px">
+      <div class="modal-header" style="width: 900px">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+          Registre el primer usuario
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div
+        class="modal-body"
+        style="max-height: 900px; max-width: 900px; overflow-y: auto;"
+      >
+
+      <div class="form-group row">
+        <label class="col-md-3 form-controllabel" for="Username"
+          >Nombre de usuario</label
+        >
+        <div class="col-md-9">
+          <input
+            [(ngModel)]="user.Username"
+            type="text"
+            id="Username"
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-3 form-controllabel" for="Password"
+          >Contraseña</label
+        >
+        <div class="col-md-9">
+          <input
+            [(ngModel)]="user.Password"
+            type="text"
+            id="Password"
+            class="form-control"
+          />
+        </div>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="saveFirst()">Registrar Usuario</button>
+      </div>
+    </div>
+  </div>
+</div>
