@@ -13,7 +13,7 @@ export class ProductHomeComponent implements OnInit {
   products: Products[]
   filtrado_product = '';
   constructor(private productsService: ProductsService, private router: Router, private httpClient: HttpClient) {
-    httpClient.get(this.API_ENDPOINT + 'product')
+    this.productsService.getProduct()
       .subscribe((data: Products[]) => {
         this.products = data;
         console.log(this.products);

@@ -23,7 +23,7 @@ export class EmployeePositionService {
 
    save(employeePosition: EmployeePosition){
      console.log(employeePosition);
-     const headers = new HttpHeaders({'Content-Type': 'application/json'});
+     const headers = new HttpHeaders({'Content-Type': 'application/json', 'accesstoken':localStorage.getItem('token')});
      return this.httpClient.post(this.API_ENDPOINT + 'employee_position', employeePosition, {headers: headers});
    }
    put(employeePosition) { //Le llamaremos put para fines practicos

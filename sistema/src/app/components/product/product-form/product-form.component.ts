@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Brands } from '../../brand/interfaces/brand';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Product_Category } from '../../product_category/interfaces/product-category';
 import { Products } from '../interfaces/product';
 import { Lot } from '../../lot/interfaces/lot';
@@ -67,12 +67,13 @@ export class ProductFormComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     //Update
-    console.log(this.lot);
     this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
       console.log(this.product);
       this.editing = true;
-      this.httpClient.get(this.API_ENDPOINT + 'product').subscribe(
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
+
+      this.httpClient.get(this.API_ENDPOINT + 'product',{headers}).subscribe(
         (data: Products[]) => {
           this.productarr = data;
           this.product = this.productarr.find((m) => {
@@ -91,12 +92,12 @@ export class ProductFormComponent implements OnInit {
     } else {
       this.editing = false;
     }
-
-    httpClient.get(this.API_ENDPOINT + 'brands').subscribe((data: Brands[]) => {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
+    httpClient.get(this.API_ENDPOINT + 'brands',{headers}).subscribe((data: Brands[]) => {
       this.brands = data;
     });
     httpClient
-      .get(this.API_ENDPOINT + 'product_category')
+      .get(this.API_ENDPOINT + 'product_category',{headers})
       .subscribe((data: Product_Category[]) => {
         this.product_category = data;
       });

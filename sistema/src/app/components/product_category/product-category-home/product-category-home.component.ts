@@ -13,8 +13,7 @@ export class ProductCategoryHomeComponent implements OnInit {
   rootProductCategory = '';
   constructor(private productcategoryService: ProductCategoryService, private httpClient: HttpClient) {
 
-    httpClient.get(this.API_ENDPOINT + 'product_category')
-      .subscribe((data: Product_Category[]) => {
+    this.productcategoryService.getCategory().subscribe((data: Product_Category[]) => {
         this.product_category = data; //Se debe acceder al arreglo de este modo, oAngular lo reconocera como un objeto del tipo Post
         console.log(this.product_category);
       });

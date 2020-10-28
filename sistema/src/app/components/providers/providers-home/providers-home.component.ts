@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ProvidersService } from '../servicios/providers.service';
-import { HttpClient } from '@angular/common/http';
 import { Providers } from '../interfaces/providers';
 import { Router} from '@angular/router';
 
@@ -15,13 +14,17 @@ export class ProvidersHomeComponent implements OnInit {
 
   constructor(
     private providersService: ProvidersService, private router: Router,
-    private httpClient: HttpClient
   ) {
-    httpClient.get(this.API_ENDPOINT + 'providers')
+
+
+    this.providersService.getProviders().subscribe((data: Providers[]) => {
+      this.providers = data;
+    });;
+   /* httpClient.get(this.API_ENDPOINT + 'providers',{headers:headers})
       .subscribe((data: Providers[]) => {
         this.providers = data; 
         console.log(this.providers);
-      });
+      });*/
   }
 
 searchTerm3 = '';

@@ -18,25 +18,29 @@ export class InventoryService {
 
 
   save(inventory: Inventory) {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json','accesstoken': localStorage.getItem('token') });
     return this.httpClient.post(this.API_ENDPOINT + 'inventory', inventory, { headers: headers });
   }
 
   put(inventory) {
-    const headers = new HttpHeaders({ 'ContentType': 'application/json' });
+    const headers = new HttpHeaders({ 'ContentType': 'application/json','accesstoken': localStorage.getItem('token') });
     return this.httpClient.put(this.API_ENDPOINT + 'inventory/' + inventory.Inventory_Id
       , inventory, { headers: headers });
   }
 
   delete(id) {
-    const headers = new HttpHeaders({ 'ContentType': 'application/json' });
+    const headers = new HttpHeaders({ 'ContentType': 'application/json','accesstoken': localStorage.getItem('token') });
     return this.httpClient.delete(this.API_ENDPOINT + 'inventory/' + id, { headers: headers });
   }
 
   getInventory() {
-    return this.httpClient.get(this.API_ENDPOINT + 'inventory');
+    const headers = new HttpHeaders({ 'ContentType': 'application/json','accesstoken': localStorage.getItem('token') });
+
+    return this.httpClient.get(this.API_ENDPOINT + 'inventory',{ headers: headers });
   }
   getInventoryId(id) {
-    return this.httpClient.get(this.API_ENDPOINT + 'inventory/' + id);
+    const headers = new HttpHeaders({ 'ContentType': 'application/json','accesstoken': localStorage.getItem('token') });
+
+    return this.httpClient.get(this.API_ENDPOINT + 'inventory/' + id,{ headers: headers });
   }
 }

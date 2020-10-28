@@ -230,9 +230,9 @@
               type="button"
               class="btn btn-success"
               data-toggle="modal"
-              data-target=".bd-registro-modal-lg"
+              data-target=".bd-cobro-modal-lg"
             >
-              Registrar Compra
+              Continuar compra
             </button>
           </div>
         </div>
@@ -602,70 +602,7 @@
   </div>
 </div>
 <!-- MODAL ANTES DE REGISTRAR LA COMPRA -->
-<div
-  class="modal fade bd-registro-modal-lg"
-  id="exampleModalCenter"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="myLargeModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-    <div class="modal-content modal-dialog" style="width: px">
-      <div class="modal-header d-flex justify-content-center">
-        <h5 class="heading" style="color: black; position: center">
-          Registre el tipo de pago de esta compra
-        </h5>
-        <button
-          (click)="cerrarpago()"
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div
-        class="modal-body"
-        style="max-height: 900px; max-width: 900px; overflow-y: auto"
-      >
-        <div class="container">
-          <div class="form-group">
-            <label for="Observations" class="col-form-label" style="font-size: 2rem;"
-              ><b>¿Esta pagado?</b></label
-            >
-            <div class="col">
-              <p style="color:blue;">De click al cuadro para afirmar que esta pagado, en caso contrario de click al botón de registrar la compra</p>
-              <input
-                #small
-                type="checkbox"
-                id="Payment_Complete"
-                v-model="Payment_Complete"
-                class="formcontrol"
-                [(ngModel)]="header.Payment_Complete"
-                class="form-control"
-                data-toggle="modal"
-                data-target=".bd-cobro-modal-lg"
-              />
-            </div>
-          </div>
 
-          <div class="form-group">
-            <button type="button" class="btn btn-primary" (click)="savePost()">
-              Registrar la compra
-            </button>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" (click)="cerrarpago()" data-dismiss="modal">
-            Cerrar
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 <!-- MODO DE PAGO DE COMPRAS-->
 <div
   class="modal fade bd-cobro-modal-lg"
@@ -695,51 +632,14 @@
       >
         <div class="container">
           <h3 style="text-align: center">Tipo de pago</h3>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group row">
-                <div class="col-sm-4">
-                  <input
-                    type="checkbox"
-                    ngDefaultControl
-                    (click)="mostraralcredito()"
-                    [(ngModel)]="pago_alcredito"
-                    class="form-control"
-                    tabindex="1"
-                  />
-                </div>
-                <label for="correlativo" class="col-form-label"
-                  >Al credito</label
-                >
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group row">
-                <div class="col-sm-4">
-                  <input
-                    type="checkbox"
-                    (click)="mostraralcontado()"
-                    [(ngModel)]="pago_alcontado"
-                    ngDefaultControl
-                    class="form-control"
-                    tabindex="1"
-                  />
-                </div>
-                <label for="serie" class="col-form-label">Al contado</label>
-              </div>
-            </div>
-          </div>
-          <hr />
-          <h3 style="text-align: center">Monto</h3>
-          <div *ngIf="pago_alcontado">
             <hr />
-            <b style="font-size: 23px; color: red">Al contado</b>
+            <h3 style="color: red; text-align: center">Al contado</h3>
             <br />
             <div class="row">
               <div class="col-md-5">
                 <div class="form-group row">
-                  <label for="correlativo" class="col-form-label">Monto:</label>
-                  <div class="col-md-6">
+                  <label for="correlativo" class="col-form-label">Abono:</label>
+                  <div class="col-md-8">
                     <input
                       type="number"
                       min="0"
@@ -755,69 +655,24 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-6">
+               </div>
+               <div class="row">
+              <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="serie" class="col-form-label">Descripcion:</label>
-                  <div class="col-sm-7">
+                  <label for="Description" class="col-form-label">Descripcion:</label>
+                  <div class="col-md-12">
                     <textarea
-                      ngDefaultControl
-                      name="descripcion"
-                      [ngModel]="payment.Description"
-                      id="descripcion"
+                      rows="2"
+                      [(ngModel)]="payment.Description"
+                      id="Description"
                       class="form-control"
                       placeholder=""
-                      tabindex="1"
+                      tabindex="2"
                     ></textarea>
                   </div>
                 </div>
               </div>
-            </div>
-            <hr />
-          </div>
-          <div *ngIf="pago_alcredito">
-            <hr />
-            <b style="font-size: 23px; color: red">Al credito</b>
-            <br />
-            <div class="row">
-              <div class="col-md-5">
-                <div class="form-group row">
-                  <label for="" class="col-form-label">Monto:</label>
-                  <div class="col-md-6">
-                    <input
-                      type="number"
-                      min="0"
-                      max="total_cobro"
-                      #boxalcredito
-                      (keyup.enter)="onPagoalcredito(boxalcredito.value)"
-                      ngDefaultControl
-                      name="monto"
-                      id="monto"
-                      class="form-control"
-                      placeholder=""
-                      tabindex="1"
-                    />
-                  </div>
-                </div>
               </div>
-              <div class="col-md-6">
-                <div class="form-group row">
-                  <label for="" class="col-form-label">Descripcion:</label>
-                  <div class="col-sm-7">
-                    <textarea
-                      ngDefaultControl
-                      name="descripcion"
-                      [ngModel]="payment.Description"
-                      id="descripcion"
-                      class="form-control"
-                      placeholder=""
-                      tabindex="1"
-                    ></textarea>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <hr />
-          </div>
           <hr />
           <div class="row">
             <div class="col-md-6">
@@ -825,7 +680,7 @@
                 <label
                   style="font-size: 20px; color: blue"
                   class="col-form-label"
-                  >Monto Total:</label
+                  >Monto total a pagar:</label
                 >
                 <div class="col-sm-4">
                   <label
@@ -842,10 +697,10 @@
                 <button
                   type="button"
                   class="btn btn-primary"
-                  (click)="Payment()"
+                  (click)="savePost()"
                   data-dismiss="modal"
                 >
-                  Registrar Pago
+                  Registrar Compra
                 </button>
               </div>
             </div>
@@ -855,4 +710,3 @@
     </div>
   </div>
 </div>
-
