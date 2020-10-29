@@ -55,6 +55,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { DebsToPayHomeComponent } from './components/debs_to_pay/debs-to-pay-home/debs-to-pay-home.component';
 import { PurchaseReportsHomeComponent } from './components/purchase_reports/purchase-reports-home/purchase-reports-home.component';
+import { DebsPayHomeComponent } from './components/purchase_reports/debs-pay-home/debs-pay-home.component';
 
 const routes: Route[] = [
   //Brand
@@ -125,6 +126,7 @@ const routes: Route[] = [
   { path: 'debs-to-pay-home', component: DebsToPayHomeComponent,canActivate:[CheckloginGuard] },
   //Purchase Reports
   { path: 'purchase-reports-home', component: PurchaseReportsHomeComponent,canActivate:[CheckloginGuard] },
+  { path: 'debs-pay-home', component: DebsPayHomeComponent,canActivate:[CheckloginGuard] },
 ];
 
 @NgModule({
@@ -178,7 +180,8 @@ const routes: Route[] = [
     LoginFormComponent,
     DebsToPayHomeComponent,
     UserFormComponent,
-    PurchaseReportsHomeComponent
+    PurchaseReportsHomeComponent,
+    DebsPayHomeComponent
   ],
   imports: [
     BrowserModule,

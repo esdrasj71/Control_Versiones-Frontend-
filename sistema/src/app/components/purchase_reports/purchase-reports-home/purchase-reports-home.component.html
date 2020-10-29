@@ -3,24 +3,24 @@
     <h2 style="text-align: center;">____________________</h2><br><br>
     <!---->
     <div class="form-group row">
-        <label style="color: white;" >Fecha de inicio:</label>
-        <div class="col-md-9">
+        <label style="color: white;">Fecha de inicio:</label>
+        <div class="col-md-4">
             <input type="date" id="start" name="trip-start" [(ngModel)]="report1.Date1"
-                [ngModelOptions]="{standalone: true}" class="form-control" style="width: 40%;">
+                [ngModelOptions]="{standalone: true}" class="form-control" style="width: 100%;">
         </div>
-    </div>
-    <div class="form-group row "> &nbsp;&nbsp;&nbsp;&nbsp;
-        <label style="color: white;" >Fecha limite: </label>
-        <div class="col-md-9">
+        <label style="color: white;">Fecha limite: </label>
+        <div class="col-md-4">
             <input type="date" id="start" name="trip-start" [(ngModel)]="report1.Date2"
-                [ngModelOptions]="{standalone: true}" class="form-control" style="width: 40%;">
+                [ngModelOptions]="{standalone: true}" class="form-control" style="width: 100%;">
         </div>
     </div>
-    <div class="form-group row"> &nbsp;&nbsp;&nbsp;&nbsp;
-        <button type="button" class="btn btn-danger" (click)="Reporte1()">Generar Reporte</button>
-    </div>
-    <div class="form-group row"> &nbsp;&nbsp;&nbsp;&nbsp;
-        <button type="button" class="btn btn-danger">Generar PDF</button>
+    <div class="form-group row">
+        <div class="col-md-3"> &nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-danger" (click)="Reporte1()">Generar Reporte</button>
+        </div>
+        <div class="col-md-3"> &nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-danger">Generar PDF</button>
+        </div>
     </div>
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
         <table class="table table-hover" style="background-color:#F8F9F9;" id="searchTextResults">
@@ -40,7 +40,8 @@
                     <td>{{reporteuno.Facturas}}</td>
                     <td>{{reporteuno.Total| currency:"GTQ":"Q"}}</td>
                     <td><a class="btn btn-info btn-sm" style="background-color: #6cb3aa;" data-toggle="modal"
-                            data-target=".bd-detail-modal-lg" (click)="mostrar_detalle(reporteuno.Providers_Id, reporteuno.Total, reporteuno.Date1, reporteuno.Date2)">Ver
+                            data-target=".bd-detail-modal-lg"
+                            (click)="mostrar(report1.Date1, report1.Date2, reporteuno.Providers_Id, reporteuno.Total)">Ver
                             Detalle</a></td>
                 </tr>
             </tbody>
@@ -61,10 +62,14 @@
                 </button>
             </div>
             <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y: auto">
+                <div class="form-group row row col-md-4">
+                    <h6 for="bills" style="color: black;"><strong>Total de Facturas: </strong> </h6>
+                    <h6 for="bills" style="color: black;"> {{cont}} </h6>
+                  </div>
                 <div class="form-group row col-md-4">
                     <h6 style="color: black;"><strong>Total de Compras:</strong></h6>
                     <h6 style="color: black;">{{Total | currency:"GTQ":"Q"}}</h6>
-                  </div>
+                </div>
                 <div class="form-group row"> &nbsp;&nbsp;&nbsp;&nbsp;
                     <button type="button" class="btn btn-danger">Generar PDF</button>
                 </div>
@@ -80,12 +85,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let detail of detail">
-                                <td>{{detail.Fiscal_Name}}</td>
-                                <td>{{detail.NIT}}</td>
-                                <td>{{detail.Correlative_Number}}</td>
-                                <td>{{detail.Date_Purchase|date:'d-M-y'}}</td>
-                                <td>{{detail.Total| currency:"GTQ":"Q"}}</td>
+                            <tr *ngFor="let detail2 of detail2">
+                                <td>{{detail2.Fiscal_Name}}</td>
+                                <td>{{detail2.NIT}}</td>
+                                <td>{{detail2.Correlative_Number}}</td>
+                                <td>{{detail2.Date_Purchase|date:'d-M-y'}}</td>
+                                <td>{{detail2.Total| currency:"GTQ":"Q"}}</td>
                             </tr>
                         </tbody>
                     </table>
