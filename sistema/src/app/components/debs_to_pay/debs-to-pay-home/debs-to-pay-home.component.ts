@@ -27,7 +27,6 @@ export class DebsToPayHomeComponent implements OnInit {
   constructor(private debstopayService: DebsToPayService, private httpClient: HttpClient) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
     httpClient.get(this.API_ENDPOINT + 'DebstoPay', { headers })
-
       .subscribe((data: DebstoPay[]) => {
         this.debstopay = data;
         console.log(this.debstopay);

@@ -1,0 +1,48 @@
+<div class="container">
+    <h1 style="text-align: center; font-weight: bold;">Reporte Detallado de Compras</h1>
+    <h2 style="text-align: center;">____________________</h2><br><br>   
+    <!---->
+    <div class="form-group row">
+        <label style="color: white;">Fecha de inicio:</label>
+        <div class="col-md-9">
+            <input type="date" id="start" name="trip-start" [(ngModel)]="report1.Date1"
+                [ngModelOptions]="{standalone: true}" class="form-control" style="width: 40%;">
+        </div>
+    </div>
+    <div class="form-group row"> &nbsp;&nbsp;&nbsp;&nbsp;
+        <label style="color: white;">Fecha limite:    </label>
+        <div class="col-md-9">
+            <input type="date" id="start" name="trip-start" [(ngModel)]="report1.Date2"
+                [ngModelOptions]="{standalone: true}" class="form-control" style="width: 40%;">
+        </div>
+    </div>
+    <div class="form-group row"> &nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-danger" (click)="Reporte1()">Generar Reporte</button>
+    </div>
+    <div class="form-group row"> &nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-danger">Generar PDF</button>
+    </div>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <table class="table table-hover" style="background-color:#F8F9F9;" id="searchTextResults">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="header" scope="col">Nombre Fiscal</th>
+                    <th class="header" scope="col">NIT</th>
+                    <th class="header" scope="col">Número Total de Facturas</th>
+                    <th class="header" scope="col">Total</th>
+                    <th class="header" scope="col">Acciones </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor = "let reporteuno of reportone">
+                    <td>{{reporteuno.Fiscal_Name}}</td>
+                    <td>{{reporteuno.NIT}}</td>
+                    <td>{{reporteuno.Facturas}}</td>
+                    <td>{{reporteuno.Total| currency:"GTQ":"Q"}}</td>
+                    <td><a class="btn btn-info btn-sm" style="background-color: #6cb3aa;"
+                            routerLink="">Ver Detalle</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
