@@ -18,11 +18,13 @@ export class PurchaseReportsHomeComponent implements OnInit {
   API_ENDPOINT = 'http://localhost:3000/';
 
   @ViewChild('pdfTable') pdfTable: ElementRef;
+  @ViewChild('pdfTable2') pdfTable2: ElementRef;
   reportone: PurchaseReport1[];
   detail: PurchaseReport1[];
   detail2: PurchaseReport2[];
   Total = 0;
   cont = 0;
+  Existe=0;
 
   //Report1
   report1: PurchaseReport1 = {
@@ -51,6 +53,18 @@ imprimir()
   const documentDefinition = { content: html };
   pdfMake.createPdf(documentDefinition).open();
 }
+
+imprimir2()
+{
+  const doc = new jsPDF();
+  //get table html
+  const pdfTable2 = this.pdfTable2.nativeElement;
+  //html to pdf format
+  var html = htmlToPdfmake("<b>Nombre del sistema </b></br>"+ "<b>Fecha consultada del "+this.report1.Date1+" al "+this.report1.Date2 +"</b></br> Detalle de la compra </br> " +pdfTable2.innerHTML);
+ 
+  const documentDefinition = { content: html };
+  pdfMake.createPdf(documentDefinition).open();
+}
 mostrar(Date1, Date2, ProvidersId, total) {
   this.report2.Date1 = Date1;
   this.report2.Date2 = Date2;
@@ -71,9 +85,12 @@ mostrar(Date1, Date2, ProvidersId, total) {
         this.reportone = data[0];
         console.log(this.reportone[0]);
         if (data[0] == 0) {
+          this.Existe=0;
+          this.reportone=[];
           alert('No existen compras en ese rango de fechas');
         }
         else {
+          this.Existe=1;
           console.log(this.report1);
           this.reportone = data[0];
           console.log(this.reportone);
