@@ -30,7 +30,6 @@ import { FiltradocustomersPipe } from './pipes/filtradocustomers.pipe';
 import { FiltradopresentationPipe } from './pipes/filtradopresentation.pipe';
 import { CustomersHomeComponent } from './components/customers/customers-home/customers-home.component';
 import { CustomersFormComponent } from './components/customers/customers-form/customers-form.component';
-import { NgxPaginationModule } from 'ngx-pagination';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { PaymentHomeComponent } from './components/payment/payment-home/payment-home.component';
 import { PaymentFormComponent } from './components/payment/payment-form/payment-form.component';
@@ -187,7 +186,6 @@ const routes: Route[] = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule,
     NgSelectModule,
   ],
   providers: [],

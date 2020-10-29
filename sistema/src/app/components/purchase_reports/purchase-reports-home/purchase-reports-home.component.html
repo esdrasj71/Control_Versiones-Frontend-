@@ -19,12 +19,14 @@
     <div class="form-group row"> &nbsp;&nbsp;&nbsp;&nbsp;
         <button type="button" class="btn btn-danger" (click)="Reporte1()">Generar Reporte</button>
     </div>
-    <div class="form-group row"> &nbsp;&nbsp;&nbsp;&nbsp;
-        <button type="button" class="btn btn-danger">Generar PDF</button>
+    <div class="form-group row" >
+        <button type="button" class="btn btn-danger" (click)="imprimir()">Generar PDF</button>
     </div>
+  
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
-        <table class="table table-hover" style="background-color:#F8F9F9;" id="searchTextResults">
-            <thead class="thead-dark">
+        <div id="pdfTable" #pdfTable>
+        <table  class="table table-dark" style="table-layout: fixed; word-wrap: break-word;" id="searchTextResults">
+            <thead>
                 <tr>
                     <th class="header" scope="col">Nombre Fiscal</th>
                     <th class="header" scope="col">NIT</th>
@@ -46,3 +48,5 @@
         </table>
     </div>
 </div>
+</div>
+
