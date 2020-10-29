@@ -54,6 +54,7 @@ import { AccountsReceivableComponent } from './components/accounts_receivable/ac
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { DebsToPayHomeComponent } from './components/debs_to_pay/debs-to-pay-home/debs-to-pay-home.component';
+import { PurchaseReportsHomeComponent } from './components/purchase_reports/purchase-reports-home/purchase-reports-home.component';
 
 const routes: Route[] = [
   //Brand
@@ -117,10 +118,13 @@ const routes: Route[] = [
   { path: 'login', component: LoginFormComponent},
   //user
   {path: 'user',component:UserFormComponent,canActivate:[CheckloginGuard]},
-    //accounts receivable
+  //accounts receivable
   { path: 'accounts-receivable', component: AccountsReceivableComponent,canActivate:[CheckloginGuard]},
   { path: 'home', component: HomeComponent,canActivate:[CheckloginGuard] },
+  //Debs to Pay
   { path: 'debs-to-pay-home', component: DebsToPayHomeComponent,canActivate:[CheckloginGuard] },
+  //Purchase Reports
+  { path: 'purchase-reports-home', component: PurchaseReportsHomeComponent,canActivate:[CheckloginGuard] },
 ];
 
 @NgModule({
@@ -173,7 +177,8 @@ const routes: Route[] = [
     HomeComponent,
     LoginFormComponent,
     DebsToPayHomeComponent,
-    UserFormComponent
+    UserFormComponent,
+    PurchaseReportsHomeComponent
   ],
   imports: [
     BrowserModule,

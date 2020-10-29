@@ -11,11 +11,11 @@ export class BillsService {
 
    }
    saveDetails(billdetails: BillDetails){
-     const headers = new HttpHeaders({'Content-Type':'application/json'});
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
      return this.httpClient.post(this.API_ENDPOINT +'bill_header',billdetails,{headers: headers} );
    }
    saveHeader(billheader: Bill_header){
-     const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
      return this.httpClient.post(this.API_ENDPOINT + 'bill_header',billheader, {headers: headers});
    }
 }

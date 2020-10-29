@@ -13,7 +13,8 @@ export class ProcedureAccountsreceivableService {
    }
 
    saveprocedure(procedure_accountsReceivable: Procedure_AccountsReceivable){
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
+
     return this.httpClient.post(this.API_ENDPOINT + 'procedure_cuentas_cobrar', procedure_accountsReceivable, {headers: headers});
    }
 }
