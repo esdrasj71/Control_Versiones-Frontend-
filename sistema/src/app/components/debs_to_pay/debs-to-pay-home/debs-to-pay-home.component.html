@@ -24,7 +24,7 @@
         <td>{{debstopay.Fiscal_Name}}</td>
         <td>{{debstopay.NIT}}</td>
         <td>{{debstopay.Phone_Number1}}</td>
-        <td>Q. {{debstopay.Pay}}</td>
+        <td>{{debstopay.Pay | currency:"GTQ":"Q" }}</td>
         <td><a class="btn btn-info btn-sm" style="background-color: #6cb3aa;" data-toggle="modal"
             data-target=".bd-purchase-modal-lg"
             (click)="mostrar_facturas(debstopay.Providers_Id, debstopay.Fiscal_Name, debstopay.NIT, debstopay.Pay)">Ver
@@ -60,7 +60,7 @@
           </div>
           <div class="form-group row row col-md-4">
             <h6 style="color: black;"><strong>Total Cuentas por Pagar:</strong></h6>
-            <h6 style="color: black;">Q.{{Total_Debs}}</h6>
+            <h6 style="color: black;">{{Total_Debs | currency:"GTQ":"Q"}}</h6>
           </div>
           <div class="form-group row row col-md-4">
             <h6 for="bills" style="color: black;"><strong>Facturas a pagar: </strong> </h6>
@@ -83,7 +83,7 @@
                 <td>{{bills.Correlative_Number}}</td>
                 <td>{{bills.Serie}}</td>
                 <td>{{bills.Date_Purchase|date:'d-M-y'}}</td>
-                <td>Q. {{bills.Pay}}</td>
+                <td>{{bills.Pay| currency:"GTQ":"Q"}}</td>
                 <td><a class="btn btn-info btn-sm" style="background-color: #6cb3aa;" data-toggle="modal"
                     data-target=".bd-purchasedetail-modal-lg"
                     (click)="mostrar_facturas_detalle(bills.Purchase_Header_Id, bills.Pay, bills.Total)">Ver Detalle</a>
@@ -143,11 +143,11 @@
         <div class="container">
           <div class="form-group row">
             <h5 style="color: black;"><strong>Total de la factura: </strong> </h5>
-            <h5 style="color: black;"> Q. {{TotalPurchase}}</h5>
+            <h5 style="color: black;"> {{TotalPurchase | currency:"GTQ":"Q"}}</h5>
           </div>
           <div class="form-group row">
             <h5 style="color: black;"><strong>Total a pagar de la factura: </strong> </h5>
-            <h5 style="color: black;"> Q. {{Total}}</h5>
+            <h5 style="color: black;"> {{Total | currency:"GTQ":"Q"}}</h5>
           </div>
           <table class="table table-hover" style="background-color:#F8F9F9;">
             <thead class="thead-dark">
@@ -166,8 +166,8 @@
                 <td>{{billsdetail.ProductComplete}}</td>
                 <td>{{billsdetail.Lot_Id}}</td>
                 <td>{{billsdetail.Quantity}}</td>
-                <td>Q. {{billsdetail.Unit_Price}}</td>
-                <td>Q. {{billsdetail.SubTotal}}</td>
+                <td>{{billsdetail.Unit_Price | currency:"GTQ":"Q"}}</td>
+                <td>{{billsdetail.SubTotal | currency:"GTQ":"Q"}}</td>
               </tr>
             </tbody>
           </table>
