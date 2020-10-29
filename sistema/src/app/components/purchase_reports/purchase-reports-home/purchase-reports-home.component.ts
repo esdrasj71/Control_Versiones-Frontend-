@@ -35,7 +35,7 @@ export class PurchaseReportsHomeComponent implements OnInit {
   }
   ngOnInit(): void {
   }
-  ///
+  ///Detalle
   mostrar(Date1, Date2, ProvidersId, total) {
     this.report2.Date1 = Date1;
     this.report2.Date2 = Date2;
@@ -46,7 +46,7 @@ export class PurchaseReportsHomeComponent implements OnInit {
     })
     this.Total = total;
   }
-  //
+  //Principal
   Reporte1() {
     if (this.report1.Date1 == null || this.report1.Date2 == null) {
       alert("Debe llenar todos los campos")

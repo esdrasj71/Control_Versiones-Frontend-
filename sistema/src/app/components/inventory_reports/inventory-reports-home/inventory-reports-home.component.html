@@ -1,0 +1,109 @@
+<div class="container">
+    <h1 style="text-align: center; font-weight: bold;">Reporte Detallado de Inventario</h1>
+    <h2 style="text-align: center;">____________________</h2><br><br>
+    <!---->
+    <div class="form-group row">
+        <label style="color: white;">Fecha de inicio:</label>
+        <div class="col-md-4">
+            <input type="date" id="start" name="trip-start" [(ngModel)]="report1.Date1"
+                [ngModelOptions]="{standalone: true}" class="form-control" style="width: 100%;">
+        </div>
+        <label style="color: white;">Fecha limite: </label>
+        <div class="col-md-4">
+            <input type="date" id="start" name="trip-start" [(ngModel)]="report1.Date2"
+                [ngModelOptions]="{standalone: true}" class="form-control" style="width: 100%;">
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-3"> &nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-danger" (click)="Reporte1()">Generar Reporte</button>
+        </div>
+        <div class="col-md-3"> &nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-danger">Generar PDF</button>
+        </div>
+    </div>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <table class="table table-hover" style="background-color:#F8F9F9;" id="searchTextResults">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="header" scope="col">No. Correlativo</th>
+                    <th class="header" scope="col">Producto</th>
+                    <th class="header" scope="col">Marca</th>
+                    <th class="header" scope="col">Categoría</th>
+                    <th class="header" scope="col">Stock</th>
+                    <th class="header" scope="col">Precio Ponderado</th>
+                    <th class="header" scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let reporteuno of reportone">
+                    <td>{{reporteuno.Correlative_Product}}</td>
+                    <td>{{reporteuno.Product}}</td>
+                    <td>{{reporteuno.Brand}}</td>
+                    <td>{{reporteuno.Category}}</td>
+                    <td>{{reporteuno.Stock}}</td>
+                    <td>{{reporteuno.Precio| currency:"GTQ":"Q"}}</td>
+                    <td><a class="btn btn-info btn-sm" style="background-color: #6cb3aa;" data-toggle="modal"
+                            data-target=".bd-detail-modal-lg"
+                            (click)="mostrar(report1.Date1, report1.Date2, reporteuno.Product_Id, reporteuno.Precio)">Ver
+                            Detalle</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!--MODAL Detail-->
+<div class="modal fade bd-detail-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px">
+        <div class="modal-content" style="width: 900px">
+            <div class="modal-header" style="width: 900px">
+                <h5 class="modal-title" id="exampleModalLongTitle" style="color: black;">
+                    Detalle de Inventario
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y: auto">
+                <div class="form-group row row col-md-4">
+                    <h6 for="bills" style="color: black;"><strong>Total de Productos: </strong> </h6>
+                    <h6 for="bills" style="color: black;"> {{cont}} </h6>
+                  </div>
+                <div class="form-group row col-md-4">
+                    <h6 style="color: black;"><strong>Precio Ponderado:</strong></h6>
+                    <h6 style="color: black;">{{Total | currency:"GTQ":"Q"}}</h6>
+                </div>
+                <div class="form-group row"> &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="button" class="btn btn-danger">Generar PDF</button>
+                </div>
+                <div class="container">
+                    <table class="table table-hover" style="background-color:#F8F9F9;">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">No. Correlativo</th>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Marca</th>
+                                <th scope="col">Categoría</th>
+                                <th scope="col">Fecha de la compra</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let detail of detail">
+                                <td>{{detail.Correlative_Product}}</td>
+                                <td>{{detail.Product}}</td>
+                                <td>{{detail.Brand}}</td>
+                                <td>{{detail.Category}}</td>
+                                <td>{{detail.Date_Purchase|date:'d-M-y'}}</td>
+                                <td>{{detail.Quantity}}</td>
+                                <td>{{detail.Precio| currency:"GTQ":"Q"}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
