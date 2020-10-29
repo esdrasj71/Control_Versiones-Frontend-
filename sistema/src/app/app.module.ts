@@ -115,6 +115,8 @@ const routes: Route[] = [
   { path: 'payment-detail-purchase-form/:id', component: PaymentDetailFormComponent,canActivate:[CheckloginGuard]  },
   //Login
   { path: 'login', component: LoginFormComponent},
+  //Login design
+  { path: 'login2', component: LoginComponent},
   //user
   {path: 'user',component:UserFormComponent,canActivate:[CheckloginGuard]},
     //accounts receivable
@@ -173,7 +175,8 @@ const routes: Route[] = [
     HomeComponent,
     LoginFormComponent,
     DebsToPayHomeComponent,
-    UserFormComponent
+    UserFormComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

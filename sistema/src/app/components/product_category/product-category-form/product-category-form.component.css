@@ -6,6 +6,8 @@
 .container{
     min-width: 300px;
     max-width: 600px;
+    padding-top: 5%;
+    padding-bottom: 5%;
  }
 
 .btn{
