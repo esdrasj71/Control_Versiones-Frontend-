@@ -67,7 +67,7 @@ export class LoginFormComponent implements OnInit {
       localStorage.removeItem('token');
     }else{
 
-      console.log('hola');
+      //console.log('hola');
       localStorage.removeItem('token');
       localStorage.setItem('token','0');
     }

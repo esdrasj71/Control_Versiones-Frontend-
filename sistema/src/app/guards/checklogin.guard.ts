@@ -25,6 +25,7 @@ export class CheckloginGuard implements CanActivate {
       }
     }else
     {
+      localStorage.clear(); 
       return false;
     }
       
