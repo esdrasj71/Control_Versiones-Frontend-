@@ -42,6 +42,7 @@ constructor(private purchasereportService: PurchaseReportsService, private purch
   }
   ngOnInit(): void {
   }
+
 imprimir()
 {
   const doc = new jsPDF();
@@ -75,6 +76,7 @@ mostrar(Date1, Date2, ProvidersId, total) {
   })
   this.Total = total;
 }
+
 
   Reporte1() {
     if (this.report1.Date1 == null || this.report1.Date2 == null) {
