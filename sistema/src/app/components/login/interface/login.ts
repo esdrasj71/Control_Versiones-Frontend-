@@ -7,7 +7,7 @@ export interface Login{
 
 export interface UserResponse extends Login {
     message: string;
-    token: string;
-    userId: number;
-    role: Roles;
+    Token: string;
+    Usertype: number;
+    Employee_Id: number;
   }

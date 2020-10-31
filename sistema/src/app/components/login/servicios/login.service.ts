@@ -26,12 +26,23 @@ export class LoginService {
     return this.httpClient
       .post(this.API_ENDPOINT + 'login', login)
       .pipe(
-        map((user: Login) => {
+        map((user: UserResponse) => {
+          if(user.message=='El usuario o contraseña son incorrectos')
+          {
+            alert('El usuario o contraseña son incorrectos');
+            window.location.reload();
+          }else
+          {
+            alert('Bienvenido al sistema');
           this.checklogin=true;
           localStorage.setItem('canact','true');
           localStorage.setItem('usuario',user.Username);
+          localStorage.setItem('Rol',user.Usertype.toString());
+          localStorage.setItem('EmpleadoId',user.Employee_Id.toString());
           this.saveToken(user.Token.replace("","")); 
+          this.router.navigate(['/home']);
           return user;      
+          }
         }));
   }
 
@@ -39,6 +50,8 @@ export class LoginService {
     localStorage.removeItem('token');
     localStorage.removeItem('canact');
     localStorage.removeItem('usuario');
+    localStorage.removeItem('Rol');
+    localStorage.removeItem('EmpleadoId');
     this.checklogin=false;
     this.router.navigate(['/login']);
   }
@@ -59,7 +72,7 @@ export class LoginService {
     //console.log('Expiro: ', isExpired);
   }
   private saveToken(token:string): void {
-    console.log(token);
+    //console.log(token);
     localStorage.setItem('token',token);
   }
 
