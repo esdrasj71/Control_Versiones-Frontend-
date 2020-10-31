@@ -11,7 +11,7 @@ export class AccountsReceivableService {
 
    }
    saveAccountRecivable(accountsRecivable: AccountsRecivable){
-     const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
      return this.httpClient.post(this.API_ENDPOINT + 'accounts_receivable', accountsRecivable, {headers:headers});
    }
 }

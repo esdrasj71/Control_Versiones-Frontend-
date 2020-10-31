@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeePositionService } from '../servicios/employee-position.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { EmployeePosition } from '../interfaces/employee-position';
 import { Router} from '@angular/router';
 

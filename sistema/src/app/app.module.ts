@@ -30,7 +30,6 @@ import { FiltradocustomersPipe } from './pipes/filtradocustomers.pipe';
 import { FiltradopresentationPipe } from './pipes/filtradopresentation.pipe';
 import { CustomersHomeComponent } from './components/customers/customers-home/customers-home.component';
 import { CustomersFormComponent } from './components/customers/customers-form/customers-form.component';
-import { NgxPaginationModule } from 'ngx-pagination';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { PaymentHomeComponent } from './components/payment/payment-home/payment-home.component';
 import { PaymentFormComponent } from './components/payment/payment-form/payment-form.component';
@@ -54,6 +53,9 @@ import { AccountsReceivableComponent } from './components/accounts_receivable/ac
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { DebsToPayHomeComponent } from './components/debs_to_pay/debs-to-pay-home/debs-to-pay-home.component';
+import { PurchaseReportsHomeComponent } from './components/purchase_reports/purchase-reports-home/purchase-reports-home.component';
+import { DebsPayHomeComponent } from './components/purchase_reports/debs-pay-home/debs-pay-home.component';
+import { InventoryReportsHomeComponent } from './components/inventory_reports/inventory-reports-home/inventory-reports-home.component';
 
 const routes: Route[] = [
   //Brand
@@ -119,10 +121,16 @@ const routes: Route[] = [
   { path: 'login2', component: LoginComponent},
   //user
   {path: 'user',component:UserFormComponent,canActivate:[CheckloginGuard]},
-    //accounts receivable
+  //accounts receivable
   { path: 'accounts-receivable', component: AccountsReceivableComponent,canActivate:[CheckloginGuard]},
   { path: 'home', component: HomeComponent,canActivate:[CheckloginGuard] },
+  //Debs to Pay
   { path: 'debs-to-pay-home', component: DebsToPayHomeComponent,canActivate:[CheckloginGuard] },
+  //Purchase Reports
+  { path: 'purchase-reports-home', component: PurchaseReportsHomeComponent,canActivate:[CheckloginGuard] },
+  { path: 'debs-pay-home', component: DebsPayHomeComponent,canActivate:[CheckloginGuard] },
+   //Inventory Reports
+   { path: 'inventory-reports-home', component: InventoryReportsHomeComponent,canActivate:[CheckloginGuard] },
 ];
 
 @NgModule({
@@ -176,7 +184,10 @@ const routes: Route[] = [
     LoginFormComponent,
     DebsToPayHomeComponent,
     UserFormComponent,
-    LoginComponent
+    PurchaseReportsHomeComponent,
+    DebsPayHomeComponent,
+    InventoryReportsHomeComponent
+
   ],
   imports: [
     BrowserModule,
@@ -185,7 +196,6 @@ const routes: Route[] = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule,
     NgSelectModule,
   ],
   providers: [],

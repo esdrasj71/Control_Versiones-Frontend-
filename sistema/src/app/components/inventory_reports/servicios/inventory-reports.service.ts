@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Procedure_Sale } from '../interfaces/procedure-sale';
+import { InventoryReport1 } from '../interfaces/report1';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProcedureSaleService {
-  API_ENDPOINT = 'http://localhost:3000/';
+export class InventoryReportsService {
 
-  constructor(private httpClient: HttpClient) { }
-  save(procedure_sale: Procedure_Sale) {
+  API_ENDPOINT = 'http://localhost:3000/';
+  constructor(private httpClient: HttpClient) {
+
+   }
+  showreport1(inventory_report1: InventoryReport1) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
-    return this.httpClient.post(this.API_ENDPOINT + 'procedure_sale', procedure_sale, { headers: headers });
+    return this.httpClient.post(this.API_ENDPOINT + 'inventory_report1', inventory_report1, { headers: headers });
   }
 }

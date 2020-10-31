@@ -24,8 +24,10 @@
     "@auth0/angular-jwt": "^5.0.1",
     "@ng-select/ng-select": "^5.0.4",
     "auth0-js": "^9.14.0",
+    "html-to-pdfmake": "^2.1.0",
     "jquery": "^3.5.1",
-    "ngx-pagination": "^5.0.0",
+    "jspdf": "^1.5.3",
+    "pdfmake": "^0.1.68",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

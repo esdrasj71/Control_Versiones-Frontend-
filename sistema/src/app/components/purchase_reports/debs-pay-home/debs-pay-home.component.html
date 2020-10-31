@@ -1,0 +1,33 @@
+<div class="container">
+    <h1 style="text-align: center; font-weight: bold;">Reporte de Cuentas por Pagar</h1>
+    <h2 style="text-align: center;">____________________</h2><br><br>
+    <!---->
+    <div class="form-group row"> &nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-danger" (click)="imprimir()">Generar PDF</button>
+    </div>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <div id="pdfTable" #pdfTable>
+        <table class="table table-hover" style="background-color:#F8F9F9;" id="searchTextResults">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="header" scope="col">Nombre Fiscal</th>
+                    <th class="header" scope="col">NIT</th>
+                    <th class="header" scope="col">Número de Teléfono</th>
+                    <th class="header" scope="col">Total</th>
+                    <th class="header" scope="col">Número de Facturas a Pagar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let debs of debs">
+                    <td>{{debs.Fiscal_Name}}</td>
+                    <td>{{debs.NIT}}</td>
+                    <td>{{debs.Phone_Number1}}</td>
+                    <td>{{debs.Pay| currency:"GTQ":"Q"}}</td>
+                    <td>{{debs.Debs}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+</div>
+

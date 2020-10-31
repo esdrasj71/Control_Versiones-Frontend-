@@ -23,9 +23,10 @@ export class DebsToPayHomeComponent implements OnInit {
   };
 
   cont = 0;
+
   constructor(private debstopayService: DebsToPayService, private httpClient: HttpClient) {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json','accesstoken':localStorage.getItem('token') });
-    httpClient.get(this.API_ENDPOINT + 'DebstoPay',{headers})
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
+    httpClient.get(this.API_ENDPOINT + 'DebstoPay', { headers })
       .subscribe((data: DebstoPay[]) => {
         this.debstopay = data;
         console.log(this.debstopay);
@@ -45,10 +46,10 @@ export class DebsToPayHomeComponent implements OnInit {
   TotalPurchase = 0;
 
   mostrar_facturas(providersId, fiscal_name, nit, total_debs) {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json','accesstoken':localStorage.getItem('token') });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
 
     this.procedure_debstopay.Providers_Id = providersId;
-    this.httpClient.get(this.API_ENDPOINT + 'DebstoPay/' + providersId,{headers})
+    this.httpClient.get(this.API_ENDPOINT + 'DebstoPay/' + providersId, { headers })
       .subscribe((data: DebstoPay[]) => {
         this.bills = data;
         this.cont = this.bills.length;
@@ -59,9 +60,9 @@ export class DebsToPayHomeComponent implements OnInit {
   }
 
   mostrar_facturas_detalle(purchaseheaderId, total, totalpurchase) {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json','accesstoken':localStorage.getItem('token') });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
 
-    this.httpClient.get(this.API_ENDPOINT + 'DebstoPayPurchase/' + purchaseheaderId,{headers})
+    this.httpClient.get(this.API_ENDPOINT + 'DebstoPayPurchase/' + purchaseheaderId, { headers })
       .subscribe((data: DebstoPay[]) => {
         this.billsdetail = data;
         console.log(this.billsdetail);

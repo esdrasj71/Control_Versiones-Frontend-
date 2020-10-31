@@ -21,6 +21,7 @@ export class EmployeePositionFormComponent implements OnInit {
   editing: boolean = false; //Este campo ayuda a saber cuando estamos editando y cuando estamos ingresando
   postarr: EmployeePosition[]; //Este campo nos ayudara a traer los datos cuando queremos editar
   constructor(private employeePositionServicie: EmployeePositionService, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
+    
     this.id = this.activatedRoute.snapshot.params['id']; //Este es el parametro que se definio en la ruta de app.module.ts
     if (this.id) {
       this.editing = true;

@@ -1,0 +1,106 @@
+<div class="container">
+    <h1 style="text-align: center; font-weight: bold;">Reporte Detallado de Compras</h1>
+    <h2 style="text-align: center;">____________________</h2><br><br>
+    <!---->
+    <div class="form-group row">
+        <label style="color: white;">Fecha de inicio:</label>
+        <div class="col-md-4">
+            <input type="date" id="start" name="trip-start" [(ngModel)]="report1.Date1"
+                [ngModelOptions]="{standalone: true}" class="form-control" style="width: 100%;">
+        </div>
+        <label style="color: white;">Fecha limite: </label>
+        <div class="col-md-4">
+            <input type="date" id="start" name="trip-start" [(ngModel)]="report1.Date2"
+                [ngModelOptions]="{standalone: true}" class="form-control" style="width: 100%;">
+        </div>
+    </div>
+
+    <div class="form-group row"> &nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-danger" (click)="Reporte1()">Generar Reporte</button>
+    </div>
+  
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <ng-container *ngIf="Existe>0;">
+            <div class="form-group row">&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-danger" (click)="imprimir()">Generar PDF</button>
+        </div>
+        </ng-container>
+        <div id="pdfTable" #pdfTable>
+        <table  class="table table-dark" style="table-layout: fixed; word-wrap: break-word;" id="searchTextResults">
+            <thead>
+                <tr>
+                    <th class="header" scope="col">Nombre Fiscal</th>
+                    <th class="header" scope="col">NIT</th>
+                    <th class="header" scope="col">Número Total de Facturas</th>
+                    <th class="header" scope="col">Total</th>
+                    <th class="header" scope="col">Acciones </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let reporteuno of reportone">
+                    <td>{{reporteuno.Fiscal_Name}}</td>
+                    <td>{{reporteuno.NIT}}</td>
+                    <td>{{reporteuno.Facturas}}</td>
+                    <td>{{reporteuno.Total| currency:"GTQ":"Q"}}</td>
+                    <td><a class="btn btn-info btn-sm" style="background-color: #6cb3aa;" data-toggle="modal"
+                            data-target=".bd-detail-modal-lg"
+                            (click)="mostrar(report1.Date1, report1.Date2, reporteuno.Providers_Id, reporteuno.Total)">Ver
+                            Detalle</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+<div class="modal fade bd-detail-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px">
+        <div class="modal-content" style="width: 900px">
+            <div class="modal-header" style="width: 900px">
+                <h5 class="modal-title" id="exampleModalLongTitle" style="color: black;">
+                    Detalle de Compras
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y: auto">
+                <div class="form-group row row col-md-4">
+                    <h6 for="bills" style="color: black;"><strong>Total de Facturas: </strong> </h6>
+                    <h6 for="bills" style="color: black;"> {{cont}} </h6>
+                  </div>
+                <div class="form-group row col-md-4">
+                    <h6 style="color: black;"><strong>Total de Compras:</strong></h6>
+                    <h6 style="color: black;">{{Total | currency:"GTQ":"Q"}}</h6>
+                </div>
+                <div class="form-group row"> &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="button" class="btn btn-danger" (click)="imprimir2()">Generar PDF</button>
+                </div>
+                <div class="container">
+                    <div id="pdfTable2" #pdfTable2>
+                    <table class="table table-hover" style="background-color:#F8F9F9;">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Nombre Fiscal</th>
+                                <th scope="col">NIT</th>
+                                <th scope="col">No. Correlativo</th>
+                                <th scope="col">Fecha de la compra</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let detail2 of detail2">
+                                <td>{{detail2.Fiscal_Name}}</td>
+                                <td>{{detail2.NIT}}</td>
+                                <td>{{detail2.Correlative_Number}}</td>
+                                <td>{{detail2.Date_Purchase|date:'d-M-y'}}</td>
+                                <td>{{detail2.Total| currency:"GTQ":"Q"}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,3 +1,4 @@
+import { isNull } from '@angular/compiler/src/output/output_ast';
 import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {LoginService} from './components/login/servicios/login.service'
@@ -9,31 +10,26 @@ import {LoginService} from './components/login/servicios/login.service'
 
 
 export class AppComponent implements OnInit {
-
+  Existe=0;
   title = 'sistema';
   isLog=true;
   usuario="";
 constructor(private router: Router,
   private loginService:LoginService){
-    
-    setInterval(() => {
-      this.mostrar(); 
-    }, 1500);
-   }
+      setInterval(() => {
+       this.mostrar(); 
+     }, 2000);
+  }
+   
 ngOnInit(){}
 mostrar()
 {
    this.usuario=localStorage.getItem('usuario');
+   if(this.usuario==null)
+    this.Existe=0;
+    else
+      this.Existe=1;
 }
-  OnMostrar(a)
-  {
-    if(a=='Logueado')
-    {
-      this.isLog=true;
-      this.router.navigate(['/#']);
-    }
-    else this.isLog=false;
-  }
   logout()
   {
 
