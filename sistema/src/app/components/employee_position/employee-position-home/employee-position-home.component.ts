@@ -18,7 +18,7 @@ export class EmployeePositionHomeComponent implements OnInit {
     private employeePositionService: EmployeePositionService, private router: Router,
     private httpClient: HttpClient
   ) {
-    httpClient.get(this.API_ENDPOINT + 'employee_position')
+    this.employeePositionService.getPosition()
     .subscribe((data: EmployeePosition[]) => {
       this.employeePosition = data; 
       console.log(this.employeePosition);

@@ -11,7 +11,11 @@ export class PaymentService {
 
   payment = []; 
   constructor(private httpClient: HttpClient) {
-
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'accesstoken':localStorage.getItem('token')});
+    httpClient.get(this.API_ENDPOINT + 'payment',{headers})
+      .subscribe((data: Payment[]) => {
+        this.payment = data;
+      });
    } 
   getPayment() {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});

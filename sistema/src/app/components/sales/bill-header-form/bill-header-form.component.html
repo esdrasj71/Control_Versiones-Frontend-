@@ -26,7 +26,7 @@
                                     <div class="col-sm-9">
                                         <input type="text" [(ngModel)]="encabezado_factura.Serie" ngDefaultControl
                                             name="serie" id="serie" class="form-control" placeholder="Serie"
-                                            tabindex="2" />
+                                            tabindex="2" required="" />
                                     </div>
                                 </div>
                             </div>
@@ -98,13 +98,14 @@
                             <div class="modal-footer">
                                 <div class="col-md-12">
                                     <div class="form-group row">
-                                        <h3 style="color: red;">Total:</h3>
+                                        <h3 style="color:#e74c3c;">Total:</h3>
                                         <div class="col">
 
-                                            <h1 [(ngModel)]="encabezado_factura.Total" ngDefaultControl
-                                                style="color: red;">{{total | currency:"GTQ":"Q"}}</h1>
+                                            <h3 [(ngModel)]="encabezado_factura.Total" ngDefaultControl
+                                                style="color:#e74c3c;">{{total | currency:"GTQ":"Q"}}</h3>
                                         </div>
                                     </div>
+                                    
                                     <button class="btn btn-primary btnsm" data-toggle="modal"
                                         data-target=".bd-cobro-modal-lg" data-dismiss="modal">Cobrar</button>
                                 </div>
@@ -120,7 +121,7 @@
             <div class="card" style="width: 40rem; right: 5rem">
                 <div class="card-body">
                     <h5 class="card-title"><b>Detalle De La Factura</b></h5>
-
+                    <hr>
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
@@ -137,11 +138,11 @@
                                             <thead class="thead-dark">
                                                 <tr>
                                                     <!--th scope="col">#</th>-->
-                                                    <th scope="col">Nombre</th>
-                                                    <th scope="col">Cantidad</th>
-                                                    <th scope="col">Precio</th>
-                                                    <th scope="col">Subtotal</th>
-                                                    <th scope="col">Eliminar</th>
+                                                    <th class="header" scope="col">Nombre</th>
+                                                    <th class="header" scope="col">Cantidad</th>
+                                                    <th class="header" scope="col">Precio</th>
+                                                    <th class="header" scope="col">Subtotal</th>
+                                                    <th class="header" scope="col">Eliminar</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -153,7 +154,8 @@
                                                     <td for="">{{inventario[0].Unit_Price | currency:"GTQ":"Q"}}</td>
                                                     <td>{{inventario[0].Subtotal | currency:"GTQ":"Q"}}</td>
                                                     <td><button (click)="onDelete(inventario)"
-                                                            class="btn btn-danger">x</button></td>
+                                                            class="btn btn-danger"><i class="fa fa-trash" style="color: white;">
+                                                            </i></button></td>
                                                     <td>
                                                     </td>
                                                 </tr>
@@ -196,14 +198,14 @@
                             style="table-layout: fixed; word-wrap: break-word; background-color:#F8F9F9 ;" id="table">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">DPI</th>
-                                    <th scope="col">Nombres</th>
-                                    <th scope="col">Apellidos</th>
-                                    <th scope="col">Telefono</th>
-                                    <th scope="col">NIT</th>
-                                    <th scope="col">Direccion</th>
-                                    <th scope="col">Accion</th>
+                                    <th class="header" scope="col">#</th>
+                                    <th class="header" scope="col">DPI</th>
+                                    <th class="header" scope="col">Nombres</th>
+                                    <th class="header" scope="col">Apellidos</th>
+                                    <th class="header" scope="col">Telefono</th>
+                                    <th class="header" scope="col">NIT</th>
+                                    <th class="header" scope="col">Direccion</th>
+                                    <th class="header" scope="col">Seleccionar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -216,18 +218,17 @@
                                     <td height="10">{{cliente.NIT}}</td>
                                     <td height="10">{{cliente.Address}}</td>
                                     <td><a class="btn btn-warning btn-sm"
-                                            style="background-color:#F7985B; color: white;" data-dismiss="modal"
-                                            (click)="getCustomerId(cliente.Customers_Id)">Seleccionar</a> &nbsp;
+                                            style="background-color:#F7985B;" data-dismiss="modal"
+                                            (click)="getCustomerId(cliente.Customers_Id)">
+                                            <i class="fa fa-check" style="color: white;"></i></a> 
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-
+                
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button class="btn btn-danger btnsm" style="background-color:#EC7063;" data-toggle="modal"
-                            data-target=".bd-cliente-modal-lg" data-dismiss="modal">Agregar Cliente</button>
                     </div>
                 </div>
             </div>
@@ -258,13 +259,13 @@
                     <table class="table table-hover" style="table-layout: fixed; word-wrap: break-word;" id="table">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Correlativo producto</th>
-                                <th scope="col">Nombre producto</th>
-                                <th scope="col">Precio Unitario</th>
-                                <th scope="col">Stock</th>
-                                <th scope="col">Estado</th>
-                                <th scope="col">Accion</th>
+                                <th class="header" scope="col">#</th>
+                                <th class="header" scope="col">Correlativo producto</th>
+                                <th class="header" scope="col">Nombre producto</th>
+                                <th class="header" scope="col">Precio Unitario</th>
+                                <th class="header" scope="col">Stock</th>
+                                <th class="header" scope="col">Estado</th>
+                                <th class="header" scope="col">Seleccionar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -275,9 +276,9 @@
                                 <td height="10">{{inventario.Unit_Price | currency:"GTQ":"Q"}}</td>
                                 <th height="10">{{inventario.Stock}}</th>
                                 <td height="10">{{inventario.Statuss}}</td>
-                                <td><a class="btn btn-warning btn-sm" style="background-color:#F7985B; color: white;"
+                                <td><a class="btn btn-warning btn-sm" style="background-color:#F7985B;"
                                         (click)="getInventoryId(inventario.Inventory_Id, inventario.Unit_Price, inventario.Stock)"
-                                        data-dismiss="modal">Seleccionar</a> &nbsp;
+                                        data-dismiss="modal"><i class="fa fa-check" style="color: white;"></i></a>
                                 </td>
                             </tr>
                         </tbody>
@@ -297,7 +298,7 @@
     aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px;">
         <div class="modal-content" style="width: 900px;">
-            <div class="modal-header" style="width: 900px;" style="background-color:#3d4c74">
+            <div class="modal-header" style="width: 900px;" style="background-color:#4a5c8b;">
                 <h5 class="modal-title" id="exampleModalLongTitle">Cliente Nuevo</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -358,12 +359,13 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group row">
-                                        <h1>{{cadena_pago}}</h1>
+                                        <h3 style="color: #EC7063;">{{cadena_pago}}</h3>
                                         <div class="col-sm-4">
-                                            <h3 style="color: black;">{{total_cobro | currency:"GTQ":"Q"}}</h3>
+                                            <h3 style="color:#EC7063;">{{total_cobro | currency:"GTQ":"Q"}}</h3>
                                         </div>
                                     </div>
                                 </div>
+            
                                 <div class="col-md-6">
                                     <div class="form-group" style="text-align: right;">
                                         <button type="button" (click)="enviar()" class="btn btn-primary">Enviar</button>

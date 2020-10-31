@@ -15,7 +15,7 @@
                   <label for="Correlative_Number" class="col-form-label">No Factura:</label>
                   <div class="col-sm-8">
                     <input [(ngModel)]="header.Correlative_Number" type="text" id="Correlative_Number"
-                      class="form-control" placeholder="No.Correlativo" tabindex="1" />
+                      class="form-control" placeholder="No.Correlativo" tabindex="1" required="" />
                   </div>
                 </div>
               </div>
@@ -24,7 +24,7 @@
                   <label for="Serie" class="col-form-label">Serie:</label>
                   <div class="col-sm-9">
                     <input [(ngModel)]="header.Serie" type="text" id="Serie" class="form-control" placeholder="Serie"
-                      tabindex="2" />
+                      tabindex="2" required=""/>
                   </div>
                 </div>
               </div>
@@ -35,7 +35,7 @@
                   <label for="Date_Purchase" class="col-form-label">Fecha de realizacion:</label>
                   <div class="col">
                     <input [(ngModel)]="header.Date_Purchase" type="date" id="Date_Purchase" class="form-control"
-                      placeholder="Fecha de compra" tabindex="3" />
+                      placeholder="Fecha de compra" tabindex="3" required=""/>
                   </div>
                 </div>
               </div>
@@ -73,7 +73,7 @@
                   <label for="Observations" class="col-form-label">Observaciónes:</label>
                   <div class="col">
                     <textarea [(ngModel)]="header.Observations" class="form-control" id="Observations" rows="2"
-                      placeholder="Escribas las observaciónes de la compra" tabindex="7"></textarea>
+                      placeholder="Escribas las observaciónes de la compra" tabindex="7" maxlength="60"></textarea>
                   </div>
                 </div>
               </div>
@@ -83,9 +83,9 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="Total" class="col-form-label" style="font-size: 35px; color: red">Total:</label>
+                  <label for="Total" class="col-form-label" style="font-size: 30px; color:#e74c3c;">Total:</label>
                   <div class="col">
-                    <label [(ngModel)]="header.Total" style="font-size: 35px; color: red" id="Total"
+                    <label [(ngModel)]="header.Total" style="font-size: 30px; color:#e74c3c;" id="Total"
                       class="form-control" value="0" tabindex="8" ngDefaultControl>Q{{ total }}</label>
                   </div>
                 </div>
@@ -114,14 +114,14 @@
             <table class="table table-dark" style="table-layout: fixed; word-wrap: break-word" id="table">
               <thead class="thead-dark">
                 <tr>
-                  <th scope="col">ID Producto</th>
-                  <th scope="col">No. Correlativo</th>
-                  <th scope="col">Producto</th>
-                  <th scope="col">No. Lote</th>
-                  <th scope="col">Cantidad</th>
-                  <th scope="col">Precio</th>
-                  <th scope="col">Subtotal</th>
-                  <th scope="col"></th>
+                  <th class="header" scope="col">ID Producto</th>
+                  <th class="header" scope="col">No. Correlativo</th>
+                  <th class="header" scope="col">Producto</th>
+                  <th class="header" scope="col">No. Lote</th>
+                  <th class="header" scope="col">Cantidad</th>
+                  <th class="header" scope="col">Precio</th>
+                  <th class="header" scope="col">Subtotal</th>
+                  <th class="header" scope="col">Eliminar</th>
                 </tr>
               </thead>
               <tbody>
@@ -141,8 +141,8 @@
                   <td>{{ inventario[0].Subtotal }}</td>
                   <td>
                     <button class="btn btn-danger" type="button" (click)="EliminarDetalle(i, inventario)"
-                      onClick="EliminarFila(this)">
-                      X
+                      onClick="EliminarFila(this)" style="background-color:#e74c3c;">
+                      <i class="fa fa-trash" style="color: white;"></i>
                     </button>
                   </td>
                 </tr>
@@ -198,14 +198,14 @@
             id="table">
             <thead class="thead-dark">
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">NIT</th>
-                <th scope="col">Nombre Fiscal</th>
-                <th scope="col">Número de telefono</th>
-                <th scope="col">Otro número de telefono</th>
-                <th scope="col">Correo electronico</th>
-                <th scope="col">Dirección</th>
-                <th scope="col">Acción</th>
+                <th class="header" scope="col">#</th>
+                <th class="header" scope="col">NIT</th>
+                <th class="header" scope="col">Nombre Fiscal</th>
+                <th class="header" scope="col">Número de teléfono</th>
+                <th class="header" scope="col">Otro número de teléfono</th>
+                <th class="header" scope="col">Correo electrónico</th>
+                <th class="header" scope="col">Dirección</th>
+                <th class="header" scope="col">Seleccionar</th> 
               </tr>
             </thead>
             <tbody>
@@ -221,8 +221,9 @@
                 <td>{{ provider.Email }}</td>
                 <td>{{ provider.Address }}</td>
                 <td>
-                  <a class="btn btn-warning btn-sm" style="background-color:#F7985B; color: white;" 
-                  (click)="getProviderId(provider.Providers_Id)" data-dismiss="modal">Seleccionar</a>
+                  <a class="btn btn-warning btn-sm" style="background-color:#F7985B;" 
+                  (click)="getProviderId(provider.Providers_Id)" data-dismiss="modal">
+                  <i class="fa fa-check" style="color: white;"></i></a>
                   &nbsp;
                 </td>
               </tr>
@@ -237,7 +238,6 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
           Cerrar
         </button>
-        <button type="button" class="btn btn-danger" style="background-color:#EC7063;">Guardar Cambios</button>
       </div>
     </div>
   </div>
@@ -277,13 +277,13 @@
             id="table">
             <thead class="thead-dark">
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">IDproducto</th>
-                <th scope="col">Correlativo Producto</th>
-                <th scope="col">Producto-Marca-Categoria</th>
-                <th scope="col">No. Lote</th>
-                <th scope="col">Fecha Caducidad</th>
-                <th scope="col">Acción</th>
+                <th class="header" scope="col">#</th>
+                <th class="header" scope="col">IDproducto</th>
+                <th class="header" scope="col">Correlativo Producto</th>
+                <th class="header" scope="col">Producto-Marca-Categoría</th>
+                <th class="header" scope="col">No. Lote</th>
+                <th class="header" scope="col">Fecha Caducidad</th>
+                <th class="header" scope="col">Seleccionar</th>
               </tr>
             </thead>
             <tbody>
@@ -297,8 +297,9 @@
                 <td height="10">{{ inv.Lot_Id }}</td>
                 <td height="10">{{ inv.DueDate | date: "d-M-y" }}</td>
                 <td>
-                  <a class="btn btn-warning btn-sm" style="background-color:#F7985B; color: white;"
-                    (click)="getProductId(inv.Product_Id)" data-dismiss="modal">Seleccionar</a>
+                  <a class="btn btn-warning btn-sm" style="background-color:#F7985B;"
+                    (click)="getProductId(inv.Product_Id)" data-dismiss="modal">
+                    <i class="fa fa-check" style="color: white;"></i></a>
                   &nbsp;
                 </td>
               </tr>
@@ -313,7 +314,6 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
           Cerrar
         </button>
-        <button type="button" class="btn btn-danger" style="background-color:#EC7063;">Guardar Cambios</button>
       </div>
     </div>
   </div>
@@ -323,7 +323,7 @@
   aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px">
     <div class="modal-content" style="width: 900px">
-      <div class="modal-header" style="width: 900px; background-color: #4D738C;">
+      <div class="modal-header" style="width: 900px; background-color: #4a5c8b;">
         <h5 class="modal-title" id="exampleModalLongTitle">
           Encuentre su proveedor
         </h5>
@@ -348,7 +348,7 @@
   aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px">
     <div class="modal-content" style="width: 900px">
-      <div class="modal-header" style="width: 900px; background-color: #4D738C;">
+      <div class="modal-header" style="width: 900px; background-color: #4a5c8b;">
         <h5 class="modal-title" id="exampleModalLongTitle">
           Agregue de forma rapido su producto
         </h5>
@@ -373,7 +373,7 @@
   aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px">
     <div class="modal-content" style="width: 900px">
-      <div class="modal-header" style="width: 900px; background-color: #4D738C;">
+      <div class="modal-header" style="width: 900px; background-color:#4a5c8b;">
         <h5 class="modal-title" id="exampleModalLongTitle">
           Agregue de forma rapido su lote
         </h5>
@@ -406,9 +406,9 @@
       </div>
       <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y: auto">
         <div class="container">
-          <h3 style="text-align: center">Tipo de pago</h3>
+          <h3 style="text-align: center"><b>Tipo de pago</b></h3>
 <hr />
-<h3 style="color: red; text-align: center">Al contado</h3>
+<h3 style="color:#e74c3c;; text-align: center">Al contado</h3>
 <br />
 <div class="row">
   <div class="col-md-5">

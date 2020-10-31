@@ -3,7 +3,7 @@
     <h2 style="text-align: center;">____________________</h2><br><br>
     <form>
         <div class="form-group row">
-            &nbsp;&nbsp;&nbsp;<i class="fa fa-search" style="left: 300px;"></i>&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;<i class="fa fa-search fa-lg" style="left: 300px;"></i>&nbsp;&nbsp;&nbsp;
             <input type="text" class="form-control" name="searchTerm4" [(ngModel)]="searchTerm4" placeholder="Buscar marca del producto" style="width: 300px;">&nbsp;&nbsp;&nbsp;
             <a class="btn btn-success btnsm" routerLink="/brand-form">Agregar Marca</a>
         </div> 
@@ -16,14 +16,15 @@
                 <th class="header" scope="col">Nombre de la marca del producto</th>
                 <th class="header" scope="col">Acciones</th>
             </tr>
-        </thead>
+        </thead> 
         <tbody>
             <tr *ngFor="let brand of brands | filterBrand:searchTerm4">
                 <td>{{brand.Brand_Id}}</td>
                 <td>{{brand.Name}}</td>
-                <td><a class="btn btn-info btn-sm" style="background-color: #6cb3aa;" routerLink="/brand-form/{{brand.Brand_Id}}">Editar</a>
-                    <a class="btn btn-danger btn-sm" (click)="delete(brand.Brand_Id)" routerLink="/brand-home"
-                        style="color:white;">Eliminar</a>
+                <td><a class="btn btn-warning btn-sm" style="background-color:#F7985B;" routerLink="/brand-form/{{brand.Brand_Id}}">
+                    <i class="fa fa-pencil-square-o fa-lg" style="color: white;"></i></a>&nbsp;
+                    <a class="btn btn-danger btn-sm" style="background-color:#e74c3c;" (click)="delete(brand.Brand_Id)" 
+                    routerLink="/brand-home"><i class="fa fa-trash fa-lg" style="color: white;"></i></a>
                 </td>
             </tr>
         </tbody>

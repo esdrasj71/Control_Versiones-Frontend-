@@ -3,7 +3,7 @@
         <h2 style="text-align: center;">____________________</h2><br><br><br>
         <form>
         <div class="form-group row">
-            &nbsp;&nbsp;&nbsp;<i class="fa fa-search" style="left: 300px;"></i>&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;<i class="fa fa-search fa-lg" style="left: 300px;"></i>&nbsp;&nbsp;&nbsp;
             <div class="col">
                 <input type="text" name="inventory" id="inventory" class="form-control"
                     placeholder="Buscar en el inventario" tabindex="4" style="width: 50%;"/>
@@ -35,8 +35,11 @@
             <td>{{inventory.Retail_Price}}</td>
             <td>{{inventory.Wholesale_Price}}</td>
             <td>{{inventory.DueDate|date:'d-M-y'}}</td>
-            <td><a class="btn btn-info btnsm" style="background-color: #6cb3aa;" routerLink="/inventory-form/{{inventory.Inventory_Id}}">Editar</a> <a
-                    class="btn btn-danger btnsm" (click)="delete(inventory.Inventory_Id)">Eliminar</a></td>
+            <td><a class="btn btn-warning btnsm" style="background-color:#F7985B;" routerLink="/inventory-form/{{inventory.Inventory_Id}}">
+                <i class="fa fa-pencil-square-o fa-lg" style="color: white;"></i></a>&nbsp;
+                <a class="btn btn-danger btnsm" style="background-color:#e74c3c;" (click)="delete(inventory.Inventory_Id)">
+                <i class="fa fa-trash fa-lg" style="color: white;"></i></a>
+            </td>
         </tr>
     </tbody>
 </table>

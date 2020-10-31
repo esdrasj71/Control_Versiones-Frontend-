@@ -11,14 +11,16 @@ export class EmployeePositionService {
    
   employeePosition=[];
   constructor(private httpClient: HttpClient) {
-    httpClient.get(this.API_ENDPOINT + 'employee_position')
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'accesstoken':localStorage.getItem('token')});
+    httpClient.get(this.API_ENDPOINT + 'employee_position',{headers})
       .subscribe((data: EmployeePosition[]) => {
         this.employeePosition = data;
       });
    }
 
    getPosition(){
-    return this.httpClient.get(this.API_ENDPOINT + 'employee_position' );
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'accesstoken':localStorage.getItem('token')});
+    return this.httpClient.get(this.API_ENDPOINT + 'employee_position',{headers} );
   }
 
    save(employeePosition: EmployeePosition){
@@ -26,12 +28,12 @@ export class EmployeePositionService {
      const headers = new HttpHeaders({'Content-Type': 'application/json', 'accesstoken':localStorage.getItem('token')});
      return this.httpClient.post(this.API_ENDPOINT + 'employee_position', employeePosition, {headers: headers});
    }
-   put(employeePosition) { //Le llamaremos put para fines practicos
-    const headers = new HttpHeaders({ 'ContentType': 'application/json' }); 
+   put(employeePosition) { //Le llamaremos put para fines practicos 
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'accesstoken':localStorage.getItem('token')});
     return this.httpClient.put(this.API_ENDPOINT + 'employee_position/' + employeePosition.Employee_Position_Id, employeePosition, { headers: headers }); 
   }
   delete(id) {
-    const headers = new HttpHeaders({ 'ContentType': 'application/json' });
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'accesstoken':localStorage.getItem('token')});
     return this.httpClient.delete(this.API_ENDPOINT + 'employee_position/' + id,{headers:headers});
   }
 

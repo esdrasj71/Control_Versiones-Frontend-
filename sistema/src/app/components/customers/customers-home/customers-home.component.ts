@@ -13,7 +13,7 @@ export class CustomersHomeComponent implements OnInit {
   customers: Customers[];
   
   constructor(private customersService: CustomersService, private httpClient: HttpClient) {
-    httpClient.get(this.API_ENDPOINT + 'customer')
+    this.customersService.getCustomer()
     .subscribe((data: Customers[])=>{
       this.customers = data;
       console.log(this.customers);

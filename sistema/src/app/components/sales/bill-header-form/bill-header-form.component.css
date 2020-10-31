@@ -10,6 +10,11 @@
     display: block;
 }
 
+.header{
+    position:sticky;
+    top: 0 ;
+}
+
 #alcontado {
     display: none;
 }

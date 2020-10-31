@@ -16,7 +16,7 @@
               [(ngModel)]="providers.NIT"
               type="text"
               id="Nit"
-              class="form-control"
+              class="form-control" minlength="6" maxlength="20" required=""
             />
           </div>
         </div>
@@ -29,7 +29,7 @@
               [(ngModel)]="providers.Fiscal_Name"
               type="text"
               id="Fiscal_Name"
-              class="form-control"
+              class="form-control" maxlength="35" required=""
             />
           </div>
         </div>
@@ -42,7 +42,7 @@
               [(ngModel)]="providers.Phone_Number1"
               type="text"
               id="Phone_Number1"
-              class="form-control"
+              class="form-control" minlength="7" maxlength="15" required=""
             />
           </div>
         </div>
@@ -68,7 +68,7 @@
               [(ngModel)]="providers.Email"
               type="text"
               id="Email"
-              class="form-control"
+              class="form-control" minlength="10" maxlength="40" required=""
             />
           </div>
         </div>
@@ -81,7 +81,7 @@
               [(ngModel)]="providers.Address"
               type="text"
               id="Address"
-              class="form-control"
+              class="form-control" minlength="4" maxlength="60" required=""
             />
           </div>
         </div>

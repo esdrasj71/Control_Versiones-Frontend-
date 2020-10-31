@@ -22,8 +22,23 @@ section.section {
 }
 
 .navbar{
-	background-color:#4c918a;
+  background-color:#4c918a;
+  min-height: 90px;
   } 
+
+.navbar-brand{
+  min-width: 70px;
+  font-size: x-large;
+}
+
+.navbar-nav li a{
+  min-width: 21px;
+  font-size: 17px;
+}
+
+.dropdown:hover>.dropdown-menu {
+  display: block;
+}
 
 body {
 	background-image: url("../assets/images/Scroll1.jpg");
