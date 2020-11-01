@@ -9,30 +9,30 @@
     </div>
   </form>
   <div class="table-wrapper-scroll-y my-custom-scrollbar">
-  <table class="table table-hover" style="background-color:#F8F9F9;">
-    <thead class="thead-dark">
-      <tr>
-        <th class="header" scope="col">Nombre Fiscal</th>
-        <th class="header" scope="col">NIT</th>
-        <th class="header" scope="col">Teléfono</th>
-        <th class="header" scope="col">Total a Pagar</th>
-        <th class="header" scope="col">Acciones</th>
-      </tr>
-    </thead>
-    <tbody> 
-      <tr *ngFor="let debstopay of debstopay | filterProviders:searchTerm3">
-        <td>{{debstopay.Fiscal_Name}}</td>
-        <td>{{debstopay.NIT}}</td>
-        <td>{{debstopay.Phone_Number1}}</td>
-        <td>Q. {{debstopay.Pay | currency:"GTQ":"Q"}}</td>
-        <td><a class="btn btn-warning btn-sm" style="background-color:#F7985B; color: white;" data-toggle="modal"
-            data-target=".bd-purchase-modal-lg"
-            (click)="mostrar_facturas(debstopay.Providers_Id, debstopay.Fiscal_Name, debstopay.NIT, debstopay.Pay)">Ver
-            Detalle</a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <table class="table table-hover" style="background-color:#F8F9F9;">
+      <thead class="thead-dark">
+        <tr>
+          <th class="header" scope="col">Nombre Fiscal</th>
+          <th class="header" scope="col">NIT</th>
+          <th class="header" scope="col">Teléfono</th>
+          <th class="header" scope="col">Total a Pagar</th>
+          <th class="header" scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let debstopay of debstopay | filterProviders:searchTerm3">
+          <td>{{debstopay.Fiscal_Name}}</td>
+          <td>{{debstopay.NIT}}</td>
+          <td>{{debstopay.Phone_Number1}}</td>
+          <td>{{debstopay.Pay | currency:"GTQ":"Q"}}</td>
+          <td><a class="btn btn-warning btn-sm" style="background-color:#F7985B; color: white;" data-toggle="modal"
+              data-target=".bd-purchase-modal-lg"
+              (click)="mostrar_facturas(debstopay.Providers_Id, debstopay.Fiscal_Name, debstopay.NIT, debstopay.Pay)">Ver
+              Detalle</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 
@@ -85,12 +85,12 @@
                 <td>{{bills.Correlative_Number}}</td>
                 <td>{{bills.Serie}}</td>
                 <td>{{bills.Date_Purchase|date:'d-M-y'}}</td>
-
                 <td>{{bills.Pay| currency:"GTQ":"Q"}}</td>
-                <td><a class="btn btn-info btn-sm" style="background-color: #6cb3aa;" data-toggle="modal"
-                    data-target=".bd-purchasedetail-modal-lg"
-                    (click)="mostrar_facturas_detalle(bills.Purchase_Header_Id, bills.Pay, bills.Total)">Ver Detalle</a>
-                </td>
+                  <td><a class="btn btn-info btn-sm" style="background-color:#F7985B;" data-toggle="modal"
+                      data-target=".bd-purchasedetail-modal-lg"
+                      (click)="mostrar_facturas_detalle(bills.Purchase_Header_Id, bills.Pay, bills.Total)">Ver
+                      Detalle</a>
+                  </td>
               </tr>
             </tbody>
           </table>
@@ -106,7 +106,8 @@
         </div>
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-default"  [(ngModel)]="procedure_debstopay.Description">Descripción:</span>
+            <span class="input-group-text" id="inputGroup-sizing-default"
+              [(ngModel)]="procedure_debstopay.Description">Descripción:</span>
           </div>
           <input type="text" class="form-control" aria-label="Default" placeholder="Añada una descripción..."
             aria-describedby="inputGroup-sizing-default">

@@ -39,8 +39,8 @@ getEmployee() {
     return this.httpClient.delete(this.API_ENDPOINT + 'employee/' + id, { headers: headers });
   }
 
-  findEmployee(employee: Employee) {
+  findEmployee(id) {
     const headers = new HttpHeaders({'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
-    return this.httpClient.get(this.API_ENDPOINT + 'Employee/:Employee_Id',{headers})
+    return this.httpClient.get(this.API_ENDPOINT + 'Employee/'+ id ,{ headers: headers })
   }
 }
