@@ -1,4 +1,3 @@
-import { isNull } from '@angular/compiler/src/output/output_ast';
 import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {LoginService} from './components/login/servicios/login.service'
@@ -15,7 +14,8 @@ export class AppComponent implements OnInit {
   isLog=true;
   usuario="";
 constructor(private router: Router,
-  private loginService:LoginService){
+  private loginService:LoginService
+  ){
       setInterval(() => {
        this.mostrar(); 
      }, 2000);

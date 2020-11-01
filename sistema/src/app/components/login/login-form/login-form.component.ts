@@ -65,6 +65,7 @@ export class LoginFormComponent implements OnInit {
     if(this.Existe>0)
     {
       localStorage.removeItem('token');
+      
     }else{
 
       //console.log('hola');
@@ -79,8 +80,9 @@ export class LoginFormComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(){
+    
+  } 
   saveFirst()
   {
      

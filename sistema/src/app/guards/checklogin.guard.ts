@@ -10,12 +10,12 @@ export class CheckloginGuard implements CanActivate {
   bandera='';
   constructor(private log:LoginService, private router:Router){ 
     this.bandera=localStorage.getItem('canact');
-    //app.usuario=localStorage.getItem('usuario');
   }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if(this.bandera=='true'){
+      //this.router.navigate(['/home']);
       this.log.checkToken();
       if(localStorage.getItem('token')!==null){
         //this.router.navigate(['/home']);
@@ -27,7 +27,6 @@ export class CheckloginGuard implements CanActivate {
       }
     }else
     {
-      localStorage.clear(); 
       return false;
     }
       

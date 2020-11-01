@@ -13,11 +13,9 @@ const helper = new JwtHelperService();
 export class LoginService {
   API_ENDPOINT = 'http://localhost:3000/';
   login: Login[];
-  checklogin=false;
   
   constructor(private httpClient: HttpClient, private router: Router) {
     this.checkToken();
-    this.checklogin=false;
   }
   
 
@@ -34,7 +32,6 @@ export class LoginService {
           }else
           {
             alert('Bienvenido al sistema');
-          this.checklogin=true;
           localStorage.setItem('canact','true');
           localStorage.setItem('usuario',user.Username);
           localStorage.setItem('Rol',user.Usertype.toString());
@@ -52,7 +49,6 @@ export class LoginService {
     localStorage.removeItem('usuario');
     localStorage.removeItem('Rol');
     localStorage.removeItem('EmpleadoId');
-    this.checklogin=false;
     this.router.navigate(['/login']);
   }
 
