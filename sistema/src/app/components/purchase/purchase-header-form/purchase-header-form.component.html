@@ -86,7 +86,7 @@
                   <label for="Total" class="col-form-label" style="font-size: 30px; color:#e74c3c;">Total:</label>
                   <div class="col">
                     <label [(ngModel)]="header.Total" style="font-size: 30px; color:#e74c3c;" id="Total"
-                      class="form-control" value="0" tabindex="8" ngDefaultControl>Q{{ total }}</label>
+                      class="form-control" value="0" tabindex="8" ngDefaultControl>{{ total | currency:"GTQ":"Q" }}</label>
                   </div>
                 </div>
               </div>
@@ -138,7 +138,7 @@
                         onEnter(cantidad[i], precio[i], inventario)
                       " />
                   </td>
-                  <td>{{ inventario[0].Subtotal }}</td>
+                  <td>{{ inventario[0].Subtotal | currency:"GTQ":"Q"}}</td>
                   <td>
                     <button class="btn btn-danger" type="button" (click)="EliminarDetalle(i, inventario)"
                       onClick="EliminarFila(this)" style="background-color:#e74c3c;">
@@ -283,7 +283,6 @@
                 <th class="header" scope="col">Producto-Marca-Categoría</th>
                 <th class="header" scope="col">No. Lote</th>
                 <th class="header" scope="col">Fecha Caducidad</th>
-                <th class="header" scope="col">Seleccionar</th>
               </tr>
             </thead>
             <tbody>
@@ -296,12 +295,6 @@
                 <td height="10">{{ inv.ProductComplete }}</td>
                 <td height="10">{{ inv.Lot_Id }}</td>
                 <td height="10">{{ inv.DueDate | date: "d-M-y" }}</td>
-                <td>
-                  <a class="btn btn-warning btn-sm" style="background-color:#F7985B;"
-                    (click)="getProductId(inv.Product_Id)" data-dismiss="modal">
-                    <i class="fa fa-check" style="color: white;"></i></a>
-                  &nbsp;
-                </td>
               </tr>
             </tbody>
           </table>
@@ -338,7 +331,6 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
           Cerrar
         </button>
-        <button type="button" class="btn btn-primary">Guardar Cambios</button>
       </div>
     </div>
   </div>
@@ -363,7 +355,6 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
           Cerrar
         </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -388,7 +379,6 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
           Cerrar
         </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -445,7 +435,7 @@
 
                 <div class="col-sm-4">
                   <label style="font-size: 20px; color: black" class="col-form-label">
-                    Q{{ total_cobro }}</label>
+                    {{ total_cobro | currency:"GTQ":"Q" }}</label>
                 </div>
               </div>
             </div>
@@ -464,6 +454,10 @@
           </div>
         </div>
       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cerrarpago()" >
+          Cerrar
+        </button>
     </div>
   </div>
 </div>
