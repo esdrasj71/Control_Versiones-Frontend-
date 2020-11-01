@@ -90,9 +90,9 @@
             Reportes
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" >Compras</a>
+            <a class="dropdown-item" routerLink="/purchase-reports-home">Compras</a>
             <a class="dropdown-item" >Ventas</a>
-            <a class="dropdown-item" >Inventario</a>
+            <a class="dropdown-item" routerLink="/inventory-reports-home">Inventario</a>
           </div>
         </li>
         <li class="nav-item">
@@ -101,33 +101,31 @@
         <li class="nav-item dropdown">
           <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            Estado
+            Estado de Resultados 
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" >Clientes</a>
-            <a class="dropdown-item" >Cuentas por cobrar</a>
+            <a class="dropdown-item" >Ingresos</a>
+            <a class="dropdown-item" >Egresos</a>
           </div>
         </li>
       </ul>
-
       <form class="form-inline my-2 my-lg-0">
-        <h5 style="color:white; opacity: 60%;">{{usuario}}</h5>&nbsp;&nbsp;
+       
         <ul class="navbar-nav mr-auto">
-
           <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-user fa-2x" style="color: white;"></i>
-
+          aria-haspopup="true" aria-expanded="false"><h5> {{usuario}}</h5></a>
+        <li class="nav-item dropdown">
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" style="color: black;"><i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp; {{usuario}}</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Cerrar Session</a>
+          </div>
+        </li>
+          <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user fa-lg" style="color: white;"></i>
           </a>
-          <li class="nav-item dropdown">
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" (click)="logout()">Cerrar Session</a>
-            </div>
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-user fa-lg" style="color: white;"></i>
+          
         </ul>
-        
       </form>
     </div>
   </ng-container>

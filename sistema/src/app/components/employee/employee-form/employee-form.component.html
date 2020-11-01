@@ -47,7 +47,8 @@
                 <div class="form-group row">
                     <label class="col-md-3 form-controllabel" for="Email">Correo Electrónico</label>
                     <div class="col-md-9">
-                        <input [(ngModel)]="employee.Email" type="text" id="Email" class="form-control">
+                        <input [(ngModel)]="employee.Email" type="email" id="Email" class="form-control" 
+                        pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" required>
                     </div>
                 </div>
                 <!-- 
