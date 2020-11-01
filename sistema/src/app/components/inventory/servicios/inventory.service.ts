@@ -38,6 +38,11 @@ export class InventoryService {
 
     return this.httpClient.get(this.API_ENDPOINT + 'inventory',{ headers: headers });
   }
+  getInventoryNoPerishable() {
+    const headers = new HttpHeaders({ 'ContentType': 'application/json','accesstoken': localStorage.getItem('token') });
+
+    return this.httpClient.get(this.API_ENDPOINT + 'inventoryNoPerishable',{ headers: headers });
+  }
   getInventoryId(id) {
     const headers = new HttpHeaders({ 'ContentType': 'application/json','accesstoken': localStorage.getItem('token') });
 

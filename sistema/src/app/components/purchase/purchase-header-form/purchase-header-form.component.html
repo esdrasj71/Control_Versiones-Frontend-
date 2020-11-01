@@ -110,7 +110,6 @@
             </div>
             <hr />
             <h5 class="card-title"><b>Detalle de la compra</b></h5>
-            <div class="table-wrapper-scroll-y my-custom-scrollbar">
             <table class="table table-dark" style="table-layout: fixed; word-wrap: break-word" id="table">
               <thead class="thead-dark">
                 <tr>
@@ -148,9 +147,6 @@
                 </tr>
               </tbody>
             </table>
-          </div>
-            <!--data-toggle="modal"
-            data-target=".bd-cobro-modal-lg"       (click)="savePost()" -->
             <button
               type="button"
               class="btn btn-success"
@@ -272,7 +268,11 @@
               </button>
             </div>
           </div>
+          <div>
+            <h3 class="modal-title">Productos no perecederos</h3>
+          </div>
           <div class="table-wrapper-scroll-y my-custom-scrollbar">
+            
           <table class="table table-hover" style="table-layout: fixed; word-wrap: break-word; background-color:#F8F9F9;"
             id="table">
             <thead class="thead-dark">
@@ -282,7 +282,7 @@
                 <th class="header" scope="col">Correlativo Producto</th>
                 <th class="header" scope="col">Producto-Marca-Categoría</th>
                 <th class="header" scope="col">No. Lote</th>
-                <th class="header" scope="col">Fecha Caducidad</th>
+                <th class="header" scope="col">Seleccionar</th>
               </tr>
             </thead>
             <tbody>
@@ -294,7 +294,12 @@
                 <td height="10">{{ inv.Correlative_Product }}</td>
                 <td height="10">{{ inv.ProductComplete }}</td>
                 <td height="10">{{ inv.Lot_Id }}</td>
-                <td height="10">{{ inv.DueDate | date: "d-M-y" }}</td>
+                <td>
+                  <a class="btn btn-warning btn-sm" style="background-color:#F7985B;"
+                    (click)="getProductId(inv.Product_Id)" data-dismiss="modal">
+                    <i class="fa fa-check" style="color: white;"></i></a>
+                  &nbsp;
+                </td>
               </tr>
             </tbody>
           </table>

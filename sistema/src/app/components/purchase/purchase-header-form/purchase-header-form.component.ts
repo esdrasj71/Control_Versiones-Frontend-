@@ -121,7 +121,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
     this.providerService.getProviders().subscribe((data: Providers[]) => {
       this.providers = data;
     });
-    this.inventoryService.getInventory().subscribe((data: Inventory[]) => {
+    this.inventoryService.getInventoryNoPerishable().subscribe((data: Inventory[]) => {
       this.inventory = data;
     });
   }
@@ -154,7 +154,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
   }
 
   getProductId(id) {
-    this.inventoryService.getInventory().subscribe((data: Inventory[]) => {
+    this.inventoryService.getInventoryNoPerishable().subscribe((data: Inventory[]) => {
       this.inventory = data;
     });
     this.productService.getProductsId(id).subscribe((data: Products[]) => {
