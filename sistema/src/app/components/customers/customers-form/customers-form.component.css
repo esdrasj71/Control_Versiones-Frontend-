@@ -4,9 +4,11 @@
     color: white;
     }
 .container{
-    min-width: 300px;
-    max-width: 900px;
-}
+       padding-top: 2%;
+       padding-bottom: 5%;
+       min-width: 300px;
+       max-width: 750px;
+}    
 
 .btn{
     color:#fff;

@@ -1,30 +1,33 @@
-
-<div class="container card">
-    <div class="card-body">
-        <h2 class="alert alert-primary" role="alert">Editar/Agregar detalle de pago compra</h2>
-        <div class="alert alert-warning" role="alert">
-
-            <div class="form-group row">
-                <label class="col-md-3 form-controllabel" for="Total_Amount">Cantidad Total</label>
-                <div class="col-md-9">
-                    <input [(ngModel)]="paymentDetail.Total_Amount" type="number" id="Total_Amount" class="form-control">
+<div class="container">
+    <div class="container card">
+        <div class="card-body" style="height: 100%;">
+            <h2 class="alert alert-primary" role="alert" style="text-align: center;">Editar/Agregar detalle de pago
+                compra</h2>
+            <div class="alert alert-warning" role="alert" style="background-color:#699DBF; height: 100%;">
+                <div class="form-group row">
+                    <label class="col-md-3 form-controllabel" for="Total_Amount">Cantidad Total</label>
+                    <div class="col-md-9">
+                        <input [(ngModel)]="paymentDetail.Total_Amount" type="number" id="Total_Amount"
+                            class="form-control" required>
+                    </div>
                 </div>
-            </div> 
 
-            <div class="form-group row">
-                <label class="col-md-3 form-controllabel" for="Description">Descripcion</label>
-                <div class="col-md-9">
-                    <input [(ngModel)]="paymentDetail.Description" type="text" id="Description" class="form-control">
+                <div class="form-group row">
+                    <label class="col-md-3 form-controllabel" for="Description">Descripcion</label>
+                    <div class="col-md-9">
+                        <input [(ngModel)]="paymentDetail.Description" type="text" id="Description"
+                            class="form-control">
+                    </div>
                 </div>
-            </div>
 
-                          
-            <div class="form-group row">
-                <div class="col-md-12">
-                    <button (click)="savePaymentDetail()" class="btn btn-primary btnblock" routerLink="/payment-detail-purchase-home">Guardar</button>
+
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <button (click)="savePaymentDetail()" class="btn btn-primary btnblock"
+                            routerLink="/payment-detail-purchase-home">Guardar</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-

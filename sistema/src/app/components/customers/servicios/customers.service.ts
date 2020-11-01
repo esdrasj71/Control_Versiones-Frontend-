@@ -11,6 +11,11 @@ export class CustomersService {
   customer = []; 
   
   constructor(private httpClient: HttpClient) {
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'accesstoken':localStorage.getItem('token')});
+    httpClient.get(this.API_ENDPOINT + 'customer',{headers})
+      .subscribe((data: Customers[]) => {
+        this.customer = data;
+      });
    } 
    saveCustomer(customer: Customers){
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
@@ -19,8 +24,6 @@ export class CustomersService {
    getCustomer() {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
     return this.httpClient.get(this.API_ENDPOINT + 'customer',{headers});
-
-
   }
   getCustomerId(id) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});

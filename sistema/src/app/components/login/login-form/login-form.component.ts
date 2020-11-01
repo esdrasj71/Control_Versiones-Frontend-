@@ -67,7 +67,7 @@ export class LoginFormComponent implements OnInit {
       localStorage.removeItem('token');
     }else{
 
-      console.log('hola');
+      //console.log('hola');
       localStorage.removeItem('token');
       localStorage.setItem('token','0');
     }
@@ -120,18 +120,14 @@ export class LoginFormComponent implements OnInit {
   }
   savePost()
   {
-    this.loginService.save(this.login).subscribe((data) => {
-      //this.IsLogued.emit('Logueado');
+    if(this.login.Username==null || this.login.Password==null)
+    {
+      alert('Introduzca un usuario y una contraseña');
+    }else
+    {
+      this.loginService.save(this.login).subscribe();
+    }
     
-      alert('Login guardado');
-      this.router.navigate(['/home']);
-      
-     // console.log(data)
-    }, (error) => {
-      console.log(error);
-      alert('Ocurrio un error');
-      window.location.reload();
-    });
   }
   logout()
   {

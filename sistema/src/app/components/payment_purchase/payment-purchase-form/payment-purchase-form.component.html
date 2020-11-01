@@ -7,7 +7,8 @@
                 <div class="form-group row">
                     <label class="col-md-3 form-controllabel" for="Method_Name">Nombre de Método</label>
                     <div class="col-md-9">
-                        <input [(ngModel)]="payment.Method_Name" type="text" id="Name" class="form-control">
+                        <input [(ngModel)]="payment.Method_Name" type="text" id="Name" class="form-control"
+                        maxlength="40" required="">
                     </div>
                 </div>
 
@@ -22,4 +23,4 @@
     </div>
     <br><br><br>
 </div>
-<div style="height: 200px;"></div>
+<div style="height: 100px;"></div>

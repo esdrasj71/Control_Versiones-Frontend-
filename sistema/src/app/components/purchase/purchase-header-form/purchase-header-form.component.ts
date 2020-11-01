@@ -185,7 +185,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
         alert('Compra guardada');
         console.log(data);
         //window.location.reload();
-        this.payment.Purchase_Header_Id = data['id']; //176 Andres
+        this.payment.Purchase_Header_Id = data['id']; 
         if (this.SiPago == true) {
           ///DebsToPay
           this.debstopay.Description = ' ';

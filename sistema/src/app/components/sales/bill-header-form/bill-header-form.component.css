@@ -10,6 +10,11 @@
     display: block;
 }
 
+.header{
+    position:sticky;
+    top: 0 ;
+}
+
 #alcontado {
     display: none;
 }
@@ -30,6 +35,10 @@ h1.title{
     color: white;
 }
 h3{
+    color: black;
+    font-family: 'Cairo', sans-serif
+}
+h4{
     color: black;
     font-family: 'Cairo', sans-serif
 }
