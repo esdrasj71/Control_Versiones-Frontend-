@@ -5,7 +5,7 @@
         <div class="form-group row">
             &nbsp;&nbsp;&nbsp;<i class="fa fa-search"></i> &nbsp;&nbsp;&nbsp;
             <div class="col">
-                <input type="text" name="" id="" class="form-control" placeholder="Buscar NIT o Nombre del cliente"
+                <input type="text" name="" id="" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Buscar NIT o Nombre del cliente"
                     [(ngModel)]="filtrado_clientes" tabindex="1" style="width: 40%;"/>
             </div>
         </div>
@@ -125,11 +125,11 @@
                     <label for="" class="col-form-label"><strong>Monto a cobrar: </strong></label>
                     <div class="col-sm-7">
                         <input type="number" name="" id="" class="form-control" placeholder="Monto de pagar"
-                            [(ngModel)]="procedure_accountsReceivable.Quantity" ngDefaultControl max="{{total_cobrar}}"
+                            [(ngModel)]="procedure_accountsReceivable.Quantity" [ngModelOptions]="{standalone: true}" max="{{total_cobrar}}"
                             tabindex="1" />
                     </div>
                     <div class="col-sm-4">
-                        <select name="" id="" [(ngModel)]="procedure_accountsReceivable.Payment_Id" ngDefaultControl
+                        <select name="Payment_Id" id="" [(ngModel)]="procedure_accountsReceivable.Payment_Id" [ngModelOptions]="{standalone: true}"
                             tabindex="1" class="form-control">
                             <option *ngFor="let tipoPago of tipos_pagos" value="{{tipoPago.Payment_Id}}">
                                 {{tipoPago.Method_Name}}
