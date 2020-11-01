@@ -46,16 +46,20 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group row">
-                                    <label for="Empleado" class="col-form-label">Empleado</label>
-                                    <div class="col">
-                                        <select name="empleado" id="empleado"
+            
+                                   
+                                       <!-- <select name="empleado" id="empleado"
                                             [(ngModel)]="encabezado_factura.Employee_Id" ngDefaultControl tabindex="8"
                                             class="form-control">
                                             <option *ngFor="let empleado of empleados" value="{{empleado.Employee_Id}}">
                                                 {{empleado.Names+" "+empleado.Last_names}}
                                             </option>
-                                        </select>
+                                        </select>-->
+                                        <label for="" class="col-form-label">Empleado</label>
+                                    <div class="col">
+                                            <label for="" class="col-form-label">{{nombre_empleado}}</label>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>

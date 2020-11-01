@@ -109,6 +109,11 @@ export class BillHeaderFormComponent implements OnInit {
   nofacturas: NoFactura[];
   nofactura: number = 0;
 
+
+  nombre_empleado: string = "";
+  idempleado: number = 0;
+  idempleado1: number = 0;
+
   constructor(
     private billsService: BillsService,
     private employeeService: EmployeeService,
@@ -135,6 +140,15 @@ export class BillHeaderFormComponent implements OnInit {
     
     }) 
 
+    this.idempleado = parseInt(localStorage.getItem('EmpleadoId'));
+    this.encabezado_factura.Employee_Id = this.idempleado;
+    this.employeeService.findEmployee(this.idempleado).subscribe((data: Employee[])=>{
+    
+      this.nombre_empleado = data["Names"]+ " "+data["Last_names"];
+     
+    })
+    
+    
   }
 
   ngOnInit(): void {
