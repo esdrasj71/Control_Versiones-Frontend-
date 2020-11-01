@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../servicios/employee.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Employee } from '../interfaces/employee';
 import { ActivatedRoute } from '@angular/router';
 import { EmployeePosition } from '../../employee_position/interfaces/employee-position';
@@ -33,7 +33,7 @@ export class EmployeeFormComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.params['id']; //Este es el parametro que se definio en la ruta de app.module.ts
     if (this.id) {
       this.editing = true;
-      this.httpClient.get(this.API_ENDPOINT + 'employee').subscribe((data: Employee[]) => { //Aqui traemos el arreglo completo de datos
+      this.employeeService.getEmployee().subscribe((data: Employee[]) => { //Aqui traemos el arreglo completo de datos
         this.postarr = data;
         console.log(this.postarr);
         this.employee = this.postarr.find((m) => { return m.Employee_Id == this.id }); //Aqui traemos solo el id que nos interesa
@@ -43,8 +43,8 @@ export class EmployeeFormComponent implements OnInit {
     } else {
       this.editing = false;
     }
-
-    httpClient.get(this.API_ENDPOINT + 'employee_position')
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'accesstoken':localStorage.getItem('token')});
+    this.httpClient.get(this.API_ENDPOINT + 'employee_position', {headers})
       .subscribe((data: EmployeePosition[]) => {
         this.employeePosition = data;
         console.log(this.employeePosition);

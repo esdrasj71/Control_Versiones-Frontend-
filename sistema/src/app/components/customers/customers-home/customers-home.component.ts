@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CustomersService} from '../servicios/customers.service';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Customers} from '../interfaces/customer';
 
 @Component({
@@ -13,8 +13,7 @@ export class CustomersHomeComponent implements OnInit {
   customers: Customers[];
   
   constructor(private customersService: CustomersService, private httpClient: HttpClient) {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
-    httpClient.get(this.API_ENDPOINT + 'customer', {headers})
+    this.customersService.getCustomer()
     .subscribe((data: Customers[])=>{
       this.customers = data;
       console.log(this.customers);

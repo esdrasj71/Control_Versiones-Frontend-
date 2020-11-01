@@ -3,7 +3,7 @@
     <h2 style="text-align: center;">____________________</h2><br><br>
 <form>
     <div class="form-group row">
-        &nbsp;&nbsp;&nbsp;<i class="fa fa-search" style="left: 300px;"></i>&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;<i class="fa fa-search fa-lg" style="left: 300px;"></i>&nbsp;&nbsp;&nbsp;
         <input type="text" class="form-control" name="searchTerm3" [(ngModel)]="searchTerm3" placeholder="Buscar proveedor" style="width: 250px;">&nbsp;&nbsp;&nbsp;&nbsp;
         <a class="btn btn-success btnsm" routerLink="/providers-form">Agregar Proveedor</a>
     </div> 
@@ -32,8 +32,10 @@
             <td>{{provider.Phone_Number2}}</td>
             <td>{{provider.Email}}</td>
             <td>{{provider.Address}}</td>
-            <td><a class="btn btn-info btn-sm" style="background-color: #6cb3aa;" routerLink="/providers-form/{{provider.Providers_Id}}">Editar</a>
-                <a class="btn btn-danger btn-sm" (click)="delete(provider.Providers_Id)" style="color:white;">Eliminar</a>
+            <td><a class="btn btn-warning btn-sm" style="background-color:#F7985B;" routerLink="/providers-form/{{provider.Providers_Id}}">
+                <i class="fa fa-pencil-square-o fa-lg" style="color: white;"></i></a>&nbsp;
+                <a class="btn btn-danger btn-sm" (click)="delete(provider.Providers_Id)" style="background-color:#e74c3c;">
+                <i class="fa fa-trash fa-lg" style="color: white;"></i></a>
             </td>
         </tr>
     </tbody>

@@ -14,7 +14,7 @@ export class EmployeePositionFormComponent implements OnInit {
   employeePosition: EmployeePosition = {
     Employee_Position_Id:null,
     Name: null,
-    Description: null,
+    Description: null, 
   }; //este arreglo define los campos que se van a ingresar en el formulario
   API_ENDPOINT = 'http://localhost:3000/';
   id: any;
@@ -25,7 +25,7 @@ export class EmployeePositionFormComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.params['id']; //Este es el parametro que se definio en la ruta de app.module.ts
     if (this.id) {
       this.editing = true;
-      this.httpClient.get(this.API_ENDPOINT + 'employee_position').subscribe((data: EmployeePosition[]) => { //Aqui traemos el arreglo completo de datos
+      this.employeePositionServicie.getPosition().subscribe((data: EmployeePosition[]) => { //Aqui traemos el arreglo completo de datos
         this.postarr = data;
         console.log(this.postarr);
         this.employeePosition = this.postarr.find((m) => { return m.Employee_Position_Id == this.id }); //Aqui traemos solo el id que nos interesa

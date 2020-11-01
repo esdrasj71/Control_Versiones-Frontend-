@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inventory } from '../interfaces/inventory';
 import { Products } from '../../product/interfaces/product';
 import { ProductsService } from '../../product/servicios/products.service';
@@ -29,10 +29,11 @@ export class InventoryFormComponent implements OnInit {
   product: Products[];
 
   constructor(private inventoryService: InventoryService, private productsService: ProductsService, private router: Router, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
+    const headers = new HttpHeaders({ 'ContentType': 'application/json','accesstoken': localStorage.getItem('token') });
     this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
       this.editing = true;
-      this.httpClient.get(this.API_ENDPOINT + 'inventory').subscribe((data: Inventory[]) => {
+      this.httpClient.get(this.API_ENDPOINT + 'inventory',{headers}).subscribe((data: Inventory[]) => {
         this.inventoryarr = data;
         console.log(this.inventoryarr);
         this.inventory = this.inventoryarr.find((m) => { return m.Inventory_Id == this.id });
@@ -44,7 +45,7 @@ export class InventoryFormComponent implements OnInit {
     else {
       this.editing = false;
     }
-    httpClient.get(this.API_ENDPOINT + 'product')
+    httpClient.get(this.API_ENDPOINT + 'product', {headers})
       .subscribe((data: Products[]) => {
         this.product = data;
       })

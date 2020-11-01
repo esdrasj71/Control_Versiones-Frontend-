@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Employee } from '../interfaces/employee';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' 
 })
 export class EmployeeService {
 
