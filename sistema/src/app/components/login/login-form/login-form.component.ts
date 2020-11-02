@@ -60,15 +60,11 @@ export class LoginFormComponent implements OnInit {
         if (data.hasOwnProperty(key))
         {
           this.Existe++;
-        } 
+        }
     }
     if(this.Existe>0)
-    {
       localStorage.removeItem('token');
-      
-    }else{
-
-      //console.log('hola');
+    else{
       localStorage.removeItem('token');
       localStorage.setItem('token','0');
     }
@@ -78,6 +74,7 @@ export class LoginFormComponent implements OnInit {
       alert('Ocurrio un error');
       console.log(error);
     });
+    
   }
 
   ngOnInit(){

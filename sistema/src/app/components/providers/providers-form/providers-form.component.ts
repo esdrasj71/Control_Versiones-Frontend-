@@ -1,6 +1,6 @@
 import { Component, OnInit,Output, EventEmitter } from '@angular/core';
 import { ProvidersService } from '../servicios/providers.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Providers } from '../interfaces/providers';
 import { ActivatedRoute } from '@angular/router';
 @Component({

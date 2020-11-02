@@ -10,12 +10,15 @@ import {LoginService} from './components/login/servicios/login.service'
 
 export class AppComponent implements OnInit {
   Existe=0;
+  rol='1';
   title = 'sistema';
   isLog=true;
   usuario="";
 constructor(private router: Router,
   private loginService:LoginService
   ){
+    if(this.loginService.checklogin)
+      this.router.navigate(['/home']);
       setInterval(() => {
        this.mostrar(); 
      }, 2000);
@@ -25,6 +28,7 @@ ngOnInit(){}
 mostrar()
 {
    this.usuario=localStorage.getItem('usuario');
+   this.rol=localStorage.getItem('Rol');
    if(this.usuario==null)
     this.Existe=0;
     else

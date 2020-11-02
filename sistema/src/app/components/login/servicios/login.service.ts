@@ -13,7 +13,7 @@ const helper = new JwtHelperService();
 export class LoginService {
   API_ENDPOINT = 'http://localhost:3000/';
   login: Login[];
-  
+  checklogin=false;
   constructor(private httpClient: HttpClient, private router: Router) {
     this.checkToken();
   }
@@ -63,7 +63,8 @@ export class LoginService {
     const isExpired = helper.isTokenExpired(userToken);
     if(isExpired){
       this.logout();
-    }
+    }else
+      this.checklogin=true;
   }
     //console.log('Expiro: ', isExpired);
   }
