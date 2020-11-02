@@ -27,7 +27,7 @@ export class InventoryHomeComponent implements OnInit {
       });
   }
   ngOnInit() {
-    this.inventoryService.getInventoryNoPerishable().subscribe((data: InventoryGroup[]) => {
+    this.inventoryService.getInventoryGroup().subscribe((data: InventoryGroup[]) => {
       this.inventorygroup = data;
       this.cont = this.inventorygroup.length;
     });
