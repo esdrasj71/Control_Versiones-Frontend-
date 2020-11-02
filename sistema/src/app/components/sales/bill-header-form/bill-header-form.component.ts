@@ -179,9 +179,6 @@ export class BillHeaderFormComponent implements OnInit {
               a["Subtotal"] += m["Stock"] * m["Unit_Price"]; 
               a["Unit_Price"] = (a["Subtotal"] / a["Stock"]).toFixed(2);
               estado = true;
-             console.log('Stock'+ a["Stock"]);
-             console.log('SubTotal'+ a["Subtotal"]);
-             console.log('Unit_Price'+ a["Unit_Price"]);
             }
           })
           if(estado == true){
