@@ -15,8 +15,6 @@ export class InventoryFormComponent implements OnInit {
   inventory: Inventory = {
     Stock: null,
     Unit_Price: null,
-    Retail_Price: null,
-    Wholesale_Price: null,
     Lot_Id: null,
     Statuss: null,
   };
