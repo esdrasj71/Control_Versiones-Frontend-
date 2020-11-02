@@ -277,9 +277,7 @@
             id="table">
             <thead class="thead-dark">
               <tr>
-                <th class="header" scope="col">#</th>
-                <th class="header" scope="col">IDproducto</th>
-                <th class="header" scope="col">Correlativo Producto</th>
+                <th class="header" scope="col">No. Correlativo</th>
                 <th class="header" scope="col">Producto-Marca-Categoría</th>
                 <th class="header" scope="col">No. Lote</th>
                 <th class="header" scope="col">Seleccionar</th>
@@ -289,8 +287,6 @@
               <tr *ngFor="
                   let inv of inventory | filtradoinventory: filtrado_product
                 ">
-                <td height="10">{{ inv.Inventory_Id }}</td>
-                <td height="10">{{ inv.Product_Id }}</td>
                 <td height="10">{{ inv.Correlative_Product }}</td>
                 <td height="10">{{ inv.ProductComplete }}</td>
                 <td height="10">{{ inv.Lot_Id }}</td>

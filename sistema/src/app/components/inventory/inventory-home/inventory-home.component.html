@@ -1,47 +1,99 @@
-    <div class="container">
-        <h1 style="text-align: center; font-weight: bold;">Listado de Inventario</h1>
-        <h2 style="text-align: center;">____________________</h2><br><br><br>
-        <form>
+<div class="container">
+    <h1 style="text-align: center; font-weight: bold;">Listado de Inventario</h1>
+    <h2 style="text-align: center;">____________________</h2><br><br><br>
+    <form>
         <div class="form-group row">
             &nbsp;&nbsp;&nbsp;<i class="fa fa-search fa-lg" style="left: 300px;"></i>&nbsp;&nbsp;&nbsp;
             <div class="col">
-                <input type="text" name="inventory" id="inventory" class="form-control"  name="rootInventory" 
-                [(ngModel)]="rootInventory" placeholder="Buscar en el inventario" tabindex="4" />
+                <input type="text" name="inventory" id="inventory" class="form-control" name="rootInventory"
+                    [(ngModel)]="rootInventory" placeholder="Buscar en el inventario" tabindex="4" />
             </div>
         </div>
+        <div class="form-group row">
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-group-modal-lg"
+            >Ver Inventario Agrupado</button>
+        </div>
     </form>
-<div class="table-wrapper-scroll-y my-custom-scrollbar">
-<table  class="table table-hover" style="background-color:#F8F9F9;">
-    <thead class="thead-dark">
-        <tr>
-            <th class="header" scope="col">ID</th>
-            <th class="header" scope="col">No. Correlativo</th>
-            <th class="header" scope="col">Producto - Marca - Categoria</th>
-            <th class="header" scope="col">Stock</th>
-            <th class="header" scope="col">Precio unitario</th>
-            <th class="header" scope="col">Precio minorista</th>
-            <th class="header" scope="col">Precio mayorista</th>
-            <th class="header" scope="col">Fecha de vencimiento</th>
-            <th class="header" scope="col">Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let inventory of inventories | filtradoinventory: rootInventory">
-            <th>{{inventory.Inventory_Id}}</th>
-            <th>{{inventory.Correlative_Product}}</th>
-            <th>{{inventory.ProductComplete}}</th>
-            <td>{{inventory.Stock}}</td>
-            <td>{{inventory.Unit_Price}}</td>
-            <td>{{inventory.Retail_Price}}</td>
-            <td>{{inventory.Wholesale_Price}}</td>
-            <td>{{inventory.DueDate|date:'d-M-y'}}</td>
-            <td><a class="btn btn-warning btnsm" style="background-color:#F7985B;" routerLink="/inventory-form/{{inventory.Inventory_Id}}">
-                <i class="fa fa-pencil-square-o fa-lg" style="color: white;"></i></a>&nbsp;
-                <a class="btn btn-danger btnsm" style="background-color:#e74c3c;" (click)="delete(inventory.Inventory_Id)">
-                <i class="fa fa-trash fa-lg" style="color: white;"></i></a>
-            </td>
-        </tr>
-    </tbody>
-</table>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <table class="table table-hover" style="background-color:#F8F9F9;">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="header" scope="col">ID</th>
+                    <th class="header" scope="col">No. Correlativo</th>
+                    <th class="header" scope="col">Producto - Marca - Categoria</th>
+                    <th class="header" scope="col">Stock</th>
+                    <th class="header" scope="col">Precio unitario</th>
+                    <th class="header" scope="col">Precio minorista</th>
+                    <th class="header" scope="col">Precio mayorista</th>
+                    <th class="header" scope="col">Fecha de vencimiento</th>
+                    <th class="header" scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let inventory of inventories | filtradoinventory: rootInventory">
+                    <th>{{inventory.Inventory_Id}}</th>
+                    <th>{{inventory.Correlative_Product}}</th>
+                    <th>{{inventory.ProductComplete}}</th>
+                    <td>{{inventory.Stock}}</td>
+                    <td>{{inventory.Unit_Price}}</td>
+                    <td>{{inventory.Retail_Price}}</td>
+                    <td>{{inventory.Wholesale_Price}}</td>
+                    <td>{{inventory.DueDate|date:'d-M-y'}}</td>
+                    <td><a class="btn btn-warning btnsm" style="background-color:#F7985B;"
+                            routerLink="/inventory-form/{{inventory.Inventory_Id}}">
+                            <i class="fa fa-pencil-square-o fa-lg" style="color: white;"></i></a>&nbsp;
+                        <a class="btn btn-danger btnsm" style="background-color:#e74c3c;"
+                            (click)="delete(inventory.Inventory_Id)">
+                            <i class="fa fa-trash fa-lg" style="color: white;"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
+<!--MODAL Group-->
+<div class="modal fade bd-group-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px">
+        <div class="modal-content" style="width: 900px">
+            <div class="modal-header" style="width: 900px">
+                <h5 class="modal-title" id="exampleModalLongTitle" style="color: black;">
+                    Inventario Agrupado
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y: auto">
+                <div class="form-group row row col-md-4">
+                    <h6 for="bills" style="color: black;"><strong>Total de Productos: </strong> </h6>
+                    <h6 for="bills" style="color: black;"> {{cont}} </h6>
+                  </div>
+                <div class="container">
+                    <table class="table table-hover" style="background-color:#F8F9F9;">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">No. Correlativo</th>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Marca</th>
+                                <th scope="col">Categoría</th>
+                                <th scope="col">Stock</th>
+                                <th scope="col">Precio Ponderado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let detail of inventorygroup">
+                                <td>{{detail.Correlative_Product}}</td>
+                                <td>{{detail.Product}}</td>
+                                <td>{{detail.Brand}}</td>
+                                <td>{{detail.Category}}</td>
+                                <td>{{detail.Stock}}</td>
+                                <td>{{detail.Precio| currency:"GTQ":"Q"}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
