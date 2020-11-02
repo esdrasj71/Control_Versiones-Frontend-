@@ -35,17 +35,18 @@ export class InventoryService {
 
   getInventory() {
     const headers = new HttpHeaders({ 'ContentType': 'application/json','accesstoken': localStorage.getItem('token') });
-
     return this.httpClient.get(this.API_ENDPOINT + 'inventory',{ headers: headers });
   }
   getInventoryNoPerishable() {
     const headers = new HttpHeaders({ 'ContentType': 'application/json','accesstoken': localStorage.getItem('token') });
-
     return this.httpClient.get(this.API_ENDPOINT + 'inventoryNoPerishable',{ headers: headers });
+  }
+  getInventoryGroup() {
+    const headers = new HttpHeaders({ 'ContentType': 'application/json','accesstoken': localStorage.getItem('token') });
+    return this.httpClient.get(this.API_ENDPOINT + 'inventorygroup',{ headers: headers });
   }
   getInventoryId(id) {
     const headers = new HttpHeaders({ 'ContentType': 'application/json','accesstoken': localStorage.getItem('token') });
-
     return this.httpClient.get(this.API_ENDPOINT + 'inventory/' + id,{ headers: headers });
   }
 }
