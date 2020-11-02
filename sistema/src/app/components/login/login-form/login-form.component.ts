@@ -8,6 +8,7 @@ import {Employee} from '../../employee/interfaces/employee'
 import {EmployeeService} from '../../employee/servicios/employee.service'
 import {EmployeePosition} from '../../employee_position/interfaces/employee-position'
 import {EmployeePositionService} from '../../employee_position/servicios/employee-position.service'
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -74,8 +75,8 @@ export class LoginFormComponent implements OnInit {
     }
     return this.Existe;
     
-    }, (error) => {
-      alert('Ocurrio un error');
+    }, (error) => { 
+      Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
       console.log(error);
     });
   }
@@ -94,7 +95,7 @@ export class LoginFormComponent implements OnInit {
       this.employeepositionService.save(this.position).subscribe((data)=>{
       this.employee.Employee_Position_Id=data['id'];
       this.employeeService.save(this.employee).subscribe((ata) => {
-        alert('Empleado Guardado');
+        //alert('Empleado Guardado');
         console.log(ata);
         this.user.Date_Created=new Date(fecha);
         this.user.Employee_Id=ata['id'];
@@ -102,19 +103,19 @@ export class LoginFormComponent implements OnInit {
         console.log(this.user);
         this.userService.save(this.user).subscribe((user)=>{
           console.log(user);
-          alert('Usuario Creado');
+          Swal.fire('Usuario Creado', '','success');
           localStorage.removeItem('token');
           window.location.reload();
           
           
         },(error)=>{
           console.log(error);
-          alert('Ocurrio un error');
+          Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
         })
       });
     },(error)=>{
       console.log(error);
-      alert('Ocurrio un error');
+      Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
       localStorage.removeItem('token');
       window.location.reload();
     })
@@ -124,7 +125,7 @@ export class LoginFormComponent implements OnInit {
   {
     if(this.login.Username==null || this.login.Password==null)
     {
-      alert('Introduzca un usuario y una contraseña');
+      Swal.fire({icon: 'warning', title: 'Casillas Vacías', text: 'Introduzca un usuario y una contraseña'})
     }else
     {
       this.loginService.save(this.login).subscribe();

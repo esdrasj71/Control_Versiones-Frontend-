@@ -3,7 +3,7 @@ import { Product_Category } from '../interfaces/product-category';
 import { ProductCategoryService } from '../servicios/product-category.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-product-category-form',
   templateUrl: './product-category-form.component.html',
@@ -39,21 +39,21 @@ export class ProductCategoryFormComponent implements OnInit {
   saveProductCategory() {
     if (this.editing) {
       this.productcategoryService.put(this.product_category).subscribe((data) => {
-        alert('Categoria de producto actualizada');
+        Swal.fire('Categoría de Producto Actualizado', '','success');
         console.log(data)
       }, (error) => {
         console.log(error);
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
     else {
       console.log(this.product_category);
       this.productcategoryService.save(this.product_category).subscribe((data) => {
-        alert('Categoria de producto guardada');
+        Swal.fire('Categoría de Producto Guardado', '','success');
         console.log(data)
       }, (error) => {
         console.log(error);
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
   }

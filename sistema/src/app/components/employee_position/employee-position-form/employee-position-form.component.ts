@@ -3,7 +3,7 @@ import { EmployeePositionService } from '../servicios/employee-position.service'
 import { HttpClient } from '@angular/common/http';
 import { EmployeePosition } from '../interfaces/employee-position';
 import { ActivatedRoute } from '@angular/router';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-employee-position-form',
   templateUrl: './employee-position-form.component.html',
@@ -41,21 +41,21 @@ export class EmployeePositionFormComponent implements OnInit {
   savePost() {
     if (this.editing) {
       this.employeePositionServicie.put(this.employeePosition).subscribe((data) => { //El unico cambioes el put
-        alert('Posicion empleado actualizado');
+        Swal.fire('Posición empleado actualizado', '','success');
         console.log(data)
       }, (error) => {
         console.log(error);  
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
     else {
       console.log(this.employeePosition);
       this.employeePositionServicie.save(this.employeePosition).subscribe((data) => {
-        alert('Posicion empleado guardado');
+        Swal.fire('Posición empleado guardado', '','success');
         console.log(data)
       }, (error) => { 
         console.log(error);
-        alert('Ocurrio un error'); 
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
   } 

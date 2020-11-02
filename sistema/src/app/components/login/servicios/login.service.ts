@@ -5,6 +5,7 @@ import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 const helper = new JwtHelperService();
 @Injectable({
@@ -27,11 +28,11 @@ export class LoginService {
         map((user: UserResponse) => {
           if(user.message=='El usuario o contraseña son incorrectos')
           {
-            alert('El usuario o contraseña son incorrectos');
-            window.location.reload();
+            Swal.fire({icon: 'error', title: 'No Valido', text: 'El usuario o contraseña son incorrectos'})
+            window.setTimeout(function(){location.reload()},1300)
           }else
           {
-            alert('Bienvenido al sistema');
+            //alert('Bienvenido al sistema');
           localStorage.setItem('canact','true');
           localStorage.setItem('usuario',user.Username);
           localStorage.setItem('Rol',user.Usertype.toString());

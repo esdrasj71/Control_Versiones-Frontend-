@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductCategoryService } from '../servicios/product-category.service';
 import { HttpClient } from '@angular/common/http';
 import { Product_Category } from '../interfaces/product-category';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-home',
   templateUrl: './product-category-home.component.html',
@@ -25,10 +26,11 @@ searchTerm6 = '';
   }
   delete(id) {
     this.productcategoryService.delete(id).subscribe((data) => {
-      alert('Categoria de producto eliminada');
-      window.location.reload();
+        Swal.fire('Categoría de Producto Eliminado', '','success');
+        window.setTimeout(function(){location.reload()},2000)
     }, (error) => {
       console.log(error);
+      Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
     });
   }
   findproductcategory(productcategoryOne) {

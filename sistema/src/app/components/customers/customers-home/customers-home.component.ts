@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CustomersService} from '../servicios/customers.service';
 import {HttpClient} from '@angular/common/http';
 import {Customers} from '../interfaces/customer';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-customers-home',
@@ -26,11 +27,12 @@ export class CustomersHomeComponent implements OnInit {
   delete(id) {
     this.customersService.delete(id).subscribe(
       (data) => {
-        alert('Cliente Eliminado');
-        window.location.reload();
+        Swal.fire('Cliente Eliminado', '','success');
+        window.setTimeout(function(){location.reload()},2000)
       },
       (error) => {
         console.log(error);
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
       }
     );
   }

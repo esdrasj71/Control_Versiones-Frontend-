@@ -6,7 +6,7 @@
             &nbsp;&nbsp;&nbsp;<i class="fa fa-search fa-lg" style="left: 300px;"></i>&nbsp;&nbsp;&nbsp;
             <div class="col">
                 <input type="text" name="inventory" id="inventory" class="form-control"  name="rootInventory" 
-                [(ngModel)]="rootInventory" placeholder="Buscar en el inventario" tabindex="4" />
+                [(ngModel)]="rootInventory" placeholder="Buscar en el inventario" style="width: 50%;" tabindex="4" />
             </div>
         </div>
     </form>
@@ -36,7 +36,7 @@
             <td>{{inventory.Wholesale_Price}}</td>
             <td>{{inventory.DueDate|date:'d-M-y'}}</td>
             <td><a class="btn btn-warning btnsm" style="background-color:#F7985B;" routerLink="/inventory-form/{{inventory.Inventory_Id}}">
-                <i class="fa fa-pencil-square-o fa-lg" style="color: white;"></i></a>&nbsp;
+                <i class="fa fa-pencil-square-o fa-lg" style="color: white;"></i></a>
                 <a class="btn btn-danger btnsm" style="background-color:#e74c3c;" (click)="delete(inventory.Inventory_Id)">
                 <i class="fa fa-trash fa-lg" style="color: white;"></i></a>
             </td>

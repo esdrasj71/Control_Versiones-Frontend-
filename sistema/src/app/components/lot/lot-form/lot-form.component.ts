@@ -7,6 +7,7 @@ import { Products } from '../../product/interfaces/product';
 import { Router } from '@angular/router';
 import { Inventory } from '../../inventory/interfaces/inventory';
 import { InventoryService } from '../../inventory/servicios/inventory.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-lot-form',
   templateUrl: './lot-form.component.html',
@@ -62,18 +63,18 @@ export class LotFormComponent implements OnInit {
   savePost() {
     if (this.editing) {
       this.lotService.put(this.lot).subscribe((data) => { //El unico cambioes el put
-        alert('Lote actualizado');
-
+        Swal.fire('Lote Actualizado', '','success');
+        console.log(data)
       }, (error) => {
         console.log(error);
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
     else {
       this.lot.Product_Id = this.selectedProductId;
       console.log(this.lot);
       this.lotService.save(this.lot).subscribe((data) => {
-        alert('Lote guardado');
+        Swal.fire('Lote Guardado', '','success');
         //this.router.navigate(["/lot-home"]);
         this.Lot_Id.emit(data['id']);
 
@@ -82,13 +83,13 @@ export class LotFormComponent implements OnInit {
         this.inventory.Statuss= false;
         console.log(this.inventory);
         this.invetoryService.save(this.inventory).subscribe((date) => {
-          alert('Inventario guardado');
+          Swal.fire('Inventario Guardado', '','success');
           console.log(date)
         });
 
       }, (error) => {
         console.log(error);
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
   }

@@ -3,7 +3,7 @@ import { PaymentService } from '../servicios/payment.service';
 import { HttpClient } from '@angular/common/http';
 import { Payment } from '../interfaces/payment';
 import { ActivatedRoute } from '@angular/router';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-payment-form',
   templateUrl: './payment-form.component.html',
@@ -38,21 +38,21 @@ export class PaymentFormComponent implements OnInit {
   savePayment() {
     if (this.editing) {
       this.paymentServicie.put(this.payment).subscribe((data) => { //El unico cambioes el put
-        alert('Pago actualizado');
+        Swal.fire('Pago Actualizado', '','success');
         console.log(data)
       }, (error) => {
         console.log(error);  
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
     else {
       console.log(this.payment);
       this.paymentServicie.save(this.payment).subscribe((data) => {
-        alert('Pago guardado');
+        Swal.fire('Pago Guardado', '','success');
         console.log(data)
       }, (error) => { 
         console.log(error);
-        alert('Ocurrio un error'); 
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
   } 

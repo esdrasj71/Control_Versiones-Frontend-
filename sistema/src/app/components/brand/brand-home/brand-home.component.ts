@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BrandsService } from '../servicios/brands.service';
 import { HttpClient } from '@angular/common/http';
 import { Brands } from '../interfaces/brand';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-brand-home',
   templateUrl: './brand-home.component.html',
@@ -27,11 +27,12 @@ searchTerm4 = '';
     delete(id) {
       this.brandsService.delete(id).subscribe(
         (data) => {
-          alert('Marca Eliminado');
-          window.location.reload();
+          Swal.fire('Marca Eliminado', '','success');
+          window.setTimeout(function(){location.reload()},1500)
         },
         (error) => {
           console.log(error);
+          Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
         }
       );
     } 

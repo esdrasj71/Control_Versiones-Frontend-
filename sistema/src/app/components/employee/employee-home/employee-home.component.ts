@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../servicios/employee.service';
 import { Employee } from '../interfaces/employee';
 import { Pipe, PipeTransform } from '@angular/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-employee-home',
@@ -29,11 +30,12 @@ export class EmployeeHomeComponent implements OnInit {
   delete(id) {
     this.employeeService.delete(id).subscribe(
       (data) => {
-        alert('Empleado Eliminado');
-        window.location.reload();
+        Swal.fire('Empleado Eliminado', '','success');
+        window.setTimeout(function(){location.reload()},2000)
       },
       (error) => {
         console.log(error);
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
       }
     );
   }
