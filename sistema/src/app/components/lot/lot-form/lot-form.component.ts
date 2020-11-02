@@ -23,8 +23,6 @@ export class LotFormComponent implements OnInit {
   inventory: Inventory = {
     Stock: 0,
     Unit_Price: 0,
-    Retail_Price: 0,
-    Wholesale_Price: 0,
     Lot_Id: null,
     Statuss: false,
   };

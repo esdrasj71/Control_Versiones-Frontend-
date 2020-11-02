@@ -179,7 +179,6 @@ export class BillHeaderFormComponent implements OnInit {
               a["Subtotal"] += m["Stock"] * m["Unit_Price"]; 
               a["Unit_Price"] = (a["Subtotal"] / a["Stock"]).toFixed(2);
               estado = true;
-             // console.log("entro");
             }
           })
           if(estado == true){

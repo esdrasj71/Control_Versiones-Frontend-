@@ -82,7 +82,6 @@ export class ProductFormComponent implements OnInit {
           });
           this.selectedCategoryId = this.product.Product_Category_Id;
           this.selectedBrandId = this.product.Brand_Id;
-          //
           this.lot.Product_Id = this.product.Product_Id;
           this.lot.Due_Date = this.selectedDueDate;
         },

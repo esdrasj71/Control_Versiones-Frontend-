@@ -1,1 +1,75 @@
-<p>user-form works!</p>
+<div class="container">
+    <div class="container card">
+      <div class="card-body" style="height: 100%">
+        <h2 class="alert alert-primary" role="alert" style="text-align: center">
+          Editar/Agregar Usuario
+        </h2>
+        <div
+          class="alert alert-warning"
+          role="alert"
+          style="background-color: #699dbf; height: 100%"
+        >
+          <div class="form-group row">
+            <label class="col-md-3 form-controllabel" for="Nit">Usuario</label>
+            <div class="col-md-9">
+              <input
+                [(ngModel)]="user.Username"
+                type="text"
+                id="Nit"
+                class="form-control" minlength="6" maxlength="20" required=""
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 form-controllabel" for="Fiscal_Name"
+              >Contraseña</label
+            >
+            <div class="col-md-9">
+              <input
+                [(ngModel)]="user.Password"
+                type="text"
+                id="Fiscal_Name"
+                class="form-control" maxlength="35" required=""
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 form-controllabel" for="Phone_Number1"
+              >Tipo de usuario</label
+            >
+            <div class="col-md-9">
+              <input
+                [(ngModel)]="user.Usertype"
+                type="text"
+                id="Phone_Number1"
+                class="form-control" minlength="7" maxlength="15" required=""
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 form-controllabel" for="Phone_Number2"
+              >Elija el empleado</label
+            >
+            <div class="col-md-9">
+              <input
+                [(ngModel)]="user.Employee_Id"
+                type="text"
+                id="Phone_Number2"
+                class="form-control"
+              />
+            </div>
+          </div>
+
+  
+          <div class="form-group row">
+            <div class="col-md-12">
+              <button (click)="saveUser()" class="btn btn-success btnblock">
+                Registrar un usuario
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
