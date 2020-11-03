@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,  Output, EventEmitter } from '@angular/core';
 import { Product_Category } from '../interfaces/product-category';
 import { ProductCategoryService } from '../servicios/product-category.service';
 import { ActivatedRoute } from '@angular/router';
@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./product-category-form.component.css']
 })
 export class ProductCategoryFormComponent implements OnInit {
+  @Output() Category_Id = new EventEmitter<number>();
   product_category: Product_Category = {
     Product_Category_Id: null,
     Name: null,
@@ -51,6 +52,7 @@ export class ProductCategoryFormComponent implements OnInit {
       this.productcategoryService.save(this.product_category).subscribe((data) => {
         alert('Categoria de producto guardada');
         console.log(data)
+        this.Category_Id.emit(data['id']);
       }, (error) => {
         console.log(error);
         alert('Ocurrio un error');
