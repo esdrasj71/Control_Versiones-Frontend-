@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="container card">
+      <div class="card-body" style="height: 100%">
+        <h2 class="alert alert-primary" role="alert" style="text-align: center">
+          Editar Empresa
+        </h2>
+        <div
+          class="alert alert-warning"
+          role="alert"
+          style="background-color: #699dbf; height: 100%"
+        >
+        <div class="form-group row">
+            <label class="col-md-3 form-controllabel" for="Company_Name"
+              >Nombre de la compañia</label
+            >
+            <div class="col-md-9">
+              <input
+                [(ngModel)]="company.Company_Name"
+                type="text"
+                class="form-control" minlength="4" maxlength="60" required=""
+              />
+            </div>
+          </div>
+
+        <div class="form-group row">
+            <label class="col-md-3 form-controllabel" for="Address"
+              >Dirección</label
+            >
+            <div class="col-md-9">
+              <input
+                [(ngModel)]="company.Address"
+                type="text"
+                class="form-control" minlength="4" maxlength="60" required=""
+              />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 form-controllabel" for="Nit">NIT</label>
+            <div class="col-md-9">
+              <input
+                [(ngModel)]="company.NIT"
+                type="text"
+                class="form-control" minlength="6" maxlength="20" required=""
+              />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-12">
+              <button (click)="savePost()"  class="btn btn-success btnblock">
+                Guardar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
