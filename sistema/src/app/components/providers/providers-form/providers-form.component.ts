@@ -3,6 +3,7 @@ import { ProvidersService } from '../servicios/providers.service';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Providers } from '../interfaces/providers';
 import { ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-providers-form',
   templateUrl: './providers-form.component.html',
@@ -44,22 +45,22 @@ export class ProvidersFormComponent implements OnInit {
   savePost() {
     if (this.editing) {
       this.providersService.put(this.providers).subscribe((data) => { //El unico cambioes el put
-        alert('Proveedor actualizado');
+        Swal.fire('Proveedor Actualizado', '','success');
         console.log(data)
       }, (error) => {
         console.log(error);
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
     else {
       console.log(this.providers);
       this.providersService.save(this.providers).subscribe((data) => {
         this.Provider_Id.emit(data["id"]);
-        alert('Proveedor guardado');
+        Swal.fire('Proveedor Guardado', '','success');
         console.log(data)
       }, (error) => {
         console.log(error);
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
   }

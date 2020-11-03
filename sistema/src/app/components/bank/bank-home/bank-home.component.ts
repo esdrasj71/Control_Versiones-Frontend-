@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BankService } from '../servicios/bank.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Bank } from '../interfaces/bank';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-bank-home',
   templateUrl: './bank-home.component.html',
@@ -24,11 +24,12 @@ export class BankHomeComponent implements OnInit {
   delete(id) {
     this.bankService.delete(id).subscribe(
       (data) => {
-        alert('Banco Eliminado');
-        window.location.reload();
+        Swal.fire('Banco Eliminado', '','success');
+        window.setTimeout(function(){location.reload()},2000)
       },
       (error) => {
         console.log(error);
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
       }
     );
   }

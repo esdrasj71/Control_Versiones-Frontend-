@@ -5,28 +5,58 @@ a{color:inherit;text-decoration:none}
 
 .login-wrap{
 	width:100%;
-	margin:auto;
+	margin:auto; 
+	right:15%;
 	max-width:525px;
 	min-height:600px;
 	position:relative;
-	background:url('https://images.unsplash.com/photo-1508035460735-91088c495500?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80') no-repeat right;
-	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+	background: url("../../../../assets/images/puente.jpg") 50% fixed;
+	box-shadow:0 12px 15px 0 rgba(0, 0, 0, 0.34),0 17px 50px 0 rgba(0,0,0,.29);
 }
+.login-wrap3{
+	width:100%;
+	margin:auto; 
+	left:100%;
+	max-width:525px;
+	min-height:600px;
+	position:relative;
+	background: url("../../../../assets/images/puente.jpg") 50% fixed;
+	box-shadow:0 12px 15px 0 rgba(0,0,0,.34),0 17px 50px 0 rgba(0,0,0,.29);
+}
+body{
+	color: whitesmoke;
+	background:#4C918A;
+	background: -webkit-linear-gradient(top, #4C918A 0%, #86A4A1 100%);
+	background: -moz-linear-gradient(top, #4C918A 0%, #86A4A1 100%);
+	background: -o-linear-gradient(top, #4C918A 0%, #86A4A1 100%);
+	background: linear-gradient(to bottom, #4C918A 0%, #86A4A1 100%);
+}	
 .login-wrap2{
 	width:100%;
 	margin:auto;
+	right:15%;
 	max-width:525px;
 	min-height:1000px;
 	position:relative;
-	background:url('https://images.unsplash.com/photo-1508035460735-91088c495500?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80') no-repeat right;
-	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+	background: url("../../../../assets/images/sky.jpg") 50% fixed;
+	box-shadow:0 12px 15px 0 rgba(0,0,0,.34),0 17px 50px 0 rgba(0,0,0,.29);
+}
+.login-wrap4{
+	width:100%;
+	margin:auto;
+	left:100%;
+	max-width:525px;
+	min-height:1000px;
+	position:relative;
+	background: url("../../../../assets/images/sky.jpg") 50% fixed;
+	box-shadow:0 12px 15px 0 rgba(0,0,0,.34),0 17px 50px 0 rgba(0,0,0,.29);
 }
 .login-html{
 	width:100%;
 	height:100%;
 	position:absolute;
 	padding:90px 70px 50px 70px;
-	background:rgba(40,57,101,.9);
+	background:#26272be5;
 }
 .login-html .sign-in-htm,
 .login-html .sign-up-htm{

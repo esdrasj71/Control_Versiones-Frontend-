@@ -51,7 +51,6 @@ import { CheckloginGuard } from './guards/checklogin.guard';
 import { UserFormComponent } from './components/user/user-form/user-form.component';
 import { AccountsReceivableComponent } from './components/accounts_receivable/accounts-receivable/accounts-receivable.component';
 import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
 import { DebsToPayHomeComponent } from './components/debs_to_pay/debs-to-pay-home/debs-to-pay-home.component';
 import { Report2Component } from './components/report_Sales/report2/report2.component';
 import { Report3Component } from './components/report_Sales/report3/report3.component';
@@ -70,6 +69,13 @@ import { BankFormComponent } from './components/bank/bank-form/bank-form.compone
 import { CompanyFormComponent } from './components/home/company-form/company-form.component';
 import { ExpendituresHomeComponent } from './components/expenditures/expenditures-home/expenditures-home.component';
 import { ExpendituresFormComponent } from './components/expenditures/expenditures-form/expenditures-form.component';
+import { FilterExpensePipe } from './pipes/filter-expense.pipe';
+import { FilterCostPipe } from './pipes/filter-cost.pipe';
+import { FilterBillTypePipe } from './pipes/filter-bill-type.pipe';
+import { FilterBankPipe } from './pipes/filter-bank.pipe';
+import { CompanyFormComponent } from './components/home/company-form/company-form.component';
+
+
 
 const routes: Route[] = [
   //Brand
@@ -131,8 +137,6 @@ const routes: Route[] = [
   { path: 'payment-detail-purchase-form/:id', component: PaymentDetailFormComponent, canActivate: [CheckloginGuard] },
   //Login
   { path: 'login', component: LoginFormComponent },
-  //Login design
-  { path: 'login2', component: LoginComponent },
   //user
   { path: 'user', component: UserFormComponent, canActivate: [CheckloginGuard] },
   //Company
@@ -240,7 +244,12 @@ const routes: Route[] = [
     BankFormComponent,
     CompanyFormComponent,
     ExpendituresHomeComponent,
-    ExpendituresFormComponent
+    ExpendituresFormComponent,
+    FilterExpensePipe,
+    FilterCostPipe,
+    FilterBillTypePipe,
+    FilterBankPipe,
+    CompanyFormComponent,
   ],
   imports: [
     BrowserModule,

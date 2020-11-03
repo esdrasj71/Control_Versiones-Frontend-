@@ -2,7 +2,9 @@ import { Component, OnInit,  Output, EventEmitter } from '@angular/core';
 import { Brands } from '../interfaces/brand';
 import { BrandsService } from '../servicios/brands.service';
 import { ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
 import { HttpClient , HttpHeaders  } from '@angular/common/http';
+
 @Component({
   selector: 'app-brand-form',
   templateUrl: './brand-form.component.html',
@@ -39,22 +41,22 @@ export class BrandFormComponent implements OnInit {
   saveBrand() {
     if (this.editing) {
       this.brandService.put(this.brand).subscribe((data) => { //El unico cambioes el put
-        alert('Marca actualizado');
+        Swal.fire('Marca Actualizado', '','success');
         console.log(data)
       }, (error) => {
         console.log(error);
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
     else {
       console.log(this.brand);
       this.brandService.save(this.brand).subscribe((data) => {
-        alert('Marca guardado');
+        Swal.fire('Marca Guardada', '','success');
         console.log(data)
         this.Brand_Id.emit(data['id']);
       }, (error) => {
         console.log(error);
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
   }

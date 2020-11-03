@@ -86,7 +86,7 @@
                 <td>{{bills.Serie}}</td>
                 <td>{{bills.Date_Purchase|date:'d-M-y'}}</td>
                 <td>{{bills.Pay| currency:"GTQ":"Q"}}</td>
-                  <td><a class="btn btn-info btn-sm" style="background-color:#F7985B;" data-toggle="modal"
+                  <td><a class="btn btn-warning btn-sm" style="background-color:#F7985B; color: white;" data-toggle="modal"
                       data-target=".bd-purchasedetail-modal-lg"
                       (click)="mostrar_facturas_detalle(bills.Purchase_Header_Id, bills.Pay, bills.Total)">Ver
                       Detalle</a>

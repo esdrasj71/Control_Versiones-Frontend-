@@ -3,7 +3,7 @@ import { PaymentPurchaseService } from '../servicios/payment-purchase.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PaymentPurhcase } from '../interfaces/payment-purhcase';
 import { ActivatedRoute } from '@angular/router';
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-payment-purchase-form',
@@ -41,21 +41,21 @@ export class PaymentPurchaseFormComponent implements OnInit {
   savePayment() {
     if (this.editing) {
       this.paymentServicie.put(this.payment).subscribe((data) => { //El unico cambioes el put
-        alert('Pago de compra actualizado');
+        Swal.fire('Pago Compra Actualizado', '','success');
         console.log(data)
       }, (error) => {
         console.log(error);  
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
     else {
       console.log(this.payment);
       this.paymentServicie.save(this.payment).subscribe((data) => {
-        alert('Pago de compra guardado');
+        Swal.fire('Pago Compra Guardada', '','success');
         console.log(data)
       }, (error) => { 
         console.log(error);
-        alert('Ocurrio un error'); 
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''}); 
       });
     }
   } 

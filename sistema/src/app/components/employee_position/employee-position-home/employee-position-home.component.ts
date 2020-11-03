@@ -3,7 +3,7 @@ import { EmployeePositionService } from '../servicios/employee-position.service'
 import { HttpClient , HttpHeaders} from '@angular/common/http';
 import { EmployeePosition } from '../interfaces/employee-position';
 import { Router} from '@angular/router';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-employee-position-home',
   templateUrl: './employee-position-home.component.html',
@@ -29,11 +29,12 @@ searchTerm2 = '';
   delete(id) {
     this.employeePositionService.delete(id).subscribe(
       (data) => {
-        alert('Posicion de Empleado Eliminado');
-        window.location.reload();
+        Swal.fire('Posición de empleado eliminado', '','success');
+        window.setTimeout(function(){location.reload()},2000)
       },
       (error) => {
         console.log(error);
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       }
     );
   }

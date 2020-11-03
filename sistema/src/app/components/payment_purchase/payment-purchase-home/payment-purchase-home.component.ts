@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PaymentPurchaseService } from '../servicios/payment-purchase.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PaymentPurhcase } from '../interfaces/payment-purhcase';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-payment-purchase-home',
   templateUrl: './payment-purchase-home.component.html',
@@ -24,11 +24,12 @@ export class PaymentPurchaseHomeComponent implements OnInit {
   delete(id) {
     this.paymentService.delete(id).subscribe(
       (data) => {
-        alert('Pago de compra eliminado');
-        window.location.reload();
+        Swal.fire('Pago Compra Eliminado', '','success');
+        window.setTimeout(function(){location.reload()},2000)
       },
       (error) => {
         console.log(error);
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
       }
     );
   }

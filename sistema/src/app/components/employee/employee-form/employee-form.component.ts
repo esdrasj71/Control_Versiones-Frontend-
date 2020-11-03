@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Employee } from '../interfaces/employee';
 import { ActivatedRoute } from '@angular/router';
 import { EmployeePosition } from '../../employee_position/interfaces/employee-position';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-employee-form',
   templateUrl: './employee-form.component.html',
@@ -54,22 +55,22 @@ export class EmployeeFormComponent implements OnInit {
   }
   savePost() {
     if (this.editing) {
-      this.employeeService.put(this.employee).subscribe((data) => {
-        alert('Empleado actualizado');
+      this.employeeService.put(this.employee).subscribe((data) => { //El unico cambioes el put
+        Swal.fire('Empleado Actualizado', '','success');
         console.log(data)
       }, (error) => {
         console.log(error);
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
       });
     }
     else {
       console.log(this.employee);
       this.employeeService.save(this.employee).subscribe((data) => {
-        alert('Empleado guardado');
-        console.log(data)
+        Swal.fire('Empleado Guardado', '','success');
+        console.log(data);
       }, (error) => {
         console.log(error);
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
   }

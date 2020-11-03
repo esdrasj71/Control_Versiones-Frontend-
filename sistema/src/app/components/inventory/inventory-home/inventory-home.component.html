@@ -5,13 +5,14 @@
         <div class="form-group row">
             &nbsp;&nbsp;&nbsp;<i class="fa fa-search fa-lg" style="left: 300px;"></i>&nbsp;&nbsp;&nbsp;
             <div class="col">
-                <input type="text" name="inventory" id="inventory" class="form-control" name="rootInventory"
-                    [(ngModel)]="rootInventory" placeholder="Buscar en el inventario" tabindex="4" />
+                <input type="text" name="inventory" id="inventory" class="form-control"  name="rootInventory" 
+                [(ngModel)]="rootInventory" placeholder="Buscar en el inventario" style="width: 50%;" tabindex="4" />
             </div>
         </div>
         <div class="form-group row">
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-group-modal-lg"
-            >Ver Inventario Agrupado</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target=".bd-group-modal-lg" 
+            > Ver Inventario Agrupado</button>
         </div>
     </form>
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
@@ -52,17 +53,17 @@
     aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px">
         <div class="modal-content" style="width: 900px">
-            <div class="modal-header" style="width: 900px">
-                <h5 class="modal-title" id="exampleModalLongTitle" style="color: black;">
+            <div class="modal-header" style="width: 900px; background-color:#EC7063;">
+                <h4 class="modal-title" id="exampleModalLongTitle">
                     Inventario Agrupado
-                </h5>
+                </h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y: auto">
-                <div class="form-group row row col-md-4">
-                    <h6 for="bills" style="color: black;"><strong>Total de Productos: </strong> </h6>
+                <div class="form-group row row col-md-4">&nbsp;&nbsp;&nbsp;&nbsp;
+                    <h6 for="bills" style="color: black;"><strong>Total de Productos: &nbsp;</strong> </h6>
                     <h6 for="bills" style="color: black;"> {{cont}} </h6>
                   </div>
                 <div class="container">

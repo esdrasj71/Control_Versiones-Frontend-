@@ -3,6 +3,8 @@ import { Customers } from '../interfaces/customer';
 import { CustomersService } from '../servicios/customers.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-customers-form',
   templateUrl: './customers-form.component.html',
@@ -46,29 +48,28 @@ export class CustomersFormComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-
   }
 
   saveCustomer() {
     if (this.editing) {
       this.customerService.put(this.customer).subscribe((data) => { //El unico cambioes el put
-        alert('Cliente actualizado');
+        Swal.fire('Cliente Actualizado', '','success');
         console.log(data)
       }, (error) => {
         console.log(error);
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
       });
     }
     else {
       console.log(this.customer);
       this.customerService.saveCustomer(this.customer).subscribe((data) => {
-        alert('Cliente guardado');
+        Swal.fire('Cliente Guardado', '','success');
         console.log(data)
         this.Customers_Id.emit(data["id"]);
         console.log(this.Customers_Id);
       }, (error) => {
         console.log(error);
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
       });
     }
   }

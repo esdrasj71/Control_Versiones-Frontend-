@@ -3,12 +3,12 @@
         <div class="card-body" style="height: 100%;">
             <h2 class="alert alert-primary" role="alert" style="text-align: center;">Editar/Crear Cliente</h2>
             <div class="alert alert-warning" role="alert" style="background-color:#699DBF; height: 100%;">
-
+                
                 <div class="form-group row">
                     <label class="col-md-3 form-controllabel" for="DPI">DPI :</label>
                     <div class="col-md-9">
                         <input [(ngModel)]="customer.DPI" type="text" id="DPI" class="form-control"
-                        minlength="7" maxlength="20" required="">
+                        minlength="10" maxlength="13" required/>
                     </div>
                 </div>
 
@@ -16,7 +16,7 @@
                     <label class="col-md-3 form-controllabel" for="Names" id="hey">Nombres :</label>
                     <div class="col-md-9">
                         <input [(ngModel)]="customer.Names" type="text" id="Names" class="form-control"
-                        minlength="4" maxlength="70" required="">
+                        minlength="3" maxlength="70" required/>
                     </div>
                 </div>
 
@@ -24,7 +24,7 @@
                     <label class="col-md-3 form-controllabel" for="Last_names">Apellidos :</label>
                     <div class="col-md-9">
                         <input [(ngModel)]="customer.Last_names" type="text" id="Last_names" class="form-control"
-                        minlength="4" maxlength="70" required="">
+                        minlength="4" maxlength="70" required/>
                     </div>
                 </div>
 
@@ -32,14 +32,14 @@
                     <label class="col-md-3 form-controllabel" for="Phone_Number">Numero Telefonico :</label>
                     <div class="col-md-9">
                         <input [(ngModel)]="customer.Phone_Number" type="text" id="Phone_Number" class="form-control"
-                        minlength="7" maxlength="20" required="">
+                        minlength="7" maxlength="15" required/>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-md-3 form-controllabel" for="NIT">NIT :</label>
                     <div class="col-md-9">
-                        <input [(ngModel)]="customer.NIT" type="text" id="NIT" class="form-control">
+                        <input [(ngModel)]="customer.NIT" type="text" id="NIT" class="form-control" minlength="8" maxlength="15">
                     </div>
 
                 </div>
@@ -48,18 +48,18 @@
                     <div class="col-md-9">
 
                         <input [(ngModel)]="customer.Address" type="text" id="Address" class="form-control"
-                        minlength="4" maxlength="70" required="">
+                        minlength="4" maxlength="70" required/>
                     </div>
                 </div>
+      
                 <br>
                 <div class="form-group row">
                     <div class="col-md-12">
-                        <button (click)="saveCustomer()" data-dismiss="modal"
+                        <button (click)="saveCustomer()" data-dismiss="modal" type="submit"
                             class="btn btn-danger btnblock">Guardar</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>

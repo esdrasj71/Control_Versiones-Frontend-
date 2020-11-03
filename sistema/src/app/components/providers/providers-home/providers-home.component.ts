@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProvidersService } from '../servicios/providers.service';
 import { Providers } from '../interfaces/providers';
 import { Router} from '@angular/router';
+import Swal from 'sweetalert2';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -33,11 +34,12 @@ searchTerm3 = '';
   delete(id) {
     this.providersService.delete(id).subscribe(
       (data) => {
-        alert('Proveedor Eliminado');
-        window.location.reload();
+        Swal.fire('Proveedor Eliminado', '','success');
+        window.setTimeout(function(){location.reload()},1500)
       },
       (error) => {
         console.log(error);
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
       }
     );
   }

@@ -5,7 +5,9 @@ import { Products } from '../../product/interfaces/product';
 import { ProductsService } from '../../product/servicios/products.service';
 import { InventoryService } from '../servicios/inventory.service';
 import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
+import { Router} from '@angular/router'; 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-inventory-form',
   templateUrl: './inventory-form.component.html',
@@ -56,23 +58,23 @@ export class InventoryFormComponent implements OnInit {
     if (this.editing) {
       this.inventory.Lot_Id = this.selectedProductId;
       this.inventoryService.put(this.inventory).subscribe((data) => {
-        alert('Inventario actualizado');
+        Swal.fire('Inventario Actualizado', '','success');
         this.router.navigate(["/inventory-home"]);
         console.log(data)
       }, (error) => {
         console.log(error);
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
     else {
       this.inventory.Lot_Id = this.selectedProductId;
       this.inventoryService.save(this.inventory).subscribe((data) => {
-        alert('Inventario guardado');
+        Swal.fire('Inventario Guardado', '','success');
         this.router.navigate(["/inventory-home"]);
         console.log(data)
       }, (error) => {
         console.log(error);
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
   }

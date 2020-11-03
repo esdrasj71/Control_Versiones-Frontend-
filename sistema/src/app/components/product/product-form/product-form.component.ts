@@ -17,7 +17,9 @@ import { ProductsService } from '../servicios/products.service';
 import { LotService } from '../../lot/servicios/lot.service';
 import { Procedure_SaveProduct } from '../interfaces/procedure_saveproduct';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { ProductCategoryService } from '../../product_category/servicios/product-category.service';
+
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
@@ -118,7 +120,7 @@ export class ProductFormComponent implements OnInit {
           this.lastidproduct = data['id'];
           //
           this.lot.Product_Id = this.lastidproduct;
-          alert('Producto actualizado');
+          Swal.fire('Producto Actualizado', '','success');
           location.reload();
           //window.location.reload();
           console.log(data);
@@ -127,7 +129,7 @@ export class ProductFormComponent implements OnInit {
         },
         (error) => {
           console.log(error);
-          alert('Ocurrio un error');
+          Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
         }
       );
     } else {
@@ -140,7 +142,7 @@ export class ProductFormComponent implements OnInit {
           //
           //this.procedure_saveproduct.Product_Id = this.lastidproduct;
           //console.log(this.procedure_saveproduct.Product_Id);
-          alert('Producto guardado con el procedimiento almacenado');
+          Swal.fire('Producto guardado con procedimiento almacenado', '','success');
           this.Product_Id.emit(data['Correlative_Product']);
           //console.log(this.procedure_saveproduct);
           //this.router.navigate(['/product-home']);
@@ -148,7 +150,7 @@ export class ProductFormComponent implements OnInit {
         },
         (error) => {
           console.log(error);
-          alert('Ocurrio un error');
+          Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
           console.log(this.procedure_saveproduct);
           console.log(this.product);
         }
