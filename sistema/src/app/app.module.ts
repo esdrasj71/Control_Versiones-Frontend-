@@ -67,7 +67,9 @@ import { BillTypeHomeComponent } from './components/bill-type/bill-type-home/bil
 import { BillTypeFormComponent } from './components/bill-type/bill-type-form/bill-type-form.component';
 import { BankHomeComponent } from './components/bank/bank-home/bank-home.component';
 import { BankFormComponent } from './components/bank/bank-form/bank-form.component';
-import {CompanyFormComponent } from './components/home/company-form/company-form.component';
+import { CompanyFormComponent } from './components/home/company-form/company-form.component';
+import { ExpendituresHomeComponent } from './components/expenditures/expenditures-home/expenditures-home.component';
+import { ExpendituresFormComponent } from './components/expenditures/expenditures-form/expenditures-form.component';
 
 const routes: Route[] = [
   //Brand
@@ -165,6 +167,10 @@ const routes: Route[] = [
   { path: 'bank-form', component: BankFormComponent, canActivate: [CheckloginGuard] },
   { path: 'bank-home', component: BankHomeComponent, canActivate: [CheckloginGuard] },
   { path: 'bank-form/:id', component: BankFormComponent, canActivate: [CheckloginGuard] },
+  //Expenditures
+  { path: 'expenditures-form', component: ExpendituresFormComponent, canActivate: [CheckloginGuard] },
+  { path: 'expenditures-home', component: ExpendituresHomeComponent, canActivate: [CheckloginGuard] },
+  { path: 'expenditures-form/:id', component: ExpendituresFormComponent, canActivate: [CheckloginGuard] },
 ];
 
 @NgModule({
@@ -232,7 +238,9 @@ const routes: Route[] = [
     BillTypeFormComponent,
     BankHomeComponent,
     BankFormComponent,
-    CompanyFormComponent
+    CompanyFormComponent,
+    ExpendituresHomeComponent,
+    ExpendituresFormComponent
   ],
   imports: [
     BrowserModule,
