@@ -73,7 +73,6 @@ import { FilterExpensePipe } from './pipes/filter-expense.pipe';
 import { FilterCostPipe } from './pipes/filter-cost.pipe';
 import { FilterBillTypePipe } from './pipes/filter-bill-type.pipe';
 import { FilterBankPipe } from './pipes/filter-bank.pipe';
-import { CompanyFormComponent } from './components/home/company-form/company-form.component';
 
 
 
