@@ -15,16 +15,16 @@ export class BrandFormComponent implements OnInit {
   };
   API_ENDPOINT = 'http://localhost:3000/';
   id: any;
-  editing: boolean = false; //Este campo ayuda a saber cuando estamos editando y cuando estamos ingresando
-  postarr: Brands[]; //Este campo nos ayudara a traer los datos cuando queremos editar
+  editing: boolean = false; 
+  postarr: Brands[]; 
   constructor(private brandService: BrandsService, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
-    this.id = this.activatedRoute.snapshot.params['id']; //Este es el parametro que se definio en la ruta de app.module.ts
+    this.id = this.activatedRoute.snapshot.params['id']; 
     if (this.id) {
       this.editing = true;
-      this.brandService.getBrand().subscribe((data: Brands[]) => { //Aqui traemos el arreglo completo de datos
+      this.brandService.getBrand().subscribe((data: Brands[]) => { 
         this.postarr = data;
         console.log(this.postarr);
-        this.brand = this.postarr.find((m) => { return m.Brand_Id == this.id }); //Aqui traemos solo el id que nos interesa
+        this.brand = this.postarr.find((m) => { return m.Brand_Id == this.id });
       }, (error) => {
         console.log(error);
       });
@@ -56,6 +56,4 @@ export class BrandFormComponent implements OnInit {
       });
     }
   }
-
-
 }

@@ -12,18 +12,19 @@ export class BrandHomeComponent implements OnInit {
   API_ENDPOINT = 'http://localhost:3000/';
   brands: Brands[];
   constructor(private brandsService: BrandsService, private httpClient: HttpClient) {
-   
-    this.brandsService.getBrand()
-    .subscribe((data: Brands[]) =>{
-      this.brands = data;
-      console.log(this.brands);
-    })
-   }
 
-searchTerm4 = '';
+    this.brandsService.getBrand()
+      .subscribe((data: Brands[]) => {
+        this.brands = data;
+        console.log(this.brands);
+      })
+  }
+
+  searchTerm4 = '';
 
   ngOnInit(): void {
   }
+
     delete(id) {
       this.brandsService.delete(id).subscribe(
         (data) => {

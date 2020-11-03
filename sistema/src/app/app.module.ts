@@ -59,88 +59,110 @@ import { Report1Component } from './components/report_Sales/report1/report1.comp
 import { PurchaseReportsHomeComponent } from './components/purchase_reports/purchase-reports-home/purchase-reports-home.component';
 import { DebsPayHomeComponent } from './components/purchase_reports/debs-pay-home/debs-pay-home.component';
 import { InventoryReportsHomeComponent } from './components/inventory_reports/inventory-reports-home/inventory-reports-home.component';
+import { ExpensesHomeComponent } from './components/expenses/expenses-home/expenses-home.component';
+import { ExpensesFormComponent } from './components/expenses/expenses-form/expenses-form.component';
+import { CostsHomeComponent } from './components/costs/costs-home/costs-home.component';
+import { CostsFormComponent } from './components/costs/costs-form/costs-form.component';
+import { BillTypeHomeComponent } from './components/bill-type/bill-type-home/bill-type-home.component';
+import { BillTypeFormComponent } from './components/bill-type/bill-type-form/bill-type-form.component';
+import { BankHomeComponent } from './components/bank/bank-home/bank-home.component';
+import { BankFormComponent } from './components/bank/bank-form/bank-form.component';
 
 
 const routes: Route[] = [
   //Brand
-  { path: 'brand-form', component: BrandFormComponent ,canActivate:[CheckloginGuard] },
-  { path: 'brand-home', component: BrandHomeComponent ,canActivate:[CheckloginGuard] },
-  { path: 'brand-form/:id', component: BrandFormComponent ,canActivate:[CheckloginGuard] }, 
+  { path: 'brand-form', component: BrandFormComponent, canActivate: [CheckloginGuard] },
+  { path: 'brand-home', component: BrandHomeComponent, canActivate: [CheckloginGuard] },
+  { path: 'brand-form/:id', component: BrandFormComponent, canActivate: [CheckloginGuard] },
   //Provider
-  { path: 'providers-home', component: ProvidersHomeComponent,canActivate:[CheckloginGuard] },
-  { path: 'providers-form', component: ProvidersFormComponent ,canActivate:[CheckloginGuard] },
-  { path: 'providers-form/:id', component: ProvidersFormComponent ,canActivate:[CheckloginGuard] },
+  { path: 'providers-home', component: ProvidersHomeComponent, canActivate: [CheckloginGuard] },
+  { path: 'providers-form', component: ProvidersFormComponent, canActivate: [CheckloginGuard] },
+  { path: 'providers-form/:id', component: ProvidersFormComponent, canActivate: [CheckloginGuard] },
   //Product
-  { path: 'product-home', component: ProductHomeComponent ,canActivate:[CheckloginGuard] },
-  { path: 'product-form', component: ProductFormComponent,canActivate:[CheckloginGuard]  },
-  { path: 'product-form/:id', component: ProductFormComponent,canActivate:[CheckloginGuard]  },
+  { path: 'product-home', component: ProductHomeComponent, canActivate: [CheckloginGuard] },
+  { path: 'product-form', component: ProductFormComponent, canActivate: [CheckloginGuard] },
+  { path: 'product-form/:id', component: ProductFormComponent, canActivate: [CheckloginGuard] },
   //Product Category
-  { path: 'product-category-home', component: ProductCategoryHomeComponent,canActivate:[CheckloginGuard]  },
-  { path: 'product-category-form', component: ProductCategoryFormComponent,canActivate:[CheckloginGuard]  },
-  { path: 'product-category-form/:id', component: ProductCategoryFormComponent,canActivate:[CheckloginGuard]  },
+  { path: 'product-category-home', component: ProductCategoryHomeComponent, canActivate: [CheckloginGuard] },
+  { path: 'product-category-form', component: ProductCategoryFormComponent, canActivate: [CheckloginGuard] },
+  { path: 'product-category-form/:id', component: ProductCategoryFormComponent, canActivate: [CheckloginGuard] },
   //Lot
-  { path: 'lot-home', component: LotHomeComponent,canActivate:[CheckloginGuard]  },
-  { path: 'lot-form/:id', component: LotFormComponent,canActivate:[CheckloginGuard] },
-  { path: 'lot-form', component: LotFormComponent,canActivate:[CheckloginGuard]  },
+  { path: 'lot-home', component: LotHomeComponent, canActivate: [CheckloginGuard] },
+  { path: 'lot-form/:id', component: LotFormComponent, canActivate: [CheckloginGuard] },
+  { path: 'lot-form', component: LotFormComponent, canActivate: [CheckloginGuard] },
   //Purchase Header
-  { path: 'purchase_header-form', component: PurchaseHeaderFormComponent,canActivate:[CheckloginGuard]  },
-  { path: 'product-form', component: ProductFormComponent,canActivate:[CheckloginGuard]  },
+  { path: 'purchase_header-form', component: PurchaseHeaderFormComponent, canActivate: [CheckloginGuard] },
+  { path: 'product-form', component: ProductFormComponent, canActivate: [CheckloginGuard] },
   //Bill Header
-  { path: 'bill-header-form', component: BillHeaderFormComponent,canActivate:[CheckloginGuard]  },
+  { path: 'bill-header-form', component: BillHeaderFormComponent, canActivate: [CheckloginGuard] },
   //Inventory
-  { path: 'inventory-home', component: InventoryHomeComponent,canActivate:[CheckloginGuard]  },
-  { path: 'inventory-form', component: InventoryFormComponent,canActivate:[CheckloginGuard]  },
-  { path: 'inventory-form/:id', component: InventoryFormComponent,canActivate:[CheckloginGuard]  },
+  { path: 'inventory-home', component: InventoryHomeComponent, canActivate: [CheckloginGuard] },
+  { path: 'inventory-form', component: InventoryFormComponent, canActivate: [CheckloginGuard] },
+  { path: 'inventory-form/:id', component: InventoryFormComponent, canActivate: [CheckloginGuard] },
   //Employee
-  { path: 'employee-home', component: EmployeeHomeComponent,canActivate:[CheckloginGuard]  },
-  { path: 'employee-form', component: EmployeeFormComponent,canActivate:[CheckloginGuard]  },
-  { path: 'employee-form/:id', component: EmployeeFormComponent,canActivate:[CheckloginGuard]  },
+  { path: 'employee-home', component: EmployeeHomeComponent, canActivate: [CheckloginGuard] },
+  { path: 'employee-form', component: EmployeeFormComponent, canActivate: [CheckloginGuard] },
+  { path: 'employee-form/:id', component: EmployeeFormComponent, canActivate: [CheckloginGuard] },
   //Employee Position
-  { path: 'employee-position-home', component: EmployeePositionHomeComponent,canActivate:[CheckloginGuard]  },
-  { path: 'employee-position-form', component: EmployeePositionFormComponent,canActivate:[CheckloginGuard]  },
-  { path: 'employee-position-form/:id', component: EmployeePositionFormComponent,canActivate:[CheckloginGuard]  },
+  { path: 'employee-position-home', component: EmployeePositionHomeComponent, canActivate: [CheckloginGuard] },
+  { path: 'employee-position-form', component: EmployeePositionFormComponent, canActivate: [CheckloginGuard] },
+  { path: 'employee-position-form/:id', component: EmployeePositionFormComponent, canActivate: [CheckloginGuard] },
   //Customers
-  { path: 'customers-home', component: CustomersHomeComponent,canActivate:[CheckloginGuard]  },
-  { path: 'customers-form', component: CustomersFormComponent,canActivate:[CheckloginGuard]  },
-  { path: 'customers-form/:id', component: CustomersFormComponent,canActivate:[CheckloginGuard]  },
+  { path: 'customers-home', component: CustomersHomeComponent, canActivate: [CheckloginGuard] },
+  { path: 'customers-form', component: CustomersFormComponent, canActivate: [CheckloginGuard] },
+  { path: 'customers-form/:id', component: CustomersFormComponent, canActivate: [CheckloginGuard] },
   //Payment
-  { path: 'payment-home', component: PaymentHomeComponent,canActivate:[CheckloginGuard]  },
-  { path: 'payment-form', component: PaymentFormComponent,canActivate:[CheckloginGuard]  },
-  { path: 'payment-form/:id', component: PaymentFormComponent,canActivate:[CheckloginGuard]  },
-   //Payment type detail
-  { path: 'payment-type-home', component: PaymentTypeComponent,canActivate:[CheckloginGuard]  },
-  { path: 'payment-type-form', component: PaymentTypeFormComponent,canActivate:[CheckloginGuard] },
-  { path: 'payment-type-form/:id', component: PaymentTypeFormComponent,canActivate:[CheckloginGuard]  },
+  { path: 'payment-home', component: PaymentHomeComponent, canActivate: [CheckloginGuard] },
+  { path: 'payment-form', component: PaymentFormComponent, canActivate: [CheckloginGuard] },
+  { path: 'payment-form/:id', component: PaymentFormComponent, canActivate: [CheckloginGuard] },
+  //Payment type detail
+  { path: 'payment-type-home', component: PaymentTypeComponent, canActivate: [CheckloginGuard] },
+  { path: 'payment-type-form', component: PaymentTypeFormComponent, canActivate: [CheckloginGuard] },
+  { path: 'payment-type-form/:id', component: PaymentTypeFormComponent, canActivate: [CheckloginGuard] },
   //Payment purchase
-  { path: 'payment-purchase-home', component: PaymentPurchaseHomeComponent,canActivate:[CheckloginGuard]  },
-  { path: 'payment-purchase-form', component: PaymentPurchaseFormComponent,canActivate:[CheckloginGuard]  },
-  { path: 'payment-purchase-form/:id', component: PaymentPurchaseFormComponent,canActivate:[CheckloginGuard]  },
+  { path: 'payment-purchase-home', component: PaymentPurchaseHomeComponent, canActivate: [CheckloginGuard] },
+  { path: 'payment-purchase-form', component: PaymentPurchaseFormComponent, canActivate: [CheckloginGuard] },
+  { path: 'payment-purchase-form/:id', component: PaymentPurchaseFormComponent, canActivate: [CheckloginGuard] },
   //Payment Detail Purchase
-  { path: 'payment-detail-purchase-home', component: PaymentDetailHomeComponent,canActivate:[CheckloginGuard]  },
-  { path: 'payment-detail-purchase-form', component: PaymentDetailFormComponent,canActivate:[CheckloginGuard]  },
-  { path: 'payment-detail-purchase-form/:id', component: PaymentDetailFormComponent,canActivate:[CheckloginGuard]  },
+  { path: 'payment-detail-purchase-home', component: PaymentDetailHomeComponent, canActivate: [CheckloginGuard] },
+  { path: 'payment-detail-purchase-form', component: PaymentDetailFormComponent, canActivate: [CheckloginGuard] },
+  { path: 'payment-detail-purchase-form/:id', component: PaymentDetailFormComponent, canActivate: [CheckloginGuard] },
   //Login
-  { path: 'login', component: LoginFormComponent},
+  { path: 'login', component: LoginFormComponent },
   //Login design
-  { path: 'login2', component: LoginComponent},
+  { path: 'login2', component: LoginComponent },
   //user
-  {path: 'user',component:UserFormComponent,canActivate:[CheckloginGuard]},
+  { path: 'user', component: UserFormComponent, canActivate: [CheckloginGuard] },
   //accounts receivable
-  { path: 'accounts-receivable', component: AccountsReceivableComponent,canActivate:[CheckloginGuard]},
-  { path: 'home', component: HomeComponent,canActivate:[CheckloginGuard] },
+  { path: 'accounts-receivable', component: AccountsReceivableComponent, canActivate: [CheckloginGuard] },
+  { path: 'home', component: HomeComponent, canActivate: [CheckloginGuard] },
   //Debs to Pay
-  { path: 'debs-to-pay-home', component: DebsToPayHomeComponent,canActivate:[CheckloginGuard] },
-
+  { path: 'debs-to-pay-home', component: DebsToPayHomeComponent, canActivate: [CheckloginGuard] },
   //reportes sales
-  {path: 'report2', component: Report2Component, canActivate:[CheckloginGuard]},
-  {path: 'report3', component: Report3Component, canActivate:[CheckloginGuard]},
-  {path: 'report1', component: Report1Component, canActivate:[CheckloginGuard]},
-   //Purchase Reports
-   { path: 'purchase-reports-home', component: PurchaseReportsHomeComponent,canActivate:[CheckloginGuard] },
-   { path: 'debs-pay-home', component: DebsPayHomeComponent,canActivate:[CheckloginGuard] },
-    //Inventory Reports
-    { path: 'inventory-reports-home', component: InventoryReportsHomeComponent,canActivate:[CheckloginGuard] },
-
+  { path: 'report2', component: Report2Component, canActivate: [CheckloginGuard] },
+  { path: 'report3', component: Report3Component, canActivate: [CheckloginGuard] },
+  { path: 'report1', component: Report1Component, canActivate: [CheckloginGuard] },
+  //Purchase Reports
+  { path: 'purchase-reports-home', component: PurchaseReportsHomeComponent, canActivate: [CheckloginGuard] },
+  { path: 'debs-pay-home', component: DebsPayHomeComponent, canActivate: [CheckloginGuard] },
+  //Inventory Reports
+  { path: 'inventory-reports-home', component: InventoryReportsHomeComponent, canActivate: [CheckloginGuard] },
+  //Expenses
+  { path: 'expenses-form', component: ExpensesFormComponent, canActivate: [CheckloginGuard] },
+  { path: 'expenses-home', component: ExpensesHomeComponent, canActivate: [CheckloginGuard] },
+  { path: 'expenses-form/:id', component: ExpensesFormComponent, canActivate: [CheckloginGuard] },
+  //Costs
+  { path: 'costs-form', component: CostsFormComponent, canActivate: [CheckloginGuard] },
+  { path: 'costs-home', component: CostsHomeComponent, canActivate: [CheckloginGuard] },
+  { path: 'costs-form/:id', component: CostsFormComponent, canActivate: [CheckloginGuard] },
+  //Bill Type
+  { path: 'billtype-form', component: BillTypeFormComponent, canActivate: [CheckloginGuard] },
+  { path: 'billtype-home', component: BillTypeHomeComponent, canActivate: [CheckloginGuard] },
+  { path: 'billtype-form/:id', component: BillTypeFormComponent, canActivate: [CheckloginGuard] },
+  //Bank
+  { path: 'bank-form', component: BankFormComponent, canActivate: [CheckloginGuard] },
+  { path: 'bank-home', component: BankHomeComponent, canActivate: [CheckloginGuard] },
+  { path: 'bank-form/:id', component: BankFormComponent, canActivate: [CheckloginGuard] },
 ];
 
 @NgModule({
@@ -199,7 +221,15 @@ const routes: Route[] = [
     Report1Component,
     PurchaseReportsHomeComponent,
     DebsPayHomeComponent,
-    InventoryReportsHomeComponent
+    InventoryReportsHomeComponent,
+    ExpensesHomeComponent,
+    ExpensesFormComponent,
+    CostsHomeComponent,
+    CostsFormComponent,
+    BillTypeHomeComponent,
+    BillTypeFormComponent,
+    BankHomeComponent,
+    BankFormComponent,
 
   ],
   imports: [
