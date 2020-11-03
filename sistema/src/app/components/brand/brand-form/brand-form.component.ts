@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,  Output, EventEmitter } from '@angular/core';
 import { Brands } from '../interfaces/brand';
 import { BrandsService } from '../servicios/brands.service';
 import { ActivatedRoute } from '@angular/router';
@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./brand-form.component.css']
 })
 export class BrandFormComponent implements OnInit {
+  @Output() Brand_Id = new EventEmitter<number>();
   brand: Brands = {
     Name: null,
   };
@@ -49,6 +50,7 @@ export class BrandFormComponent implements OnInit {
       this.brandService.save(this.brand).subscribe((data) => {
         alert('Marca guardado');
         console.log(data)
+        this.Brand_Id.emit(data['id']);
       }, (error) => {
         console.log(error);
         alert('Ocurrio un error');

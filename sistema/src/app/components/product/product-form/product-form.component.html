@@ -22,46 +22,73 @@
                         </div>
                     </div>
                     <!--Brand-->
-                    <div style="width:50%; height:100px">
-                        <label> Seleccione la marca</label>
-                        <ng-select [searchFn]="searchBrand" id="brand" name="brand" [items]="brands"
-                            [virtualScroll]="true" bindLabel="Name" bindValue="Brand_Id" placeholder="Marca"
-                            [(ngModel)]="selectedBrandId">
-                            <ng-template ng-header-tmp>
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-md-6">Marca</div>
+                    <div class="form-group row">
+                        <label> Seleccione la marca:</label>
+                        <div style="width:50%; height:100px" class="col-md-4">
+                            <ng-select [searchFn]="searchBrand" id="brand" name="brand" [items]="brands"
+                                [virtualScroll]="true" bindLabel="Name" bindValue="Brand_Id" placeholder="Marca"
+                                [(ngModel)]="selectedBrandId">
+                                <ng-template ng-header-tmp>
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-6">Marca</div>
+                                        </div>
                                     </div>
-                                </div>
-                            </ng-template>
-                            <ng-template ng-label-tmp let-item="item">
-                                <span>{{item.Name}}</span>
-                            </ng-template>
-                            <ng-template ng-option-tmp let-item="item" let-index="index">
-                                {{item.Name}}
-                            </ng-template>
-                        </ng-select>
+                                </ng-template>
+                                <ng-template ng-label-tmp let-item="item">
+                                    <span>{{item.Name}}</span>
+                                </ng-template>
+                                <ng-template ng-option-tmp let-item="item" let-index="index">
+                                    {{item.Name}}
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                        <!--Add Brand-->
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target=".bd-brand-modal-lg">
+                                Añadir Marca
+                            </button>
+                        </div>
+                        <div *ngFor="let brands of brand">
+                            <h2 for="brand" class="col-form-label">Marca Insertada :{{brands.Name}}</h2>
+                            <h2 for="brand" class="col-form-label">¡Ya no debe seleccionar marca!</h2>
+                        </div>  
                     </div>
                     <!--Product Category-->
-                    <div style="width:50%; height:100px">
-                        <label> Seleccione la categoría</label>
-                        <ng-select [searchFn]="searchCategory" id="product_category" name="product_category"
-                            [items]="product_category" [virtualScroll]="true" bindLabel="Name"
-                            bindValue="Product_Category_Id" placeholder="Categoria" [(ngModel)]="selectedCategoryId">
-                            <ng-template ng-header-tmp>
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-md-6">Categoría</div>
+                    <div class="form-group row">
+                        <label> Seleccione la categoría:</label>
+                        <div style="width:50%; height:100px" class="col-md-4">
+                            <ng-select [searchFn]="searchCategory" id="product_category" name="product_category"
+                                [items]="product_category" [virtualScroll]="true" bindLabel="Name"
+                                bindValue="Product_Category_Id" placeholder="Categoria"
+                                [(ngModel)]="selectedCategoryId">
+                                <ng-template ng-header-tmp>
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-6">Categoría</div>
+                                        </div>
                                     </div>
-                                </div>
-                            </ng-template>
-                            <ng-template ng-label-tmp let-item="item">
-                                <span>{{item.Name}}</span>
-                            </ng-template>
-                            <ng-template ng-option-tmp let-item="item" let-index="index">
-                                {{item.Name}}
-                            </ng-template>
-                        </ng-select>
+                                </ng-template>
+                                <ng-template ng-label-tmp let-item="item">
+                                    <span>{{item.Name}}</span>
+                                </ng-template>
+                                <ng-template ng-option-tmp let-item="item" let-index="index">
+                                    {{item.Name}}
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                        <!--Add Category-->
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target=".bd-category-modal-lg">
+                                Añadir Categoria
+                            </button>
+                        </div>
+                        <div *ngFor="let product_category of productcategory">
+                            <h2 for="brand" class="col-form-label">Categoria de Producto Insertada :{{product_category.Name}}</h2>
+                            <h2 for="brand" class="col-form-label">¡Ya no debe seleccionar categoría de producto!</h2>
+                        </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-3 form-control-label" for="textinput">¿Es perecedero?</label>
@@ -83,6 +110,52 @@
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal Brand-->
+<div class="modal fade bd-brand-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px;">
+        <div class="modal-content" style="width: 900px;">
+            <div class="modal-header" style="width: 900px;" style="background-color:#4a5c8b;">
+                <h5 class="modal-title" id="exampleModalLongTitle">Marca Nueva</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y:auto;">
+                <div class="container">
+                    <div class="form-group row">
+                        <div class="col">
+                            <app-brand-form (Brand_Id)="getBrandId($event)"></app-brand-form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal Product Category-->
+<div class="modal fade bd-category-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px;">
+        <div class="modal-content" style="width: 900px;">
+            <div class="modal-header" style="width: 900px;" style="background-color:#4a5c8b;">
+                <h5 class="modal-title" id="exampleModalLongTitle">Categoria de Producto Nueva</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y:auto;">
+                <div class="container">
+                    <div class="form-group row">
+                        <div class="col">
+                            <app-product-category-form (Category_Id)="getCategoryId($event)"></app-product-category-form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

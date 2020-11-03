@@ -30,5 +30,9 @@ export class BrandsService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
     return this.httpClient.get(this.API_ENDPOINT + 'brands/' + id, { headers: headers })
   }
+  getBrandId(id) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
+    return this.httpClient.get(this.API_ENDPOINT + 'brands/' + id, {headers});
+  }
 }
 
