@@ -1,34 +1,33 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Brands } from '../interfaces/brand';
+import { Expenses } from '../interfaces/expenses';
+
 @Injectable({
   providedIn: 'root'
 })
-export class BrandsService {
+export class ExpensesService {
 
   API_ENDPOINT = 'http://localhost:3000/';
   constructor(private httpClient: HttpClient) {
-
   }
-  getBrand() {
+  get() {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
-    return this.httpClient.get(this.API_ENDPOINT + 'brands', { headers: headers });
+    return this.httpClient.get(this.API_ENDPOINT + 'expenses', { headers: headers });
   }
-  save(brand: Brands) {
+  save(expenses: Expenses) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
-    return this.httpClient.post(this.API_ENDPOINT + 'brands', brand, { headers: headers });
+    return this.httpClient.post(this.API_ENDPOINT + 'expenses', expenses, { headers: headers });
   }
-  put(id) { //Le llamaremos put para fines practicos
+  put(id) { 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
-    return this.httpClient.put(this.API_ENDPOINT + 'brands/' + id.Brand_Id, id, { headers: headers });
+    return this.httpClient.put(this.API_ENDPOINT + 'expenses/' + id.Expenses_Id, id, { headers: headers });
   }
   delete(id) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
-    return this.httpClient.delete(this.API_ENDPOINT + 'brands/' + id, { headers: headers });
+    return this.httpClient.delete(this.API_ENDPOINT + 'expenses/' + id, { headers: headers });
   }
   findbrand(id) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
-    return this.httpClient.get(this.API_ENDPOINT + 'brands/' + id, { headers: headers })
+    return this.httpClient.get(this.API_ENDPOINT + 'expenses/' + id, { headers: headers })
   }
 }
-
