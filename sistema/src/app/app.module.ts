@@ -59,6 +59,7 @@ import { Report1Component } from './components/report_Sales/report1/report1.comp
 import { PurchaseReportsHomeComponent } from './components/purchase_reports/purchase-reports-home/purchase-reports-home.component';
 import { DebsPayHomeComponent } from './components/purchase_reports/debs-pay-home/debs-pay-home.component';
 import { InventoryReportsHomeComponent } from './components/inventory_reports/inventory-reports-home/inventory-reports-home.component';
+import { IncomesFormComponent } from './components/incomes/incomes-form/incomes-form.component';
 
 
 const routes: Route[] = [
@@ -140,6 +141,9 @@ const routes: Route[] = [
    { path: 'debs-pay-home', component: DebsPayHomeComponent,canActivate:[CheckloginGuard] },
     //Inventory Reports
     { path: 'inventory-reports-home', component: InventoryReportsHomeComponent,canActivate:[CheckloginGuard] },
+  
+  //incomes
+  {path: 'incomes', component: IncomesFormComponent, canActivate:[CheckloginGuard]},
 
 ];
 
@@ -199,7 +203,8 @@ const routes: Route[] = [
     Report1Component,
     PurchaseReportsHomeComponent,
     DebsPayHomeComponent,
-    InventoryReportsHomeComponent
+    InventoryReportsHomeComponent,
+    IncomesFormComponent
 
   ],
   imports: [
