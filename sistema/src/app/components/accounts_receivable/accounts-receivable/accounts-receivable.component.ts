@@ -6,7 +6,7 @@ import {Payment} from '../interfaces/payment';
 
 import { AccountsReceivableService} from '../servicios/accounts-receivable.service';
 import {ProcedureAccountsreceivableService} from '../servicios/procedure-accountsreceivable.service';
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-accounts-receivable',
@@ -81,11 +81,10 @@ export class AccountsReceivableComponent implements OnInit {
     }
   this.procedure_accountsService.saveprocedure(this.procedure_accountsReceivable).subscribe((data)=>{
     console.log(data);
-    alert('Descuento exitoso');
+    Swal.fire('Descuento Exitoso', '','success');
   },(error)=>{
     console.log(error);
-  
-    alert('Ocurrio un error en descuento');
+    Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
   })
   }
 

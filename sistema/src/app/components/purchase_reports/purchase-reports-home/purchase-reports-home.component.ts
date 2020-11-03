@@ -8,7 +8,8 @@ import jsPDF from 'jspdf';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
-import htmlToPdfmake from 'html-to-pdfmake';
+import htmlToPdfmake from 'html-to-pdfmake'; 
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-purchase-reports-home',
   templateUrl: './purchase-reports-home.component.html',
@@ -80,7 +81,7 @@ mostrar(Date1, Date2, ProvidersId, total) {
 
   Reporte1() {
     if (this.report1.Date1 == null || this.report1.Date2 == null) {
-      alert("Debe llenar todos los campos")
+      Swal.fire({icon: 'warning', title: 'Aviso!', text: 'Debe llenar todos los campos'}); 
     }
     else {
       this.purchasereportService.showreport1(this.report1).subscribe((data) => {
@@ -89,7 +90,7 @@ mostrar(Date1, Date2, ProvidersId, total) {
         if (data[0] == 0) {
           this.Existe=0;
           this.reportone=[];
-          alert('No existen compras en ese rango de fechas');
+          Swal.fire({icon: 'error', title: 'Ocurrio un error', text: 'No existen compras en ese rango de fechas'})
         }
         else {
           this.Existe=1;
@@ -99,7 +100,7 @@ mostrar(Date1, Date2, ProvidersId, total) {
         }
       }, (error) => {
         console.log(error);
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
       })
     }
   }

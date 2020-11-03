@@ -2,24 +2,24 @@
     <h1 style="text-align: center; font-weight: bold;">Reporte Detallado de Inventario</h1>
     <h2 style="text-align: center;">____________________</h2><br><br>
     <!---->
-    <div class="form-group row">
-        <label style="color: white;">Fecha de inicio:</label>
+    <div class="form-group row">&nbsp;&nbsp;&nbsp;
+        <h5>Fecha de inicio:</h5>
         <div class="col-md-4">
             <input type="date" id="start" name="trip-start" [(ngModel)]="report1.Date1"
                 [ngModelOptions]="{standalone: true}" class="form-control" style="width: 100%;">
         </div>
-        <label style="color: white;">Fecha limite: </label>
+        <h5>Fecha de limite:</h5>
         <div class="col-md-4">
             <input type="date" id="start" name="trip-start" [(ngModel)]="report1.Date2"
                 [ngModelOptions]="{standalone: true}" class="form-control" style="width: 100%;">
         </div>
-    </div>
+    </div>&nbsp;&nbsp;&nbsp;
     <div class="form-group row">
-        <div class="col-md-3"> &nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="col-md-3">
             <button type="button" class="btn btn-danger" (click)="Reporte1()">Generar Reporte</button>
         </div>
         <ng-container *ngIf="Existe>0;">
-        <div class="col-md-3"> &nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="col-md-3">
             <button type="button" class="btn btn-danger" (click)="imprimir()">Generar PDF</button>
         </div>
     </ng-container>
@@ -46,7 +46,7 @@
                     <td>{{reporteuno.Category}}</td>
                     <td>{{reporteuno.Stock}}</td>
                     <td>{{reporteuno.Precio| currency:"GTQ":"Q"}}</td>
-                    <td><a class="btn btn-info btn-sm" style="background-color: #6cb3aa;" data-toggle="modal"
+                    <td><a class="btn btn-info btn-warning" style="background-color:#F7985B; color: white;" data-toggle="modal"
                             data-target=".bd-detail-modal-lg"
                             (click)="mostrar(report1.Date1, report1.Date2, reporteuno.Product_Id, reporteuno.Precio)">Ver
                             Detalle</a></td>
@@ -61,8 +61,8 @@
     aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px">
         <div class="modal-content" style="width: 900px">
-            <div class="modal-header" style="width: 900px">
-                <h5 class="modal-title" id="exampleModalLongTitle" style="color: black;">
+            <div class="modal-header" style="width: 900px; background-color:#EC7063;">
+                <h5 class="modal-title" id="exampleModalLongTitle">
                     Detalle de Inventario
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -70,12 +70,12 @@
                 </button>
             </div>
             <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y: auto">
-                <div class="form-group row row col-md-4">
-                    <h6 for="bills" style="color: black;"><strong>Total de Productos: </strong> </h6>
+                <div class="form-group row row col-md-4">&nbsp;&nbsp;&nbsp;&nbsp;
+                    <h6 for="bills" style="color: black;"><strong>Total de Productos: &nbsp;</strong> </h6>
                     <h6 for="bills" style="color: black;"> {{cont}} </h6>
                   </div>
-                <div class="form-group row col-md-4">
-                    <h6 style="color: black;"><strong>Precio Ponderado:</strong></h6>
+                <div class="form-group row col-md-4">&nbsp;&nbsp;&nbsp;&nbsp;
+                    <h6 style="color: black;"><strong>Precio Ponderado:&nbsp;</strong></h6>
                     <h6 style="color: black;">{{Total | currency:"GTQ":"Q"}}</h6>
                 </div>
                 <div class="form-group row"> &nbsp;&nbsp;&nbsp;&nbsp;

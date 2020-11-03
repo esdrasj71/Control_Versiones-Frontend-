@@ -86,17 +86,34 @@
           <a class="nav-link"><span class="sronly"></span></a>
         </li>
         <ng-container *ngIf="rol==1;">
+          <!-- MULTIPLE DROPDOWNS INIT -->
         <li class="nav-item dropdown">
           <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             Reportes
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" routerLink="/purchase-reports-home">Compras</a>
-            <a class="dropdown-item" >Ventas</a>
+      <!-- COMPRAS DROPDOWN--> 
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" style="color: black;">Compras </a>
+                <li class="nav-item dropright">
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" routerLink="/purchase-reports-home">Compras</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" routerLink="/debs-pay-home">Description 1</a>
+                    <a class="dropdown-item">Description 2</a>
+                    <a class="dropdown-item">Description 3</a>
+                  </div>
+                </li>
+            <!-- VENTAS DROPDOWN-->         
+            <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" style="color: black;" >Ventas </a>
+               
+            <!-- INVENTARIO DROPDOWN--> 
             <a class="dropdown-item" routerLink="/inventory-reports-home">Inventario</a>
           </div>
         </li>
+      <!-- END OF DROPDOWNS-->
       </ng-container>
         <li class="nav-item">
           <a class="nav-link"><span class="sronly"></span></a>

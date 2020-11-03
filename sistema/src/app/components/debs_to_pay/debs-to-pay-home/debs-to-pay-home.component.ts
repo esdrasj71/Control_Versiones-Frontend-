@@ -3,7 +3,7 @@ import { DebsToPayService } from '../servicios/debs-to-pay.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DebstoPay } from '../interfaces/debs-to-pay';
 import { Procedure_DebstoPay } from '../interfaces/procedure_debstopay';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-debs-to-pay-home',
   templateUrl: './debs-to-pay-home.component.html',
@@ -73,14 +73,14 @@ export class DebsToPayHomeComponent implements OnInit {
   }
   saveDebs() {
     if (this.procedure_debstopay.Quantity > this.Total_Debs) {
-      alert("La cantidad excede a la requerida")
+      Swal.fire({icon: 'error', title: 'Ocurrio un error', text: 'La cantidad excede a la requerida'})
     }
     else {
       this.debstopayService.saveprocedure(this.procedure_debstopay).subscribe((data) => {
-        alert('Pago existoso');
+        Swal.fire('Pago Exitoso', '','success');
       }, (error) => {
         console.log(error);
-        alert('Ocurrio un error en pago');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
       })
     }
   }

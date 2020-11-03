@@ -36,10 +36,6 @@ section.section {
   font-size: 17px;
 }
 
-.dropdown:hover>.dropdown-menu {
-  display: block;
-}
-
 body {
 	background-image: url("../assets/images/Scroll1.jpg");
 	background-repeat: repeat-x;

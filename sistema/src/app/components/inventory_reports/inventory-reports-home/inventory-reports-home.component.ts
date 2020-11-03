@@ -8,7 +8,8 @@ import jsPDF from 'jspdf';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
-import htmlToPdfmake from 'html-to-pdfmake';
+import htmlToPdfmake from 'html-to-pdfmake'; 
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-inventory-reports-home',
   templateUrl: './inventory-reports-home.component.html',
@@ -64,14 +65,14 @@ export class InventoryReportsHomeComponent implements OnInit {
   //Principal
   Reporte1() {
     if (this.report1.Date1 == null || this.report1.Date2 == null) {
-      alert("Debe llenar todos los campos")
+      Swal.fire({icon: 'warning', title: 'Aviso!', text: 'Debe llenar todos los campos'}); 
     }
     else {
       this.inventoryreportService.showreport1(this.report1).subscribe((data) => {
         if (data[0] == 0) {
           this.Existe = 0;
           this.reportone = [];
-          alert('No existe inventario en ese rango de fechas');
+          Swal.fire({icon: 'error', title: 'Ocurrio un error', text: 'No existe inventario en ese rango de fechas'})
         }
         else {
           this.Existe = 1;
@@ -81,7 +82,7 @@ export class InventoryReportsHomeComponent implements OnInit {
         }
       }, (error) => {
         console.log(error);
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
       })
     }
   }
