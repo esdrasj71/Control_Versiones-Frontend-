@@ -67,7 +67,7 @@ import { BillTypeHomeComponent } from './components/bill-type/bill-type-home/bil
 import { BillTypeFormComponent } from './components/bill-type/bill-type-form/bill-type-form.component';
 import { BankHomeComponent } from './components/bank/bank-home/bank-home.component';
 import { BankFormComponent } from './components/bank/bank-form/bank-form.component';
-
+import {CompanyFormComponent } from './components/home/company-form/company-form.component';
 
 const routes: Route[] = [
   //Brand
@@ -133,6 +133,8 @@ const routes: Route[] = [
   { path: 'login2', component: LoginComponent },
   //user
   { path: 'user', component: UserFormComponent, canActivate: [CheckloginGuard] },
+  //Company
+  { path: 'company/:id', component: CompanyFormComponent, canActivate: [CheckloginGuard] },
   //accounts receivable
   { path: 'accounts-receivable', component: AccountsReceivableComponent, canActivate: [CheckloginGuard] },
   { path: 'home', component: HomeComponent, canActivate: [CheckloginGuard] },
@@ -230,7 +232,7 @@ const routes: Route[] = [
     BillTypeFormComponent,
     BankHomeComponent,
     BankFormComponent,
-
+    CompanyFormComponent
   ],
   imports: [
     BrowserModule,
