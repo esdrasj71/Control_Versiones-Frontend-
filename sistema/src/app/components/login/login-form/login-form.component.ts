@@ -81,7 +81,7 @@ export class LoginFormComponent implements OnInit {
         return this.Existe;
       },
       (error) => {
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
         console.log(error);
       }
     );
@@ -102,9 +102,8 @@ export class LoginFormComponent implements OnInit {
       this.user.Username == null ||
       this.user.Password == null
     ) {
-      alert(
-        'Algunos de los datos son incorrectos porfavor verifique haber llenado todos los campos'
-      );
+     
+      Swal.fire({icon: 'warning', title: 'Precaución!', text: 'Algunos de los datos son incorrectos porfavor verifique haber llenado todos los campos'}); 
     } else {
       let mes = this.date.getMonth() + 1;
       //fecha = this.date.getDate() + "/" + this.mes.toString() + "/" + this.date.getFullYear();
@@ -121,7 +120,7 @@ export class LoginFormComponent implements OnInit {
         (data) => {
           this.employee.Employee_Position_Id = data['id'];
           this.employeeService.save(this.employee).subscribe((ata) => {
-            alert('Empleado Guardado');
+            //alert('Empleado Guardado');
             console.log(ata);
             this.user.Date_Created = new Date(fecha);
             this.user.Employee_Id = ata['id'];
@@ -130,29 +129,29 @@ export class LoginFormComponent implements OnInit {
             this.userService.save(this.user).subscribe(
               (user) => {
                 console.log(user);
-                alert('Usuario Creado');
+                Swal.fire('Usuario Creado', '','success');
                 localStorage.removeItem('token');
-                window.location.reload();
+                window.setTimeout(function(){location.reload()},1500)
               },
               (error) => {
                 console.log(error);
-                alert('Ocurrio un error');
+                Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
               }
             );
           });
         },
         (error) => {
           console.log(error);
-          alert('Ocurrio un error');
+          Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
           localStorage.removeItem('token');
-          window.location.reload();
+          window.setTimeout(function(){location.reload()},1500)
         }
       );
     }
   }
   savePost() {
     if (this.login.Username == null || this.login.Password == null) {
-      alert('Introduzca un usuario y una contraseña');
+      Swal.fire({icon: 'warning', title: 'Precaución!', text: 'Introduzca un usuario y una contraseña'}); 
     } else {
       this.loginService.save(this.login).subscribe();
     }
