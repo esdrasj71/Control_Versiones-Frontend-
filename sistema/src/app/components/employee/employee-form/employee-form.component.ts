@@ -26,26 +26,26 @@ export class EmployeeFormComponent implements OnInit {
   };
   API_ENDPOINT = 'http://localhost:3000/';
   id: any;
-  editing: boolean = false; 
-  postarr: Employee[]; 
+  editing: boolean = false;
+  postarr: Employee[];
   employeePosition: EmployeePosition[];
 
   constructor(private employeeService: EmployeeService, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
-    this.id = this.activatedRoute.snapshot.params['id']; //Este es el parametro que se definio en la ruta de app.module.ts
+    this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
       this.editing = true;
-      this.employeeService.getEmployee().subscribe((data: Employee[]) => { //Aqui traemos el arreglo completo de datos
+      this.employeeService.getEmployee().subscribe((data: Employee[]) => {
         this.postarr = data;
         console.log(this.postarr);
-        this.employee = this.postarr.find((m) => { return m.Employee_Id == this.id }); //Aqui traemos solo el id que nos interesa
+        this.employee = this.postarr.find((m) => { return m.Employee_Id == this.id });
       }, (error) => {
         console.log(error);
       });
     } else {
       this.editing = false;
     }
-    const headers = new HttpHeaders({'Content-Type': 'application/json', 'accesstoken':localStorage.getItem('token')});
-    this.httpClient.get(this.API_ENDPOINT + 'employee_position', {headers})
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
+    this.httpClient.get(this.API_ENDPOINT + 'employee_position', { headers })
       .subscribe((data: EmployeePosition[]) => {
         this.employeePosition = data;
         console.log(this.employeePosition);

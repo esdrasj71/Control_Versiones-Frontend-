@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PaymentDetailService } from '../servicios/payment-detail.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PaymentDetail } from '../interfaces/payment-detail';
 import { ActivatedRoute } from '@angular/router';
 import { PaymentPurhcase } from '../../payment_purchase/interfaces/payment-purhcase';
@@ -27,10 +27,11 @@ export class PaymentDetailFormComponent implements OnInit {
   purchase_header: Purchase_Header[];
 
   constructor(private paymentServicie: PaymentDetailService, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
+    const headers = new HttpHeaders({ 'ContentType': 'application/json', 'accesstoken': localStorage.getItem('token') });
     this.id = this.activatedRoute.snapshot.params['id']; //Este es el parametro que se definio en la ruta de app.module.ts
     if (this.id) {
       this.editing = true;
-      this.httpClient.get(this.API_ENDPOINT + 'payment_detail_purchase').subscribe((data: PaymentDetail[]) => { //Aqui traemos el arreglo completo de datos
+      this.httpClient.get(this.API_ENDPOINT + 'payment_detail_purchase', { headers }).subscribe((data: PaymentDetail[]) => {
         this.postarr = data;
         console.log(this.postarr);
         this.paymentDetail = this.postarr.find((m) => { return m.Payment_Detail_Purchase_Id == this.id }); //Aqui traemos solo el id que nos interesa

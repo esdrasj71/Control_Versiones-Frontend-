@@ -91,7 +91,7 @@
           </div>
 
           <div class="group">
-            <input type="submit" class="button" value="Siguiente" data-toggle="modal" data-target=".bd-user-modal-lg">
+            <input type="submit" class="button" value="Siguiente" data-toggle="modal" data-target=".bd-company-modal-lg">
           </div>
           <div class="hr"></div>
           <div class="foot-lnk">
@@ -104,6 +104,47 @@
   </div>
   <br><br>
 </ng-template>
+
+<div class="modal fade bd-company-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+  aria-labelledby="myLargeModalLabel" aria-hidden="true" style=" color:black;">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px">
+    <!-- MODAL CREATE USERNAME AND PASS -->
+    <div class="modal-content" style="width: 900px">
+      <div class="modal-header" style="width: 900px">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+          <b>Ahora añidamos a tu empresa</b>
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y: auto;">
+        <div class="form-group row">
+          <label class="col-md-3 form-controllabel" for="Company">Nombre de la empresa</label>
+          <div class="col-md-9">
+            <input [(ngModel)]="company.Company_Name" type="text" id="Username" class="form-control" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 form-controllabel" for="Dirección">Dirección </label>
+          <div class="col-md-9">
+            <input [(ngModel)]="company.Address" type="text" id="Address" class="form-control" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 form-controllabel" for="NIT">NIT </label>
+          <div class="col-md-9">
+            <input [(ngModel)]="company.NIT" type="text" id="NIT" class="form-control" />
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-user-modal-lg" data-dismiss="modal">Registrar Usuario</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ARE YOU SURE PRT (SI NO EXISTE CUENTA) -->
 <div class="modal fade bd-user-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
   aria-labelledby="myLargeModalLabel" aria-hidden="true" style=" color:black;">

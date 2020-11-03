@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeePositionService } from '../servicios/employee-position.service';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient , HttpHeaders} from '@angular/common/http';
 import { EmployeePosition } from '../interfaces/employee-position';
 import { Router} from '@angular/router';
 import Swal from 'sweetalert2';
@@ -14,11 +14,9 @@ export class EmployeePositionHomeComponent implements OnInit {
   API_ENDPOINT = 'http://localhost:3000/';
   employeePosition: EmployeePosition[];
 
-  constructor(
-    private employeePositionService: EmployeePositionService, private router: Router,
-    private httpClient: HttpClient
-  ) {
-    this.employeePositionService.getPosition()
+  constructor(private employeePositionService: EmployeePositionService, private router: Router,private httpClient: HttpClient) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
+    httpClient.get(this.API_ENDPOINT + 'employee_position', { headers })
     .subscribe((data: EmployeePosition[]) => {
       this.employeePosition = data; 
       console.log(this.employeePosition);

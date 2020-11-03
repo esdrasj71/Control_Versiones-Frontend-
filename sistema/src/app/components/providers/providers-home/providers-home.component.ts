@@ -3,6 +3,7 @@ import { ProvidersService } from '../servicios/providers.service';
 import { Providers } from '../interfaces/providers';
 import { Router} from '@angular/router';
 import Swal from 'sweetalert2';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-providers-home',
@@ -14,11 +15,10 @@ export class ProvidersHomeComponent implements OnInit {
   providers: Providers[];
 
   constructor(
-    private providersService: ProvidersService, private router: Router,
-  ) {
-
-
-    this.providersService.getProviders().subscribe((data: Providers[]) => {
+    private providersService: ProvidersService, private router: Router,private httpClient: HttpClient) {
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
+      httpClient.get(this.API_ENDPOINT + 'providers', { headers })
+    .subscribe((data: Providers[]) => {
       this.providers = data;
     });;
    /* httpClient.get(this.API_ENDPOINT + 'providers',{headers:headers})

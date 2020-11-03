@@ -70,6 +70,7 @@ import { FilterExpensePipe } from './pipes/filter-expense.pipe';
 import { FilterCostPipe } from './pipes/filter-cost.pipe';
 import { FilterBillTypePipe } from './pipes/filter-bill-type.pipe';
 import { FilterBankPipe } from './pipes/filter-bank.pipe';
+import {CompanyFormComponent } from './components/home/company-form/company-form.component';
 
 
 const routes: Route[] = [
@@ -134,6 +135,8 @@ const routes: Route[] = [
   { path: 'login', component: LoginFormComponent },
   //user
   { path: 'user', component: UserFormComponent, canActivate: [CheckloginGuard] },
+  //Company
+  { path: 'company/:id', component: CompanyFormComponent, canActivate: [CheckloginGuard] },
   //accounts receivable
   { path: 'accounts-receivable', component: AccountsReceivableComponent, canActivate: [CheckloginGuard] },
   { path: 'home', component: HomeComponent, canActivate: [CheckloginGuard] },
@@ -235,6 +238,7 @@ const routes: Route[] = [
     FilterCostPipe,
     FilterBillTypePipe,
     FilterBankPipe,
+    CompanyFormComponent
 
   ],
   imports: [

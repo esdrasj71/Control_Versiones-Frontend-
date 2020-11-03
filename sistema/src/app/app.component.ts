@@ -15,12 +15,14 @@ export class AppComponent implements OnInit {
   title = 'sistema';
   isLog=true;
   usuario="";
+  interval:any;
 constructor(private router: Router,
   private loginService:LoginService
   ){
     if(this.loginService.checklogin)
       this.router.navigate(['/home']);
-      setInterval(() => {
+      
+    this.interval=setInterval(() => {
        this.mostrar(); 
      }, 2000);
   }
@@ -28,12 +30,16 @@ constructor(private router: Router,
 ngOnInit(){}
 mostrar()
 {
+  if(this.Existe==0)
+  {
    this.usuario=localStorage.getItem('usuario');
    this.rol=localStorage.getItem('Rol');
    if(this.usuario==null)
     this.Existe=0;
     else
       this.Existe=1;
+  }else
+    clearInterval(this.interval);
 }
   logout()
   {
