@@ -3,7 +3,7 @@ import { Bank } from '../interfaces/bank';
 import { BankService } from '../servicios/bank.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-bank-form',
   templateUrl: './bank-form.component.html',
@@ -38,20 +38,20 @@ export class BankFormComponent implements OnInit {
   saveBank() {
     if (this.editing) {
       this.bankService.put(this.bank).subscribe((data) => {
-        alert('Banco actualizado');
+        Swal.fire('Banco Actualizado', '','success');
         console.log(data)
       }, (error) => {
         console.log(error);
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
       });
     }
     else {
       this.bankService.save(this.bank).subscribe((data) => {
-        alert('Banco guardado');
+        Swal.fire('Banco Guardado', '','success');
         console.log(data)
       }, (error) => {
         console.log(error);
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
       });
     }
   }

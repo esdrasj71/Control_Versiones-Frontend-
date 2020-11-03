@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../interface/user';
-import { UserService } from '../servicios/user.service';
+import { UserService } from '../servicios/user.service'; 
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
@@ -30,12 +31,12 @@ export class UserFormComponent implements OnInit {
     this.user.Date_Created = new Date(fecha);
     this.userService.save(this.user).subscribe(
       (data) => {
-        alert('Usuario creado');
+        Swal.fire('Usuario Creado', '','success');
         console.log(data);
       },
       (error) => {
         console.log(error);
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       }
     );
   }

@@ -102,8 +102,8 @@ export class LoginFormComponent implements OnInit {
           console.log(user);
           Swal.fire('Usuario Creado', '','success');
           localStorage.removeItem('token');
-          window.location.reload();
-          
+          //window.location.reload();
+          window.setTimeout(function(){location.reload()},2000)
           
         },(error)=>{
           console.log(error);

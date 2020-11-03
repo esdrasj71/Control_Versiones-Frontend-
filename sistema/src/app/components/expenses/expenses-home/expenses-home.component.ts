@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ExpensesService } from '../servicios/expenses.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Expenses } from '../interfaces/expenses';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-expenses-home',
   templateUrl: './expenses-home.component.html',
@@ -25,11 +25,12 @@ export class ExpensesHomeComponent implements OnInit {
   delete(id) {
     this.expensesService.delete(id).subscribe(
       (data) => {
-        alert('Gasto Eliminado');
-        window.location.reload();
+        Swal.fire('Gasto Eliminado', '','success');
+        window.setTimeout(function(){location.reload()},2000)
       },
       (error) => {
         console.log(error);
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
       }
     );
   }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BillTypeService } from '../servicios/bill-type.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BillType } from '../interfaces/bill-type';
-
+import Swal from 'sweetalert2'; 
 @Component({
   selector: 'app-bill-type-home',
   templateUrl: './bill-type-home.component.html',
@@ -24,11 +24,12 @@ export class BillTypeHomeComponent implements OnInit {
   delete(id) {
     this.billtypeService.delete(id).subscribe(
       (data) => {
-        alert('Tipo de Factura Eliminado');
-        window.location.reload();
+        Swal.fire('Tipo de Factura Eliminado', '','success');
+        window.setTimeout(function(){location.reload()},2000)
       },
       (error) => {
         console.log(error);
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
       }
     );
   }

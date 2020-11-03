@@ -38,7 +38,7 @@ body{
 	max-width:525px;
 	min-height:1000px;
 	position:relative;
-	background: url("../../../../assets/images/puente.jpg") 50% fixed;
+	background: url("../../../../assets/images/sky.jpg") 50% fixed;
 	box-shadow:0 12px 15px 0 rgba(0,0,0,.34),0 17px 50px 0 rgba(0,0,0,.29);
 }
 .login-wrap4{
@@ -48,7 +48,7 @@ body{
 	max-width:525px;
 	min-height:1000px;
 	position:relative;
-	background: url("../../../../assets/images/puente.jpg") 50% fixed;
+	background: url("../../../../assets/images/sky.jpg") 50% fixed;
 	box-shadow:0 12px 15px 0 rgba(0,0,0,.34),0 17px 50px 0 rgba(0,0,0,.29);
 }
 .login-html{

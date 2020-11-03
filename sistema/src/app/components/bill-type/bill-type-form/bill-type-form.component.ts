@@ -3,7 +3,7 @@ import { BillType } from '../interfaces/bill-type';
 import { BillTypeService } from '../servicios/bill-type.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-bill-type-form',
   templateUrl: './bill-type-form.component.html',
@@ -37,20 +37,20 @@ export class BillTypeFormComponent implements OnInit {
   saveBillType() {
     if (this.editing) {
       this.billtypeService.put(this.billtype).subscribe((data) => {
-        alert('Tipo de Factura actualizado');
+        Swal.fire('Tipo de Factura Actualizado', '','success');
         console.log(data)
       }, (error) => {
         console.log(error);
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
       });
     }
     else {
       this.billtypeService.save(this.billtype).subscribe((data) => {
-        alert('Tipo de Factura guardado');
+        Swal.fire('Tipo de Factura Guardado', '','success');
         console.log(data)
       }, (error) => {
         console.log(error);
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
       });
     }
   }

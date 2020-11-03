@@ -3,7 +3,7 @@ import { Costs } from '../interfaces/costs';
 import { CostsService } from '../servicios/costs.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-costs-form',
   templateUrl: './costs-form.component.html',
@@ -39,20 +39,20 @@ export class CostsFormComponent implements OnInit {
   saveCosts() {
     if (this.editing) {
       this.costsService.put(this.costs).subscribe((data) => {
-        alert('Costo actualizado');
+        Swal.fire('Costo Actualizado', '','success');
         console.log(data)
       }, (error) => {
         console.log(error);
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
       });
     }
     else {
       this.costsService.save(this.costs).subscribe((data) => {
-        alert('Costo guardado');
+        Swal.fire('Costo Guardado', '','success');
         console.log(data)
       }, (error) => {
         console.log(error);
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
       });
     }
   }

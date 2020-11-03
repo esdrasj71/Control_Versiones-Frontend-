@@ -19,7 +19,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let bank of bank">
+                <tr *ngFor="let bank of bank | filterBank:searchTermBank">
                     <td>{{bank.Bank_Id}}</td>
                     <td>{{bank.Bank_Name}}</td>
                     <td><a class="btn btn-warning btn-sm" style="background-color:#F7985B;"
