@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BrandsService } from '../servicios/brands.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Brands } from '../interfaces/brand';
 
 @Component({
@@ -12,8 +12,8 @@ export class BrandHomeComponent implements OnInit {
   API_ENDPOINT = 'http://localhost:3000/';
   brands: Brands[];
   constructor(private brandsService: BrandsService, private httpClient: HttpClient) {
-
-    this.brandsService.getBrand()
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
+    httpClient.get(this.API_ENDPOINT + 'brands', { headers })
       .subscribe((data: Brands[]) => {
         this.brands = data;
         console.log(this.brands);

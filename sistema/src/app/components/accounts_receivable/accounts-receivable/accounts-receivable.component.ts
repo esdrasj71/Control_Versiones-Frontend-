@@ -3,7 +3,6 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Procedure_AccountsReceivable} from '../interfaces/procedure_accounts_receivable';
 import {AccountsRecivable} from '../interfaces/accounts-receivable';
 import {Payment} from '../interfaces/payment';
-
 import { AccountsReceivableService} from '../servicios/accounts-receivable.service';
 import {ProcedureAccountsreceivableService} from '../servicios/procedure-accountsreceivable.service';
 
