@@ -3,6 +3,7 @@ import { ProductsService } from '../servicios/products.service';
 import { HttpClient } from '@angular/common/http';
 import { Products } from '../interfaces/product';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-product-home',
   templateUrl: './product-home.component.html',
@@ -24,10 +25,11 @@ export class ProductHomeComponent implements OnInit {
   }
   delete(id) {
     this.productsService.delete(id).subscribe((data) => {
-      alert('Producto eliminado');
-      window.location.reload();
+      Swal.fire('Producto Eliminado', '','success');
+          window.setTimeout(function(){location.reload()},2000)
     }, (error) => {
       console.log(error);
+      Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
     });
   }
   add() {

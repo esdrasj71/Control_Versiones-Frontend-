@@ -18,7 +18,7 @@ import { PaymentDetail } from '../../payment_detail_purchase/interfaces/payment-
 import { PaymentDetailService } from '../../payment_detail_purchase/servicios/payment-detail.service';
 import { DebstoPay } from '../../debs_to_pay/interfaces/debs-to-pay';
 import { DebsToPayService } from '../../debs_to_pay/servicios/debs-to-pay.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-purchase-header-form',
   templateUrl: './purchase-header-form.component.html',
@@ -182,7 +182,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
     console.log(this.header);
     this.purchase_headerservice.save(this.header).subscribe(
       (data) => {
-        alert('Compra guardada');
+        Swal.fire('Compra Guardada', '','success');
         console.log(data);
         //window.location.reload();
         this.payment.Purchase_Header_Id = data['id']; 
@@ -197,10 +197,10 @@ export class PurchaseHeaderFormComponent implements OnInit {
           console.log(data['id']);
           this.debstopayService.save(this.debstopay).subscribe(
             (data) => {
-              alert('Cuenta por pagar guardada');
+              Swal.fire('cuenta por pagar guardada', '','success');
             },
             (error) => {
-              alert('Cuenta por pagar error');
+              Swal.fire({icon: 'error', title: 'Ocurrio un error', text: 'Cuenta por pagar'});
             }
           );
           ///
@@ -211,7 +211,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
             },
             (error) => {
               console.log(error);
-              alert('Ocurrio un error');
+              Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
             }
           );
           console.log(this.payment);
@@ -220,11 +220,11 @@ export class PurchaseHeaderFormComponent implements OnInit {
           this.payment_detail_purchase.save(this.payment).subscribe(
             (data) => {
               console.log(data);
-              alert('El metodo de pago se ha registrado correctamente');
+              Swal.fire('El metodo de pago se ha registrado correctamente', '','success');
             },
             (error) => {
               console.log(error);
-              alert('Ocurrio un error');
+              Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
             }
           );
           console.log(this.payment);
@@ -233,14 +233,12 @@ export class PurchaseHeaderFormComponent implements OnInit {
           this.payment.Total_Amount = this.total;
           this.payment_detail_purchase.save(this.payment).subscribe(
             (data) => {
-              alert(
-                'El metodo de pago al contado se ha registrado correctamente'
-              );
+              Swal.fire('El metodo de pago al contado se ha registrado correctamente', '','success');
               console.log(data);
             },
             (error) => {
               console.log(error);
-              alert('Ocurrio un error');
+              Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
             }
           );
           console.log(this.payment);
@@ -248,7 +246,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
       },
       (error) => {
         console.log(error);
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       }
     );
 
@@ -268,7 +266,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
         },
         (error) => {
           console.log(error);
-          alert('Ocurrio un error');
+          Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
         }
       );
     }
@@ -307,8 +305,6 @@ export class PurchaseHeaderFormComponent implements OnInit {
       this.payment.Total_Amount = this.total_cobro;
       this.SiPago = true;
     } else
-      alert(
-        'Error: El pago al contado supera el monto total de lo que se esta comprando'
-      );
+      Swal.fire({icon: 'error', title: 'Ocurrio un error', text: 'El pago al contado supera el monto total de lo que se esta comprando'});
   }
 }

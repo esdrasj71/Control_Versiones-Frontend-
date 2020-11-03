@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Employee } from '../interfaces/employee';
 import { ActivatedRoute } from '@angular/router';
 import { EmployeePosition } from '../../employee_position/interfaces/employee-position';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-employee-form',
   templateUrl: './employee-form.component.html',
@@ -25,26 +26,26 @@ export class EmployeeFormComponent implements OnInit {
   };
   API_ENDPOINT = 'http://localhost:3000/';
   id: any;
-  editing: boolean = false; 
-  postarr: Employee[]; 
+  editing: boolean = false;
+  postarr: Employee[];
   employeePosition: EmployeePosition[];
 
   constructor(private employeeService: EmployeeService, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
-    this.id = this.activatedRoute.snapshot.params['id']; //Este es el parametro que se definio en la ruta de app.module.ts
+    this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
       this.editing = true;
-      this.employeeService.getEmployee().subscribe((data: Employee[]) => { //Aqui traemos el arreglo completo de datos
+      this.employeeService.getEmployee().subscribe((data: Employee[]) => {
         this.postarr = data;
         console.log(this.postarr);
-        this.employee = this.postarr.find((m) => { return m.Employee_Id == this.id }); //Aqui traemos solo el id que nos interesa
+        this.employee = this.postarr.find((m) => { return m.Employee_Id == this.id });
       }, (error) => {
         console.log(error);
       });
     } else {
       this.editing = false;
     }
-    const headers = new HttpHeaders({'Content-Type': 'application/json', 'accesstoken':localStorage.getItem('token')});
-    this.httpClient.get(this.API_ENDPOINT + 'employee_position', {headers})
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
+    this.httpClient.get(this.API_ENDPOINT + 'employee_position', { headers })
       .subscribe((data: EmployeePosition[]) => {
         this.employeePosition = data;
         console.log(this.employeePosition);
@@ -55,21 +56,21 @@ export class EmployeeFormComponent implements OnInit {
   savePost() {
     if (this.editing) {
       this.employeeService.put(this.employee).subscribe((data) => { //El unico cambioes el put
-        alert('Empleado actualizado');
+        Swal.fire('Empleado Actualizado', '','success');
         console.log(data)
       }, (error) => {
         console.log(error);
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
       });
     }
     else {
       console.log(this.employee);
       this.employeeService.save(this.employee).subscribe((data) => {
-        alert('Empleado guardado');
-        console.log(data)
+        Swal.fire('Empleado Guardado', '','success');
+        console.log(data);
       }, (error) => {
         console.log(error);
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
   }

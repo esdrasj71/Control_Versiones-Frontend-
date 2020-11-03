@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LotService } from '../servicios/lot.service';
 import { HttpClient } from '@angular/common/http';
 import { Lot } from '../interfaces/lot';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-lot-home',
   templateUrl: './lot-home.component.html',
@@ -26,10 +26,11 @@ export class LotHomeComponent implements OnInit {
   }
   delete(id) {
     this.lotService.delete(id).subscribe((data) => {
-      alert('Lot eliminado');
-      window.location.reload();
+        Swal.fire('Lote Eliminado', '','success');
+        window.setTimeout(function(){location.reload()},2000)
     }, (error) => {
       console.log(error);
+      Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
     });
   }
 }

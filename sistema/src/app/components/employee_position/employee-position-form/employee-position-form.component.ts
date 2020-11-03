@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeePositionService } from '../servicios/employee-position.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EmployeePosition } from '../interfaces/employee-position';
 import { ActivatedRoute } from '@angular/router';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-employee-position-form',
   templateUrl: './employee-position-form.component.html',
@@ -21,11 +21,11 @@ export class EmployeePositionFormComponent implements OnInit {
   editing: boolean = false; //Este campo ayuda a saber cuando estamos editando y cuando estamos ingresando
   postarr: EmployeePosition[]; //Este campo nos ayudara a traer los datos cuando queremos editar
   constructor(private employeePositionServicie: EmployeePositionService, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
-    
+    const headers = new HttpHeaders({ 'ContentType': 'application/json', 'accesstoken': localStorage.getItem('token') });
     this.id = this.activatedRoute.snapshot.params['id']; //Este es el parametro que se definio en la ruta de app.module.ts
     if (this.id) {
       this.editing = true;
-      this.employeePositionServicie.getPosition().subscribe((data: EmployeePosition[]) => { //Aqui traemos el arreglo completo de datos
+      this.httpClient.get(this.API_ENDPOINT + 'employee_position', { headers }).subscribe((data: EmployeePosition[]) => {
         this.postarr = data;
         console.log(this.postarr);
         this.employeePosition = this.postarr.find((m) => { return m.Employee_Position_Id == this.id }); //Aqui traemos solo el id que nos interesa
@@ -41,21 +41,21 @@ export class EmployeePositionFormComponent implements OnInit {
   savePost() {
     if (this.editing) {
       this.employeePositionServicie.put(this.employeePosition).subscribe((data) => { //El unico cambioes el put
-        alert('Posicion empleado actualizado');
+        Swal.fire('Posición empleado actualizado', '','success');
         console.log(data)
       }, (error) => {
         console.log(error);  
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
     else {
       console.log(this.employeePosition);
       this.employeePositionServicie.save(this.employeePosition).subscribe((data) => {
-        alert('Posicion empleado guardado');
+        Swal.fire('Posición empleado guardado', '','success');
         console.log(data)
       }, (error) => { 
         console.log(error);
-        alert('Ocurrio un error'); 
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
   } 

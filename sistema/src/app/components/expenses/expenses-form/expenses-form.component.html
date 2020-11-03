@@ -1,0 +1,26 @@
+<div style="height: 60px;"></div>
+<div class="container-fluid">
+    <div class="container card">
+        <div class="card-body" style="height: 100%;">
+            <h2 class="alert alert-primary" role="alert" style="text-align: center;">Editar/Crear Gasto</h2>
+            <div class="alert alert-warning" role="alert" style="background-color:#699DBF; height: 100%;">
+                <form name="formulario" onSubmit="return limpiar()">
+                    <div class="form-group row" id="hey">
+                        <label class="col-md-3 form-control-label" for="textinput">Nombre del gasto</label>
+                        <div class="col-md-9">
+                            <input id="expenses" [(ngModel)]="expenses.Name" type="text" name="Name" class="form-control"
+                                [ngModelOptions]="{standalone: true}" minlength="2" maxlength="20" required="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <button (click)="saveExpenses()" type="submit" class="btn btn-success btnblock"
+                                routerLink="/expenses-home">Guardar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="height: 150px;"></div>

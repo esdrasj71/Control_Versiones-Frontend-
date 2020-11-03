@@ -20,7 +20,7 @@ import { ProductsService } from '../../product/servicios/products.service';
 import { InventoryService } from '../../inventory/servicios/inventory.service';
 import { EmployeeService } from '../../employee/servicios/employee.service';
 import {AccountsReceivableService} from '../../accounts_receivable/servicios/accounts-receivable.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-bill-header-form',
   templateUrl: './bill-header-form.component.html',
@@ -286,7 +286,7 @@ export class BillHeaderFormComponent implements OnInit {
 
   enviar() {
 if(this.encabezado_factura.Correlative_Number == " " || this.encabezado_factura.Serie == null || this.encabezado_factura.Date == "" || this.encabezado_factura.Customers_Id == null || this.encabezado_factura.Employee_Id == NaN || this.encabezado_factura.Total == 0){
-  alert("Precaucion!!!!!!, algun dato no fue ingresado ");    
+  Swal.fire({icon: 'warning', title: 'Precaución!', text: 'Algun dato no fue ingresado'});   
 }else{
   console.log(this.total_cobroalcontado);
     if(this.total_cobroalcontado >= this.total){
@@ -306,16 +306,16 @@ if(this.encabezado_factura.Correlative_Number == " " || this.encabezado_factura.
 
     this.billsService.saveHeader(this.encabezado_factura).subscribe(
       (data) => {
-        alert('header guardado');
+        Swal.fire('Encabezado Guardado', '','success');
         if(this.encabezado_factura.Payment_Complete == false){
           this.accounts_receivable.Quantity =  0;
           this.accounts_receivable.Total = this.total_cobro;
           this.accounts_receivable.Statuss = true;
           this.accounts_receivable.Bill_header_Id =  data["id"];
           this.accountsRecivableService.saveAccountRecivable(this.accounts_receivable).subscribe((data)=>{
-            alert('Cuenta por cobrar guardada');
+            Swal.fire('Cuenta por cobrar guardada', '','success');
           }, (error)=>{
-            alert("cuentas por cobrar Error");
+            Swal.fire({icon: 'error', title: 'Ocurrio un error', text: 'Cuentas por cobrar'});
           })
      
         }
@@ -328,12 +328,12 @@ if(this.encabezado_factura.Correlative_Number == " " || this.encabezado_factura.
           this.pago_detalle.Bill_header_Id = data["id"];
           this.paymentdetailService.save(this.pago_detalle).subscribe(
             (data) => {
-              alert('Pago guardado');
+              Swal.fire('Pago Guardado', '','success');
               console.log(data);
             },
             (error) => {
               console.log(error);
-              alert('Ocurrio un error');
+              Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
             });
 
         }else{
@@ -344,12 +344,12 @@ if(this.encabezado_factura.Correlative_Number == " " || this.encabezado_factura.
             this.pago_detalle.Bill_header_Id = data["id"];
             this.paymentdetailService.save(this.pago_detalle).subscribe(
               (data) => {
-                alert('Pago guardado');
+                Swal.fire('Pago Guardado', '','success');
                 console.log(data);
               },
               (error) => {
                 console.log(error);
-                alert('Ocurrio un error');
+                Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
               });
           }else{
             this.pago_detalle.Total_Amount = this.total_cobroalcontado;
@@ -357,24 +357,24 @@ if(this.encabezado_factura.Correlative_Number == " " || this.encabezado_factura.
             this.pago_detalle.Bill_header_Id = data["id"];
             this.paymentdetailService.save(this.pago_detalle).subscribe(
               (data) => {
-                alert('Pago guardado');
+                Swal.fire('Pago Guardado', '','success');
                 console.log(data);
               },
               (error) => {
                 console.log(error);
-                alert('Ocurrio un error');
+                Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
               });
               this.pago_detalle.Total_Amount = this.total_cobro;
               this.pago_detalle.Payment_Id = 2;
               this.pago_detalle.Bill_header_Id = data["id"];
               this.paymentdetailService.save(this.pago_detalle).subscribe(
                 (data) => {
-                  alert('Pago guardado');
+                  Swal.fire('Pago Guardado', '','success');
                   console.log(data);
                 },
                 (error) => {
                   console.log(error);
-                  alert('Ocurrio un error');
+                  Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
                 });
 
           }
@@ -383,7 +383,7 @@ if(this.encabezado_factura.Correlative_Number == " " || this.encabezado_factura.
       },
       (error) => {
         console.log(error);
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     //detalle
     for (let misdatos of this.nuevo) {
@@ -394,12 +394,12 @@ if(this.encabezado_factura.Correlative_Number == " " || this.encabezado_factura.
       console.log(this.procedure_sale);
       this.proceduresaleService.save(this.procedure_sale).subscribe(
         (data) => {
-          alert('producto guardado');
+          Swal.fire('Producto Guardado', '','success');
           console.log(data);
         },
         (error) => {
           console.log(error);
-          alert('Ocurrio un error');
+          Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
         }
       )
     };

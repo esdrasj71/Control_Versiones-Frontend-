@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PaymentService } from '../servicios/payment.service';
 import { HttpClient } from '@angular/common/http';
 import { Payment } from '../interfaces/payment';
+import Swal from 'sweetalert2';
 
 @Component({ 
   selector: 'app-payment-home',
@@ -25,11 +26,12 @@ export class PaymentHomeComponent implements OnInit {
   delete(id) {
     this.paymentService.delete(id).subscribe(
       (data) => {
-        alert('Pago Eliminado');
-        window.location.reload();
+        Swal.fire('Pago Eliminado', '','success');
+        window.setTimeout(function(){location.reload()},2000)
       },
       (error) => {
         console.log(error);
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
       }
     );
   }

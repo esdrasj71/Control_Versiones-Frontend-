@@ -3,6 +3,7 @@ import { InventoryService } from '../servicios/inventory.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inventory } from '../interfaces/inventory';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { InventoryGroup } from '../interfaces/inventorygroup';
 
 @Component({
@@ -34,10 +35,11 @@ export class InventoryHomeComponent implements OnInit {
   }
   delete(id) {
     this.inventoryService.delete(id).subscribe((data) => {
-      alert('Inventario eliminado');
-      window.location.reload();
+        Swal.fire('Inventario Eliminado', '','success');
+        window.setTimeout(function(){location.reload()},2000)
     }, (error) => {
       console.log(error);
+      Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
     });
   }
   findinventory(inventoryOne) {

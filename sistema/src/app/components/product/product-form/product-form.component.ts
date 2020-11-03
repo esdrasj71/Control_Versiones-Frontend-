@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Brands } from '../../brand/interfaces/brand';
+import { BrandsService } from '../../brand/servicios/brands.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Product_Category } from '../../product_category/interfaces/product-category';
 import { Products } from '../interfaces/product';
@@ -16,6 +17,9 @@ import { ProductsService } from '../servicios/products.service';
 import { LotService } from '../../lot/servicios/lot.service';
 import { Procedure_SaveProduct } from '../interfaces/procedure_saveproduct';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { ProductCategoryService } from '../../product_category/servicios/product-category.service';
+
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
@@ -48,7 +52,9 @@ export class ProductFormComponent implements OnInit {
   };
   API_ENDPOINT = 'http://localhost:3000/';
   brands: Brands[];
+  brand: any[];
   product_category: Product_Category[];
+  productcategory: any[];
   selectedBrandId: number;
   selectedCategoryId: number;
   selectedDueDate: Date = this.lot.Due_Date;
@@ -64,6 +70,8 @@ export class ProductFormComponent implements OnInit {
     private productService: ProductsService,
     private router: Router,
     private lotService: LotService,
+    private brandService: BrandsService,
+    private productcategoryService: ProductCategoryService,
     private activatedRoute: ActivatedRoute
   ) {
     //Update
@@ -112,7 +120,7 @@ export class ProductFormComponent implements OnInit {
           this.lastidproduct = data['id'];
           //
           this.lot.Product_Id = this.lastidproduct;
-          alert('Producto actualizado');
+          Swal.fire('Producto Actualizado', '','success');
           location.reload();
           //window.location.reload();
           console.log(data);
@@ -121,7 +129,7 @@ export class ProductFormComponent implements OnInit {
         },
         (error) => {
           console.log(error);
-          alert('Ocurrio un error');
+          Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
         }
       );
     } else {
@@ -134,7 +142,7 @@ export class ProductFormComponent implements OnInit {
           //
           //this.procedure_saveproduct.Product_Id = this.lastidproduct;
           //console.log(this.procedure_saveproduct.Product_Id);
-          alert('Producto guardado con el procedimiento almacenado');
+          Swal.fire('Producto guardado con procedimiento almacenado', '','success');
           this.Product_Id.emit(data['Correlative_Product']);
           //console.log(this.procedure_saveproduct);
           //this.router.navigate(['/product-home']);
@@ -142,7 +150,7 @@ export class ProductFormComponent implements OnInit {
         },
         (error) => {
           console.log(error);
-          alert('Ocurrio un error');
+          Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
           console.log(this.procedure_saveproduct);
           console.log(this.product);
         }
@@ -156,5 +164,19 @@ export class ProductFormComponent implements OnInit {
   searchBrand(filter: string, brands) {
     filter = filter.toLocaleLowerCase();
     return brands.Name.toLocaleLowerCase().indexOf(filter) > -1;
+  }
+  getBrandId(id) {
+    this.selectedBrandId = id;
+    this.brandService.getBrandId(id).subscribe((data: Brands[]) => {
+      this.brand = data;//json
+      return this.brand = Array.of(this.brand);
+    });
+  }
+  getCategoryId(id) {
+    this.selectedCategoryId = id;
+    this.productcategoryService.getCategoryId(id).subscribe((data: Product_Category[]) => {
+      this.productcategory = data;//json
+      return this.productcategory = Array.of(this.productcategory);
+    });
   }
 }
