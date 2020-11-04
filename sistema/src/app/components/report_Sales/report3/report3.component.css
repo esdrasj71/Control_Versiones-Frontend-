@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap');
+h1{
+    color: #fdfdfd;
+    font-family: 'Montserrat', sans-serif;
+}
+h2{
+    color: #fdfdfd;
+}
+.container{
+    height: 100%;
+    width: 100%;
+    padding-top: 5%;
+    padding-bottom: 10%;
+}

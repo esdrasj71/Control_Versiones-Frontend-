@@ -1,66 +1,60 @@
 <div class="container">
     <h1>Reporte facturas emitidas agrupadas por series</h1>
-    <div class="row">
-        <div class="col-sm-5 col-md-6">
-            <div class="card" style="width: 75rem; right: 5rem">
-                <div class="card-body">
-                    <div class="form-group row">
-                        <label for="" class="col-form-label" style="color: black;">Fecha Inicio:</label>
-                        <div class="col-md-4">
-                            <input type="date"  name="" [(ngModel)]="report2.fechainicio" id="" class="form-control"   tabindex="1" />
-                        </div>
-                        <label for="" class="col-form-label"  style="color: black;">Fecha Fin:</label>
-                        <div class="col-md-4">
-                            <input type="date" name="" [(ngModel)]="report2.fechafin" id="" class="form-control"   tabindex="1" />
-                        </div>
-                        <div class="col-md-2">
-                            <button type="submit"  (click)="saveReport1()" class="btn btn-danger">Consultar</button>
-                        </div>
-                  
-                        <div class="col-md-2">
-                                <button type="button" class="btn btn-info" (click)="downloadPDF()">Generar PDF</button>
-                        </div>
-                       
-                    </div>
-                    <div id="pdfTable" #pdfTable >
-                    <h1 style="color: black;">Reporte facturas emitidas agrupadas por series</h1>
-                    <h2 style="color: black; text-align: right;">Total generado: {{total_total | currency:"GTQ":"Q"}}</h2>
-                    <div  *ngFor="let report of reportt1">
-                    <table  class="table table-dark " style="table-layout: fixed; word-wrap: break-word;" id="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Serie: {{report[0].Serie}}</th>
-                                <th scope="col">Subtotal: {{report[report.length-1] | currency:"GTQ":"Q"}}</th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                
-                            </tr>
-                        </thead>
-                        <thead>
-                            <tr>
-                                <th scope="col">Nombre Cliente </th>
-                                <th scope="col">NIT </th>
-                                <th scope="col">Num Factura </th>
-                                <th scope="col">Fecha de venta </th>
-                                <th scope="col">Total factura </th>
-                            </tr>
-                        </thead>
-                        <tbody *ngFor="let report1 of report">
-                            <tr>
-                                <td height="10">{{report1.Names}}</td>
-                                <td height="10">{{report1.NIT}}</td>
-                                <td height="10">{{report1.Correlative_Number}}</td>
-                                <td height="10">{{report1.Date}}</td>
-                                <td height="10">{{report1.Total | currency:"GTQ":"Q"}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                </div>
-                </div>
-            </div>
+    <br><br>
+    <form>
+    <div class="form-group row">
+        <label for="" class="col-form-label">Fecha Inicio:</label>
+        <div class="col-md-4">
+            <input type="date" name="" [(ngModel)]="report2.fechainicio" id="" class="form-control" tabindex="1" />
+        </div>
+        <label for="" class="col-form-label">Fecha Fin:</label>
+        <div class="col-md-4">
+            <input type="date" name="" [(ngModel)]="report2.fechafin" id="" class="form-control" tabindex="1" />
+        </div>
+        <div class="col-md-2">
+            <button type="submit" (click)="saveReport1()" class="btn btn-danger">Consultar</button>
+        </div>
+        <br><br><br>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-danger" (click)="downloadPDF()">Generar PDF</button>
+        </div>
+    </div>
+</form>
+
+    <div id="pdfTable" #pdfTable>
+        <h4 style="text-align: right;">Total generado: {{total_total | currency:"GTQ":"Q"}}</h4>
+        <div *ngFor="let report of reportt1">
+            <table class="table table-dark " style="table-layout: fixed; word-wrap: break-word;" id="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Serie: {{report[0].Serie}}</th>
+                        <th scope="col">Subtotal: {{report[report.length-1] | currency:"GTQ":"Q"}}</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+
+                    </tr>
+                </thead>
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre Cliente </th>
+                        <th scope="col">NIT </th>
+                        <th scope="col">Num Factura </th>
+                        <th scope="col">Fecha de venta </th>
+                        <th scope="col">Total factura </th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let report1 of report">
+                    <tr>
+                        <td height="10">{{report1.Names}}</td>
+                        <td height="10">{{report1.NIT}}</td>
+                        <td height="10">{{report1.Correlative_Number}}</td>
+                        <td height="10">{{report1.Date}}</td>
+                        <td height="10">{{report1.Total | currency:"GTQ":"Q"}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
-
+<div style="height: 70px;"></div>
