@@ -18,13 +18,17 @@
     <div class="form-group row"> &nbsp;&nbsp;&nbsp;&nbsp;
         <button type="button" class="btn btn-danger" (click)="Reporte1()">Generar Reporte</button>
     </div>
-  
-    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+
+    <div class="form-group row"> &nbsp;&nbsp;&nbsp;&nbsp;
         <ng-container *ngIf="Existe>0;">
             <div class="form-group row">&nbsp;&nbsp;&nbsp;&nbsp;
             <button type="button" class="btn btn-danger" (click)="imprimir()">Generar PDF</button>
         </div>
         </ng-container>
+    </div>
+  
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <!-- ng container incase-->
         <div id="pdfTable" #pdfTable>
         <table  class="table table-dark" style="table-layout: fixed; word-wrap: break-word;" id="searchTextResults">
             <thead>

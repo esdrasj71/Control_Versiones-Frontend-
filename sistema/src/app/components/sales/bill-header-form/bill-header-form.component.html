@@ -160,8 +160,6 @@
                                                     <td><button (click)="onDelete(inventario)"
                                                             class="btn btn-danger"><i class="fa fa-trash" style="color: white;">
                                                             </i></button></td>
-                                                    <td>
-                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -231,9 +229,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary"data-toggle="modal"
-                        data-target=".bd-cliente-modal-lg">Agregar Cliente</button>
-                    </div>
-                    <div class="modal-footer">
+                        data-target=".bd-cliente-modal-lg" style="background-color:#F7985B; color: white;">Agregar Cliente</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
@@ -294,7 +290,6 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-danger" style="background-color:#EC7063;">Agregar Producto</button>
             </div>
         </div>
     </div>
@@ -374,8 +369,8 @@
             
                                 <div class="col-md-6">
                                     <div class="form-group" style="text-align: right;">
-                                        <button type="button" (click)="enviar()" class="btn btn-primary">Enviar</button>
-
+                                        <button type="button" (click)="enviar()" class="btn btn-primary" 
+                                        routerLink="/bill-header-form">Enviar</button>
                                     </div>
                                 </div>
                             </div>

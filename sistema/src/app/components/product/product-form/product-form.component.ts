@@ -142,7 +142,7 @@ export class ProductFormComponent implements OnInit {
           //
           //this.procedure_saveproduct.Product_Id = this.lastidproduct;
           //console.log(this.procedure_saveproduct.Product_Id);
-          Swal.fire('Producto guardado con procedimiento almacenado', '','success');
+          Swal.fire('Producto guardado', '','success');
           this.Product_Id.emit(data['Correlative_Product']);
           //console.log(this.procedure_saveproduct);
           //this.router.navigate(['/product-home']);
