@@ -34,4 +34,8 @@ export class ExpendituresService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
     return this.httpClient.delete(this.API_ENDPOINT + 'expendituresdelete/' + Expenditures_Id, { headers: headers });
   }
+  getempresa(){
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
+    return this.httpClient.get(this.API_ENDPOINT + 'empresa', {headers});
+  }
 }

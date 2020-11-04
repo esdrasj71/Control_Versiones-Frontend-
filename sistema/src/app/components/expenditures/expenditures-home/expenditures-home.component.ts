@@ -19,22 +19,27 @@ export class ExpendituresHomeComponent implements OnInit {
       .subscribe((data: Expenditures[]) => {
         this.expenditures = data;
       })
-   }
+  }
   searchTermExpenditures = '';
-  ngOnInit(){
+  //empresa
+  empresa: any = [];
+  ngOnInit() {
+    this.expendituresService.getempresa().subscribe((data) => {
+      this.empresa = data[0];
+      return this.empresa;
+    })
   }
   delete(Expenditures_Id) {
     console.log(Expenditures_Id);
     this.expendituresService.delete(Expenditures_Id).subscribe(
       (data) => {
-        Swal.fire('Egreso Eliminado', '','success');
-        window.setTimeout(function(){location.reload()},2000)
+        Swal.fire('Egreso Eliminado', '', 'success');
+        window.setTimeout(function () { location.reload() }, 2000)
       },
       (error) => {
         console.log(error);
-        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
+        Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' })
       }
     );
   }
-
 }
