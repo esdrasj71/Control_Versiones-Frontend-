@@ -95,6 +95,7 @@ export class ExpendituresFormComponent implements OnInit {
         },
         (error) => {
           console.log(error);
+          Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
         }
       );
     } else {
