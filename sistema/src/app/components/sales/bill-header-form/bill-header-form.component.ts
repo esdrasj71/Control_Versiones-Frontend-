@@ -152,7 +152,6 @@ export class BillHeaderFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.customersService.getCustomer().subscribe((data: Customers[]) => {
       return this.cliente = data;
     })
@@ -160,7 +159,7 @@ export class BillHeaderFormComponent implements OnInit {
     this.productsService.getProduct().subscribe((data: Products[]) => {
       return this.producto = data;
     })
-
+  
     this.inventoryService.getInventory().subscribe((data: Inventory[])=>{
       let nuevo1: any = [];
       let prueba = [];
@@ -192,7 +191,7 @@ export class BillHeaderFormComponent implements OnInit {
             return exists;
           });
           this.nuevo_inventario = array;
-          console.log(this.nuevo_inventario);
+          console.log("holis"+this.nuevo_inventario);
       }
       });
 
