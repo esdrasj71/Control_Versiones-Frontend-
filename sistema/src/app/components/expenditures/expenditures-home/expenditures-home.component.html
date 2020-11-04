@@ -42,10 +42,10 @@
                     <td>{{expenditure.Expense}}</td>
                     <td>{{expenditure.Cost}}</td>
                     <td><a class="btn btn-warning btn-sm" style="background-color:#F7985B;"
-                            routerLink="/expenditures-form/{{expenditures.Expenditures_Id}}">
+                            routerLink="/expenditures-form/{{expenditure.Expenditures_Id}}">
                             <i class="fa fa-pencil-square-o fa-lg" style="color: white;"></i></a>
                         <a class="btn btn-danger btn-sm" style="background-color:#e74c3c;"
-                            (click)="delete(expenditures.Expenditures_Id)">
+                            (click)="delete(expenditure.Expenditures_Id)">
                             <i class="fa fa-trash fa-lg" style="color: white;"></i></a>
                     </td>
                 </tr>
