@@ -81,6 +81,7 @@ export class AccountsReceivableComponent implements OnInit {
   this.procedure_accountsService.saveprocedure(this.procedure_accountsReceivable).subscribe((data)=>{
     console.log(data);
     Swal.fire('Descuento Exitoso', '','success');
+    window.setTimeout(function(){location.reload()},1200)
   },(error)=>{
     console.log(error);
     Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
