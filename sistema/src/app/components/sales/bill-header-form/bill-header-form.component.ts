@@ -237,7 +237,7 @@ export class BillHeaderFormComponent implements OnInit {
     console.log(this.detalle_factura);
   }
   onEnter(value: number, precio: number, datos: any) {
-    if(value >= datos[0].Stock || value <= 0){
+    if(value > datos[0].Stock || value < 0){
       alert("Solo hay en existencia: "+ datos[0].Stock);
     }else{
       console.log(datos)
