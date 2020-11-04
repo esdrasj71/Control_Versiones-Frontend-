@@ -1,1 +1,55 @@
-<p>expenditures-home works!</p>
+<div class="container">
+    <h1 style="text-align: center; font-weight: bold;">Egresos</h1>
+    <h2 style="text-align: center;">____________________</h2><br><br>
+    <form>
+        <div class="form-group row">
+            &nbsp;&nbsp;&nbsp;<i class="fa fa-search fa-lg" style="left: 300px;"></i>&nbsp;&nbsp;&nbsp;
+            <input type="text" name="expenditures" id="expenditures" class="form-control" placeholder="Buscar egreso"
+                tabindex="4" [(ngModel)]="searchTermExpenditures" style="width: 35%;" />&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-success btnsm" routerLink="/expenditures-form">Agregar Egreso</a>
+        </div>
+    </form>
+    <!---->
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <table class="table table-hover" style="background-color:#F8F9F9;" id="searchTextResults">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="header" scope="col">ID</th>
+                    <th class="header" scope="col">Fecha</th>
+                    <th class="header" scope="col">Proveedor</th>
+                    <th class="header" scope="col">Tipo de Factura</th>
+                    <th class="header" scope="col">No. Factura</th>
+                    <th class="header" scope="col">Banco</th>
+                    <th class="header" scope="col">Cheque</th>
+                    <th class="header" scope="col">No. Cheque</th>
+                    <th class="header" scope="col">Monto</th>
+                    <th class="header" scope="col">Gasto</th>
+                    <th class="header" scope="col">Costo</th>
+                    <th class="header" scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let expenditure of expenditures | filterExpenditures: searchTermExpenditures">
+                    <td>{{expenditure.Expenditures_Id}}</td>
+                    <td>{{expenditure.Date|date:'d-M-y'}}</td>
+                    <td>{{expenditure.FiscalName}}</td>
+                    <td>{{expenditure.Bill}}</td>
+                    <td>{{expenditure.No_Bill}}</td>
+                    <td>{{expenditure.Bank}}</td>
+                    <td>{{expenditure.Cheques}}</td>
+                    <td>{{expenditure.No_Cheque}}</td>
+                    <td>{{expenditure.Amount| currency:"GTQ":"Q"}}</td>
+                    <td>{{expenditure.Expense}}</td>
+                    <td>{{expenditure.Cost}}</td>
+                    <td><a class="btn btn-warning btn-sm" style="background-color:#F7985B;"
+                            routerLink="/expenditures-form/{{expenditure.Expenditures_Id}}">
+                            <i class="fa fa-pencil-square-o fa-lg" style="color: white;"></i></a>
+                        <a class="btn btn-danger btn-sm" style="background-color:#e74c3c;"
+                            (click)="delete(expenditure.Expenditures_Id)">
+                            <i class="fa fa-trash fa-lg" style="color: white;"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
