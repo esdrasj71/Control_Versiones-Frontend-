@@ -64,7 +64,6 @@ export class ExpendituresFormComponent implements OnInit {
   expendituresarr: Expenditures[];
   constructor(
     private fb: FormBuilder,
-    private httpClient: HttpClient,
     private expendituresService: ExpendituresService,
     private billtypeService: BillTypeService,
     private expensesService: ExpensesService,
@@ -72,14 +71,15 @@ export class ExpendituresFormComponent implements OnInit {
     private banksService: BankService,
     private providersService: ProvidersService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private httpClient: HttpClient,
   ) {
     //Update
     this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
       console.log(this.expenditures);
       this.editing = true;
-      const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
       this.httpClient.get(this.API_ENDPOINT + 'expenditures', { headers }).subscribe(
         (data: Expenditures[]) => {
           this.expendituresarr = data;

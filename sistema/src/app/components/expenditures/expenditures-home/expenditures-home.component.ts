@@ -21,7 +21,7 @@ export class ExpendituresHomeComponent implements OnInit {
       })
    }
   searchTermExpenditures = '';
-  ngOnInit(): void {
+  ngOnInit(){
   }
   delete(id) {
     this.expendituresService.delete(id).subscribe(
