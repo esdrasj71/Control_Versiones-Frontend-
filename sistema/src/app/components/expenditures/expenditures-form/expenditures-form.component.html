@@ -147,89 +147,90 @@
                                 placeholder="Ingrese el monto" [ngModelOptions]="{standalone: true}" required="">
                         </div>
                     </div>
-                    <!--Seleccionar Cost or Expenses-->
-                    <div class="form-group row">
-                        <label class="col-md-3 form-control-label" for="textinput">Gasto</label>
-                        <div class="col-md-9">
-                            <input #small type="checkbox" name="size" (change)="0" v-model="nombre" class="formcontrol">
-                            <br>
-                            <br>
-                            <label *ngIf="small.checked" style="color: white;">Gasto:</label>
-                        </div>
-                        <label class="col-md-3 form-control-label" for="textinput">Costo</label>
-                        <div class="col-md-9">
-                            <input #small type="checkbox" name="size" (change)="0" v-model="nombre" class="formcontrol">
-                            <br>
-                            <br>
-                            <label *ngIf="small.checked" style="color: white;">Costo:</label>
-                        </div>
-                    </div>
-                    <!--Expenses-->
+                    <!--Seleccionar Expenses-->
                     <div class="form-group row">
                         <label class="col-md-3 form-control-label" for="textinput">Gasto:</label>
-                        <div class="col-md-4">
-                            <ng-select [searchFn]="searchExpenses" id="expenses" name="expenses" [items]="expenses"
-                                [virtualScroll]="true" bindLabel="Name" bindValue="Expenses_Id" placeholder="Gasto"
-                                [(ngModel)]="selectedExpensesId">
-                                <ng-template ng-header-tmp>
-                                    <div class="container-fluid">
-                                        <div class="row">
-                                            <div class="col-md-6">Gasto</div>
-                                        </div>
-                                    </div>
-                                </ng-template>
-                                <ng-template ng-label-tmp let-item="item">
-                                    <span>{{item.Name}}</span>
-                                </ng-template>
-                                <ng-template ng-option-tmp let-item="item" let-index="index">
-                                    {{item.Name}}
-                                </ng-template>
-                            </ng-select>
-                        </div>
-                        <!--Add Expenses-->
-                        <div class="col-md-4">
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target=".bd-expenses-modal-lg">
-                                Añadir Gasto
-                            </button>
-                        </div>
-                        <div *ngFor="let ex of ex">
-                            <h2 for="expenses" class="col-form-label">Gasto Insertado :{{ex.Name}}</h2>
+                        <div class="col-md-9">
+                            <input #small type="checkbox" name="size" (change)="0" v-model="nombre" class="formcontrol">
+                            <br>
+                            <br>
+                            <!--Expenses-->
+                            <div class="form-group row">
+                                <div class="col-md-4" *ngIf="small.checked">
+                                    <ng-select [searchFn]="searchExpenses" id="expenses" name="expenses"
+                                        [items]="expenses" [virtualScroll]="true" bindLabel="Name"
+                                        bindValue="Expenses_Id" placeholder="Gasto" [(ngModel)]="selectedExpensesId">
+                                        <ng-template ng-header-tmp>
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-md-6">Gasto</div>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                        <ng-template ng-label-tmp let-item="item">
+                                            <span>{{item.Name}}</span>
+                                        </ng-template>
+                                        <ng-template ng-option-tmp let-item="item" let-index="index">
+                                            {{item.Name}}
+                                        </ng-template>
+                                    </ng-select>
+                                </div>
+                                <!--Add Expenses-->
+                                <div class="col-md-4">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target=".bd-expenses-modal-lg" *ngIf="small.checked">
+                                        Añadir Gasto
+                                    </button>
+                                </div>
+                                <div *ngFor="let ex of ex">
+                                    <h2 for="expenses" class="col-form-label">Gasto Insertado :{{ex.Name}}</h2>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <!--Costs-->
+                    <!--Seleccionar Cost-->
                     <div class="form-group row">
                         <label class="col-md-3 form-control-label" for="textinput">Costo:</label>
-                        <div class="col-md-4">
-                            <ng-select [searchFn]="searchCosts" id="costs" name="costs" [items]="costs"
-                                [virtualScroll]="true" bindLabel="Name" bindValue="Cost_Id" placeholder="Costo"
-                                [(ngModel)]="selectedCostsId">
-                                <ng-template ng-header-tmp>
-                                    <div class="container-fluid">
-                                        <div class="row">
-                                            <div class="col-md-6">Costo</div>
-                                        </div>
-                                    </div>
-                                </ng-template>
-                                <ng-template ng-label-tmp let-item="item">
-                                    <span>{{item.Name}}</span>
-                                </ng-template>
-                                <ng-template ng-option-tmp let-item="item" let-index="index">
-                                    {{item.Name}}
-                                </ng-template>
-                            </ng-select>
-                        </div>
-                        <!--Add Costs-->
-                        <div class="col-md-4">
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target=".bd-costs-modal-lg">
-                                Añadir Costo
-                            </button>
-                        </div>
-                        <div *ngFor="let cs of cs">
-                            <h2 for="costs" class="col-form-label">Costo Insertado :{{cs.Name}}</h2>
+                        <div class="col-md-9">
+                            <input #small2 type="checkbox" name="size2" (change)="0" v-model="nombre2" class="formcontrol">
+                            <br>
+                            <br>
+                            <label *ngIf="small2.checked" style="color: white;">Costo:</label>
+                            <!--Costs-->
+                            <div class="form-group row">
+                                <div class="col-md-4" *ngIf="small2.checked">
+                                    <ng-select [searchFn]="searchCosts" id="costs" name="costs" [items]="costs"
+                                        [virtualScroll]="true" bindLabel="Name" bindValue="Cost_Id" placeholder="Costo"
+                                        [(ngModel)]="selectedCostsId">
+                                        <ng-template ng-header-tmp>
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-md-6">Costo</div>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                        <ng-template ng-label-tmp let-item="item">
+                                            <span>{{item.Name}}</span>
+                                        </ng-template>
+                                        <ng-template ng-option-tmp let-item="item" let-index="index">
+                                            {{item.Name}}
+                                        </ng-template>
+                                    </ng-select>
+                                </div>
+                                <!--Add Costs-->
+                                <div class="col-md-4">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target=".bd-costs-modal-lg" *ngIf="small2.checked">
+                                        Añadir Costo
+                                    </button>
+                                </div>
+                                <div *ngFor="let cs of cs">
+                                    <h2 for="costs" class="col-form-label">Costo Insertado :{{cs.Name}}</h2>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <!--Button-->
                     <div class="form-group row">
                         <div class="col-md-12">
                             <button type="submit" (click)="saveExpenditures()" class="btn btn-success btnblock"
