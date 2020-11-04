@@ -5,10 +5,18 @@
         <div class="col-sm-5 col-md-6">
             <div class="card" style="width: 75rem; right: 5rem">
                 <div class="card-body">
-                    <div class="form-group row ">
-                    
-                        <div class="col-md-2">
-                            <button type="button" class="btn btn-info" >Generar PDF</button>
+                    <div  class="form-group row ">
+                        <h1 style="color: black;">Empresa: </h1>
+                        <div class="col-md-10">
+                         <h1 style="color: black;">{{empresa.Company_Name}}</h1> 
+                        </div>
+                        <h1 style="color: black;">Direccion: </h1>
+                        <div class="col-md-10">
+                            <h1 style="color: black;">{{empresa.Address}}</h1> 
+                        </div>
+                        <h1 style="color: black;">NIT: </h1>
+                        <div class="col-md-8">
+                        <h1 style="color: black;">{{empresa.NIT}}</h1> 
                         </div>
                     </div>
                     <div id="pdfTable"  #pdfTable class="table-wrapper-scroll-y my-custom-scrollbar">
@@ -26,21 +34,27 @@
                         </thead>
                         <tbody >
                             <tr *ngFor="let income of tabla">
-                                <td height="10">{{income.mes}}</td>
-                                <td height="10"><input type="number" style="background-color: #343B42; color: white;" value='{{income.total_mes}}' #box (keyup.enter)="onModificarCantidad(box.value, income.mes, 1)"min="0" /></td>
-                                <td height="10"><input type="number" style="background-color: #343B42; color: white;" value='0' #box1 (keyup.enter)="onModificarCantidad(box1.value, income.mes, 2)"min="0" /></td>
-                                <td height="10"><input type="number"  style="background-color: #343B42; color: white;"value='0' #box2 (keyup.enter)="onModificarCantidad(box2.value, income.mes, 3)"min="0" /></td>
-                                <td height="10">{{income.total_sumado  | currency:"GTQ":"Q"}}</td>
+                                <td height="10" >{{income.mes_letras}}</td>
+                                <td height="10"><input type="number"  style="background-color: #343B42; color: white;" value='{{income.total_mes}}' #box (keyup.enter)="onModificarCantidad(box.value, income.mes, 1)"min="0" /></td>
+                                <td height="10"><input type="number" style="background-color: #343B42; color: white;" value='{{income.total_aux1}}' #box1 (keyup.enter)="onModificarCantidad(box1.value, income.mes, 2)"min="0" /></td>
+                                <td height="10"><input type="number"   style="background-color: #343B42; color: white;" value='{{income.total_aux2}}' #box2 (keyup.enter)="onModificarCantidad(box2.value, income.mes, 3)"min="0" /></td>
+                                <td height="10" >{{income.total_sumado  | currency:"GTQ":"Q"}}</td>
                             </tr>
                             <tr>
                                 <td height="10" >Total</td>
-                                <td height="10" >{{total_suc1}}</td>
-                                <td height="10" >{{total_suc2}}</td>
-                                <td height="10" >{{total_suc3}}</td>
-                                <td height="10" >{{total_total}}</td>
+                                <td height="10" >{{total_suc1 | currency:"GTQ":"Q"}}</td>
+                                <td height="10" >{{total_suc2 | currency:"GTQ":"Q"}}</td>
+                                <td height="10" >{{total_suc3 | currency:"GTQ":"Q"}}</td>
+                                <td height="10" >{{total_total | currency:"GTQ":"Q"}}</td>
                             </tr>
                         </tbody>
                     </table>
+                </div>
+                <div class="form-group row ">
+                    
+                    <div class="col-md-12">
+                        <button type="button" (click)="saveincomes()" class="btn btn-info" >Guardar</button>
+                    </div>
                 </div>
                 </div>
             </div>
