@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inventory } from '../interfaces/inventory';
 import { Products } from '../../product/interfaces/product';
 import { ProductsService } from '../../product/servicios/products.service';
+import { LotService } from '../../lot/servicios/lot.service';
 import { InventoryService } from '../servicios/inventory.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router} from '@angular/router'; 
@@ -27,8 +28,9 @@ export class InventoryFormComponent implements OnInit {
   //Product
   selectedProductId: number;
   product: Products[];
+  productid: any[];
 
-  constructor(private inventoryService: InventoryService, private productsService: ProductsService, private router: Router, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
+  constructor(private inventoryService: InventoryService, private productsService: ProductsService, private lotService: LotService, private router: Router, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
     const headers = new HttpHeaders({ 'ContentType': 'application/json', 'accesstoken': localStorage.getItem('token') });
     this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
@@ -38,6 +40,7 @@ export class InventoryFormComponent implements OnInit {
         console.log(this.inventoryarr);
         this.inventory = this.inventoryarr.find((m) => { return m.Inventory_Id == this.id });
         this.selectedProductId = this.inventory.Lot_Id;
+        
       }, (error) => {
         console.log(error);
       });

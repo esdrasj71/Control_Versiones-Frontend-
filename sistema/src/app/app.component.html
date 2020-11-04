@@ -95,11 +95,9 @@
               <li class="dropdown-submenu">
                 <a tabindex="-1" class="dropdown-item">Compras</a>
                 <ul class="dropdown-menu">
-                  <li><a tabindex="-1" class="dropdown-item" routerLink="/purchase-reports-home">General</a></li>
+                  <li><a tabindex="-1" class="dropdown-item" routerLink="/purchase-reports-home">Total de compras realizadas en un intervalo de tiempo</a></li>
                   <div class="dropdown-divider"></div>
-                  <li><a class="dropdown-item" routerLink="/debs-pay-home">Cuentas por pagar</a></li>
-                  <li><a class="dropdown-item">Second level</a></li>
-                  <li><a class="dropdown-item">Second level</a></li>
+                  <li><a class="dropdown-item" routerLink="/debs-pay-home">Cuentas por pagar vigentes</a></li>
                 </ul>
               </li>
               <li class="dropdown-submenu">
@@ -125,12 +123,15 @@
             Estado de resultados 
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="/incomes">Ingresos</a>
+            <a class="dropdown-item"  >Egresos</a>
             <a class="dropdown-item" >Ingresos</a>
             <a class="dropdown-item" >Egresos</a>
             <a class="dropdown-item" routerLink="/expenses-home">Gastos</a>
             <a class="dropdown-item" routerLink="/costs-home">Costos</a>
             <a class="dropdown-item" routerLink="/billtype-home">Tipo de Factura</a>
             <a class="dropdown-item" routerLink="/bank-home">Bancos</a>
+
           </div>
         </li>
       </ng-container>

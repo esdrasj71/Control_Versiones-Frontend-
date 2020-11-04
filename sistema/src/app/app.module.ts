@@ -58,6 +58,8 @@ import { Report1Component } from './components/report_Sales/report1/report1.comp
 import { PurchaseReportsHomeComponent } from './components/purchase_reports/purchase-reports-home/purchase-reports-home.component';
 import { DebsPayHomeComponent } from './components/purchase_reports/debs-pay-home/debs-pay-home.component';
 import { InventoryReportsHomeComponent } from './components/inventory_reports/inventory-reports-home/inventory-reports-home.component';
+
+import { IncomesFormComponent } from './components/incomes/incomes-form/incomes-form.component';
 import { ExpensesHomeComponent } from './components/expenses/expenses-home/expenses-home.component';
 import { ExpensesFormComponent } from './components/expenses/expenses-form/expenses-form.component';
 import { CostsHomeComponent } from './components/costs/costs-home/costs-home.component';
@@ -66,11 +68,14 @@ import { BillTypeHomeComponent } from './components/bill-type/bill-type-home/bil
 import { BillTypeFormComponent } from './components/bill-type/bill-type-form/bill-type-form.component';
 import { BankHomeComponent } from './components/bank/bank-home/bank-home.component';
 import { BankFormComponent } from './components/bank/bank-form/bank-form.component';
+import { CompanyFormComponent } from './components/home/company-form/company-form.component';
+import { ExpendituresHomeComponent } from './components/expenditures/expenditures-home/expenditures-home.component';
+import { ExpendituresFormComponent } from './components/expenditures/expenditures-form/expenditures-form.component';
 import { FilterExpensePipe } from './pipes/filter-expense.pipe';
 import { FilterCostPipe } from './pipes/filter-cost.pipe';
 import { FilterBillTypePipe } from './pipes/filter-bill-type.pipe';
 import { FilterBankPipe } from './pipes/filter-bank.pipe';
-import {CompanyFormComponent } from './components/home/company-form/company-form.component';
+
 
 
 const routes: Route[] = [
@@ -143,6 +148,17 @@ const routes: Route[] = [
   //Debs to Pay
   { path: 'debs-to-pay-home', component: DebsToPayHomeComponent, canActivate: [CheckloginGuard] },
   //reportes sales
+  {path: 'report2', component: Report2Component, canActivate:[CheckloginGuard]},
+  {path: 'report3', component: Report3Component, canActivate:[CheckloginGuard]},
+  {path: 'report1', component: Report1Component, canActivate:[CheckloginGuard]},
+   //Purchase Reports
+   { path: 'purchase-reports-home', component: PurchaseReportsHomeComponent,canActivate:[CheckloginGuard] },
+   { path: 'debs-pay-home', component: DebsPayHomeComponent,canActivate:[CheckloginGuard] },
+    //Inventory Reports
+    { path: 'inventory-reports-home', component: InventoryReportsHomeComponent,canActivate:[CheckloginGuard] },
+  
+  //incomes
+  {path: 'incomes', component: IncomesFormComponent, canActivate:[CheckloginGuard]},
   { path: 'report2', component: Report2Component, canActivate: [CheckloginGuard] },
   { path: 'report3', component: Report3Component, canActivate: [CheckloginGuard] },
   { path: 'report1', component: Report1Component, canActivate: [CheckloginGuard] },
@@ -167,6 +183,11 @@ const routes: Route[] = [
   { path: 'bank-form', component: BankFormComponent, canActivate: [CheckloginGuard] },
   { path: 'bank-home', component: BankHomeComponent, canActivate: [CheckloginGuard] },
   { path: 'bank-form/:id', component: BankFormComponent, canActivate: [CheckloginGuard] },
+  //Expenditures
+  { path: 'expenditures-form', component: ExpendituresFormComponent, canActivate: [CheckloginGuard] },
+  { path: 'expenditures-home', component: ExpendituresHomeComponent, canActivate: [CheckloginGuard] },
+  { path: 'expenditures-form/:id', component: ExpendituresFormComponent, canActivate: [CheckloginGuard] },
+
 ];
 
 @NgModule({
@@ -226,6 +247,7 @@ const routes: Route[] = [
     PurchaseReportsHomeComponent,
     DebsPayHomeComponent,
     InventoryReportsHomeComponent,
+    IncomesFormComponent,
     ExpensesHomeComponent,
     ExpensesFormComponent,
     CostsHomeComponent,
@@ -234,11 +256,13 @@ const routes: Route[] = [
     BillTypeFormComponent,
     BankHomeComponent,
     BankFormComponent,
+    CompanyFormComponent,
+    ExpendituresHomeComponent,
+    ExpendituresFormComponent,
     FilterExpensePipe,
     FilterCostPipe,
     FilterBillTypePipe,
     FilterBankPipe,
-    CompanyFormComponent
 
   ],
   imports: [
