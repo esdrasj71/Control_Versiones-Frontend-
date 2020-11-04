@@ -57,7 +57,7 @@ export class ProductFormComponent implements OnInit {
   productcategory: any[];
   selectedBrandId: number;
   selectedCategoryId: number;
-  selectedDueDate: Date = this.lot.Due_Date;
+  selectedDueDate: Date;
   //Update
   id: any;
   lastidproduct: number;
@@ -142,7 +142,7 @@ export class ProductFormComponent implements OnInit {
           //
           //this.procedure_saveproduct.Product_Id = this.lastidproduct;
           //console.log(this.procedure_saveproduct.Product_Id);
-          Swal.fire('Producto guardado con procedimiento almacenado', '','success');
+          Swal.fire('Producto guardado', '','success');
           this.Product_Id.emit(data['Correlative_Product']);
           //console.log(this.procedure_saveproduct);
           //this.router.navigate(['/product-home']);
@@ -165,6 +165,7 @@ export class ProductFormComponent implements OnInit {
     filter = filter.toLocaleLowerCase();
     return brands.Name.toLocaleLowerCase().indexOf(filter) > -1;
   }
+  //Formularios Emergentes
   getBrandId(id) {
     this.selectedBrandId = id;
     this.brandService.getBrandId(id).subscribe((data: Brands[]) => {

@@ -53,7 +53,7 @@ label{
   height: 200vh;
   top: 0;
   left: 0;
-  background:rgba(52, 58, 64, 0.5);
+  background:rgba(52, 58, 64, 0.7);
 }
 
 .photo h4{
@@ -199,7 +199,7 @@ label{
 .boxy:nth-child(1){
   width: 50%;
   min-height: 600px;
-  background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80') bottom no-repeat;
+  background: url('../../../assets/images/edificios.jpg') bottom no-repeat;
   background-size: cover;
   position: relative;
   z-index: 999;

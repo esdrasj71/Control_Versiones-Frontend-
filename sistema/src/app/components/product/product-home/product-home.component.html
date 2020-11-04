@@ -2,44 +2,46 @@
     <h1 style="text-align: center; font-weight: bold;">Listado de Productos</h1>
     <h2 style="text-align: center;">____________________</h2><br><br>
     <form>
-    <div class="form-group row">
-        &nbsp;&nbsp;&nbsp;<i class="fa fa-search fa-lg" style="left: 300px;"></i>&nbsp;&nbsp;&nbsp;
+        <div class="form-group row">
+            &nbsp;&nbsp;&nbsp;<i class="fa fa-search fa-lg" style="left: 300px;"></i>&nbsp;&nbsp;&nbsp;
             <input type="text" name="product" id="product" class="form-control" placeholder="Buscar producto"
-            tabindex="4" [(ngModel)]="filtrado_product" style="width: 35%;" />&nbsp;&nbsp;&nbsp;
-            <button type="button" class="btn btn-success" (click)="add()">Agregar Producto</button> 
-    </div>
+                tabindex="4" [(ngModel)]="filtrado_product" style="width: 35%;" />&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-success" (click)="add()">Agregar Producto</button>
+        </div>
     </form>
-<!---->
-<div class="table-wrapper-scroll-y my-custom-scrollbar">
-    <table class="table table-hover" style="background-color:#F8F9F9;" id="searchTextResults">
-        <thead class="thead-dark">
-            <tr>
-                <th class="header" scope="col">ID</th>
-                <th class="header" scope="col">No. correlativo</th>
-                <th class="header" scope="col">Producto</th>
-                <th class="header" scope="col">Marca</th>
-                <th class="header" scope="col">Categoría</th>
-                <th class="header" scope="col">Perecedero</th>
-                <th class="header" scope="col">Fecha de vencimiento</th>
-                <th class="header" scope="col">Acciones </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let product of products| fitradoproduct: filtrado_product">
-                <td>{{product.Product_Id}}</td>
-                <td>{{product.Correlative_Product}}</td>
-                <td>{{product.Names}}</td>
-                <td>{{product.Brand}}</td>
-                <td>{{product.Category}}</td>
-                <td>{{product.Perish}}</td>
-                <td>{{product.DueDate|date:'d-M-y'}}</td>
-                <td><a class="btn btn-warning btn-sm" style="background-color:#F7985B;" routerLink="/product-form/{{product.Product_Id}}">
-                    <i class="fa fa-pencil-square-o fa-lg" style="color: white;"></i></a>
-                    <a class="btn btn-danger btn-sm" style="background-color:#e74c3c;" (click)="delete(product.Product_Id)">
-                    <i class="fa fa-trash fa-lg" style="color: white;"></i></a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+    <!---->
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <table class="table table-hover" style="background-color:#F8F9F9;" id="searchTextResults">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="header" scope="col">ID</th>
+                    <th class="header" scope="col">No. correlativo</th>
+                    <th class="header" scope="col">Producto</th>
+                    <th class="header" scope="col">Marca</th>
+                    <th class="header" scope="col">Categoría</th>
+                    <th class="header" scope="col">Perecedero</th>
+                    <th class="header" scope="col">Fecha de vencimiento</th>
+                    <th class="header" scope="col">Acciones </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of products| fitradoproduct: filtrado_product">
+                    <td>{{product.Product_Id}}</td>
+                    <td>{{product.Correlative_Product}}</td>
+                    <td>{{product.Names}}</td>
+                    <td>{{product.Brand}}</td>
+                    <td>{{product.Category}}</td>
+                    <td>{{product.Perish}}</td>
+                    <td>{{product.DueDate|date:'d-M-y'}}</td>
+                    <td><a class="btn btn-warning btn-sm" style="background-color:#F7985B;"
+                            routerLink="/product-form/{{product.Product_Id}}">
+                            <i class="fa fa-pencil-square-o fa-lg" style="color: white;"></i></a>
+                        <a class="btn btn-danger btn-sm" style="background-color:#e74c3c;"
+                            (click)="delete(product.Product_Id)">
+                            <i class="fa fa-trash fa-lg" style="color: white;"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

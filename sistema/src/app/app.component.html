@@ -117,25 +117,28 @@
           <a class="nav-link"><span class="sronly"></span></a>
         </li>
         <ng-container *ngIf="rol==1;">
-        <li class="nav-item dropdown">
-          <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Estado de resultados 
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" routerLink="/incomes">Ingresos</a>
-            <a class="dropdown-item"  >Egresos</a>
-            <a class="dropdown-item" routerLink="/expenses-home">Gastos</a>
-            <a class="dropdown-item" routerLink="/costs-home">Costos</a>
-            <a class="dropdown-item" routerLink="/billtype-home">Tipo de Factura</a>
-            <a class="dropdown-item" routerLink="/bank-home">Bancos</a>
-
-          </div>
-        </li>
+          <div class="dropdown">
+            <a id="dLabel" role="button" data-toggle="dropdown" class="nav-link" data-target="#">
+                Estado de resultados <span class="caret"></span>
+            </a>
+    		<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu"> 
+          <li class="nav-item"><a class="dropdown-item" routerLink="/incomes">Ingresos</a></li> 
+              <li class="dropdown-submenu">
+                <a tabindex="-1" class="dropdown-item">Egresos</a>
+                <ul class="dropdown-menu">
+                  <li><a tabindex="-1" class="dropdown-item" routerLink="/expenditures-home">Egresos</a></li>
+                  <li><a class="dropdown-item" routerLink="/expenses-home">Gastos</a></li>
+                  <li><a class="dropdown-item" routerLink="/costs-home">Costos</a></li>
+                  <li><a class="dropdown-item" routerLink="/billtype-home">Tipos de Factura</a></li>
+                  <li><a class="dropdown-item" routerLink="/bank-home">Bancos</a></li>
+                  <div class="dropdown-divider"></div>
+                </ul>
+              </li>
+          </ul>
+        </div>
       </ng-container>
       </ul>
       <form class="form-inline my-2 my-lg-0">
-       
         <ul class="navbar-nav mr-auto">
           <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false"><h5> {{usuario}}</h5></a>
