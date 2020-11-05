@@ -76,6 +76,7 @@ import { FilterCostPipe } from './pipes/filter-cost.pipe';
 import { FilterBillTypePipe } from './pipes/filter-bill-type.pipe';
 import { FilterBankPipe } from './pipes/filter-bank.pipe';
 import { FilterExpendituresPipe } from './pipes/filter-expenditures.pipe';
+import { ResultStatementHomeComponent } from './components/result_statement/result-statement-home/result-statement-home.component';
 
 
 
@@ -149,17 +150,16 @@ const routes: Route[] = [
   //Debs to Pay
   { path: 'debs-to-pay-home', component: DebsToPayHomeComponent, canActivate: [CheckloginGuard] },
   //reportes sales
-  {path: 'report2', component: Report2Component, canActivate:[CheckloginGuard]},
-  {path: 'report3', component: Report3Component, canActivate:[CheckloginGuard]},
-  {path: 'report1', component: Report1Component, canActivate:[CheckloginGuard]},
-   //Purchase Reports
-   { path: 'purchase-reports-home', component: PurchaseReportsHomeComponent,canActivate:[CheckloginGuard] },
-   { path: 'debs-pay-home', component: DebsPayHomeComponent,canActivate:[CheckloginGuard] },
-    //Inventory Reports
-    { path: 'inventory-reports-home', component: InventoryReportsHomeComponent,canActivate:[CheckloginGuard] },
-  
+  { path: 'report2', component: Report2Component, canActivate: [CheckloginGuard] },
+  { path: 'report3', component: Report3Component, canActivate: [CheckloginGuard] },
+  { path: 'report1', component: Report1Component, canActivate: [CheckloginGuard] },
+  //Purchase Reports
+  { path: 'purchase-reports-home', component: PurchaseReportsHomeComponent, canActivate: [CheckloginGuard] },
+  { path: 'debs-pay-home', component: DebsPayHomeComponent, canActivate: [CheckloginGuard] },
+  //Inventory Reports
+  { path: 'inventory-reports-home', component: InventoryReportsHomeComponent, canActivate: [CheckloginGuard] },
   //incomes
-  {path: 'incomes', component: IncomesFormComponent, canActivate:[CheckloginGuard]},
+  { path: 'incomes', component: IncomesFormComponent, canActivate: [CheckloginGuard] },
   { path: 'report2', component: Report2Component, canActivate: [CheckloginGuard] },
   { path: 'report3', component: Report3Component, canActivate: [CheckloginGuard] },
   { path: 'report1', component: Report1Component, canActivate: [CheckloginGuard] },
@@ -189,6 +189,8 @@ const routes: Route[] = [
   { path: 'expenditures-home', component: ExpendituresHomeComponent, canActivate: [CheckloginGuard] },
   { path: 'expenditures-form/:id', component: ExpendituresFormComponent, canActivate: [CheckloginGuard] },
 
+    //Result Statement
+  {path: 'resultstatement-home', component: ResultStatementHomeComponent, canActivate: [CheckloginGuard]},
 ];
 
 @NgModule({
@@ -265,6 +267,7 @@ const routes: Route[] = [
     FilterBillTypePipe,
     FilterBankPipe,
     FilterExpendituresPipe,
+    ResultStatementHomeComponent,
 
   ],
   imports: [

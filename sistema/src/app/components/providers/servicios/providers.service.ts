@@ -38,4 +38,8 @@ export class ProvidersService {
     const headers = new HttpHeaders({ 'ContentType': 'application/json','accesstoken': localStorage.getItem('token') });
     return this.httpClient.delete(this.API_ENDPOINT + 'providers/' + id, { headers: headers });
   }
+  findproviders(id) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
+    return this.httpClient.get(this.API_ENDPOINT + 'providers/' + id, { headers: headers })
+  }
 }

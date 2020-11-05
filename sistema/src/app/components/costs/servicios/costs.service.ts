@@ -28,6 +28,6 @@ export class CostsService {
   }
   findcost(id) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
-    return this.httpClient.get(this.API_ENDPOINT + 'cost/' + id, { headers: headers })
+    return this.httpClient.get(this.API_ENDPOINT + 'costs/' + id, { headers: headers })
   }
 }

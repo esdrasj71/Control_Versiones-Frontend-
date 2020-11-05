@@ -21,149 +21,159 @@
   <!--<ng-template #viewNavbar>-->
   <nav class="navbar navbar-expand-lg navbar navbar-dark bg-#00806F">
     <ng-container *ngIf="Existe>0;">
-    <!--TOGGLE MAYBE DELETE-->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      ariacontrols="navbarSupportedContent" aria-expanded="false" arialabel="Toggle navigation">
+      <!--TOGGLE MAYBE DELETE-->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        ariacontrols="navbarSupportedContent" aria-expanded="false" arialabel="Toggle navigation">
 
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand" routerLink="/home">&nbsp;&nbsp;&nbsp;Home&nbsp;</a>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-          <a class="nav-link">|</a>
-        <li class="nav-item">
-          <a class="nav-link"><span class="sronly"></span></a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Ventas
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" routerLink="/customers-home">Clientes</a>
-            <ng-container *ngIf="rol==1;">
-            <a class="dropdown-item" routerLink="/employee-home">Empleados</a>
-            </ng-container>
-            <a class="dropdown-item" routerLink="/employee-position-home">Posición Empleado</a>
-            <a class="dropdown-item" routerLink="/payment-home">Pagos</a>
-            <a class="dropdown-item" routerLink="/accounts-receivable">Cuentas por cobrar</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" routerLink="/bill-header-form">Factura Ventas</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link"><span class="sronly"></span></a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Compras
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" routerLink="/providers-home">Proveedores</a>
-            <a class="dropdown-item" routerLink="/debs-to-pay-home">Cuentas por pagar</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" routerLink="/purchase_header-form">Factura Compras</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link"><span class="sronly"></span></a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Inventario
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" routerLink="/inventory-home">Inventario</a>
-            <a class="dropdown-item" routerLink="/product-home">Producto</a>
-            <a class="dropdown-item" routerLink="/lot-home">Lote</a>
-            <a class="dropdown-item" routerLink="/brand-home">Marca</a>
-            <a class="dropdown-item" routerLink="/product-category-home">Categoría Producto</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link"><span class="sronly"></span></a>
-        </li>
-        <ng-container *ngIf="rol==1;">
-          <!-- MULTIPLE DROPDOWNS INIT -->
-          <div class="dropdown">
-            <a id="dLabel" role="button" data-toggle="dropdown" class="nav-link" data-target="#">
-                Reportes <span class="caret"></span>
-            </a>
-    		<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">  
-              <li class="dropdown-submenu">
-                <a tabindex="-1" class="dropdown-item">Compras</a>
-                <ul class="dropdown-menu">
-                  <li><a tabindex="-1" class="dropdown-item" routerLink="/purchase-reports-home">Total de compras realizadas en un intervalo de tiempo</a></li>
-                  <div class="dropdown-divider"></div>
-                  <li><a class="dropdown-item" routerLink="/debs-pay-home">Cuentas por pagar vigentes</a></li>
-                </ul>
-              </li>
-              <li class="dropdown-submenu">
-                <a tabindex="-1" class="dropdown-item">Ventas</a>
-                <ul class="dropdown-menu">
-                  <li><a tabindex="-1" class="dropdown-item" routerLink="/report1">Facturas emitidas agrupadas por series</a></li>
-                  <li><a class="dropdown-item" routerLink="/report2">Clientes más frecuentes</a></li>
-                  <li><a class="dropdown-item" routerLink="/report3">Cuentas por cobrar vigentes</a></li>
-                </ul>
-              </li>
-              <li class="nav-item"><a class="dropdown-item" routerLink="/inventory-reports-home">Inventario</a></li>
-          </ul>
-        </div>
-      <!-- END OF DROPDOWNS-->
-      </ng-container>
-        <li class="nav-item">
-          <a class="nav-link"><span class="sronly"></span></a>
-        </li>
-        <ng-container *ngIf="rol==1;">
-          <div class="dropdown">
-            <a id="dLabel" role="button" data-toggle="dropdown" class="nav-link" data-target="#">
-                Estado de resultados <span class="caret"></span>
-            </a>
-    		<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu"> 
-          <li class="nav-item"><a class="dropdown-item" routerLink="/incomes">Ingresos</a></li> 
-              <li class="dropdown-submenu">
-                <a tabindex="-1" class="dropdown-item">Egresos</a>
-                <ul class="dropdown-menu">
-                  <li><a tabindex="-1" class="dropdown-item" routerLink="/expenditures-home">Egresos</a></li>
-                  <div class="dropdown-divider"></div>
-                  <li><a class="dropdown-item" routerLink="/expenses-home">Gastos</a></li>
-                  <li><a class="dropdown-item" routerLink="/costs-home">Costos</a></li>
-                  <li><a class="dropdown-item" routerLink="/billtype-home">Tipos de Factura</a></li>
-                  <li><a class="dropdown-item" routerLink="/bank-home">Bancos</a></li>
-                </ul>
-              </li>
-          </ul>
-        </div>
-      </ng-container>
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" routerLink="/home">&nbsp;&nbsp;&nbsp;Home&nbsp;</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false"><h5> {{usuario}}</h5></a>
-        <li class="nav-item dropdown">
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <ng-container *ngIf="rol==1;">
-            <a class="dropdown-item" routerLink="/company/1" style="color: black;"><i class="fa fa-building" aria-hidden="true"></i>&nbsp; Editar Empresa</a>
-            </ng-container>
-            <ng-container *ngIf="rol==1;">
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" routerLink="/user"><i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp;Crear Nuevo Usuario</a>
-            </ng-container>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Cerrar Sesion</a>
-          </div>
-        </li>
-          <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-user fa-lg" style="color: white;"></i>
-          </a>
-          
+          <a class="nav-link">|</a>
+          <li class="nav-item">
+            <a class="nav-link"><span class="sronly"></span></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              Ventas
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" routerLink="/customers-home">Clientes</a>
+              <ng-container *ngIf="rol==1;">
+                <a class="dropdown-item" routerLink="/employee-home">Empleados</a>
+              </ng-container>
+              <a class="dropdown-item" routerLink="/employee-position-home">Posición Empleado</a>
+              <a class="dropdown-item" routerLink="/payment-home">Pagos</a>
+              <a class="dropdown-item" routerLink="/accounts-receivable">Cuentas por cobrar</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" routerLink="/bill-header-form">Factura Ventas</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"><span class="sronly"></span></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              Compras
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" routerLink="/providers-home">Proveedores</a>
+              <a class="dropdown-item" routerLink="/debs-to-pay-home">Cuentas por pagar</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" routerLink="/purchase_header-form">Factura Compras</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"><span class="sronly"></span></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              Inventario
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" routerLink="/inventory-home">Inventario</a>
+              <a class="dropdown-item" routerLink="/product-home">Producto</a>
+              <a class="dropdown-item" routerLink="/lot-home">Lote</a>
+              <a class="dropdown-item" routerLink="/brand-home">Marca</a>
+              <a class="dropdown-item" routerLink="/product-category-home">Categoría Producto</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"><span class="sronly"></span></a>
+          </li>
+          <ng-container *ngIf="rol==1;">
+            <!-- MULTIPLE DROPDOWNS INIT -->
+            <div class="dropdown">
+              <a id="dLabel" role="button" data-toggle="dropdown" class="nav-link" data-target="#">
+                Reportes <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                <li class="dropdown-submenu">
+                  <a tabindex="-1" class="dropdown-item">Compras</a>
+                  <ul class="dropdown-menu">
+                    <li><a tabindex="-1" class="dropdown-item" routerLink="/purchase-reports-home">Total de compras
+                        realizadas en un intervalo de tiempo</a></li>
+                    <div class="dropdown-divider"></div>
+                    <li><a class="dropdown-item" routerLink="/debs-pay-home">Cuentas por pagar vigentes</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown-submenu">
+                  <a tabindex="-1" class="dropdown-item">Ventas</a>
+                  <ul class="dropdown-menu">
+                    <li><a tabindex="-1" class="dropdown-item" routerLink="/report1">Facturas emitidas agrupadas por
+                        series</a></li>
+                    <li><a class="dropdown-item" routerLink="/report2">Clientes más frecuentes</a></li>
+                    <li><a class="dropdown-item" routerLink="/report3">Cuentas por cobrar vigentes</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item"><a class="dropdown-item" routerLink="/inventory-reports-home">Inventario</a></li>
+              </ul>
+            </div>
+            <!-- END OF DROPDOWNS-->
+          </ng-container>
+          <li class="nav-item">
+            <a class="nav-link"><span class="sronly"></span></a>
+          </li>
+          <ng-container *ngIf="rol==1;">
+            <div class="dropdown">
+              <a id="dLabel" role="button"  data-toggle="dropdown" class="nav-link"
+                data-target="#">
+                Estado de resultados <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                <li class="nav-item"><a class="dropdown-item" routerLink="/resultstatement-home">Estado de Resultados</a></li>
+                <li class="nav-item"><a class="dropdown-item" routerLink="/incomes">Ingresos</a></li>
+                <li class="dropdown-submenu">
+                  <a tabindex="-1" class="dropdown-item">Egresos</a>
+                  <ul class="dropdown-menu">
+                    <li><a tabindex="-1" class="dropdown-item" routerLink="/expenditures-home">Egresos</a></li>
+                    <div class="dropdown-divider"></div>
+                    <li><a class="dropdown-item" routerLink="/expenses-home">Gastos</a></li>
+                    <li><a class="dropdown-item" routerLink="/costs-home">Costos</a></li>
+                    <li><a class="dropdown-item" routerLink="/billtype-home">Tipos de Factura</a></li>
+                    <li><a class="dropdown-item" routerLink="/bank-home">Bancos</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </ng-container>
         </ul>
-      </form>
-    </div>
-  </ng-container>
-  </nav> 
+        <form class="form-inline my-2 my-lg-0">
+          <ul class="navbar-nav mr-auto">
+            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              <h5> {{usuario}}</h5>
+            </a>
+            <li class="nav-item dropdown">
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <ng-container *ngIf="rol==1;">
+                  <a class="dropdown-item" routerLink="/company/1" style="color: black;"><i class="fa fa-building"
+                      aria-hidden="true"></i>&nbsp; Editar Empresa</a>
+                </ng-container>
+                <ng-container *ngIf="rol==1;">
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" routerLink="/user"><i class="fa fa-user-circle"
+                      aria-hidden="true"></i>&nbsp;Crear Nuevo Usuario</a>
+                </ng-container>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out"
+                    aria-hidden="true"></i>&nbsp;Cerrar Sesion</a>
+              </div>
+            </li>
+            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              <i class="fa fa-user fa-lg" style="color: white;"></i>
+            </a>
+
+          </ul>
+        </form>
+      </div>
+    </ng-container>
+  </nav>
   <br>
   <section class="featured">
     <router-outlet></router-outlet>
@@ -174,21 +184,22 @@
       <div class="row">
         <div class="col-sm-12 col-md-6">
           <h6>Acerca del sistema</h6>
-          <p class="text-justify">Quetzal Commerce <i>APOYANDO CON TU EMPRESA </i> Es un sistema web contable que 
-          brinda una herramienta amigable, para el manejo financiero de su empresa. Al mismo tiempo, permite lograr una
-          mejor organización en los estados contables de su empresa, localizando y analizando datos para gestionar
-          su proceso financiero. Este sistema generara un beneficio económico, incremento de productividad
-          y una buena gestión de tomas de decisiones. </p>
+          <p class="text-justify">Quetzal Commerce <i>APOYANDO CON TU EMPRESA </i> Es un sistema web contable que
+            brinda una herramienta amigable, para el manejo financiero de su empresa. Al mismo tiempo, permite lograr
+            una
+            mejor organización en los estados contables de su empresa, localizando y analizando datos para gestionar
+            su proceso financiero. Este sistema generara un beneficio económico, incremento de productividad
+            y una buena gestión de tomas de decisiones. </p>
         </div>
 
         <div class="col-xs-6 col-md-3">
           <h6>Categorías</h6>
           <ul class="footer-links">
-            <li><a >Ventas</a></li>
-            <li><a >Compras</a></li>
-            <li><a >Inventario</a></li>
-            <li><a >Reportes</a></li>
-            <li><a >Estado de resultados</a></li>
+            <li><a>Ventas</a></li>
+            <li><a>Compras</a></li>
+            <li><a>Inventario</a></li>
+            <li><a>Reportes</a></li>
+            <li><a>Estado de resultados</a></li>
           </ul>
         </div>
 
