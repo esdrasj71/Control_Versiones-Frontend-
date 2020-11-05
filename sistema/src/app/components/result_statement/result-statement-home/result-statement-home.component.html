@@ -37,9 +37,9 @@
     <div id="pdfTable" #pdfTable>
        
         <div>
-            <table class="table" style="table-layout: fixed; word-wrap: break-word;" id="table">
-                <thead *ngFor="let datos of total_ingreso" class="thead-dark">
-                    <tr class="bg-secondary">
+            <table class="styled-table" style="table-layout: fixed; word-wrap: break-word;" id="table">
+                <thead *ngFor="let datos of total_ingreso">
+                    <tr>
                         <th scope="col">Ingresos</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
@@ -47,7 +47,7 @@
                     </tr>
                 </thead> 
                 <thead *ngFor="let datos of total_costos">
-                    <tr class="bg-secondary" >
+                    <tr>
                         <th scope="col">Costos</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
@@ -55,7 +55,7 @@
                     </tr>
                 </thead>
                 <tbody *ngFor="let datos of detalle_costos" >
-                    <tr class="bg-secondary" >
+                    <tr>
                         <td height="10"></td>
                         <td height="10">{{datos.NombreCostos}}</td>
                         <td height="10">{{datos.Amount | currency:"GTQ":"Q"}}</td>
@@ -63,7 +63,7 @@
                     </tr>
                 </tbody>
                 <thead *ngFor="let datos of utilidad_bruta" >
-                    <tr class="bg-secondary">
+                    <tr>
                         <th scope="col">Utilidad bruta</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
@@ -71,7 +71,7 @@
                     </tr>
                 </thead>
                 <thead *ngFor="let datos of total_gastos" >
-                    <tr class="bg-secondary" >
+                    <tr>
                         <th scope="col">Gastos</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
@@ -79,7 +79,7 @@
                     </tr>
                 </thead>
                 <tbody *ngFor="let datos of detalle_gastos" >
-                    <tr class="bg-secondary">
+                    <tr>
                         <td height="10"></td>
                         <td height="10">{{datos.NombreGastos}}</td>
                         <td height="10">{{datos.Amount | currency:"GTQ":"Q"}}</td>
@@ -87,7 +87,7 @@
                     </tr>
                 </tbody>
                 <thead *ngFor="let datos of utilidad_operativa" >
-                    <tr class="bg-secondary">
+                    <tr>
                         <th scope="col">Utilidad operativa</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
