@@ -10,6 +10,7 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import htmlToPdfmake from 'html-to-pdfmake'; 
 import Swal from 'sweetalert2';
+import { ExpendituresService } from '../../expenditures/servicios/expenditures.service';
 @Component({
   selector: 'app-inventory-reports-home',
   templateUrl: './inventory-reports-home.component.html',
@@ -19,6 +20,8 @@ export class InventoryReportsHomeComponent implements OnInit {
   @ViewChild('pdfTable') pdfTable: ElementRef;
   @ViewChild('pdfTable2') pdfTable2: ElementRef;
   API_ENDPOINT = 'http://localhost:3000/';
+  empresa: any = [];
+  date = new Date();
   //Variables
   reportone: InventoryReport1[];
   detail: InventoryReport1[];
@@ -37,27 +40,97 @@ export class InventoryReportsHomeComponent implements OnInit {
     ProductId: null
   };
 
-  constructor(private inventoryreportService: InventoryReportsService, private inventoryreport2Service: InventoryReports2Service, private httpClient: HttpClient) { }
+  constructor(private inventoryreportService: InventoryReportsService, private inventoryreport2Service: InventoryReports2Service, private httpClient: HttpClient,private expendituresService:ExpendituresService) { }
 
   ngOnInit(): void {
+    this.expendituresService.getempresa().subscribe((data) => {
+      this.empresa = data[0];
+      return this.empresa;
+    });
   }
   imprimir() {
+    let mes = this.date.getMonth() + 1;
+    let fecha =
+
+      this.date.getFullYear()
+      +
+      '-' +
+      mes.toString() +
+      '-'  +   this.date.getDate(); 
+  let creado = fecha;
     const doc = new jsPDF();
     //get table html
     const pdfTable = this.pdfTable.nativeElement;
     //html to pdf format
-    var html = htmlToPdfmake("<b>Nombre del sistema </b></br>" + "<b>Fecha consultada del " + this.report1.Date1 + " al " + this.report1.Date2 + "</b></br>" + pdfTable.innerHTML);
+    var html = htmlToPdfmake(`
+    <div style = "text-align:center;">
+    <h1>Quetzal Commerce ®</h1>
+    <p>
+    <b>Empresa: </b> `+this.empresa.Company_Name+`
+    </p>
+    <p>
+    <b>Dirección: </b> `+this.empresa.Address+`
+    </p>
+    <p>
+    <b>NIT: </b> `+this.empresa.NIT+`
+    </p>
+   </div> 
+    <div style = "text-align:justify;">
+    <p>
+      <b>Reporte: Reporte de inventario.</b>
+    </p>
+    <p>
+    <b>La fecha en la que se generó el reporte fue: del ` +this.report1.Date1+ ` al `+this.report1.Date2 +` </b>
+   </p>
+    <p>
+    <b>Este reporte se genero el día: `+creado +`</b> 
+    </p>
+    </div>
+    ` + pdfTable.innerHTML);
 
     const documentDefinition = { content: html };
     pdfMake.createPdf(documentDefinition).open();
   }
 
   imprimir2() {
+    let mes = this.date.getMonth() + 1;
+    let fecha =
+
+      this.date.getFullYear()
+      +
+      '-' +
+      mes.toString() +
+      '-'  +   this.date.getDate(); 
+  let creado = fecha;
     const doc = new jsPDF();
     //get table html
     const pdfTable2 = this.pdfTable2.nativeElement;
     //html to pdf format
-    var html = htmlToPdfmake("<b>Nombre del sistema </b></br>" + "<b>Fecha consultada del " + this.report2.Date1 + " al " + this.report2.Date2 + "</b></br> Detalle de la compra </br> " + pdfTable2.innerHTML);
+    var html = htmlToPdfmake(`
+    <div style = "text-align:center;">
+    <h1>Quetzal Commerce ®</h1>
+    <p>
+    <b>Empresa: </b> `+this.empresa.Company_Name+`
+    </p>
+    <p>
+    <b>Dirección: </b> `+this.empresa.Address+`
+    </p>
+    <p>
+    <b>NIT: </b> `+this.empresa.NIT+`
+    </p>
+   </div> 
+    <div style = "text-align:justify;">
+    <p>
+      <b>Reporte: Reporte detallado de inventario.</b>
+    </p>
+    <p>
+    <b>La fecha en la que se generó el reporte fue: del ` +this.report1.Date1+ ` al `+this.report1.Date2 +` </b>
+   </p>
+    <p>
+    <b>Este reporte se genero el día: `+creado +`</b> 
+    </p>
+    </div>
+    `+ pdfTable2.innerHTML);
 
     const documentDefinition = { content: html };
     pdfMake.createPdf(documentDefinition).open();

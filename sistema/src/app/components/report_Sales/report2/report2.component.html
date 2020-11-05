@@ -5,11 +5,11 @@
         <div class="form-group row ">
             <label for="" class="col-form-label">Fecha Inicio:</label>
             <div class="col-md-4">
-                <input type="date" [(ngModel)]="report2.fechainicio" name="" id="" class="form-control" tabindex="1" />
+                <input type="date" [(ngModel)]="report2.fechainicio" [ngModelOptions]="{standalone: true}" name="" id="" class="form-control" tabindex="1" />
             </div>
             <label for="" class="col-form-label">Fecha Fin:</label>
             <div class="col-md-4">
-                <input type="date" name="" [(ngModel)]="report2.fechafin" id="" class="form-control" tabindex="1" />
+                <input type="date" name="" [(ngModel)]="report2.fechafin"  [ngModelOptions]="{standalone: true}" id="" class="form-control" tabindex="1" />
             </div>
             <div class="col-md-2">
                 <button type="submit" (click)="saveReport2()" class="btn btn-danger">Consultar</button>

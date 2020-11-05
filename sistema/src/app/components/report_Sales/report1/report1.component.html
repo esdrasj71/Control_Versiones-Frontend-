@@ -5,11 +5,11 @@
     <div class="form-group row">
         <label for="" class="col-form-label">Fecha Inicio:</label>
         <div class="col-md-4">
-            <input type="date" name="" [(ngModel)]="report2.fechainicio" id="" class="form-control" tabindex="1" />
+            <input type="date" name="" [(ngModel)]="report2.fechainicio" [ngModelOptions]="{standalone: true}" id="" class="form-control" tabindex="1" />
         </div>
         <label for="" class="col-form-label">Fecha Fin:</label>
         <div class="col-md-4">
-            <input type="date" name="" [(ngModel)]="report2.fechafin" id="" class="form-control" tabindex="1" />
+            <input type="date" name="" [(ngModel)]="report2.fechafin"  [ngModelOptions]="{standalone: true}"id="" class="form-control" tabindex="1" />
         </div>
         <div class="col-md-2">
             <button type="submit" (click)="saveReport1()" class="btn btn-danger">Consultar</button>
@@ -49,7 +49,7 @@
                         <td height="10">{{report1.Names}}</td>
                         <td height="10">{{report1.NIT}}</td>
                         <td height="10">{{report1.Correlative_Number}}</td>
-                        <td height="10">{{report1.Date}}</td>
+                        <td height="10">{{report1.Date |date:'d-M-y'}}</td>
                         <td height="10">{{report1.Total | currency:"GTQ":"Q"}}</td>
                     </tr>
                 </tbody>

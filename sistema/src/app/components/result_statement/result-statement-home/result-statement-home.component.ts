@@ -1,7 +1,7 @@
-import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
-import {Reports2Service} from '../servicios/reports2.service';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {ResultStatementService} from '../servicios/result-statement.service';
 import {HttpClient} from '@angular/common/http';
-import {Report2} from '../interfaces/report2';
+import {ResultStatement} from '../interfaces/result_statement';
 import jsPDF from 'jspdf';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
@@ -9,41 +9,50 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import htmlToPdfmake from 'html-to-pdfmake';
 import { ExpendituresService } from '../../expenditures/servicios/expenditures.service';
 @Component({
-  selector: 'app-report2',
-  templateUrl: './report2.component.html',
-  styleUrls: ['./report2.component.css']
+  selector: 'app-result-statement-home',
+  templateUrl: './result-statement-home.component.html',
+  styleUrls: ['./result-statement-home.component.css']
 })
-export class Report2Component implements OnInit {
+export class ResultStatementHomeComponent implements OnInit {
   @ViewChild('pdfTable') pdfTable: ElementRef;
   API_ENDPOINT = 'http://localhost:3000/';
-  report2: Report2 = {
+  resultstatement: ResultStatement = {
     fechainicio: null,
     fechafin: null,
   }
-  repor2: Report2[];
+  resultsta: ResultStatement[];
+  total_ingreso: any = [];
+  total_costos: any = [];
+  detalle_costos: any = [];
+  utilidad_bruta: any = [];
+  total_gastos: any = [];
+  detalle_gastos: any = [];
+  utilidad_operativa: any = [];
   empresa: any = [];
   date = new Date();
-  constructor(private report2Service: Reports2Service, private httpClient: HttpClient,private expendituresService:ExpendituresService) {
-  
-   }
- 
+  constructor(private resultStatementService: ResultStatementService, private httpCliente: HttpClient,private expendituresService:ExpendituresService) { 
+
+  }
+
   ngOnInit(): void {
     this.expendituresService.getempresa().subscribe((data) => {
       this.empresa = data[0];
       return this.empresa;
-    })
+    });
   }
-  saveReport2(){
-    this.report2Service.savereport2(this.report2).subscribe((data)=>{
-      alert('Reporte 2 generado');
-      console.log(data[0]);
-      this.repor2 = data[0];
+
+  estadoresult(){
+    this.resultStatementService.saveresultStatement(this.resultstatement).subscribe((data)=>{
+      console.log(data);
+      this.total_ingreso = data[0];
+      this.total_costos = data[1];
+      this.detalle_costos = data[4];
+      this.utilidad_bruta = data[5];
+      this.total_gastos = data[2]
+      this.detalle_gastos = data[3];
+      this.utilidad_operativa = data[6];
       
-    }, (error)=>{
-      console.log(error);
-      alert('Error en reporte 2');
     })
-   
   }
   downloadPDF() {
     let mes = this.date.getMonth() + 1;
@@ -74,11 +83,11 @@ export class Report2Component implements OnInit {
    </div> 
     <div style = "text-align:justify;">
     <p>
-      <b>Reporte: Clientes más frecuentes.</b>
+      <b>Reporte: Estado de resultados.</b>
     </p>
     <p>
-     <b>La fecha en la que se generó el reporte fue: del ` +this.report2.fechainicio+ ` al `+this.report2.fechafin +` </b>
-    </p>
+    <b>La fecha en la que se generó el reporte fue: del ` +this.resultstatement.fechainicio+ ` al `+this.resultstatement.fechafin+` </b>
+   </p>
     <p>
     <b>Este reporte se genero el día: `+creado +`</b> 
     </p>
@@ -88,5 +97,4 @@ export class Report2Component implements OnInit {
     const documentDefinition = { content: html };
     pdfMake.createPdf(documentDefinition).open();
   }
-
 }

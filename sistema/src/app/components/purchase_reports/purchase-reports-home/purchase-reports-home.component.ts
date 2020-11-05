@@ -10,6 +10,7 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import htmlToPdfmake from 'html-to-pdfmake'; 
 import Swal from 'sweetalert2';
+import { ExpendituresService } from '../../expenditures/servicios/expenditures.service';
 @Component({
   selector: 'app-purchase-reports-home',
   templateUrl: './purchase-reports-home.component.html',
@@ -26,7 +27,7 @@ export class PurchaseReportsHomeComponent implements OnInit {
   Total = 0;
   cont = 0;
   Existe=0;
-
+  empresa: any = [];
   //Report1
   report1: PurchaseReport1 = {
     Date1: null,
@@ -38,19 +39,56 @@ report2: PurchaseReport2 = {
   Date2: null,
   ProvidersId: null
 };
-constructor(private purchasereportService: PurchaseReportsService, private purchasereport2Service: PurchaseReports2Service ,private httpClient: HttpClient) {
+date = new Date();
+constructor(private purchasereportService: PurchaseReportsService, private purchasereport2Service: PurchaseReports2Service ,private httpClient: HttpClient,private expendituresService:ExpendituresService) {
 
   }
   ngOnInit(): void {
+    this.expendituresService.getempresa().subscribe((data) => {
+      this.empresa = data[0];
+      return this.empresa;
+    })
   }
 
 imprimir()
 {
+  let mes = this.date.getMonth() + 1;
+  let fecha =
+   this.date.getDate() +
+    '/' +
+    mes.toString() +
+    '/' +
+    this.date.getFullYear();
+let creado = fecha;
   const doc = new jsPDF();
   //get table html
   const pdfTable = this.pdfTable.nativeElement;
   //html to pdf format
-  var html = htmlToPdfmake("<b>Nombre del sistema </b></br>"+ "<b>Fecha consultada del "+this.report1.Date1+" al "+this.report1.Date2 +"</b></br>" +pdfTable.innerHTML);
+  var html = htmlToPdfmake(`
+  <div style = "text-align:center;">
+  <h1>Quetzal Commerce ®</h1>
+  <p>
+  <b>Empresa: </b> `+this.empresa.Company_Name+`
+  </p>
+  <p>
+  <b>Dirección: </b> `+this.empresa.Address+`
+  </p>
+  <p>
+  <b>NIT: </b> `+this.empresa.NIT+`
+  </p>
+ </div> 
+  <div style = "text-align:justify;">
+  <p>
+    <b>Reporte: Reporte Detallado de Compras.</b>
+  </p>
+  <p>
+   <b>La fecha en la que se generó el reporte fue: del ` +this.report1.Date1+ ` al `+this.report1.Date2 +` </b>
+  </p>
+  <p>
+  <b>Este reporte se genero el día: `+creado +`</b> 
+  </p>
+  </div>
+  ` +pdfTable.innerHTML);
  
   const documentDefinition = { content: html };
   pdfMake.createPdf(documentDefinition).open();
@@ -58,11 +96,44 @@ imprimir()
 
 imprimir2()
 {
+  let mes = this.date.getMonth() + 1;
+  let fecha =
+   this.date.getDate() +
+    '/' +
+    mes.toString() +
+    '/' +
+    this.date.getFullYear();
+let creado = fecha;
   const doc = new jsPDF();
   //get table html
   const pdfTable2 = this.pdfTable2.nativeElement;
   //html to pdf format
-  var html = htmlToPdfmake("<b>Nombre del sistema </b></br>"+ "<b>Fecha consultada del "+this.report1.Date1+" al "+this.report1.Date2 +"</b></br> Detalle de la compra </br> " +pdfTable2.innerHTML);
+  var html = htmlToPdfmake(`
+  <div style = "text-align:center;">
+  <h1>Quetzal Commerce ®</h1>
+  <p>
+  <b>Empresa: </b> `+this.empresa.Company_Name+`
+  </p>
+  <p>
+  <b>Dirección: </b> `+this.empresa.Address+`
+  </p>
+  <p>
+  <b>NIT: </b> `+this.empresa.NIT+`
+  </p>
+ </div> 
+  <div style = "text-align:justify;">
+  <p>
+    <b>Reporte: Detalle de las compras.</b>
+  </p>
+  <p>
+   <b>La fecha en la que se generó el reporte fue: del ` +this.report1.Date1+ ` al `+this.report1.Date2 +` </b>
+  </p>
+  <p>
+  <b>Este reporte se genero el día: `+creado +`</b> 
+  </p>
+  </div>
+  `
+     +pdfTable2.innerHTML);
  
   const documentDefinition = { content: html };
   pdfMake.createPdf(documentDefinition).open();
