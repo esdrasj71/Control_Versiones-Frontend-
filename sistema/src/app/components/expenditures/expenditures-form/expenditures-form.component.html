@@ -198,8 +198,8 @@
                             <br>
                             <label *ngIf="small2.checked" style="color: white;">Costo:</label>
                             <!--Costs-->
-                            <div class="form-group row">
-                                <div class="col-md-4" *ngIf="small2.checked">
+                            <div class="form-group row"> 
+                                <div class="col-md-6" *ngIf="small2.checked">
                                     <ng-select [searchFn]="searchCosts" id="costs" name="costs" [items]="costs"
                                         [virtualScroll]="true" bindLabel="Name" bindValue="Cost_Id" placeholder="Costo"
                                         [(ngModel)]="selectedCostsId">
