@@ -64,11 +64,12 @@ export class Report1Component implements OnInit {
   downloadPDF() {
     let mes = this.date.getMonth() + 1;
     let fecha =
-     this.date.getDate() +
-      '/' +
+
+      this.date.getFullYear()
+      +
+      '-' +
       mes.toString() +
-      '/' +
-      this.date.getFullYear();
+      '-'  +   this.date.getDate(); 
   let creado = fecha;
     const doc = new jsPDF();
     //get table html
