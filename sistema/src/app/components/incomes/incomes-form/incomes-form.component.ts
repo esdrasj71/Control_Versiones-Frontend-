@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {IncomesService} from '../servicios/incomes.service';
 import {HttpClient} from '@angular/common/http';
 import {Incomes} from '../interfaces/income';
-
-
+import Swal from 'sweetalert2';
+ 
 @Component({
   selector: 'app-incomes-form',
   templateUrl: './incomes-form.component.html',
@@ -124,9 +124,11 @@ export class IncomesFormComponent implements OnInit {
     }
     if( this.ban){
       alert("Punto de venta " + cadena);
+      //Swal.fire({icon: 'error', title: 'Ocurrio un error', text: cadena});
     }
   }else{
     alert("Ocurrio un error " + cadena);
+    //Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
   }
   }
   saveincomes(){

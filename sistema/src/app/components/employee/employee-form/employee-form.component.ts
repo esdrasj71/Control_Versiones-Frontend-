@@ -49,7 +49,7 @@ export class EmployeeFormComponent implements OnInit {
       .subscribe((data: EmployeePosition[]) => {
         this.employeePosition = data;
         console.log(this.employeePosition);
-      })
+      }) 
   }
   ngOnInit() {
   }

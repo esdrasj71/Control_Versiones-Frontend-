@@ -78,7 +78,7 @@
                 &nbsp;&nbsp;
                 <label class="col-md-3 form-controllabel" for="Lot"> Seleccione posición del empleado: </label>
                 <select id="employee_pos" name="employee_pos" [(ngModel)]="employee.Employee_Position_Id"
-                    [ngModelOptions]="{standalone: true}" style="width:60%;">
+                    [ngModelOptions]="{standalone: true}" style="width:35%; border-radius: 4px;">
                     <option *ngFor="let employeePos of employeePosition" value="{{employeePos.Employee_Position_Id}}"
                         style="height: 1200px">
                         {{employeePos.Name}}

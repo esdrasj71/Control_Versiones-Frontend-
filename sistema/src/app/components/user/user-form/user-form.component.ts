@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../interface/user';
 import { UserService } from '../servicios/user.service'; 
+import { Employee} from '../../employee/interfaces/employee';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-user-form',
@@ -16,8 +18,18 @@ export class UserFormComponent implements OnInit {
     Usertype: null,
     Employee_Id: null,
   };
+  API_ENDPOINT = 'http://localhost:3000/';
   date = new Date();
-  constructor(private userService: UserService) {}
+  employee : Employee[];
+  constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
+
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
+    this.httpClient.get(this.API_ENDPOINT + 'employee', { headers })
+      .subscribe((data: Employee[]) => {
+        this.employee = data;
+        console.log(this.employee);
+      })
+  }
 
   ngOnInit(): void {}
   saveUser() {
