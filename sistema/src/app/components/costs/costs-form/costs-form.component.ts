@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Costs } from '../interfaces/costs';
 import { CostsService } from '../servicios/costs.service';
 import { ActivatedRoute } from '@angular/router';
@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./costs-form.component.css']
 })
 export class CostsFormComponent implements OnInit {
+  @Output() Cost_Id = new EventEmitter<number>();
   costs: Costs = {
     Name: null,
   };
@@ -50,6 +51,7 @@ export class CostsFormComponent implements OnInit {
       this.costsService.save(this.costs).subscribe((data) => {
         Swal.fire('Costo Guardado', '','success');
         console.log(data)
+        this.Cost_Id.emit(data['id']);
       }, (error) => {
         console.log(error);
         Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})

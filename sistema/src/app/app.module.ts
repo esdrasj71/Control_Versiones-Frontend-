@@ -149,17 +149,16 @@ const routes: Route[] = [
   //Debs to Pay
   { path: 'debs-to-pay-home', component: DebsToPayHomeComponent, canActivate: [CheckloginGuard] },
   //reportes sales
-  {path: 'report2', component: Report2Component, canActivate:[CheckloginGuard]},
-  {path: 'report3', component: Report3Component, canActivate:[CheckloginGuard]},
-  {path: 'report1', component: Report1Component, canActivate:[CheckloginGuard]},
-   //Purchase Reports
-   { path: 'purchase-reports-home', component: PurchaseReportsHomeComponent,canActivate:[CheckloginGuard] },
-   { path: 'debs-pay-home', component: DebsPayHomeComponent,canActivate:[CheckloginGuard] },
-    //Inventory Reports
-    { path: 'inventory-reports-home', component: InventoryReportsHomeComponent,canActivate:[CheckloginGuard] },
-  
+  { path: 'report2', component: Report2Component, canActivate: [CheckloginGuard] },
+  { path: 'report3', component: Report3Component, canActivate: [CheckloginGuard] },
+  { path: 'report1', component: Report1Component, canActivate: [CheckloginGuard] },
+  //Purchase Reports
+  { path: 'purchase-reports-home', component: PurchaseReportsHomeComponent, canActivate: [CheckloginGuard] },
+  { path: 'debs-pay-home', component: DebsPayHomeComponent, canActivate: [CheckloginGuard] },
+  //Inventory Reports
+  { path: 'inventory-reports-home', component: InventoryReportsHomeComponent, canActivate: [CheckloginGuard] },
   //incomes
-  {path: 'incomes', component: IncomesFormComponent, canActivate:[CheckloginGuard]},
+  { path: 'incomes', component: IncomesFormComponent, canActivate: [CheckloginGuard] },
   { path: 'report2', component: Report2Component, canActivate: [CheckloginGuard] },
   { path: 'report3', component: Report3Component, canActivate: [CheckloginGuard] },
   { path: 'report1', component: Report1Component, canActivate: [CheckloginGuard] },
