@@ -3,8 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../interface/user';
 import { UserService } from '../servicios/user.service'; 
-import { Employee} from '../../employee/interfaces/employee';
+import { Employee} from '../../employee/interfaces/employee'; 
+import { EmployeeService } from '../../employee/servicios/employee.service';
 import Swal from 'sweetalert2';
+import { EmployeePositionService } from '../../employee_position/servicios/employee-position.service';
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
@@ -21,14 +23,20 @@ export class UserFormComponent implements OnInit {
   API_ENDPOINT = 'http://localhost:3000/';
   date = new Date();
   employee : Employee[];
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
+  selectedEmployeeId : number;
+  userarr: User[];
+
+  constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private httpClient: HttpClient, 
+    private employeeService: EmployeeService) {
 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
+
     this.httpClient.get(this.API_ENDPOINT + 'employee', { headers })
       .subscribe((data: Employee[]) => {
         this.employee = data;
         console.log(this.employee);
-      })
+      });
+      this.selectedEmployeeId = this.user.Employee_Id;
   }
 
   ngOnInit(): void {}
@@ -41,6 +49,7 @@ export class UserFormComponent implements OnInit {
       '/' +
       this.date.getFullYear();
     this.user.Date_Created = new Date(fecha);
+    this.user.Employee_Id = this.selectedEmployeeId;
     this.userService.save(this.user).subscribe(
       (data) => {
         Swal.fire('Usuario Creado', '','success');
@@ -51,5 +60,10 @@ export class UserFormComponent implements OnInit {
         Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       }
     );
+  }
+
+  searchEmployee(filter: string, employee) {
+    filter = filter.toLocaleLowerCase();
+    return employee.Names.toLocaleLowerCase().indexOf(filter) > -1;
   }
 }
