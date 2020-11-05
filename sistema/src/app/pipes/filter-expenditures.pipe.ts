@@ -9,7 +9,7 @@ export class FilterExpendituresPipe implements PipeTransform {
     if(arg === '' || arg.length<3) return value;
     const result_expenditures = [];
     for(const expenditures of value){
-      if(expenditures.Date.toLowerCase().indexOf(arg.toLowerCase())>-1){
+      if(expenditures.FiscalName.toLowerCase().indexOf(arg.toLowerCase())>-1){
         result_expenditures.push(expenditures);
       }
     }

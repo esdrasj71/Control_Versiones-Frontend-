@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Bank } from '../interfaces/bank';
 import { BankService } from '../servicios/bank.service';
 import { ActivatedRoute } from '@angular/router';
@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./bank-form.component.css']
 })
 export class BankFormComponent implements OnInit {
+  @Output() Bank_Id = new EventEmitter<number>();
   bank: Bank = {
     Bank_Name: null,
   };
@@ -49,6 +50,7 @@ export class BankFormComponent implements OnInit {
       this.bankService.save(this.bank).subscribe((data) => {
         Swal.fire('Banco Guardado', '','success');
         console.log(data)
+        this.Bank_Id.emit(data['id']);
       }, (error) => {
         console.log(error);
         Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})

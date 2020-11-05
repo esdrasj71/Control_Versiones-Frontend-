@@ -1,3 +1,4 @@
+<div style="height: 80px;"></div>
 <div class="container">
     <div class="container card">
         <div class="card-body" style="height: 100%;">
@@ -42,7 +43,7 @@
                             </button>
                         </div>
                         <div *ngFor="let pr of pr">
-                            <h2 for="Providers" class="col-form-label">Proveedor Insertada :{{pr.Fiscal_Name}}</h2>
+                            <h2 for="Providers" class="col-form-label">Proveedor Insertado :{{pr.Fiscal_Name}}</h2>
                         </div>
                     </div>
                     <!--BillType-->
@@ -139,85 +140,104 @@
                                 required="">
                         </div>
                     </div>
-                      <!--Amount-->
-                      <div class="form-group row">
+                    <!--Amount-->
+                    <div class="form-group row">
                         <label class="col-md-3 form-control-label" for="textinput">Monto:</label>
                         <div class="col-md-9">
                             <input class="form-control" type="number" [(ngModel)]="expenditures.Amount"
-                                placeholder="Ingrese el monto" [ngModelOptions]="{standalone: true}"
-                                required="">
+                                placeholder="Ingrese el monto" [ngModelOptions]="{standalone: true}" required="">
                         </div>
                     </div>
-                    <!--Expenses-->
+                    <!--Seleccionar Expenses-->
                     <div class="form-group row">
                         <label class="col-md-3 form-control-label" for="textinput">Gasto:</label>
-                        <div class="col-md-4">
-                            <ng-select [searchFn]="searchExpenses" id="expenses" name="expenses" [items]="expenses"
-                                [virtualScroll]="true" bindLabel="Name" bindValue="Expenses_Id" placeholder="Gasto"
-                                [(ngModel)]="selectedExpensesId">
-                                <ng-template ng-header-tmp>
-                                    <div class="container-fluid">
-                                        <div class="row">
-                                            <div class="col-md-6">Gasto</div>
-                                        </div>
-                                    </div>
-                                </ng-template>
-                                <ng-template ng-label-tmp let-item="item">
-                                    <span>{{item.Name}}</span>
-                                </ng-template>
-                                <ng-template ng-option-tmp let-item="item" let-index="index">
-                                    {{item.Name}}
-                                </ng-template>
-                            </ng-select>
-                        </div>
-                        <!--Add Expenses-->
-                        <div class="col-md-4">
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target=".bd-expenses-modal-lg">
-                                Añadir Gasto
-                            </button>
-                        </div>
-                        <div *ngFor="let ex of ex">
-                            <h2 for="expenses" class="col-form-label">Gasto Insertado :{{ex.Name}}</h2>
+                        <div class="col-md-9">
+                            <input #small type="checkbox" name="size" (change)="0" v-model="nombre" class="formcontrol">
+                            <br>
+                            <br>
+                            <!--Expenses-->
+                            <div class="form-group row">
+                                <div class="col-md-6" *ngIf="small.checked">
+                                    <ng-select [searchFn]="searchExpenses" id="expenses" name="expenses"
+                                        [items]="expenses" [virtualScroll]="true" bindLabel="Name"
+                                        bindValue="Expenses_Id" placeholder="Gasto" [(ngModel)]="selectedExpensesId">
+                                        <ng-template ng-header-tmp>
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-md-6">Gasto</div>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                        <ng-template ng-label-tmp let-item="item">
+                                            <span>{{item.Name}}</span>
+                                        </ng-template>
+                                        <ng-template ng-option-tmp let-item="item" let-index="index">
+                                            {{item.Name}}
+                                        </ng-template>
+                                    </ng-select>
+                                </div>
+                                <!--Add Expenses-->
+                                <div class="col-md-4">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target=".bd-expenses-modal-lg" *ngIf="small.checked">
+                                        Añadir Gasto
+                                    </button>
+                                </div>
+                                <div *ngFor="let ex of ex">
+                                    <h2 for="expenses" class="col-form-label">Gasto Insertado :{{ex.Name}}</h2>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <!--Costs-->
+                    <!--Seleccionar Cost-->
                     <div class="form-group row">
                         <label class="col-md-3 form-control-label" for="textinput">Costo:</label>
-                        <div class="col-md-4">
-                            <ng-select [searchFn]="searchCosts" id="costs" name="costs" [items]="costs"
-                                [virtualScroll]="true" bindLabel="Name" bindValue="Cost_Id" placeholder="Costo"
-                                [(ngModel)]="selectedCostsId">
-                                <ng-template ng-header-tmp>
-                                    <div class="container-fluid">
-                                        <div class="row">
-                                            <div class="col-md-6">Costo</div>
-                                        </div>
-                                    </div>
-                                </ng-template>
-                                <ng-template ng-label-tmp let-item="item">
-                                    <span>{{item.Name}}</span>
-                                </ng-template>
-                                <ng-template ng-option-tmp let-item="item" let-index="index">
-                                    {{item.Name}}
-                                </ng-template>
-                            </ng-select>
-                        </div>
-                        <!--Add Costs-->
-                        <div class="col-md-4">
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target=".bd-costs-modal-lg">
-                                Añadir Costo
-                            </button>
-                        </div>
-                        <div *ngFor="let cs of cs">
-                            <h2 for="costs" class="col-form-label">Costo Insertado :{{cs.Name}}</h2>
+                        <div class="col-md-9">
+                            <input #small2 type="checkbox" name="size2" (change)="0" v-model="nombre2"
+                                class="formcontrol">
+                            <br>
+                            <br>
+                            <label *ngIf="small2.checked" style="color: white;">Costo:</label>
+                            <!--Costs-->
+                            <div class="form-group row">
+                                <div class="col-md-6" *ngIf="small2.checked">
+                                    <ng-select [searchFn]="searchCosts" id="costs" name="costs" [items]="costs"
+                                        [virtualScroll]="true" bindLabel="Name" bindValue="Cost_Id" placeholder="Costo"
+                                        [(ngModel)]="selectedCostsId">
+                                        <ng-template ng-header-tmp>
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-md-6">Costo</div>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                        <ng-template ng-label-tmp let-item="item">
+                                            <span>{{item.Name}}</span>
+                                        </ng-template>
+                                        <ng-template ng-option-tmp let-item="item" let-index="index">
+                                            {{item.Name}}
+                                        </ng-template>
+                                    </ng-select>
+                                </div>
+                                <!--Add Costs-->
+                                <div class="col-md-4">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target=".bd-costs-modal-lg" *ngIf="small2.checked">
+                                        Añadir Costo
+                                    </button>
+                                </div>
+                                <div *ngFor="let cs of cs">
+                                    <h2 for="costs" class="col-form-label">Costo Insertado :{{cs.Name}}</h2>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <!--Button-->
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <button type="submit" (click)="saveExpenditures()"
-                                class="btn btn-success btnblock"  routerLink="/expenditures-home">Registrar</button>
+                            <button type="submit" (click)="saveExpenditures()" class="btn btn-success btnblock"
+                                routerLink="/expenditures-home"
+                                style="background-color:#e74c3c; font-size: 15px;">REGISTRAR</button>
                         </div>
                     </div>
                 </form>
@@ -225,4 +245,121 @@
         </div>
     </div>
 </div>
-<div style="height: 150px;"></div>
+<div style="height: 100px;"></div>
+<!--MODALS-->
+<!--Banks-->
+<div class="modal fade bd-bank-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px;">
+        <div class="modal-content" style="width: 900px;">
+            <div class="modal-header" style="width: 900px;" style="background-color:#4a5c8b;">
+                <h5 class="modal-title" id="exampleModalLongTitle">Banco Nuevo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y:auto;">
+                <div class="container">
+                    <div class="form-group row">
+                        <div class="col">
+                            <app-bank-form (Bank_Id)="findbank($event)"></app-bank-form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Bill Type-->
+<div class="modal fade bd-billtype-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px;">
+        <div class="modal-content" style="width: 900px;">
+            <div class="modal-header" style="width: 900px;" style="background-color:#4a5c8b;">
+                <h5 class="modal-title" id="exampleModalLongTitle">Tipo de Factura Nueva</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y:auto;">
+                <div class="container">
+                    <div class="form-group row">
+                        <div class="col">
+                            <app-bill-type-form (BillType_Id)="findbilltype($event)"></app-bill-type-form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Costs-->
+<div class="modal fade bd-costs-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px;">
+        <div class="modal-content" style="width: 900px;">
+            <div class="modal-header" style="width: 900px;" style="background-color:#4a5c8b;">
+                <h5 class="modal-title" id="exampleModalLongTitle">Nuevo Costo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y:auto;">
+                <div class="container">
+                    <div class="form-group row">
+                        <div class="col">
+                            <app-costs-form (Cost_Id)="findcost($event)"></app-costs-form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Expenses-->
+<div class="modal fade bd-expenses-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px;">
+        <div class="modal-content" style="width: 900px;">
+            <div class="modal-header" style="width: 900px;" style="background-color:#4a5c8b;">
+                <h5 class="modal-title" id="exampleModalLongTitle">Nuevo Gasto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y:auto;">
+                <div class="container">
+                    <div class="form-group row">
+                        <div class="col">
+                            <app-expenses-form (Expenses_Id)="findexpenses($event)"></app-expenses-form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Providers-->
+<div class="modal fade bd-providers-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 900px">
+        <div class="modal-content" style="width: 900px">
+            <div class="modal-header" style="width: 900px; background-color: #4a5c8b;">
+                <h5 class="modal-title" id="exampleModalLongTitle">
+                    Nuevo proveedor
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y: auto">
+                <app-providers-form (Provider_Id)="findproviders($event)"></app-providers-form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -104,17 +104,15 @@
                                     <div class="form-group row">
                                         <h3 style="color:#e74c3c;">Total:</h3>
                                         <div class="col">
-
                                             <h3 [(ngModel)]="encabezado_factura.Total" ngDefaultControl
                                                 style="color:#e74c3c;">{{total | currency:"GTQ":"Q"}}</h3>
                                         </div>
                                     </div>
-                                    
-                                    <button class="btn btn-primary btnsm" data-toggle="modal"
+                                    <button class="btn btn-primary" data-toggle="modal" 
+                                    style="text-align: center; position: absolute; top: 75%; left: 100%;"
                                         data-target=".bd-cobro-modal-lg" data-dismiss="modal">Cobrar</button>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

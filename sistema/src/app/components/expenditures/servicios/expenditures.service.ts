@@ -30,8 +30,12 @@ export class ExpendituresService {
       , expenditures, { headers: headers });
   }
 
-  delete(id) {
+  delete(Expenditures_Id) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
-    return this.httpClient.delete(this.API_ENDPOINT + 'expenditures/' + id, { headers: headers });
+    return this.httpClient.delete(this.API_ENDPOINT + 'expendituresdelete/' + Expenditures_Id, { headers: headers });
+  }
+  getempresa(){
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
+    return this.httpClient.get(this.API_ENDPOINT + 'empresa', {headers});
   }
 }

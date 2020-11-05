@@ -64,7 +64,6 @@ export class ExpendituresFormComponent implements OnInit {
   expendituresarr: Expenditures[];
   constructor(
     private fb: FormBuilder,
-    private httpClient: HttpClient,
     private expendituresService: ExpendituresService,
     private billtypeService: BillTypeService,
     private expensesService: ExpensesService,
@@ -72,14 +71,15 @@ export class ExpendituresFormComponent implements OnInit {
     private banksService: BankService,
     private providersService: ProvidersService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private httpClient: HttpClient,
   ) {
     //Update
     this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
       console.log(this.expenditures);
       this.editing = true;
-      const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
       this.httpClient.get(this.API_ENDPOINT + 'expenditures', { headers }).subscribe(
         (data: Expenditures[]) => {
           this.expendituresarr = data;
@@ -95,6 +95,7 @@ export class ExpendituresFormComponent implements OnInit {
         },
         (error) => {
           console.log(error);
+          Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
         }
       );
     } else {
@@ -191,5 +192,46 @@ export class ExpendituresFormComponent implements OnInit {
   searchProviders(filter: string, providers) {
     filter = filter.toLocaleLowerCase();
     return providers.Fiscal_Name.toLocaleLowerCase().indexOf(filter) > -1;
+  }
+  //Formularios Emergentes
+  //Bank
+  findbank(id) {
+    this.selectedBanksId = id;
+    this.banksService.findbank(id).subscribe((data: Bank[]) => {
+      this.bk = data;//json
+      return this.bk = Array.of(this.bk);
+    });
+  }
+  //BillType
+  findbilltype(id) {
+    this.selectedBillTypeId = id;
+    this.billtypeService.findbilltype(id).subscribe((data: BillType[]) => {
+      this.bt = data;//json
+      return this.bt = Array.of(this.bt);
+    });
+  }
+  //Costs
+  findcost(id) {
+    this.selectedCostsId = id;
+    this.costsService.findcost(id).subscribe((data: Costs[]) => {
+      this.cs = data;//json
+      return this.cs = Array.of(this.cs);
+    });
+  }
+  //Expenses
+  findexpenses(id) {
+    this.selectedExpensesId = id;
+    this.expensesService.findexpenses(id).subscribe((data: Expenses[]) => {
+      this.ex = data;//json
+      return this.ex = Array.of(this.ex);
+    });
+  }
+  //Providers
+  findproviders(id) {
+    this.selectedProvidersId = id;
+    this.providersService.findproviders(id).subscribe((data: Providers[]) => {
+      this.pr = data;//json
+      return this.pr = Array.of(this.pr);
+    });
   }
 }
