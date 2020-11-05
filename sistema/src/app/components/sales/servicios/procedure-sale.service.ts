@@ -13,4 +13,8 @@ export class ProcedureSaleService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
     return this.httpClient.post(this.API_ENDPOINT + 'procedure_sale', procedure_sale, { headers: headers });
   }
+  getempresa(){
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
+    return this.httpClient.get(this.API_ENDPOINT + 'empresa', {headers});
+  }
 }

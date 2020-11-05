@@ -5,21 +5,21 @@ import { Inventory } from '../../inventory/interfaces/inventory';
 import { Employee } from '../../employee/interfaces/employee';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Data } from '@angular/router';
-import {BillDetails} from '../interfaces/bill-detail';
-import {Bill_header} from '../interfaces/bill-header';
-import {Payment_detail} from '../interfaces/payment-detail';
-import {NoFactura} from '../interfaces/nofactura';
-import {AccountsRecivable} from '../../accounts_receivable/interfaces/accounts-receivable';
+import { BillDetails } from '../interfaces/bill-detail';
+import { Bill_header } from '../interfaces/bill-header';
+import { Payment_detail } from '../interfaces/payment-detail';
+import { NoFactura } from '../interfaces/nofactura';
+import { AccountsRecivable } from '../../accounts_receivable/interfaces/accounts-receivable';
 
-import {BillsService} from '../servicios/bills.service';
-import {ProcedureSaleService} from '../servicios/procedure-sale.service';
-import {Procedure_Sale} from '../interfaces/procedure-sale';
-import {PaymentDetailService} from '../servicios/payment-detail.service';
+import { BillsService } from '../servicios/bills.service';
+import { ProcedureSaleService } from '../servicios/procedure-sale.service';
+import { Procedure_Sale } from '../interfaces/procedure-sale';
+import { PaymentDetailService } from '../servicios/payment-detail.service';
 import { CustomersService } from '../../customers/servicios/customers.service';
 import { ProductsService } from '../../product/servicios/products.service';
 import { InventoryService } from '../../inventory/servicios/inventory.service';
 import { EmployeeService } from '../../employee/servicios/employee.service';
-import {AccountsReceivableService} from '../../accounts_receivable/servicios/accounts-receivable.service';
+import { AccountsReceivableService } from '../../accounts_receivable/servicios/accounts-receivable.service';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-bill-header-form',
@@ -32,7 +32,7 @@ export class BillHeaderFormComponent implements OnInit {
   total: number = 0;
   //insertar cuentas por cobrar
   accounts_receivable: AccountsRecivable = {
-    
+
     Quantity: null,
     Total: null,
     Statuss: null,
@@ -85,8 +85,8 @@ export class BillHeaderFormComponent implements OnInit {
   //inventario
   inventario: Inventory[];
   inventarios: any[];
- nuevo_inventario: any [];
- arreglo = [];
+  nuevo_inventario: any[];
+  arreglo = [];
   //empleado
   empleados: Employee[];
 
@@ -95,8 +95,8 @@ export class BillHeaderFormComponent implements OnInit {
   date = new Date();
   mes = this.date.getMonth() + 1
   //fecha = this.date.getDate() + "/" + this.mes.toString() + "/" + this.date.getFullYear();
-  fecha = this.date.getFullYear()  + "/" + this.mes.toString() + "/" + this.date.getDate();
-  
+  fecha = this.date.getFullYear() + "/" + this.mes.toString() + "/" + this.date.getDate();
+
   //formas de pago
   pago_aldebito: boolean = false;
   pago_alcredito: boolean = false;
@@ -104,11 +104,11 @@ export class BillHeaderFormComponent implements OnInit {
   total_cobroalcontado: number = 0;
   total_cobro: number = 0;
   cadena_pago: string = "Total:";
-  encabezadoid: number = 0; 
+  encabezadoid: number = 0;
   //No factura
   nofacturas: NoFactura[];
   nofactura: number = 0;
-
+  empresa: any = [];
 
   nombre_empleado: string = "";
   idempleado: number = 0;
@@ -126,29 +126,29 @@ export class BillHeaderFormComponent implements OnInit {
     private paymentdetailService: PaymentDetailService,
     private accountsRecivableService: AccountsReceivableService,
 
-    ) { 
-      const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
-    httpClient.get(this.API_ENDPOINT + 'nofactura', {headers})
-    .subscribe((data: NoFactura[])=>{
-      if(data[0].NoFactura == null){
-        this.nofacturas = [{"NoFactura": 1}];
-        this.encabezado_factura.Correlative_Number =  "1";
-      }else{
-        this.nofacturas = data;
-        this.encabezado_factura.Correlative_Number =  data[0].NoFactura.toString();
-      }
-    
-    }) 
+  ) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
+    httpClient.get(this.API_ENDPOINT + 'nofactura', { headers })
+      .subscribe((data: NoFactura[]) => {
+        if (data[0].NoFactura == null) {
+          this.nofacturas = [{ "NoFactura": 1 }];
+          this.encabezado_factura.Correlative_Number = "1";
+        } else {
+          this.nofacturas = data;
+          this.encabezado_factura.Correlative_Number = data[0].NoFactura.toString();
+        }
+
+      })
 
     this.idempleado = parseInt(localStorage.getItem('EmpleadoId'));
     this.encabezado_factura.Employee_Id = this.idempleado;
-    this.employeeService.findEmployee(this.idempleado).subscribe((data: Employee[])=>{
-    
-      this.nombre_empleado = data["Names"]+ " "+data["Last_names"];
-     
+    this.employeeService.findEmployee(this.idempleado).subscribe((data: Employee[]) => {
+
+      this.nombre_empleado = data["Names"] + " " + data["Last_names"];
+
     })
-    
-    
+
+
   }
 
   ngOnInit(): void {
@@ -159,48 +159,53 @@ export class BillHeaderFormComponent implements OnInit {
     this.productsService.getProduct().subscribe((data: Products[]) => {
       return this.producto = data;
     })
-  
-    this.inventoryService.getInventory().subscribe((data: Inventory[])=>{
+
+    this.proceduresaleService.getempresa().subscribe((data) => {
+      this.empresa = data[0];
+      return this.empresa;
+    });
+
+    this.inventoryService.getInventory().subscribe((data: Inventory[]) => {
       let nuevo1: any = [];
       let prueba = [];
-      
+
       let estado: boolean = false;
-      data.forEach((m)=>{
-      
-      if(m["Stock"] != 0){
-        nuevo1 = m;
-        nuevo1["Subtotal"] = m["Stock"] * m["Unit_Price"];    
+      data.forEach((m) => {
+
+        if (m["Stock"] != 0) {
+          nuevo1 = m;
+          nuevo1["Subtotal"] = m["Stock"] * m["Unit_Price"];
           prueba.push(nuevo1);
-          prueba.forEach(a=>{
+          prueba.forEach(a => {
             estado = false;
-            if(m["Product_Id"] == a["Product_Id"] && m["Inventory_Id"] != a["Inventory_Id"] ){
+            if (m["Product_Id"] == a["Product_Id"] && m["Inventory_Id"] != a["Inventory_Id"]) {
               a["Stock"] += m["Stock"];
-              a["Subtotal"] += m["Stock"] * m["Unit_Price"]; 
+              a["Subtotal"] += m["Stock"] * m["Unit_Price"];
               a["Unit_Price"] = (a["Subtotal"] / a["Stock"]).toFixed(2);
               estado = true;
             }
           })
-          if(estado == true){
+          if (estado == true) {
             prueba.pop()
-            
+
           }
           var hash = {};
-          let array = prueba.filter(function(current){
+          let array = prueba.filter(function (current) {
             var exists = !hash[current.Product_Id];
             hash[current.Product_Id] = true;
             return exists;
           });
           this.nuevo_inventario = array;
-          console.log("holis"+this.nuevo_inventario);
-      }
+          console.log("holis" + this.nuevo_inventario);
+        }
       });
 
       return this.nuevo_inventario;
-      }) ;
-  
+    });
+
     this.employeeService.getEmployee().subscribe((data: Employee[]) => {
       return this.empleados = data;
-    
+
     })
 
 
@@ -237,12 +242,12 @@ export class BillHeaderFormComponent implements OnInit {
     console.log(this.detalle_factura);
   }
   onEnter(value: number, precio: number, datos: any) {
-    if(value > datos[0].Stock || value < 0){
-      alert("Solo hay en existencia: "+ datos[0].Stock);
-    }else{
+    if (value > datos[0].Stock || value < 0) {
+      alert("Solo hay en existencia: " + datos[0].Stock);
+    } else {
       console.log(datos)
       this.total -= datos[0].Subtotal;
-      datos[0].Subtotal = Math.round( value * precio);
+      datos[0].Subtotal = Math.round(value * precio);
       datos[0].Quantity = value;
       this.total += datos[0].Subtotal;
       this.total_cobro = this.total;
@@ -280,132 +285,132 @@ export class BillHeaderFormComponent implements OnInit {
     this.pago_alcredito = !this.pago_alcredito;
     console.log(this.pago_alcredito);
   }
-  setear(){
+  setear() {
     this.total_cobro = this.total;
   }
 
   enviar() {
-if(this.encabezado_factura.Correlative_Number == " " || this.encabezado_factura.Serie == null || this.encabezado_factura.Date == "" || this.encabezado_factura.Customers_Id == null || this.encabezado_factura.Employee_Id == NaN || this.encabezado_factura.Total == 0){
-  Swal.fire({icon: 'warning', title: 'Precaución!', text: 'Algun dato no fue ingresado'});   
-}else{
-  console.log(this.total_cobroalcontado);
-    if(this.total_cobroalcontado >= this.total){
-      //pago completo
-      this.encabezado_factura.Payment_Complete = true;
-    }else{
-      //pago incompleto
+    if (this.encabezado_factura.Correlative_Number == " " || this.encabezado_factura.Serie == null || this.encabezado_factura.Date == "" || this.encabezado_factura.Customers_Id == null || this.encabezado_factura.Employee_Id == NaN || this.encabezado_factura.Total == 0) {
+      Swal.fire({ icon: 'warning', title: 'Precaución!', text: 'Algun dato no fue ingresado' });
+    } else {
+      console.log(this.total_cobroalcontado);
+      if (this.total_cobroalcontado >= this.total) {
+        //pago completo
+        this.encabezado_factura.Payment_Complete = true;
+      } else {
+        //pago incompleto
         this.encabezado_factura.Payment_Complete = false;
-    }
-    
-    this.encabezado_factura.Refund = 0;
-    this.encabezado_factura.Annulment_State = 0;
-    this.encabezado_factura.Total = parseFloat(this.total.toFixed(2));
+      }
 
-    console.log(this.fecha);
-    this.encabezado_factura.Date = this.fecha; 
+      this.encabezado_factura.Refund = 0;
+      this.encabezado_factura.Annulment_State = 0;
+      this.encabezado_factura.Total = parseFloat(this.total.toFixed(2));
 
-    this.billsService.saveHeader(this.encabezado_factura).subscribe(
-      (data) => {
-        Swal.fire('Encabezado Guardado', '','success');
-        if(this.encabezado_factura.Payment_Complete == false){
-          this.accounts_receivable.Quantity =  0;
-          this.accounts_receivable.Total = this.total_cobro;
-          this.accounts_receivable.Statuss = true;
-          this.accounts_receivable.Bill_header_Id =  data["id"];
-          this.accountsRecivableService.saveAccountRecivable(this.accounts_receivable).subscribe((data)=>{
-            Swal.fire('Cuenta por cobrar guardada', '','success');
-          }, (error)=>{
-            Swal.fire({icon: 'error', title: 'Ocurrio un error', text: 'Cuentas por cobrar'});
-          })
-     
-        }
-        if (this.encabezado_factura.Payment_Complete == true) {
-          if(this.total_cobroalcontado > this.total){
-            this.total_cobroalcontado = this.total;      
+      console.log(this.fecha);
+      this.encabezado_factura.Date = this.fecha;
+
+      this.billsService.saveHeader(this.encabezado_factura).subscribe(
+        (data) => {
+          Swal.fire('Encabezado Guardado', '', 'success');
+          if (this.encabezado_factura.Payment_Complete == false) {
+            this.accounts_receivable.Quantity = 0;
+            this.accounts_receivable.Total = this.total_cobro;
+            this.accounts_receivable.Statuss = true;
+            this.accounts_receivable.Bill_header_Id = data["id"];
+            this.accountsRecivableService.saveAccountRecivable(this.accounts_receivable).subscribe((data) => {
+              Swal.fire('Cuenta por cobrar guardada', '', 'success');
+            }, (error) => {
+              Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: 'Cuentas por cobrar' });
+            })
+
           }
-          this.pago_detalle.Total_Amount = this.total_cobroalcontado;
-          this.pago_detalle.Payment_Id = 1;
-          this.pago_detalle.Bill_header_Id = data["id"];
-          this.paymentdetailService.save(this.pago_detalle).subscribe(
-            (data) => {
-              Swal.fire('Pago Guardado', '','success');
-              console.log(data);
-            },
-            (error) => {
-              console.log(error);
-              Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
-            });
-
-        }else{
-          //console.log(typeof(this.total_cobroalcontado))
-          if (this.total_cobroalcontado == 0) {
-            this.pago_detalle.Total_Amount = this.total_cobro;
-            this.pago_detalle.Payment_Id = 2;
-            this.pago_detalle.Bill_header_Id = data["id"];
-            this.paymentdetailService.save(this.pago_detalle).subscribe(
-              (data) => {
-                Swal.fire('Pago Guardado', '','success');
-                console.log(data);
-              },
-              (error) => {
-                console.log(error);
-                Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
-              });
-          }else{
+          if (this.encabezado_factura.Payment_Complete == true) {
+            if (this.total_cobroalcontado > this.total) {
+              this.total_cobroalcontado = this.total;
+            }
             this.pago_detalle.Total_Amount = this.total_cobroalcontado;
             this.pago_detalle.Payment_Id = 1;
             this.pago_detalle.Bill_header_Id = data["id"];
             this.paymentdetailService.save(this.pago_detalle).subscribe(
               (data) => {
-                Swal.fire('Pago Guardado', '','success');
+                Swal.fire('Pago Guardado', '', 'success');
                 console.log(data);
               },
               (error) => {
                 console.log(error);
-                Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
+                Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
               });
+
+          } else {
+            //console.log(typeof(this.total_cobroalcontado))
+            if (this.total_cobroalcontado == 0) {
               this.pago_detalle.Total_Amount = this.total_cobro;
               this.pago_detalle.Payment_Id = 2;
               this.pago_detalle.Bill_header_Id = data["id"];
               this.paymentdetailService.save(this.pago_detalle).subscribe(
                 (data) => {
-                  Swal.fire('Pago Guardado', '','success');
+                  Swal.fire('Pago Guardado', '', 'success');
                   console.log(data);
                 },
                 (error) => {
                   console.log(error);
-                  Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
+                  Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
+                });
+            } else {
+              this.pago_detalle.Total_Amount = this.total_cobroalcontado;
+              this.pago_detalle.Payment_Id = 1;
+              this.pago_detalle.Bill_header_Id = data["id"];
+              this.paymentdetailService.save(this.pago_detalle).subscribe(
+                (data) => {
+                  Swal.fire('Pago Guardado', '', 'success');
+                  console.log(data);
+                },
+                (error) => {
+                  console.log(error);
+                  Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
+                });
+              this.pago_detalle.Total_Amount = this.total_cobro;
+              this.pago_detalle.Payment_Id = 2;
+              this.pago_detalle.Bill_header_Id = data["id"];
+              this.paymentdetailService.save(this.pago_detalle).subscribe(
+                (data) => {
+                  Swal.fire('Pago Guardado', '', 'success');
+                  console.log(data);
+                },
+                (error) => {
+                  console.log(error);
+                  Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
                 });
 
+            }
           }
-        }
-      
-      },
-      (error) => {
-        console.log(error);
-        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
-      });
-    //detalle
-    for (let misdatos of this.nuevo) {
-      this.procedure_sale.Subtotal = misdatos[0].Subtotal;
-      this.procedure_sale.Quantity = parseInt(misdatos[0].Quantity);
-      this.procedure_sale.Price = misdatos[0].Unit_Price;
-      this.procedure_sale.Inventory_Id = misdatos[0].Inventory_Id;
-      console.log(this.procedure_sale);
-      this.proceduresaleService.save(this.procedure_sale).subscribe(
-        (data) => {
-          Swal.fire('Producto Guardado', '','success');
-          console.log(data);
+
         },
         (error) => {
           console.log(error);
-          Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
-        }
-      )
-    };
+          Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
+        });
+      //detalle
+      for (let misdatos of this.nuevo) {
+        this.procedure_sale.Subtotal = misdatos[0].Subtotal;
+        this.procedure_sale.Quantity = parseInt(misdatos[0].Quantity);
+        this.procedure_sale.Price = misdatos[0].Unit_Price;
+        this.procedure_sale.Inventory_Id = misdatos[0].Inventory_Id;
+        console.log(this.procedure_sale);
+        this.proceduresaleService.save(this.procedure_sale).subscribe(
+          (data) => {
+            Swal.fire('Producto Guardado', '', 'success');
+            console.log(data);
+          },
+          (error) => {
+            console.log(error);
+            Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
+          }
+        )
+      };
 
-    //localStorage.removeItem("id");
+      //localStorage.removeItem("id");
+    }
+
   }
-  
-}
 }

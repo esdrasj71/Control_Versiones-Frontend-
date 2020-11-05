@@ -13,7 +13,7 @@ td{
 
 .my-custom-scrollbar {
     position: relative;
-    height: 490px;
+    height: 350px;
     overflow: auto;
     }
 .table-wrapper-scroll-y {
