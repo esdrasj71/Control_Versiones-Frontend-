@@ -55,9 +55,9 @@ export class ProvidersFormComponent implements OnInit {
     else {
       console.log(this.providers);
       this.providersService.save(this.providers).subscribe((data) => {
-        this.Provider_Id.emit(data["id"]);
         Swal.fire('Proveedor Guardado', '','success');
-        console.log(data)
+        console.log(data);
+        this.Provider_Id.emit(data["id"]);
       }, (error) => {
         console.log(error);
         Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});

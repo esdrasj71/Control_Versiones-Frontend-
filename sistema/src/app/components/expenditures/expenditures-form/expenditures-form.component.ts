@@ -193,4 +193,45 @@ export class ExpendituresFormComponent implements OnInit {
     filter = filter.toLocaleLowerCase();
     return providers.Fiscal_Name.toLocaleLowerCase().indexOf(filter) > -1;
   }
+  //Formularios Emergentes
+  //Bank
+  findbank(id) {
+    this.selectedBanksId = id;
+    this.banksService.findbank(id).subscribe((data: Bank[]) => {
+      this.bk = data;//json
+      return this.bk = Array.of(this.bk);
+    });
+  }
+  //BillType
+  findbilltype(id) {
+    this.selectedBillTypeId = id;
+    this.billtypeService.findbilltype(id).subscribe((data: BillType[]) => {
+      this.bt = data;//json
+      return this.bt = Array.of(this.bt);
+    });
+  }
+  //Costs
+  findcost(id) {
+    this.selectedCostsId = id;
+    this.costsService.findcost(id).subscribe((data: Costs[]) => {
+      this.cs = data;//json
+      return this.cs = Array.of(this.cs);
+    });
+  }
+  //Expenses
+  findexpenses(id) {
+    this.selectedExpensesId = id;
+    this.expensesService.findexpenses(id).subscribe((data: Expenses[]) => {
+      this.ex = data;//json
+      return this.ex = Array.of(this.ex);
+    });
+  }
+  //Providers
+  findproviders(id) {
+    this.selectedProvidersId = id;
+    this.providersService.findproviders(id).subscribe((data: Providers[]) => {
+      this.pr = data;//json
+      return this.pr = Array.of(this.pr);
+    });
+  }
 }

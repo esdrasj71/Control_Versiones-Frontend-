@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,  Output, EventEmitter } from '@angular/core';
 import { BillType } from '../interfaces/bill-type';
 import { BillTypeService } from '../servicios/bill-type.service';
 import { ActivatedRoute } from '@angular/router';
@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./bill-type-form.component.css']
 })
 export class BillTypeFormComponent implements OnInit {
+  @Output() BillType_Id = new EventEmitter<number>();
   billtype: BillType = {
     Name: null,
   };
@@ -47,7 +48,8 @@ export class BillTypeFormComponent implements OnInit {
     else {
       this.billtypeService.save(this.billtype).subscribe((data) => {
         Swal.fire('Tipo de Factura Guardado', '','success');
-        console.log(data)
+        console.log(data);
+        this.BillType_Id.emit(data['id']);
       }, (error) => {
         console.log(error);
         Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
