@@ -184,7 +184,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
       (data) => {
         Swal.fire('Compra Guardada', '','success');
         console.log(data);
-        //window.location.reload();
+        window.setTimeout(function(){location.reload()},1100)
         this.payment.Purchase_Header_Id = data['id']; 
         if (this.SiPago == true) {
           ///DebsToPay

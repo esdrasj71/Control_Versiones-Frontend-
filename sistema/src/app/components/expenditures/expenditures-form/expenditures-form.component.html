@@ -43,7 +43,7 @@
                             </button>
                         </div>
                         <div *ngFor="let pr of pr">
-                            <h2 for="Providers" class="col-form-label">Proveedor Insertado :{{pr.Fiscal_Name}}</h2>
+                            <h3 for="Providers" class="col-form-label">Proveedor Insertado: &nbsp;{{pr.Fiscal_Name}}</h3>
                         </div>
                     </div>
                     <!--BillType-->
@@ -76,7 +76,7 @@
                             </button>
                         </div>
                         <div *ngFor="let bt of bt">
-                            <h2 for="BillType" class="col-form-label">Tipo de Factura Insertada :{{bt.Name}}</h2>
+                            <h3 for="BillType" class="col-form-label">Tipo de Factura Insertada :{{bt.Name}}</h3>
                         </div>
                     </div>
                     <!--NoBill-->
@@ -118,7 +118,7 @@
                             </button>
                         </div>
                         <div *ngFor="let bk of bk">
-                            <h2 for="bank" class="col-form-label">Banco Insertado :{{bk.Bank_Name}}</h2>
+                            <h3 for="bank" class="col-form-label">Banco Insertado :{{bk.Bank_Name}}</h3>
                         </div>
                     </div>
                     <!--Cheque-->
@@ -184,7 +184,7 @@
                                     </button>
                                 </div>
                                 <div *ngFor="let ex of ex">
-                                    <h2 for="expenses" class="col-form-label">Gasto Insertado :{{ex.Name}}</h2>
+                                    <h3 for="expenses" class="col-form-label">Gasto Insertado:&nbsp; {{ex.Name}}</h3>
                                 </div>
                             </div>
                         </div>
@@ -226,8 +226,8 @@
                                         Añadir Costo
                                     </button>
                                 </div>
-                                <div *ngFor="let cs of cs">
-                                    <h2 for="costs" class="col-form-label">Costo Insertado :{{cs.Name}}</h2>
+                                <div *ngFor="let cs of cs">&nbsp;&nbsp;&nbsp;
+                                    <h3 for="costs" class="col-form-label">Costo Insertado: &nbsp;{{cs.Name}}</h3>
                                 </div>
                             </div>
                         </div>

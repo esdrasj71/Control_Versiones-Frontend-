@@ -30,7 +30,6 @@ export class EmployeeHomeComponent implements OnInit {
     this.employeeService.delete(id).subscribe(
       (data) => {
         Swal.fire('Empleado Eliminado', '','success');
-        window.setTimeout(function(){location.reload()},2000)
       },
       (error) => {
         console.log(error);

@@ -56,7 +56,7 @@
                     <td><a class="btn btn-warning btn-sm" style="background-color:#F7985B;"
                             routerLink="/expenditures-form/{{expenditure.Expenditures_Id}}">
                             <i class="fa fa-pencil-square-o fa-lg" style="color: white;"></i></a>
-                        <a class="btn btn-danger btn-sm" style="background-color:#e74c3c;"
+                        <a class="btn btn-danger btn-sm" style="background-color:#e74c3c;" onClick="EliminarFila(this)"
                             (click)="delete(expenditure.Expenditures_Id)">
                             <i class="fa fa-trash fa-lg" style="color: white;"></i></a>
                     </td>

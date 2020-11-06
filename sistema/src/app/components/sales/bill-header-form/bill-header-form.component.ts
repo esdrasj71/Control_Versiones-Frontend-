@@ -312,6 +312,7 @@ export class BillHeaderFormComponent implements OnInit {
       this.billsService.saveHeader(this.encabezado_factura).subscribe(
         (data) => {
           Swal.fire('Encabezado Guardado', '', 'success');
+          window.setTimeout(function(){location.reload()},1500)
           if (this.encabezado_factura.Payment_Complete == false) {
             this.accounts_receivable.Quantity = 0;
             this.accounts_receivable.Total = this.total_cobro;

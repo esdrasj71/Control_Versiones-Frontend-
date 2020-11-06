@@ -4,10 +4,11 @@
             <h2 class="alert alert-primary" role="alert" style="text-align: center;">Editar/Crear Cliente</h2>
             <div class="alert alert-warning" role="alert" style="background-color:#699DBF; height: 100%;">
                 
+                <form name ="formulario" onSubmit="return limpiar()">
                 <div class="form-group row">
                     <label class="col-md-3 form-controllabel" for="DPI">DPI :</label>
                     <div class="col-md-9">
-                        <input [(ngModel)]="customer.DPI" type="text" id="DPI" class="form-control"
+                        <input [(ngModel)]="customer.DPI" type="text" id="DPI" name="DPI" class="form-control"
                         minlength="10" maxlength="13" required/>
                     </div>
                 </div>
@@ -15,7 +16,7 @@
                 <div class="form-group row">
                     <label class="col-md-3 form-controllabel" for="Names" id="hey">Nombres :</label>
                     <div class="col-md-9">
-                        <input [(ngModel)]="customer.Names" type="text" id="Names" class="form-control"
+                        <input [(ngModel)]="customer.Names" type="text" id="Names" name="Names" class="form-control"
                         minlength="3" maxlength="70" required/>
                     </div>
                 </div>
@@ -23,7 +24,7 @@
                 <div class="form-group row">
                     <label class="col-md-3 form-controllabel" for="Last_names">Apellidos :</label>
                     <div class="col-md-9">
-                        <input [(ngModel)]="customer.Last_names" type="text" id="Last_names" class="form-control"
+                        <input [(ngModel)]="customer.Last_names" type="text" id="Last_names" name="Last_names" class="form-control"
                         minlength="4" maxlength="70" required/>
                     </div>
                 </div>
@@ -31,7 +32,7 @@
                 <div class="form-group row">
                     <label class="col-md-3 form-controllabel" for="Phone_Number">Numero Telefonico :</label>
                     <div class="col-md-9">
-                        <input [(ngModel)]="customer.Phone_Number" type="text" id="Phone_Number" class="form-control"
+                        <input [(ngModel)]="customer.Phone_Number" type="text" id="Phone_Number" name="Phone_Number" class="form-control"
                         minlength="7" maxlength="15" required/>
                     </div>
                 </div>
@@ -39,7 +40,8 @@
                 <div class="form-group row">
                     <label class="col-md-3 form-controllabel" for="NIT">NIT :</label>
                     <div class="col-md-9">
-                        <input [(ngModel)]="customer.NIT" type="text" id="NIT" class="form-control" minlength="8" maxlength="15">
+                        <input [(ngModel)]="customer.NIT" type="text" id="NIT" class="form-control" name="NIT"
+                        minlength="8" maxlength="15">
                     </div>
 
                 </div>
@@ -47,7 +49,7 @@
                     <label class="col-md-3 form-controllabel" for="Address">Direccion: </label>
                     <div class="col-md-9">
 
-                        <input [(ngModel)]="customer.Address" type="text" id="Address" class="form-control"
+                        <input [(ngModel)]="customer.Address" type="text" id="Address" class="form-control" name="Address"
                         minlength="4" maxlength="70" required/>
                     </div>
                 </div>
@@ -59,6 +61,7 @@
                             class="btn btn-danger btnblock">Guardar</button>
                     </div>
                 </div>
+            </form>
             </div>
         </div>
     </div>

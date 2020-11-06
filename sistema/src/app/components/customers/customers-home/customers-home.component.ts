@@ -28,7 +28,7 @@ export class CustomersHomeComponent implements OnInit {
     this.customersService.delete(id).subscribe(
       (data) => {
         Swal.fire('Cliente Eliminado', '','success');
-        window.setTimeout(function(){location.reload()},2000)
+        //window.setTimeout(function(){location.reload()},2000) 
       },
       (error) => {
         console.log(error);

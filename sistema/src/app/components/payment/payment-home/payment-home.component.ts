@@ -27,7 +27,6 @@ export class PaymentHomeComponent implements OnInit {
     this.paymentService.delete(id).subscribe(
       (data) => {
         Swal.fire('Pago Eliminado', '','success');
-        window.setTimeout(function(){location.reload()},2000)
       },
       (error) => {
         console.log(error);
