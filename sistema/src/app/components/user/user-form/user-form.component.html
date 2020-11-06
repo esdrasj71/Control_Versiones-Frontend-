@@ -2,7 +2,7 @@
     <div class="container card">
       <div class="card-body" style="height: 100%">
         <h2 class="alert alert-primary" role="alert" style="text-align: center">
-          Editar/Agregar Usuario
+          Agregar Usuario Nuevo
         </h2>
         <div
           class="alert alert-warning"
@@ -27,40 +27,56 @@
             <div class="col-md-9">
               <input
                 [(ngModel)]="user.Password"
-                type="text"
+                type="password"
                 id="Fiscal_Name"
                 class="form-control" maxlength="35" required=""
               />
             </div>
           </div>
+          
           <div class="form-group row">
-            <label class="col-md-3 form-controllabel" for="Phone_Number1"
-              >Tipo de usuario</label
-            >
-            <div class="col-md-9">
-              <input
-                [(ngModel)]="user.Usertype"
-                type="text"
-                id="Phone_Number1"
-                class="form-control" minlength="7" maxlength="15" required=""
-              />
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-md-3 form-controllabel" for="Phone_Number2"
-              >Elija el empleado</label
-            >
-            <div class="col-md-9">
-              <input
-                [(ngModel)]="user.Employee_Id"
-                type="text"
-                id="Phone_Number2"
-                class="form-control"
-              />
-            </div>
-          </div>
+            <label class="col-md-3 form-controllabel" for="UserType">Tipo de usuario </label>
+            &nbsp;&nbsp;&nbsp;&nbsp;<label for="admin" style="color: white;">Admin</label>&nbsp;
+            <input type="radio"  [(ngModel)]="user.Usertype" id="admin" value="1" checked>&nbsp;&nbsp;&nbsp;&nbsp;
+            <label for="usuario" style="color: white;">Usuario normal</label>&nbsp;
+            <input type="radio"  [(ngModel)]="user.Usertype" id="usuario" value="0">
+        </div>
 
-  
+      <!-- NUEVO EMPLEADO 
+      <label class="col-md-3 form-controllabel" for="employee"> Seleccione empleado: </label>&nbsp;
+      <select id="employee" name="employee" [(ngModel)]="user.Employee_Id"
+          [ngModelOptions]="{standalone: true}" style="width:40%; height: 25px; border-color: white; border-radius: 4px; height: 35px;">
+          <option *ngFor="let employee of employee" value="{{employee.Employee_Id}}"
+              style="height: 1300px">
+              {{employee.Names}}
+          </option>
+      </select>
+        -->
+
+        <!-- Metodo 2 de nuevo empleado -->
+        <div class="form-group row">
+          <label class="col-md-3 form-control-label" for="textinput"> Seleccione empleado:</label>
+          <div style="width:60%; height:100px" class="col-md-6">
+              <ng-select [searchFn]="searchEmployee" id="employee" name="employee"
+                  [items]="employee" [virtualScroll]="true" bindLabel="Name"
+                  bindValue="Employee_Id" [(ngModel)]="selectedEmployeeId">
+                  <ng-template ng-header-tmp>
+                      <div class="container-fluid">
+                          <div class="row">
+                              <div class="col-md-8">Buscar Empleado ...</div>
+                          </div>
+                      </div>
+                  </ng-template>
+                  <ng-template ng-label-tmp let-item="item">
+                      <span>{{item.Names}}</span>
+                  </ng-template>
+                  <ng-template ng-option-tmp let-item="item" let-index="index">
+                      {{item.Names}}
+                  </ng-template>
+              </ng-select>
+          </div>
+        </div>
+        <!-- Fin de metodo 2 -->
           <div class="form-group row">
             <div class="col-md-12">
               <button (click)="saveUser()" class="btn btn-success btnblock">

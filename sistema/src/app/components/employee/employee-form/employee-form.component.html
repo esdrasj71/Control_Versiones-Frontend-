@@ -74,18 +74,43 @@
                             style="width: 80%;" required="">
                     </div>
                 </div>
-
+                
                 &nbsp;&nbsp;
                 <label class="col-md-3 form-controllabel" for="Lot"> Seleccione posición del empleado: </label>
                 <select id="employee_pos" name="employee_pos" [(ngModel)]="employee.Employee_Position_Id"
-                    [ngModelOptions]="{standalone: true}" style="width:60%;">
+                    [ngModelOptions]="{standalone: true}" style="width:35%; border-radius: 4px;">
                     <option *ngFor="let employeePos of employeePosition" value="{{employeePos.Employee_Position_Id}}"
                         style="height: 1200px">
                         {{employeePos.Name}}
                     </option>
                 </select>
-
                 <br><br>
+            
+                    <!-- Metodo 2 de nuevo empleado 
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="textinput"> Seleccione posición del empleado:</label>
+                    <div style="width:60%; height:100px" class="col-md-6">
+                        <ng-select [searchFn]="searchEmployeePos" id="employeePos" name="employeePos"
+                            [items]="employeePos" [virtualScroll]="true" bindLabel="Name"
+                            bindValue="Employee_Pos_Id" [(ngModel)]="selectedEmployeePosId">
+                            <ng-template ng-header-tmp>
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-8">Buscar posición empleado ...</div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                            <ng-template ng-label-tmp let-item="item">
+                                <span>{{item.Name}}</span>
+                            </ng-template>
+                            <ng-template ng-option-tmp let-item="item" let-index="index">
+                                {{item.Name}}
+                            </ng-template>
+                        </ng-select>
+                    </div>
+                </div>
+           -->
+                <!-- FIN -->
                 <div class="form-group row">
                     <div class="col-md-12">
                         <button (click)="savePost()" class="btn btn-success btnblock"

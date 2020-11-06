@@ -77,7 +77,7 @@ export class ProductFormComponent implements OnInit {
     //Update
     this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
-      console.log(this.product);
+      console.log(this.product); 
       this.editing = true;
       const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
 
