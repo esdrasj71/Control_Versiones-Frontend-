@@ -9,13 +9,14 @@
         role="alert"
         style="background-color: #699dbf; height: 100%"
       >
+      <form name ="formulario" onSubmit="return limpiar()">
         <div class="form-group row">
           <label class="col-md-3 form-controllabel" for="Nit">NIT</label>
           <div class="col-md-9">
             <input
               [(ngModel)]="providers.NIT"
               type="text"
-              id="Nit"
+              name="NIT"
               class="form-control" minlength="6" maxlength="20" required=""
             />
           </div>
@@ -28,7 +29,7 @@
             <input
               [(ngModel)]="providers.Fiscal_Name"
               type="text"
-              id="Fiscal_Name"
+              name="Fiscal_Name"
               class="form-control" maxlength="35" required=""
             />
           </div>
@@ -41,7 +42,7 @@
             <input
               [(ngModel)]="providers.Phone_Number1"
               type="text"
-              id="Phone_Number1"
+              name="Phone_Number1"
               class="form-control" minlength="7" maxlength="15" required=""
             />
           </div>
@@ -54,7 +55,7 @@
             <input
               [(ngModel)]="providers.Phone_Number2"
               type="text"
-              id="Phone_Number2"
+              name="Phone_Number2"
               class="form-control"
             />
           </div>
@@ -67,7 +68,7 @@
             <input
               [(ngModel)]="providers.Email"
               type="text"
-              id="Email"
+              name="Email"
               class="form-control" minlength="10" maxlength="40" required=""
             />
           </div>
@@ -80,19 +81,20 @@
             <input
               [(ngModel)]="providers.Address"
               type="text"
-              id="Address"
+              name="Address"
               class="form-control" minlength="4" maxlength="60" required=""
             />
           </div>
         </div>
-
+      
         <div class="form-group row">
           <div class="col-md-12">
-            <button (click)="savePost()" class="btn btn-success btnblock">
+            <button (click)="savePost()" type="submit" class="btn btn-success btnblock">
               Guardar
             </button>
           </div>
         </div>
+      </form>
       </div>
     </div>
   </div>
