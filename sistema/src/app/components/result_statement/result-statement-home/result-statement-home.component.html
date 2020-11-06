@@ -64,7 +64,7 @@
                 </tbody>
                 <thead *ngFor="let datos of utilidad_bruta" >
                     <tr>
-                        <th scope="col">Utilidad bruta</th>
+                        <th scope="col">Utilidad o perdida bruta</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
                         <th scope="col">{{datos['@utilidad_bruta'] | currency:"GTQ":"Q"}}</th>
@@ -88,7 +88,7 @@
                 </tbody>
                 <thead *ngFor="let datos of utilidad_operativa" >
                     <tr>
-                        <th scope="col">Utilidad operativa</th>
+                        <th scope="col">Utilidad o perdida operativa</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
                         <th scope="col">{{datos['@utilidad_operativa'] | currency:"GTQ":"Q"}}</th>

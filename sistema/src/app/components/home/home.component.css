@@ -35,7 +35,7 @@ label{
   position: relative;
   background: url('../../../assets/images/bitcoin2.jpg') center;
   background-size: cover;
-  overflow: hidden;
+  overflow: hidden; 
 }
 
 .photo-text{
