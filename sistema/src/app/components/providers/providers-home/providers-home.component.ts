@@ -35,7 +35,7 @@ searchTerm3 = '';
     this.providersService.delete(id).subscribe(
       (data) => {
         Swal.fire('Proveedor Eliminado', '','success');
-        window.setTimeout(function(){location.reload()},1500)
+        //window.setTimeout(function(){location.reload()},1500)
       },
       (error) => {
         console.log(error);
