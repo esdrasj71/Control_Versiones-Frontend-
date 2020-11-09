@@ -11,11 +11,7 @@ export class EmployeePositionService {
    
   employeePosition=[];
   constructor(private httpClient: HttpClient) {
-    const headers = new HttpHeaders({'Content-Type': 'application/json', 'accesstoken':localStorage.getItem('token')});
-    httpClient.get(this.API_ENDPOINT + 'employee_position',{headers})
-      .subscribe((data: EmployeePosition[]) => {
-        this.employeePosition = data;
-      });
+ 
    }
 
    getPosition(){
