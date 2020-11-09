@@ -77,6 +77,7 @@ import { FilterBillTypePipe } from './pipes/filter-bill-type.pipe';
 import { FilterBankPipe } from './pipes/filter-bank.pipe';
 import { FilterExpendituresPipe } from './pipes/filter-expenditures.pipe';
 import { ResultStatementHomeComponent } from './components/result_statement/result-statement-home/result-statement-home.component';
+import { FilterProductPipe } from './pipes/filter-product.pipe';
 
 
 
@@ -268,6 +269,7 @@ const routes: Route[] = [
     FilterBankPipe,
     FilterExpendituresPipe,
     ResultStatementHomeComponent,
+    FilterProductPipe,
 
   ],
   imports: [

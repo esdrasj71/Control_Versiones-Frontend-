@@ -57,6 +57,8 @@ export class ProductFormComponent implements OnInit {
   productcategory: any[];
   selectedBrandId: number;
   selectedCategoryId: number;
+  selectedCorrelativeproduct: number;
+  selectedProduct: string;
   selectedDueDate: Date;
   //Update
   id: any;
@@ -80,7 +82,6 @@ export class ProductFormComponent implements OnInit {
       console.log(this.product);
       this.editing = true;
       const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
-
       this.httpClient.get(this.API_ENDPOINT + 'product', { headers }).subscribe(
         (data: Products[]) => {
           this.productarr = data;
@@ -89,6 +90,9 @@ export class ProductFormComponent implements OnInit {
           });
           this.selectedCategoryId = this.product.Product_Category_Id;
           this.selectedBrandId = this.product.Brand_Id;
+          this.selectedCorrelativeproduct = this.product.Correlative_Product;
+          this.selectedProduct = this.product.Name;
+          //LOT
           this.lot.Product_Id = this.product.Product_Id;
           this.lot.Due_Date = this.selectedDueDate;
         },
@@ -115,6 +119,8 @@ export class ProductFormComponent implements OnInit {
       console.log(this.product);
       this.product.Product_Category_Id = this.selectedCategoryId;
       this.product.Brand_Id = this.selectedBrandId;
+      this.product.Correlative_Product = this.selectedCorrelativeproduct;
+      this.product.Name = this.selectedProduct;
       console.log(this.product.Name);
       this.productService.put(this.product).subscribe(
         (data) => {
@@ -136,6 +142,8 @@ export class ProductFormComponent implements OnInit {
     } else {
       this.procedure_saveproduct.Product_Category_Id = this.selectedCategoryId;
       this.procedure_saveproduct.Brand_Id = this.selectedBrandId;
+      this.procedure_saveproduct.Correlative_Product = this.selectedCorrelativeproduct;
+      this.procedure_saveproduct.Name = this.selectedProduct;
       this.productService.saveprocedure(this.procedure_saveproduct).subscribe(
         (data) => {
           this.lastidproduct = data['id'];
