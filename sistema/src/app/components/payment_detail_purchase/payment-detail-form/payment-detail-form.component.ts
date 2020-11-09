@@ -5,7 +5,7 @@ import { PaymentDetail } from '../interfaces/payment-detail';
 import { ActivatedRoute } from '@angular/router';
 import { PaymentPurhcase } from '../../payment_purchase/interfaces/payment-purhcase';
 import { Purchase_Header } from '../../purchase/interfaces/purchase-header';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-payment-detail-form',
   templateUrl: './payment-detail-form.component.html',
@@ -60,21 +60,21 @@ export class PaymentDetailFormComponent implements OnInit {
   savePaymentDetail() {
     if (this.editing) {
       this.paymentServicie.put(this.paymentDetail).subscribe((data) => { //El unico cambioes el put
-        alert('Detalle de pago compra actualizado');
+        Swal.fire('Detalle de pago compra actualizado', '','success');
         console.log(data)
       }, (error) => {
         console.log(error);  
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
     else {
       console.log(this.paymentDetail);
       this.paymentServicie.save(this.paymentDetail).subscribe((data) => {
-        alert('Detalle de pago compra guardado');
+        Swal.fire('Detalle de pago compra guardado', '','success');
         console.log(data)
       }, (error) => { 
         console.log(error);
-        alert('Ocurrio un error'); 
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''}); 
       });
     }
   } 

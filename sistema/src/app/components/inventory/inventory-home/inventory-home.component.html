@@ -39,7 +39,7 @@
                     <td><a class="btn btn-warning btnsm" style="background-color:#F7985B;"
                             routerLink="/inventory-form/{{inventory.Inventory_Id}}">
                             <i class="fa fa-pencil-square-o fa-lg" style="color: white;"></i></a>&nbsp;
-                        <a class="btn btn-danger btnsm" style="background-color:#e74c3c;"
+                        <a class="btn btn-danger btnsm" style="background-color:#e74c3c;" onClick="EliminarFila(this)"
                             (click)="delete(inventory.Inventory_Id)">
                             <i class="fa fa-trash fa-lg" style="color: white;"></i></a>
                     </td>

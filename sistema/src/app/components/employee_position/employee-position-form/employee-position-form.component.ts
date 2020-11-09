@@ -12,9 +12,9 @@ import Swal from 'sweetalert2';
 export class EmployeePositionFormComponent implements OnInit {
 
   employeePosition: EmployeePosition = {
-    Employee_Position_Id:null,
+    Employee_Position_Id: null,
     Name: null,
-    Description: null, 
+    Description: null,
   }; //este arreglo define los campos que se van a ingresar en el formulario
   API_ENDPOINT = 'http://localhost:3000/';
   id: any;
@@ -41,23 +41,26 @@ export class EmployeePositionFormComponent implements OnInit {
   savePost() {
     if (this.editing) {
       this.employeePositionServicie.put(this.employeePosition).subscribe((data) => { //El unico cambioes el put
-        Swal.fire('Posición empleado actualizado', '','success');
+        Swal.fire('Posición empleado actualizado', '', 'success');
         console.log(data)
       }, (error) => {
-        console.log(error);  
-        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
+        console.log(error);
+        Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
       });
     }
     else {
-      console.log(this.employeePosition);
-      this.employeePositionServicie.save(this.employeePosition).subscribe((data) => {
-        Swal.fire('Posición empleado guardado', '','success');
-        console.log(data)
-      }, (error) => { 
-        console.log(error);
-        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
-      });
+      if (this.employeePosition.Name == null) {
+        Swal.fire({ icon: 'warning', title: 'Aviso!', text: 'Debe llenar todos los campos' });
+      }
+      else {
+        this.employeePositionServicie.save(this.employeePosition).subscribe((data) => {
+          Swal.fire('Posición empleado guardado', '', 'success');
+          console.log(data)
+        }, (error) => {
+          console.log(error);
+          Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
+        });
+      }
     }
-  } 
+  }
 }
- 

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {Company} from '../interface/company';
 import {CompanyService} from '../servicios/company.service';
-import { Router } from '@angular/router';
+import { Router } from '@angular/router'; 
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-company-form',
   templateUrl: './company-form.component.html',
@@ -35,12 +36,12 @@ export class CompanyFormComponent implements OnInit {
   savePost()
   {
     this.companyService.put(this.company).subscribe((data) => { //El unico cambioes el put
-      alert('Compañia agregada');
+      Swal.fire('Compañia agregada', '','success');
       this.router.navigate(['/home']);
       console.log(data)
     }, (error) => {
       console.log(error);
-      alert('Ocurrio un error');
+      Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
     });
   }
 }

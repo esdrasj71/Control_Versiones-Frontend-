@@ -28,7 +28,6 @@ searchTerm6 = '';
   delete(id) {
     this.productcategoryService.delete(id).subscribe((data) => {
         Swal.fire('Categoría de Producto Eliminado', '','success');
-        window.setTimeout(function(){location.reload()},2000)
     }, (error) => {
       console.log(error);
       Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})

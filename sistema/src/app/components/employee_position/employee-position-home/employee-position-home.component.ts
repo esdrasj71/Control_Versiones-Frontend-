@@ -30,7 +30,6 @@ searchTerm2 = '';
     this.employeePositionService.delete(id).subscribe(
       (data) => {
         Swal.fire('Posición de empleado eliminado', '','success');
-        window.setTimeout(function(){location.reload()},2000)
       },
       (error) => {
         console.log(error);

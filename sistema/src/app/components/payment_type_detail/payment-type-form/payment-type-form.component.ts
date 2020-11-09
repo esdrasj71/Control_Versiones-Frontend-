@@ -5,7 +5,7 @@ import { PaymentTypeDetail } from '../interfaces/payment-type-detail';
 import { ActivatedRoute } from '@angular/router';
 import { Payment } from '../../payment/interfaces/payment';
 import { Bill_header } from '../../sales/interfaces/bill-header';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-payment-type-form',
   templateUrl: './payment-type-form.component.html',
@@ -59,21 +59,21 @@ export class PaymentTypeFormComponent implements OnInit {
   savePaymentDetail() {
     if (this.editing) {
       this.paymentServicie.put(this.paymentDetail).subscribe((data) => { //El unico cambioes el put
-        alert('Detalle tipo de pago actualizado');
+        Swal.fire('Detalle tipo de pago actualizado', '','success');
         console.log(data)
       }, (error) => {
         console.log(error);  
-        alert('Ocurrio un error');
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
     else {
       console.log(this.paymentDetail);
       this.paymentServicie.save(this.paymentDetail).subscribe((data) => {
-        alert('Detalle tipo de pago guardado');
+        Swal.fire('Detalle tipo de pago guardado', '','success');
         console.log(data)
       }, (error) => { 
         console.log(error);
-        alert('Ocurrio un error'); 
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
   } 

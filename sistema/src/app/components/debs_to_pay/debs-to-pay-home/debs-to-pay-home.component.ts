@@ -78,6 +78,7 @@ export class DebsToPayHomeComponent implements OnInit {
     else {
       this.debstopayService.saveprocedure(this.procedure_debstopay).subscribe((data) => {
         Swal.fire('Pago Exitoso', '','success');
+        window.setTimeout(function(){location.reload()},1100)
       }, (error) => {
         console.log(error);
         Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})

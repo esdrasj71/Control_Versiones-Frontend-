@@ -26,7 +26,7 @@
                             routerLink="/brand-form/{{brand.Brand_Id}}">
                             <i class="fa fa-pencil-square-o fa-lg" style="color: white;"></i></a>&nbsp;
                         <a class="btn btn-danger btn-sm" style="background-color:#e74c3c;"
-                            (click)="delete(brand.Brand_Id)" routerLink="/brand-home"><i class="fa fa-trash fa-lg"
+                            (click)="delete(brand.Brand_Id)" onClick="EliminarFila(this)"><i class="fa fa-trash fa-lg"
                                 style="color: white;"></i></a>
                     </td>
                 </tr>

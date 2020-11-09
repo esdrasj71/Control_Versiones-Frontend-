@@ -25,8 +25,8 @@
                     <td><a class="btn btn-warning btn-sm" style="background-color:#F7985B;"
                             routerLink="/expenses-form/{{expenses.Expenses_Id}}">
                             <i class="fa fa-pencil-square-o fa-lg" style="color: white;"></i></a>&nbsp;
-                        <a class="btn btn-danger btn-sm" style="background-color:#e74c3c;"
-                            (click)="delete(expenses.Expenses_Id)" routerLink="/expenses-home"><i class="fa fa-trash fa-lg"
+                        <a class="btn btn-danger btn-sm" style="background-color:#e74c3c;" onClick="EliminarFila(this)"
+                            (click)="delete(expenses.Expenses_Id)"><i class="fa fa-trash fa-lg"
                                 style="color: white;"></i></a>
                     </td>
                 </tr>

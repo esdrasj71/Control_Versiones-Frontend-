@@ -1,4 +1,4 @@
-import { Component, OnInit,  Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { BillType } from '../interfaces/bill-type';
 import { BillTypeService } from '../servicios/bill-type.service';
 import { ActivatedRoute } from '@angular/router';
@@ -32,28 +32,33 @@ export class BillTypeFormComponent implements OnInit {
     } else {
       this.editing = false;
     }
-   }
+  }
   ngOnInit(): void {
   }
   saveBillType() {
     if (this.editing) {
       this.billtypeService.put(this.billtype).subscribe((data) => {
-        Swal.fire('Tipo de Factura Actualizado', '','success');
+        Swal.fire('Tipo de Factura Actualizado', '', 'success');
         console.log(data)
       }, (error) => {
         console.log(error);
-        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
+        Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' })
       });
     }
     else {
-      this.billtypeService.save(this.billtype).subscribe((data) => {
-        Swal.fire('Tipo de Factura Guardado', '','success');
-        console.log(data);
-        this.BillType_Id.emit(data['id']);
-      }, (error) => {
-        console.log(error);
-        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
-      });
+      if (this.billtype.Name == null) {
+        Swal.fire({ icon: 'warning', title: 'Aviso!', text: 'Debe llenar todos los campos' });
+      }
+      else {
+        this.billtypeService.save(this.billtype).subscribe((data) => {
+          Swal.fire('Tipo de Factura Guardado', '', 'success');
+          console.log(data);
+          this.BillType_Id.emit(data['id']);
+        }, (error) => {
+          console.log(error);
+          Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' })
+        });
+      }
     }
   }
 }

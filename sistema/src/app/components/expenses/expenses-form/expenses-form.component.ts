@@ -1,4 +1,4 @@
-import { Component, OnInit,  Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Expenses } from '../interfaces/expenses';
 import { ExpensesService } from '../servicios/expenses.service';
 import { ActivatedRoute } from '@angular/router';
@@ -19,11 +19,11 @@ export class ExpensesFormComponent implements OnInit {
   editing: boolean = false;
   expensesarr: Expenses[];
   constructor(private expensesService: ExpensesService, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
-  const headers = new HttpHeaders({ 'ContentType': 'application/json', 'accesstoken': localStorage.getItem('token') });
+    const headers = new HttpHeaders({ 'ContentType': 'application/json', 'accesstoken': localStorage.getItem('token') });
     this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
       this.editing = true;
-      this.httpClient.get(this.API_ENDPOINT + 'expenses',{headers}).subscribe((data: Expenses[]) => {
+      this.httpClient.get(this.API_ENDPOINT + 'expenses', { headers }).subscribe((data: Expenses[]) => {
         this.expensesarr = data;
         this.expenses = this.expensesarr.find((m) => { return m.Expenses_Id == this.id });
       }, (error) => {
@@ -39,22 +39,27 @@ export class ExpensesFormComponent implements OnInit {
   saveExpenses() {
     if (this.editing) {
       this.expensesService.put(this.expenses).subscribe((data) => {
-        Swal.fire('Gasto Actualizado', '','success');
+        Swal.fire('Gasto Actualizado', '', 'success');
         console.log(data)
       }, (error) => {
         console.log(error);
-        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
+        Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' })
       });
     }
     else {
-      this.expensesService.save(this.expenses).subscribe((data) => {
-        Swal.fire('Gasto Guardado', '','success');
-        console.log(data)
-        this.Expenses_Id.emit(data['id']);
-      }, (error) => {
-        console.log(error);
-        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
-      });
+      if (this.expenses.Name == null) {
+        Swal.fire({ icon: 'warning', title: 'Aviso!', text: 'Debe llenar todos los campos' });
+      }
+      else {
+        this.expensesService.save(this.expenses).subscribe((data) => {
+          Swal.fire('Gasto Guardado', '', 'success');
+          console.log(data)
+          this.Expenses_Id.emit(data['id']);
+        }, (error) => {
+          console.log(error);
+          Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' })
+        });
+      }
     }
   }
 }

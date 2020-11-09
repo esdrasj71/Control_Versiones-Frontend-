@@ -77,11 +77,11 @@ export class ProductFormComponent implements OnInit {
     //Update
     this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
-      console.log(this.product); 
+      console.log(this.product);
       this.editing = true;
-      const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
 
-      this.httpClient.get(this.API_ENDPOINT + 'product',{headers}).subscribe(
+      this.httpClient.get(this.API_ENDPOINT + 'product', { headers }).subscribe(
         (data: Products[]) => {
           this.productarr = data;
           this.product = this.productarr.find((m) => {
@@ -99,28 +99,29 @@ export class ProductFormComponent implements OnInit {
     } else {
       this.editing = false;
     }
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
-    httpClient.get(this.API_ENDPOINT + 'brands',{headers}).subscribe((data: Brands[]) => {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
+    httpClient.get(this.API_ENDPOINT + 'brands', { headers }).subscribe((data: Brands[]) => {
       this.brands = data;
     });
     httpClient
-      .get(this.API_ENDPOINT + 'product_category',{headers})
+      .get(this.API_ENDPOINT + 'product_category', { headers })
       .subscribe((data: Product_Category[]) => {
         this.product_category = data;
       });
   }
-  ngOnInit(): void {}
+  ngOnInit(): void { }
   saveProduct() {
     if (this.editing) {
       console.log(this.product);
       this.product.Product_Category_Id = this.selectedCategoryId;
       this.product.Brand_Id = this.selectedBrandId;
+      console.log(this.product.Name);
       this.productService.put(this.product).subscribe(
         (data) => {
           this.lastidproduct = data['id'];
           //
           this.lot.Product_Id = this.lastidproduct;
-          Swal.fire('Producto Actualizado', '','success');
+          Swal.fire('Producto Actualizado', '', 'success');
           location.reload();
           //window.location.reload();
           console.log(data);
@@ -129,7 +130,7 @@ export class ProductFormComponent implements OnInit {
         },
         (error) => {
           console.log(error);
-          Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
+          Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
         }
       );
     } else {
@@ -137,12 +138,11 @@ export class ProductFormComponent implements OnInit {
       this.procedure_saveproduct.Brand_Id = this.selectedBrandId;
       this.productService.saveprocedure(this.procedure_saveproduct).subscribe(
         (data) => {
-       
-          //this.lastidproduct = data['id'];
+          this.lastidproduct = data['id'];
           //
-          //this.procedure_saveproduct.Product_Id = this.lastidproduct;
+          this.procedure_saveproduct.Product_Id = this.lastidproduct;
           //console.log(this.procedure_saveproduct.Product_Id);
-          Swal.fire('Producto guardado', '','success');
+          Swal.fire('Producto guardado', '', 'success');
           this.Product_Id.emit(data['Correlative_Product']);
           //console.log(this.procedure_saveproduct);
           //this.router.navigate(['/product-home']);
@@ -150,7 +150,7 @@ export class ProductFormComponent implements OnInit {
         },
         (error) => {
           console.log(error);
-          Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
+          Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
           console.log(this.procedure_saveproduct);
           console.log(this.product);
         }

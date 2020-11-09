@@ -4,7 +4,7 @@
             <h2 class="alert alert-primary" role="alert" style="text-align: center;">Editar/Crear Lote</h2>
             <div class="alert alert-warning" role="alert" style="background-color:#699DBF; height: 100%;">
 
-                <form>
+                <form name="formulario" onSubmit="return limpiar()">
                     <!--Product-->
                     <div style="width: 60%; height:100px">
                         <label style="color: white;"> Seleccione el producto</label>
@@ -29,13 +29,13 @@
                     <div class="form-group row"> &nbsp;&nbsp;&nbsp;&nbsp;
                         <label style="color: white;">Fecha de caducidad:</label>
                         <div class="col-md-9">
-                            <input type="date" id="start" name="trip-start" [(ngModel)]="lot.Due_Date"
+                            <input type="date" id="start" name="Due_Date" [(ngModel)]="lot.Due_Date"
                                 [ngModelOptions]="{standalone: true}" class="form-control" style="width: 80%;">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <button type="submit" (click)="savePost()" class="btn btn-success">Registrar</button>
+                            <button type="submit" (click)="savePost()" class="btn btn-success" type="submit">Registrar</button>
                         </div>
                     </div>
                 </form>

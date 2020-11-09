@@ -25,7 +25,6 @@ export class BankHomeComponent implements OnInit {
     this.bankService.delete(id).subscribe(
       (data) => {
         Swal.fire('Banco Eliminado', '','success');
-        window.setTimeout(function(){location.reload()},2000)
       },
       (error) => {
         console.log(error);

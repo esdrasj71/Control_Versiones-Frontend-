@@ -26,7 +26,6 @@ export class ExpensesHomeComponent implements OnInit {
     this.expensesService.delete(id).subscribe(
       (data) => {
         Swal.fire('Gasto Eliminado', '','success');
-        window.setTimeout(function(){location.reload()},2000)
       },
       (error) => {
         console.log(error);

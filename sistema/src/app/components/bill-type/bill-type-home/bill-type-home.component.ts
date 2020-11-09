@@ -25,7 +25,6 @@ export class BillTypeHomeComponent implements OnInit {
     this.billtypeService.delete(id).subscribe(
       (data) => {
         Swal.fire('Tipo de Factura Eliminado', '','success');
-        window.setTimeout(function(){location.reload()},2000)
       },
       (error) => {
         console.log(error);

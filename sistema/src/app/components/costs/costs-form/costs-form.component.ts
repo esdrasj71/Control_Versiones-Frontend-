@@ -40,22 +40,27 @@ export class CostsFormComponent implements OnInit {
   saveCosts() {
     if (this.editing) {
       this.costsService.put(this.costs).subscribe((data) => {
-        Swal.fire('Costo Actualizado', '','success');
+        Swal.fire('Costo Actualizado', '', 'success');
         console.log(data)
       }, (error) => {
         console.log(error);
-        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
+        Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' })
       });
     }
     else {
-      this.costsService.save(this.costs).subscribe((data) => {
-        Swal.fire('Costo Guardado', '','success');
-        console.log(data)
-        this.Cost_Id.emit(data['id']);
-      }, (error) => {
-        console.log(error);
-        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
-      });
+      if (this.costs.Name == null) {
+        Swal.fire({ icon: 'warning', title: 'Aviso!', text: 'Debe llenar todos los campos' });
+      }
+      else {
+        this.costsService.save(this.costs).subscribe((data) => {
+          Swal.fire('Costo Guardado', '', 'success');
+          console.log(data)
+          this.Cost_Id.emit(data['id']);
+        }, (error) => {
+          console.log(error);
+          Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' })
+        });
+      }
     }
   }
 }

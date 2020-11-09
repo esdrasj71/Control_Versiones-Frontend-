@@ -116,7 +116,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
     private payment_detail_purchase: PaymentDetailService,
     private lotService: LotService,
     private debstopayService: DebsToPayService
-  ) {}
+  ) { }
   ngOnInit() {
     this.providerService.getProviders().subscribe((data: Providers[]) => {
       this.providers = data;
@@ -182,10 +182,10 @@ export class PurchaseHeaderFormComponent implements OnInit {
     console.log(this.header);
     this.purchase_headerservice.save(this.header).subscribe(
       (data) => {
-        Swal.fire('Compra Guardada', '','success');
+        Swal.fire('Compra Guardada', '', 'success');
         console.log(data);
-        //window.location.reload();
-        this.payment.Purchase_Header_Id = data['id']; 
+        window.setTimeout(function () { location.reload() }, 1100)
+        this.payment.Purchase_Header_Id = data['id'];
         if (this.SiPago == true) {
           ///DebsToPay
           this.debstopay.Description = ' ';
@@ -195,14 +195,16 @@ export class PurchaseHeaderFormComponent implements OnInit {
           this.debstopay.Statuss = true;
           this.debstopay.Purchase_Header_Id = data['id'];
           console.log(data['id']);
-          this.debstopayService.save(this.debstopay).subscribe(
-            (data) => {
-              Swal.fire('cuenta por pagar guardada', '','success');
-            },
-            (error) => {
-              Swal.fire({icon: 'error', title: 'Ocurrio un error', text: 'Cuenta por pagar'});
-            }
-          );
+          if (this.total_cobro > 0) {
+            this.debstopayService.save(this.debstopay).subscribe(
+              (data) => {
+                Swal.fire('cuenta por pagar guardada', '', 'success');
+              },
+              (error) => {
+                Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: 'Cuenta por pagar' });
+              }
+            );
+          }
           ///
           this.payment.Method_Name = 1; //al credito
           this.payment_detail_purchase.save(this.payment).subscribe(
@@ -211,7 +213,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
             },
             (error) => {
               console.log(error);
-              Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
+              Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
             }
           );
           console.log(this.payment);
@@ -220,11 +222,11 @@ export class PurchaseHeaderFormComponent implements OnInit {
           this.payment_detail_purchase.save(this.payment).subscribe(
             (data) => {
               console.log(data);
-              Swal.fire('El metodo de pago se ha registrado correctamente', '','success');
+              Swal.fire('El metodo de pago se ha registrado correctamente', '', 'success');
             },
             (error) => {
               console.log(error);
-              Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
+              Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
             }
           );
           console.log(this.payment);
@@ -233,12 +235,12 @@ export class PurchaseHeaderFormComponent implements OnInit {
           this.payment.Total_Amount = this.total;
           this.payment_detail_purchase.save(this.payment).subscribe(
             (data) => {
-              Swal.fire('El metodo de pago al contado se ha registrado correctamente', '','success');
+              Swal.fire('El metodo de pago al contado se ha registrado correctamente', '', 'success');
               console.log(data);
             },
             (error) => {
               console.log(error);
-              Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
+              Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
             }
           );
           console.log(this.payment);
@@ -246,7 +248,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
       },
       (error) => {
         console.log(error);
-        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
+        Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
       }
     );
 
@@ -266,7 +268,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
         },
         (error) => {
           console.log(error);
-          Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
+          Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
         }
       );
     }
@@ -305,6 +307,6 @@ export class PurchaseHeaderFormComponent implements OnInit {
       this.payment.Total_Amount = this.total_cobro;
       this.SiPago = true;
     } else
-      Swal.fire({icon: 'error', title: 'Ocurrio un error', text: 'El pago al contado supera el monto total de lo que se esta comprando'});
+      Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: 'El pago al contado supera el monto total de lo que se esta comprando' });
   }
 }

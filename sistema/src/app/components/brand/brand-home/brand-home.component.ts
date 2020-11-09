@@ -28,8 +28,7 @@ export class BrandHomeComponent implements OnInit {
     delete(id) {
       this.brandsService.delete(id).subscribe(
         (data) => {
-          Swal.fire('Marca Eliminado', '','success');
-          window.setTimeout(function(){location.reload()},1500)
+          Swal.fire('Marca Eliminada', '','success');
         },
         (error) => {
           console.log(error);

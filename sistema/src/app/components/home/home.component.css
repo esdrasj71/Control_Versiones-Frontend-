@@ -35,7 +35,7 @@ label{
   position: relative;
   background: url('../../../assets/images/bitcoin2.jpg') center;
   background-size: cover;
-  overflow: hidden;
+  overflow: hidden; 
 }
 
 .photo-text{
@@ -250,9 +250,9 @@ ul li p{
   left: 0;
   text-align: left;
   animation-name: slider;
-    animation-duration: 25s;
+    animation-duration: 26s;
     animation-timing-function: linear;
-    animation-delay: -10s;
+    animation-delay: -9s;
     animation-iteration-count: infinite;
    /*animation-direction: alternate;*/
 }
@@ -270,7 +270,7 @@ ul li p{
   text-align: center;
   font-weight: 400;
   font-size: 40px;
-  color: #354757;
+  color: black;
   letter-spacing: 1.2px;
 }
 
@@ -304,14 +304,14 @@ ul li p{
   position: absolute;
   bottom: 0;
   padding: 10px;
-  background: rgba(254, 255, 255, .8);
+  background: rgba(38,39,43, 0.6);
   color: #FDFDFD;
   transform: translateY(100%);
   transition: all 450ms ease;
 }
 
 .portafolio-text h5{
-  color: #299FFF;
+  color: #E58859;
   font-size: 15px;
   text-transform: uppercase;
   letter-spacing: 1.2px;
@@ -320,7 +320,7 @@ ul li p{
 
 .portafolio-text p{
   text-align: justify;
-  color: #6D85A8;
+  color: whitesmoke;
 }
 
 .portafolio-item:hover .portafolio-text{

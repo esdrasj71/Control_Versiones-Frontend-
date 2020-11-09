@@ -39,22 +39,27 @@ export class BankFormComponent implements OnInit {
   saveBank() {
     if (this.editing) {
       this.bankService.put(this.bank).subscribe((data) => {
-        Swal.fire('Banco Actualizado', '','success');
+        Swal.fire('Banco Actualizado', '', 'success');
         console.log(data)
       }, (error) => {
         console.log(error);
-        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
+        Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' })
       });
     }
     else {
-      this.bankService.save(this.bank).subscribe((data) => {
-        Swal.fire('Banco Guardado', '','success');
-        console.log(data)
-        this.Bank_Id.emit(data['id']);
-      }, (error) => {
-        console.log(error);
-        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
-      });
+      if (this.bank.Bank_Name == null) {
+        Swal.fire({ icon: 'warning', title: 'Aviso!', text: 'Debe llenar todos los campos' });
+      }
+      else {
+        this.bankService.save(this.bank).subscribe((data) => {
+          Swal.fire('Banco Guardado', '', 'success');
+          console.log(data)
+          this.Bank_Id.emit(data['id']);
+        }, (error) => {
+          console.log(error);
+          Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' })
+        });
+      }
     }
   }
 }
