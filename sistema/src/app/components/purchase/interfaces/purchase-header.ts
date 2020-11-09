@@ -4,8 +4,6 @@ export interface Purchase_Header{
     Serie:string;
     Date_Purchase:Date;
     Total:number;
-    Refund:number;
-    Annulment_State:number;
     Payment_Complete:number;
     Observations:string;
     Providers_Id:string;
