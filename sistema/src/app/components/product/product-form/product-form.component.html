@@ -7,7 +7,7 @@
                     <div class="form-group row">
                         <label class="col-md-3 form-control-label" for="textinput">Nombre del producto:</label>
                         <div class="col-md-9">
-                            <input class="form-control" type="text" [(ngModel)]="procedure_saveproduct.Name" name="Name"
+                            <input class="form-control" type="text" [(ngModel)]="selectedProduct" name="Name"
                                 placeholder="Ingrese el nombre del producto" [ngModelOptions]="{standalone: true}"
                                 required=""> 
                         </div>
@@ -16,7 +16,7 @@
                         <label class="col-md-3 form-control-label" for="textinput">Número correlativo:</label>
                         <div class="col-md-9">
                             <input class="form-control" type="text" name="Correlative_Product"
-                                [(ngModel)]="procedure_saveproduct.Correlative_Product"
+                                [(ngModel)]="selectedCorrelativeproduct"
                                 placeholder="Ingrese el numero correlativo" [ngModelOptions]="{standalone: true}"
                                 required="">
                         </div>
