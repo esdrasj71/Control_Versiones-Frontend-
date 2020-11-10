@@ -35,7 +35,7 @@ export class Report2Component implements OnInit {
   }
   saveReport2(){
     this.report2Service.savereport2(this.report2).subscribe((data)=>{
-      alert('Reporte 2 generado');
+      //alert('Reporte 2 generado');
       this.repor2 = data[0];
       
     }, (error)=>{
