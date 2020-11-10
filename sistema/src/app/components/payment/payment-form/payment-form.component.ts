@@ -40,11 +40,15 @@ export class PaymentFormComponent implements OnInit {
       this.paymentServicie.put(this.payment).subscribe((data) => { //El unico cambioes el put
         Swal.fire('Pago Actualizado', '','success');
         console.log(data)
-      }, (error) => {
+      }, (error) => { 
         console.log(error);  
         Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
+    else{
+      if (this.payment.Method_Name == null) {
+        Swal.fire({ icon: 'warning', title: 'Aviso!', text: 'Debe ingresar un nombre' });
+      }
     else {
       console.log(this.payment);
       this.paymentServicie.save(this.payment).subscribe((data) => {
@@ -55,6 +59,7 @@ export class PaymentFormComponent implements OnInit {
         Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
+  }
   } 
 }
  

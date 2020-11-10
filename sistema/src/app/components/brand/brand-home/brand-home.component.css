@@ -1,10 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap');
 h1{
-    color: #fdfdfd;
-    font-family: 'Montserrat', sans-serif;
-}
+    color: whitesmoke;
+    font-family: sans-serif;
+    font-size: 40px;
+    font-weight: 530;
+    letter-spacing: 7px;
+    margin-bottom: 10px;
+    position: relative;
+    animation: text 2s 1;
+} 
 h2{
-    color: #fdfdfd;
+    font-size: 25px;
+    color: whitesmoke;
+}
+
+@keyframes text {
+    0%{
+        color: whitesmoke;
+        margin-bottom: -30px;
+    }
+    30%{
+        letter-spacing: 20px;
+        margin-bottom: -30px;
+    }
+    85%{
+        letter-spacing: 8px;
+        margin-bottom: -30px;
+    }
 }
 
 .my-custom-scrollbar {

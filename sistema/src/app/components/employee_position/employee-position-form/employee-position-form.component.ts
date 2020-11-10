@@ -50,7 +50,7 @@ export class EmployeePositionFormComponent implements OnInit {
     }
     else {
       if (this.employeePosition.Name == null) {
-        Swal.fire({ icon: 'warning', title: 'Aviso!', text: 'Debe llenar todos los campos' });
+        Swal.fire({ icon: 'warning', title: 'Aviso!', text: 'Debe ingresar un nombre' });
       }
       else {
         this.employeePositionServicie.save(this.employeePosition).subscribe((data) => {

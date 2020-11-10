@@ -9,7 +9,7 @@
                     <label class="col-md-3 form-controllabel" for="DPI">DPI :</label>
                     <div class="col-md-9">
                         <input [(ngModel)]="customer.DPI" type="text" id="DPI" name="DPI" class="form-control"
-                        minlength="10" maxlength="13" required/>
+                        minlength="10" maxlength="13" placeholder="Ingrese el no. de DPI" required/>
                     </div>
                 </div>
 
@@ -17,7 +17,7 @@
                     <label class="col-md-3 form-controllabel" for="Names" id="hey">Nombres :</label>
                     <div class="col-md-9">
                         <input [(ngModel)]="customer.Names" type="text" id="Names" name="Names" class="form-control"
-                        minlength="3" maxlength="70" required/>
+                        minlength="3" maxlength="70" placeholder="Ingrese nombres" required/>
                     </div>
                 </div>
 
@@ -25,7 +25,7 @@
                     <label class="col-md-3 form-controllabel" for="Last_names">Apellidos :</label>
                     <div class="col-md-9">
                         <input [(ngModel)]="customer.Last_names" type="text" id="Last_names" name="Last_names" class="form-control"
-                        minlength="4" maxlength="70" required/>
+                        minlength="4" maxlength="70" placeholder="Ingrese apellidos" required/>
                     </div>
                 </div>
 
@@ -33,7 +33,7 @@
                     <label class="col-md-3 form-controllabel" for="Phone_Number">Numero Telefonico :</label>
                     <div class="col-md-9">
                         <input [(ngModel)]="customer.Phone_Number" type="text" id="Phone_Number" name="Phone_Number" class="form-control"
-                        minlength="7" maxlength="15" required/>
+                        minlength="7" maxlength="15" placeholder="Ingrese el numero telefonico" required/>
                     </div>
                 </div>
 
@@ -41,7 +41,7 @@
                     <label class="col-md-3 form-controllabel" for="NIT">NIT :</label>
                     <div class="col-md-9">
                         <input [(ngModel)]="customer.NIT" type="text" id="NIT" class="form-control" name="NIT"
-                        minlength="8" maxlength="15">
+                        minlength="8" maxlength="15" placeholder="Campo opcional *">
                     </div>
 
                 </div>
@@ -50,7 +50,7 @@
                     <div class="col-md-9">
 
                         <input [(ngModel)]="customer.Address" type="text" id="Address" class="form-control" name="Address"
-                        minlength="4" maxlength="70" required/>
+                        minlength="4" maxlength="70" placeholder="Ingrese la direccion" required/>
                     </div>
                 </div>
       

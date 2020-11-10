@@ -52,6 +52,10 @@ export class ProvidersFormComponent implements OnInit {
         Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
+    else{
+      if(this.providers.NIT == null || this.providers.Fiscal_Name == null || this.providers.Phone_Number1 ==null || this.providers.Address==null){
+        Swal.fire({ icon: 'warning', title: 'Aviso!', text: 'Debe llenar los campos obligatorios' });
+      }
     else {
       console.log(this.providers);
       this.providersService.save(this.providers).subscribe((data) => {
@@ -63,5 +67,6 @@ export class ProvidersFormComponent implements OnInit {
         Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
+  }
   }
 }

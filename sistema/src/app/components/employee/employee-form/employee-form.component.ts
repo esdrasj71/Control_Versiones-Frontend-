@@ -65,7 +65,7 @@ export class EmployeeFormComponent implements OnInit {
     }
     else {
       if (this.employee.DPI == null || this.employee.Names == null || this.employee.Last_names == null || this.employee.Cellphone_number == null || this.employee.Gender== null || this.employee.Hire_date == null) {
-        Swal.fire({ icon: 'warning', title: 'Aviso!', text: 'Debe llenar todos los campos' });
+        Swal.fire({ icon: 'warning', title: 'Aviso!', text: 'Debe llenar los campos obligatorios' }); 
       }
       else {
       this.employeeService.save(this.employee).subscribe((data) => {
