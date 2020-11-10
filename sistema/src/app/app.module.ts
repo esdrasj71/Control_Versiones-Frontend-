@@ -189,8 +189,7 @@ const routes: Route[] = [
   { path: 'expenditures-form', component: ExpendituresFormComponent, canActivate: [CheckloginGuard] },
   { path: 'expenditures-home', component: ExpendituresHomeComponent, canActivate: [CheckloginGuard] },
   { path: 'expenditures-form/:id', component: ExpendituresFormComponent, canActivate: [CheckloginGuard] },
-
-    //Result Statement
+  //Result Statement
   {path: 'resultstatement-home', component: ResultStatementHomeComponent, canActivate: [CheckloginGuard]},
 ];
 

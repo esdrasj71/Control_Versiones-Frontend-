@@ -91,6 +91,7 @@ export class ProductFormComponent implements OnInit {
           this.selectedBrandId = this.product.Brand_Id;
           this.selectedCorrelativeproduct = this.product.Correlative_Product;
           this.selectedProduct = this.product.Name;
+          console.log(this.product.Perishable);
           //LOT
           //this.lot.Product_Id = this.product.Product_Id;
           //this.lot.Due_Date = this.selectedDueDate;
@@ -146,14 +147,10 @@ export class ProductFormComponent implements OnInit {
       this.productService.saveprocedure(this.procedure_saveproduct).subscribe(
         (data) => {
           this.lastidproduct = data['id'];
-          //
           this.procedure_saveproduct.Product_Id = this.lastidproduct;
-          //console.log(this.procedure_saveproduct.Product_Id);
           Swal.fire('Producto guardado', '', 'success');
           this.Product_Id.emit(data['Correlative_Product']);
-          //console.log(this.procedure_saveproduct);
-          //this.router.navigate(['/product-home']);
-          //console.log(data);
+          console.log(data);
         },
         (error) => {
           console.log(error);

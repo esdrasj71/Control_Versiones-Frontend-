@@ -76,12 +76,12 @@ export class LotFormComponent implements OnInit {
       });
     }
     else {
-      if (this.selectedProductId == null || this.lot.Due_Date == null) {
+      this.lot.Product_Id = this.selectedProductId;
+      this.lot.Due_Date = this.selectedDueDate;
+      if (this.lot.Product_Id == null|| this.lot.Due_Date == null) {
         Swal.fire({ icon: 'warning', title: 'Aviso!', text: 'Debe llenar todos los campos' });
       }
       else {
-        this.lot.Product_Id = this.selectedProductId;
-        this.lot.Due_Date = this.selectedDueDate;
         console.log(this.lot);
         this.lotService.save(this.lot).subscribe((data) => {
           Swal.fire('Lote Guardado', '', 'success');
