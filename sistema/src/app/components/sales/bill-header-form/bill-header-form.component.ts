@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit,ViewChild,ElementRef } from '@angular/core';
 import { Customers } from '../../customers/interfaces/customer';
 import { Products } from '../../product/interfaces/product';
 import { Inventory } from '../../inventory/interfaces/inventory';
@@ -10,7 +10,6 @@ import { Bill_header } from '../interfaces/bill-header';
 import { Payment_detail } from '../interfaces/payment-detail';
 import { NoFactura } from '../interfaces/nofactura';
 import { AccountsRecivable } from '../../accounts_receivable/interfaces/accounts-receivable';
-
 import { BillsService } from '../servicios/bills.service';
 import { ProcedureSaleService } from '../servicios/procedure-sale.service';
 import { Procedure_Sale } from '../interfaces/procedure-sale';
@@ -20,6 +19,11 @@ import { ProductsService } from '../../product/servicios/products.service';
 import { InventoryService } from '../../inventory/servicios/inventory.service';
 import { EmployeeService } from '../../employee/servicios/employee.service';
 import { AccountsReceivableService } from '../../accounts_receivable/servicios/accounts-receivable.service';
+import jsPDF from 'jspdf';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import htmlToPdfmake from 'html-to-pdfmake';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-bill-header-form',
@@ -27,7 +31,10 @@ import Swal from 'sweetalert2';
   styleUrls: ['./bill-header-form.component.css']
 })
 export class BillHeaderFormComponent implements OnInit {
-
+  @ViewChild('pdfTable') pdfTable: ElementRef;
+  @ViewChild('totall') totall: ElementRef;
+  @ViewChild('clientess') clientess: ElementRef;
+  @ViewChild('factura') factura: ElementRef;
   values: number = 0;
   total: number = 0;
   //insertar cuentas por cobrar
@@ -118,13 +125,12 @@ export class BillHeaderFormComponent implements OnInit {
     private billsService: BillsService,
     private employeeService: EmployeeService,
     private customersService: CustomersService,
-    private activatedRoute: ActivatedRoute,
     private httpClient: HttpClient,
     private productsService: ProductsService,
     private inventoryService: InventoryService,
     private proceduresaleService: ProcedureSaleService,
     private paymentdetailService: PaymentDetailService,
-    private accountsRecivableService: AccountsReceivableService,
+    private accountsRecivableService: AccountsReceivableService
 
   ) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
@@ -196,7 +202,7 @@ export class BillHeaderFormComponent implements OnInit {
             return exists;
           });
           this.nuevo_inventario = array;
-          console.log("holis" + this.nuevo_inventario);
+          //console.log("holis" + this.nuevo_inventario);
         }
       });
 
@@ -409,9 +415,42 @@ export class BillHeaderFormComponent implements OnInit {
           }
         )
       };
-
+      
       //localStorage.removeItem("id");
     }
-
+    const doc = new jsPDF();
+    //get table html
+    let fechita = this.fecha;
+    let serita= this.encabezado_factura.Serie;
+    const pdfTable = this.pdfTable.nativeElement;
+    const totall = this.totall.nativeElement;
+    const factura = this.factura.nativeElement;
+    const clientess = this.clientess.nativeElement;
+    //html to pdf format
+    var html = htmlToPdfmake(`
+    <div style = "text-align:center;">
+    <h1>
+    <p>
+    <b>Empresa: </b> `+this.empresa.Company_Name+`
+    </p>
+    <p>
+    <b>Dirección: </b> `+this.empresa.Address+`
+    </p>
+    <p>
+    <b>NIT: </b> `+this.empresa.NIT+`
+    </p>
+    </h1>
+   </div> 
+  <hr>
+  <h3>FACTURACION </h3>
+    `+factura.innerHTML+`
+    <p>Serie: `+serita+` </p>
+    <p>Fecha: `+fechita+`</p></br>
+    <h3>Datos del cliente</h3>
+  <hr>
+    `+clientess.innerHTML+`<hr> <h3>Detalle de la factura</h3>`+totall.innerHTML+pdfTable.innerHTML);
+   
+    const documentDefinition = { content: html };
+    pdfMake.createPdf(documentDefinition).open();
   }
 }

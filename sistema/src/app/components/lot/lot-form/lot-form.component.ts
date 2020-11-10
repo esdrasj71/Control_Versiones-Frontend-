@@ -53,7 +53,7 @@ export class LotFormComponent implements OnInit {
     httpClient.get(this.API_ENDPOINT + 'product', { headers })
       .subscribe((data: Products[]) => {
         this.products = data;
-        console.log(this.products);
+        //console.log(this.products);
       })
   }
   ngOnInit() {
