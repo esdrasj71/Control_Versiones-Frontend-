@@ -24,7 +24,6 @@ export class ProvidersHomeComponent implements OnInit {
    /* httpClient.get(this.API_ENDPOINT + 'providers',{headers:headers})
       .subscribe((data: Providers[]) => {
         this.providers = data; 
-        console.log(this.providers);
       });*/
   }
 

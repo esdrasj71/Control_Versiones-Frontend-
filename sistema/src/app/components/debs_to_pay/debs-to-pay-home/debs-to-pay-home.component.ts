@@ -29,7 +29,6 @@ export class DebsToPayHomeComponent implements OnInit {
     httpClient.get(this.API_ENDPOINT + 'DebstoPay', { headers })
       .subscribe((data: DebstoPay[]) => {
         this.debstopay = data;
-        console.log(this.debstopay);
       });
   }
 
@@ -65,8 +64,6 @@ export class DebsToPayHomeComponent implements OnInit {
     this.httpClient.get(this.API_ENDPOINT + 'DebstoPayPurchase/' + purchaseheaderId, { headers })
       .subscribe((data: DebstoPay[]) => {
         this.billsdetail = data;
-        console.log(this.billsdetail);
-        console.log(purchaseheaderId);
       })
     this.Total = total;
     this.TotalPurchase = totalpurchase;

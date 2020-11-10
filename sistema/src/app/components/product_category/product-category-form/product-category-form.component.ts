@@ -54,7 +54,6 @@ export class ProductCategoryFormComponent implements OnInit {
         Swal.fire({ icon: 'warning', title: 'Aviso!', text: 'Debe llenar todos los campos' });
       }
       else {
-        console.log(this.product_category);
         this.productcategoryService.save(this.product_category).subscribe((data) => {
           Swal.fire('Categoría de Producto Guardado', '', 'success');
           console.log(data)

@@ -17,7 +17,6 @@ export class CustomersHomeComponent implements OnInit {
     this.customersService.getCustomer()
     .subscribe((data: Customers[])=>{
       this.customers = data;
-      console.log(this.customers);
       });
    }
 

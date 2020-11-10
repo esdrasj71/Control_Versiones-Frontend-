@@ -149,9 +149,7 @@ export class InventoryReportsHomeComponent implements OnInit {
         }
         else {
           this.Existe = 1;
-          console.log(this.report1);
           this.reportone = data[0];
-          console.log(this.reportone);
         }
       }, (error) => {
         console.log(error);
