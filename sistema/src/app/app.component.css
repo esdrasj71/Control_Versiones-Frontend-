@@ -59,10 +59,6 @@ body {
 	background-color: #48776D;
   }
 
-.logo{
-  background-image: url("../assets/images/logo.png");
-}
-
 .dropdown-submenu {
     position: relative;
 }
