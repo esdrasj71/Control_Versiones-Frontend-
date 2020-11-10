@@ -25,7 +25,7 @@
         <h4 style="text-align: right;">Total generado: {{total_total | currency:"GTQ":"Q"}}</h4>
         <div *ngFor="let report of reportt1">
             <table class="table" style="table-layout: fixed; word-wrap: break-word;" id="table">
-                <thead class="table-dark">
+                <thead class="thead-dark">
                     <tr>
                         <th scope="col">Serie: {{report[0].Serie}}</th>
                         <th scope="col">Subtotal: {{report[report.length-1] | currency:"GTQ":"Q"}}</th>
