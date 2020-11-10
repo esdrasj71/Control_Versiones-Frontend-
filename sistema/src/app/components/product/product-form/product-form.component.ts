@@ -78,7 +78,6 @@ export class ProductFormComponent implements OnInit {
     //Update
     this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
-      console.log(this.product);
       this.editing = true;
       const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
       this.httpClient.get(this.API_ENDPOINT + 'product', { headers }).subscribe(
@@ -91,7 +90,6 @@ export class ProductFormComponent implements OnInit {
           this.selectedBrandId = this.product.Brand_Id;
           this.selectedCorrelativeproduct = this.product.Correlative_Product;
           this.selectedProduct = this.product.Name;
-          console.log(this.product.Perishable);
           //LOT
           //this.lot.Product_Id = this.product.Product_Id;
           //this.lot.Due_Date = this.selectedDueDate;
@@ -116,12 +114,10 @@ export class ProductFormComponent implements OnInit {
   ngOnInit(): void { }
   saveProduct() {
     if (this.editing) {
-      console.log(this.product);
       this.product.Product_Category_Id = this.selectedCategoryId;
       this.product.Brand_Id = this.selectedBrandId;
       this.product.Correlative_Product = this.selectedCorrelativeproduct;
       this.product.Name = this.selectedProduct;
-      console.log(this.product.Name);
       this.productService.put(this.product).subscribe(
         (data) => {
           this.lastidproduct = data['id'];
@@ -131,7 +127,6 @@ export class ProductFormComponent implements OnInit {
           location.reload();
           //window.location.reload();
           console.log(data);
-          console.log(this.product);
           this.router.navigate(['/product-home']);
         },
         (error) => {
@@ -155,8 +150,6 @@ export class ProductFormComponent implements OnInit {
         (error) => {
           console.log(error);
           Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
-          console.log(this.procedure_saveproduct);
-          console.log(this.product);
         }
       );
     }

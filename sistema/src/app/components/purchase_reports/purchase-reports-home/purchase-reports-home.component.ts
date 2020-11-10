@@ -157,7 +157,6 @@ mostrar(Date1, Date2, ProvidersId, total) {
     else {
       this.purchasereportService.showreport1(this.report1).subscribe((data) => {
         this.reportone = data[0];
-        console.log(this.reportone[0]);
         if (data[0] == 0) {
           this.Existe=0;
           this.reportone=[];
@@ -165,9 +164,7 @@ mostrar(Date1, Date2, ProvidersId, total) {
         }
         else {
           this.Existe=1;
-          console.log(this.report1);
           this.reportone = data[0];
-          console.log(this.reportone);
         }
       }, (error) => {
         console.log(error);

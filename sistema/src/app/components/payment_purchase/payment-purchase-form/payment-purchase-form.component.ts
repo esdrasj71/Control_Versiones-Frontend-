@@ -15,20 +15,20 @@ export class PaymentPurchaseFormComponent implements OnInit {
   payment: PaymentPurhcase = {
     Payment_Purchase_Id:null,
     Method_Name: null,
-  }; //este arreglo define los campos que se van a ingresar en el formulario
+  };
   API_ENDPOINT = 'http://localhost:3000/';
   id: any;
-  editing: boolean = false; //Este campo ayuda a saber cuando estamos editando y cuando estamos ingresando
-  postarr: PaymentPurhcase[]; //Este campo nos ayudara a traer los datos cuando queremos editar
+  editing: boolean = false;
+  postarr: PaymentPurhcase[]; 
   constructor(private paymentServicie: PaymentPurchaseService, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
     const headers = new HttpHeaders({ 'ContentType': 'application/json', 'accesstoken': localStorage.getItem('token') });
-    this.id = this.activatedRoute.snapshot.params['id']; //Este es el parametro que se definio en la ruta de app.module.ts
+    this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
       this.editing = true;
       this.httpClient.get(this.API_ENDPOINT + 'payment_purchase', { headers }).subscribe((data: PaymentPurhcase[]) => {
         this.postarr = data;
         console.log(this.postarr);
-        this.payment = this.postarr.find((m) => { return m.Payment_Purchase_Id == this.id }); //Aqui traemos solo el id que nos interesa
+        this.payment = this.postarr.find((m) => { return m.Payment_Purchase_Id == this.id }); 
       }, (error) => {
         console.log(error);
       });
@@ -49,7 +49,6 @@ export class PaymentPurchaseFormComponent implements OnInit {
       });
     }
     else {
-      console.log(this.payment);
       this.paymentServicie.save(this.payment).subscribe((data) => {
         Swal.fire('Pago Compra Guardada', '','success');
         console.log(data)

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit,ViewChild,ElementRef } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Customers } from '../../customers/interfaces/customer';
 import { Products } from '../../product/interfaces/product';
 import { Inventory } from '../../inventory/interfaces/inventory';
@@ -202,7 +202,6 @@ export class BillHeaderFormComponent implements OnInit {
             return exists;
           });
           this.nuevo_inventario = array;
-          //console.log("holis" + this.nuevo_inventario);
         }
       });
 
@@ -240,18 +239,16 @@ export class BillHeaderFormComponent implements OnInit {
       datos.Stock = stock;
       this.inventarios = Array.of(datos);
       this.nuevo.push(this.inventarios)
-      console.log(this.nuevo)
       return this.nuevo
     })
   }
   saveBillDetail() {
-    console.log(this.detalle_factura);
+    //console.log(this.detalle_factura);
   }
   onEnter(value: number, precio: number, datos: any) {
     if (value > datos[0].Stock || value < 0) {
       alert("Solo hay en existencia: " + datos[0].Stock);
     } else {
-      console.log(datos)
       this.total -= datos[0].Subtotal;
       datos[0].Subtotal = Math.round(value * precio);
       datos[0].Quantity = value;
@@ -282,14 +279,12 @@ export class BillHeaderFormComponent implements OnInit {
     this.nuevo = this.nuevo.filter((m) => {
       return m != datos
     })
-    console.log(this.nuevo)
   }
   mostraraldebito() {
     this.pago_aldebito = !this.pago_aldebito;
   }
   mostraralcredito() {
     this.pago_alcredito = !this.pago_alcredito;
-    console.log(this.pago_alcredito);
   }
   setear() {
     this.total_cobro = this.total;
@@ -299,7 +294,6 @@ export class BillHeaderFormComponent implements OnInit {
     if (this.encabezado_factura.Correlative_Number == " " || this.encabezado_factura.Serie == null || this.encabezado_factura.Date == "" || this.encabezado_factura.Customers_Id == null || this.encabezado_factura.Employee_Id == NaN || this.encabezado_factura.Total == 0) {
       Swal.fire({ icon: 'warning', title: 'Precaución!', text: 'Algun dato no fue ingresado' });
     } else {
-      console.log(this.total_cobroalcontado);
       if (this.total_cobroalcontado >= this.total) {
         //pago completo
         this.encabezado_factura.Payment_Complete = true;
@@ -312,13 +306,12 @@ export class BillHeaderFormComponent implements OnInit {
       this.encabezado_factura.Annulment_State = 0;
       this.encabezado_factura.Total = parseFloat(this.total.toFixed(2));
 
-      console.log(this.fecha);
       this.encabezado_factura.Date = this.fecha;
 
       this.billsService.saveHeader(this.encabezado_factura).subscribe(
         (data) => {
           Swal.fire('Encabezado Guardado', '', 'success');
-          window.setTimeout(function(){location.reload()},1500)
+          window.setTimeout(function () { location.reload() }, 1500)
           if (this.encabezado_factura.Payment_Complete == false) {
             this.accounts_receivable.Quantity = 0;
             this.accounts_receivable.Total = this.total_cobro;
@@ -403,7 +396,6 @@ export class BillHeaderFormComponent implements OnInit {
         this.procedure_sale.Quantity = parseInt(misdatos[0].Quantity);
         this.procedure_sale.Price = misdatos[0].Unit_Price;
         this.procedure_sale.Inventory_Id = misdatos[0].Inventory_Id;
-        console.log(this.procedure_sale);
         this.proceduresaleService.save(this.procedure_sale).subscribe(
           (data) => {
             Swal.fire('Producto Guardado', '', 'success');
@@ -415,13 +407,13 @@ export class BillHeaderFormComponent implements OnInit {
           }
         )
       };
-      
+
       //localStorage.removeItem("id");
     }
     const doc = new jsPDF();
     //get table html
     let fechita = this.fecha;
-    let serita= this.encabezado_factura.Serie;
+    let serita = this.encabezado_factura.Serie;
     const pdfTable = this.pdfTable.nativeElement;
     const totall = this.totall.nativeElement;
     const factura = this.factura.nativeElement;
@@ -431,25 +423,25 @@ export class BillHeaderFormComponent implements OnInit {
     <div style = "text-align:center;">
     <h1>
     <p>
-    <b>Empresa: </b> `+this.empresa.Company_Name+`
+    <b>Empresa: </b> `+ this.empresa.Company_Name + `
     </p>
     <p>
-    <b>Dirección: </b> `+this.empresa.Address+`
+    <b>Dirección: </b> `+ this.empresa.Address + `
     </p>
     <p>
-    <b>NIT: </b> `+this.empresa.NIT+`
+    <b>NIT: </b> `+ this.empresa.NIT + `
     </p>
     </h1>
    </div> 
   <hr>
   <h3>FACTURACION </h3>
-    `+factura.innerHTML+`
-    <p>Serie: `+serita+` </p>
-    <p>Fecha: `+fechita+`</p></br>
+    `+ factura.innerHTML + `
+    <p>Serie: `+ serita + ` </p>
+    <p>Fecha: `+ fechita + `</p></br>
     <h3>Datos del cliente</h3>
   <hr>
-    `+clientess.innerHTML+`<hr> <h3>Detalle de la factura</h3>`+totall.innerHTML+pdfTable.innerHTML);
-   
+    `+ clientess.innerHTML + `<hr> <h3>Detalle de la factura</h3>` + totall.innerHTML + pdfTable.innerHTML);
+
     const documentDefinition = { content: html };
     pdfMake.createPdf(documentDefinition).open();
   }

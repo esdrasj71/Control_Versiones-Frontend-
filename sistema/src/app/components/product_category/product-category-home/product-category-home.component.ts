@@ -16,8 +16,7 @@ export class ProductCategoryHomeComponent implements OnInit {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
     httpClient.get(this.API_ENDPOINT + 'product_category', { headers })
     .subscribe((data: Product_Category[]) => {
-        this.product_category = data; //Se debe acceder al arreglo de este modo, oAngular lo reconocera como un objeto del tipo Post
-        console.log(this.product_category);
+        this.product_category = data; 
       });
   }
 
@@ -35,6 +34,5 @@ searchTerm6 = '';
   }
   findproductcategory(productcategoryOne) {
     this.rootProductCategory = productcategoryOne;
-    console.log(this.rootProductCategory);
   }
 }

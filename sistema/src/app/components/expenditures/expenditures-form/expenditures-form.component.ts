@@ -78,7 +78,6 @@ export class ExpendituresFormComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
       const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
-      console.log(this.expenditures);
       this.editing = true;
       this.httpClient.get(this.API_ENDPOINT + 'expenditures', { headers }).subscribe(
         (data: Expenditures[]) => {
@@ -131,7 +130,6 @@ export class ExpendituresFormComponent implements OnInit {
   }
   saveExpenditures() {
     if (this.editing) {
-      console.log(this.expenditures);
       //Ng Select
       this.expenditures.Bill_Type_Id = this.selectedBillTypeId;
       this.expenditures.Expenses_Id = this.selectedExpensesId;
@@ -144,7 +142,6 @@ export class ExpendituresFormComponent implements OnInit {
           location.reload();
           //window.location.reload();
           console.log(data);
-          console.log(this.expenditures);
           this.router.navigate(['/expenditures-home']);
         },
         (error) => {

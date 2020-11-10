@@ -30,7 +30,6 @@ export class Report1Component implements OnInit {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
     httpClient.get(this.API_ENDPOINT + 'series',{headers}).subscribe((data: Report2[])=>{
       this.repor1 = data;
-      //console.log(this.repor1);
     })
   }
 

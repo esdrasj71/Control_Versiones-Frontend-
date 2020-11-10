@@ -24,7 +24,6 @@ export class InventoryHomeComponent implements OnInit {
     httpClient.get(this.API_ENDPOINT + 'inventory',{headers})
       .subscribe((data: Inventory[]) => {
         this.inventories = data; 
-        console.log(this.inventories);
       });
   }
   ngOnInit() {
@@ -43,7 +42,6 @@ export class InventoryHomeComponent implements OnInit {
   }
   findinventory(inventoryOne) {
     this.rootInventory = inventoryOne;
-    console.log(this.rootInventory);
   }
   add() {
     this.router.navigate(["/inventory-form"]);
