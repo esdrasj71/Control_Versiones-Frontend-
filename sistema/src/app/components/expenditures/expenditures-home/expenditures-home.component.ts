@@ -30,7 +30,6 @@ export class ExpendituresHomeComponent implements OnInit {
     })
   }
   delete(Expenditures_Id) {
-    console.log(Expenditures_Id);
     this.expendituresService.delete(Expenditures_Id).subscribe(
       (data) => {
         Swal.fire('Egreso Eliminado', '', 'success');

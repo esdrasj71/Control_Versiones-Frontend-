@@ -196,7 +196,6 @@ export class BillHeaderFormComponent implements OnInit {
             return exists;
           });
           this.nuevo_inventario = array;
-          console.log("holis" + this.nuevo_inventario);
         }
       });
 
@@ -234,18 +233,16 @@ export class BillHeaderFormComponent implements OnInit {
       datos.Stock = stock;
       this.inventarios = Array.of(datos);
       this.nuevo.push(this.inventarios)
-      console.log(this.nuevo)
       return this.nuevo
     })
   }
   saveBillDetail() {
-    console.log(this.detalle_factura);
+    //console.log(this.detalle_factura);
   }
   onEnter(value: number, precio: number, datos: any) {
     if (value > datos[0].Stock || value < 0) {
       alert("Solo hay en existencia: " + datos[0].Stock);
     } else {
-      console.log(datos)
       this.total -= datos[0].Subtotal;
       datos[0].Subtotal = Math.round(value * precio);
       datos[0].Quantity = value;
@@ -276,14 +273,12 @@ export class BillHeaderFormComponent implements OnInit {
     this.nuevo = this.nuevo.filter((m) => {
       return m != datos
     })
-    console.log(this.nuevo)
   }
   mostraraldebito() {
     this.pago_aldebito = !this.pago_aldebito;
   }
   mostraralcredito() {
     this.pago_alcredito = !this.pago_alcredito;
-    console.log(this.pago_alcredito);
   }
   setear() {
     this.total_cobro = this.total;
@@ -293,7 +288,6 @@ export class BillHeaderFormComponent implements OnInit {
     if (this.encabezado_factura.Correlative_Number == " " || this.encabezado_factura.Serie == null || this.encabezado_factura.Date == "" || this.encabezado_factura.Customers_Id == null || this.encabezado_factura.Employee_Id == NaN || this.encabezado_factura.Total == 0) {
       Swal.fire({ icon: 'warning', title: 'Precaución!', text: 'Algun dato no fue ingresado' });
     } else {
-      console.log(this.total_cobroalcontado);
       if (this.total_cobroalcontado >= this.total) {
         //pago completo
         this.encabezado_factura.Payment_Complete = true;
@@ -306,7 +300,6 @@ export class BillHeaderFormComponent implements OnInit {
       this.encabezado_factura.Annulment_State = 0;
       this.encabezado_factura.Total = parseFloat(this.total.toFixed(2));
 
-      console.log(this.fecha);
       this.encabezado_factura.Date = this.fecha;
 
       this.billsService.saveHeader(this.encabezado_factura).subscribe(
@@ -397,7 +390,6 @@ export class BillHeaderFormComponent implements OnInit {
         this.procedure_sale.Quantity = parseInt(misdatos[0].Quantity);
         this.procedure_sale.Price = misdatos[0].Unit_Price;
         this.procedure_sale.Inventory_Id = misdatos[0].Inventory_Id;
-        console.log(this.procedure_sale);
         this.proceduresaleService.save(this.procedure_sale).subscribe(
           (data) => {
             Swal.fire('Producto Guardado', '', 'success');

@@ -16,7 +16,6 @@ export class BrandHomeComponent implements OnInit {
     httpClient.get(this.API_ENDPOINT + 'brands', { headers })
       .subscribe((data: Brands[]) => {
         this.brands = data;
-        console.log(this.brands);
       })
   }
 

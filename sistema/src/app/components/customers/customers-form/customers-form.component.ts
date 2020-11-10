@@ -69,7 +69,6 @@ export class CustomersFormComponent implements OnInit {
           Swal.fire('Cliente Guardado', '', 'success');
           console.log(data)
           this.Customers_Id.emit(data["id"]);
-          console.log(this.Customers_Id);
         }, (error) => {
           console.log(error);
           Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' })

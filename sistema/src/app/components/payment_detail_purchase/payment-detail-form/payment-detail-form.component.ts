@@ -18,23 +18,23 @@ export class PaymentDetailFormComponent implements OnInit {
     Total_Amount: null,
     Description: null,
     Purchase_Header_Id: null,
-  }; //este arreglo define los campos que se van a ingresar en el formulario
+  }; 
   API_ENDPOINT = 'http://localhost:3000/';
   id: any;
-  editing: boolean = false; //Este campo ayuda a saber cuando estamos editando y cuando estamos ingresando
-  postarr: PaymentDetail[]; //Este campo nos ayudara a traer los datos cuando queremos editar
+  editing: boolean = false; 
+  postarr: PaymentDetail[]; 
   payment: PaymentPurhcase[];
   purchase_header: Purchase_Header[];
 
   constructor(private paymentServicie: PaymentDetailService, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
     const headers = new HttpHeaders({ 'ContentType': 'application/json', 'accesstoken': localStorage.getItem('token') });
-    this.id = this.activatedRoute.snapshot.params['id']; //Este es el parametro que se definio en la ruta de app.module.ts
+    this.id = this.activatedRoute.snapshot.params['id']; 
     if (this.id) {
       this.editing = true;
       this.httpClient.get(this.API_ENDPOINT + 'payment_detail_purchase', { headers }).subscribe((data: PaymentDetail[]) => {
         this.postarr = data;
         console.log(this.postarr);
-        this.paymentDetail = this.postarr.find((m) => { return m.Payment_Detail_Purchase_Id == this.id }); //Aqui traemos solo el id que nos interesa
+        this.paymentDetail = this.postarr.find((m) => { return m.Payment_Detail_Purchase_Id == this.id }); 
       }, (error) => {
         console.log(error);
       });
@@ -45,13 +45,11 @@ export class PaymentDetailFormComponent implements OnInit {
     httpClient.get(this.API_ENDPOINT + 'payment_purchase')
     .subscribe((data: PaymentPurhcase[]) =>{
       this.payment = data;
-      console.log(this.payment);
     })
 
     httpClient.get(this.API_ENDPOINT + 'purchase_header')
     .subscribe((data: Purchase_Header[]) =>{
       this.purchase_header = data;
-      console.log(this.purchase_header);
     })
   }
 
@@ -68,7 +66,6 @@ export class PaymentDetailFormComponent implements OnInit {
       });
     }
     else {
-      console.log(this.paymentDetail);
       this.paymentServicie.save(this.paymentDetail).subscribe((data) => {
         Swal.fire('Detalle de pago compra guardado', '','success');
         console.log(data)

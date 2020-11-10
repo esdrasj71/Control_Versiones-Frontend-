@@ -19,7 +19,6 @@ export class EmployeePositionHomeComponent implements OnInit {
     httpClient.get(this.API_ENDPOINT + 'employee_position', { headers })
     .subscribe((data: EmployeePosition[]) => {
       this.employeePosition = data; 
-      console.log(this.employeePosition);
     });
 }
 

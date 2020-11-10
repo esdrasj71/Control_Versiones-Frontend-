@@ -19,7 +19,6 @@ export class PaymentHomeComponent implements OnInit {
     this.paymentService.getPayment()
       .subscribe((data: Payment[]) => {
         this.payment = data; 
-        console.log(this.payment);
       });
   }
   ngOnInit() {}

@@ -24,7 +24,6 @@ export class DebsPayHomeComponent implements OnInit {
     httpClient.get(this.API_ENDPOINT + 'purchase_report3', { headers })
       .subscribe((data: DebsPay[]) => {
         this.debs = data;
-        console.log(this.debs);
       });
   }
 

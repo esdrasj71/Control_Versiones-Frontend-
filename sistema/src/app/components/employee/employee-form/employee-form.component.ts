@@ -48,7 +48,6 @@ export class EmployeeFormComponent implements OnInit {
     this.httpClient.get(this.API_ENDPOINT + 'employee_position', { headers })
       .subscribe((data: EmployeePosition[]) => {
         this.employeePosition = data;
-        console.log(this.employeePosition);
       })
   }
   ngOnInit() {

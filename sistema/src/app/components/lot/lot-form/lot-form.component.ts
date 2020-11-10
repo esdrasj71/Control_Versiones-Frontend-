@@ -47,7 +47,6 @@ export class LotFormComponent implements OnInit {
         this.lot = this.postarr.find((m) => { return m.Lot_Id == this.id });
         this.selectedProductId = this.lot.Product_Id;
         this.selectedDueDate = this.lot.Due_Date;
-        console.log(this.selectedProductId);
       }, (error) => {
         console.log(error);
       });
@@ -58,7 +57,6 @@ export class LotFormComponent implements OnInit {
     httpClient.get(this.API_ENDPOINT + 'product', { headers })
       .subscribe((data: Products[]) => {
         this.products = data;
-        console.log(this.products);
       })
   }
   ngOnInit() {
@@ -82,17 +80,15 @@ export class LotFormComponent implements OnInit {
         Swal.fire({ icon: 'warning', title: 'Aviso!', text: 'Debe llenar todos los campos' });
       }
       else {
-        console.log(this.lot);
         this.lotService.save(this.lot).subscribe((data) => {
           Swal.fire('Lote Guardado', '', 'success');
           //this.router.navigate(["/lot-home"]);
           this.Lot_Id.emit(data['id']);
           this.inventory.Lot_Id = data['id'];
           this.inventory.Statuss = false;
-          console.log(this.inventory);
-          this.invetoryService.save(this.inventory).subscribe((date) => {
+          this.invetoryService.save(this.inventory).subscribe((data) => {
             Swal.fire('Inventario Guardado', '', 'success');
-            console.log(date)
+            console.log(data)
           });
 
         }, (error) => {
