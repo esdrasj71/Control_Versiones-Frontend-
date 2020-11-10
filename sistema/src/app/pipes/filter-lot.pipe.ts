@@ -9,7 +9,7 @@ export class FilterLotPipe implements PipeTransform {
     if(arg === '' || arg.length<3) return value;
     const resultado_lote = [];
     for(const lot of value){
-      if(lot.Due_Date.toLowerCase().indexOf(arg.toLowerCase())>-1){
+      if(lot.Complete.toLowerCase().indexOf(arg.toLowerCase())>-1){
         resultado_lote.push(lot);
       }
     }

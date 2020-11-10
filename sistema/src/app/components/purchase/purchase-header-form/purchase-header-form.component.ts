@@ -68,8 +68,6 @@ export class PurchaseHeaderFormComponent implements OnInit {
     Serie: null,
     Date_Purchase: null,
     Total: null,
-    Refund: null,
-    Annulment_State: null,
     Payment_Complete: 0,
     Observations: null,
     Providers_Id: null,
@@ -175,8 +173,6 @@ export class PurchaseHeaderFormComponent implements OnInit {
   savePost() {
     //HEADER
     this.header.Providers_Id = this.proveedor_seleccionado[0].Providers_Id;
-    this.header.Refund = 0;
-    this.header.Annulment_State = 0;
     this.header.Payment_Complete = 0;
     this.header.Total = this.total;
     console.log(this.header);
