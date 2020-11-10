@@ -12,6 +12,7 @@ export class LotHomeComponent implements OnInit {
 
   API_ENDPOINT = 'http://localhost:3000/';
   lot: Lot[];
+  filtrado_lot = "";
   constructor(
     private lotService: LotService,
     private httpClient: HttpClient

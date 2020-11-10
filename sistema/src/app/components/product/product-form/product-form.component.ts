@@ -59,7 +59,6 @@ export class ProductFormComponent implements OnInit {
   selectedCategoryId: number;
   selectedCorrelativeproduct: number;
   selectedProduct: string;
-  selectedDueDate: Date;
   //Update
   id: any;
   lastidproduct: number;
@@ -93,8 +92,8 @@ export class ProductFormComponent implements OnInit {
           this.selectedCorrelativeproduct = this.product.Correlative_Product;
           this.selectedProduct = this.product.Name;
           //LOT
-          this.lot.Product_Id = this.product.Product_Id;
-          this.lot.Due_Date = this.selectedDueDate;
+          //this.lot.Product_Id = this.product.Product_Id;
+          //this.lot.Due_Date = this.selectedDueDate;
         },
         (error) => {
           console.log(error);

@@ -27,8 +27,10 @@ export class LotFormComponent implements OnInit {
     Statuss: false,
   };
   API_ENDPOINT = 'http://localhost:3000/';
+  //Update
   id: any;
   editing: boolean = false;
+  selectedDueDate: Date;
   postarr: Lot[];
   products: Products[];
   selectedProductId: number;
@@ -43,6 +45,9 @@ export class LotFormComponent implements OnInit {
         this.postarr = data;
         console.log(this.postarr);
         this.lot = this.postarr.find((m) => { return m.Lot_Id == this.id });
+        this.selectedProductId = this.lot.Product_Id;
+        this.selectedDueDate = this.lot.Due_Date;
+        console.log(this.selectedProductId);
       }, (error) => {
         console.log(error);
       });
@@ -60,6 +65,8 @@ export class LotFormComponent implements OnInit {
   }
   savePost() {
     if (this.editing) {
+      this.lot.Product_Id = this.selectedProductId;
+      this.lot.Due_Date = this.selectedDueDate;
       this.lotService.put(this.lot).subscribe((data) => { //El unico cambioes el put
         Swal.fire('Lote Actualizado', '', 'success');
         console.log(data)
@@ -74,6 +81,7 @@ export class LotFormComponent implements OnInit {
       }
       else {
         this.lot.Product_Id = this.selectedProductId;
+        this.lot.Due_Date = this.selectedDueDate;
         console.log(this.lot);
         this.lotService.save(this.lot).subscribe((data) => {
           Swal.fire('Lote Guardado', '', 'success');
