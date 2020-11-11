@@ -62,14 +62,13 @@ export class CustomersFormComponent implements OnInit {
     }
     else {
       if (this.customer.DPI == null || this.customer.Names == null || this.customer.Last_names ==null || this.customer.Phone_Number ==null || this.customer.Address == null) {
-        Swal.fire({ icon: 'warning', title: 'Aviso!', text: 'Debe llenar todos los campos' });
+        Swal.fire({ icon: 'warning', title: 'Aviso!', text: 'Debe llenar los campos obligatorios' });
       }
       else {
         this.customerService.saveCustomer(this.customer).subscribe((data) => {
           Swal.fire('Cliente Guardado', '', 'success');
           console.log(data)
           this.Customers_Id.emit(data["id"]);
-          console.log(this.Customers_Id);
         }, (error) => {
           console.log(error);
           Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' })

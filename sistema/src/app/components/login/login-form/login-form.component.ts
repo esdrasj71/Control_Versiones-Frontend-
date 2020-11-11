@@ -121,14 +121,13 @@ export class LoginFormComponent implements OnInit {
           this.employee.Employee_Position_Id = data['id'];
           this.employeeService.save(this.employee).subscribe((ata) => {
             //alert('Empleado Guardado');
-            console.log(ata);
             this.user.Date_Created = new Date(fecha);
             this.user.Employee_Id = ata['id'];
             this.user.Usertype = 1;
-            console.log(this.user);
+            //console.log(this.user);
             this.userService.save(this.user).subscribe(
               (user) => {
-                console.log(user);
+                //console.log(user);
                 Swal.fire('Usuario Creado', '','success');
                 localStorage.removeItem('token');
                 window.setTimeout(function(){location.reload()},1500)

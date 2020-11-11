@@ -36,6 +36,21 @@ section.section {
   font-size: 17px;
 }
 
+.nav-item .nav-link::after{
+  content: '';
+  position: absolute;
+  display: block;
+  height: 0.2em;
+  width: 0%;
+  background-color: whitesmoke;
+  bottom: -1.5em;
+  transition: all ease-in-out 250ms;
+}
+
+.nav-item .nav-link:hover::after{
+  width: 85%;
+}
+
 body {
 	background-image: url("../assets/images/Scroll1.jpg");
 	background-repeat: repeat-x;
@@ -44,8 +59,7 @@ body {
 	background-color: #48776D;
   }
 
-
-  .dropdown-submenu {
+.dropdown-submenu {
     position: relative;
 }
 

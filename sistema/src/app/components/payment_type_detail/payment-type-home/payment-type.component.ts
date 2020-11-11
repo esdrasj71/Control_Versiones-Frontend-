@@ -20,7 +20,6 @@ export class PaymentTypeComponent implements OnInit {
       .get(this.API_ENDPOINT + 'payment_type_detail')
       .subscribe((data: PaymentTypeDetail[]) => {
         this.paymentType = data; 
-        console.log(this.paymentType);
       });
   }
   ngOnInit() {}

@@ -27,8 +27,10 @@ export class LotFormComponent implements OnInit {
     Statuss: false,
   };
   API_ENDPOINT = 'http://localhost:3000/';
+  //Update
   id: any;
   editing: boolean = false;
+  selectedDueDate: Date;
   postarr: Lot[];
   products: Products[];
   selectedProductId: number;
@@ -43,6 +45,8 @@ export class LotFormComponent implements OnInit {
         this.postarr = data;
         console.log(this.postarr);
         this.lot = this.postarr.find((m) => { return m.Lot_Id == this.id });
+        this.selectedProductId = this.lot.Product_Id;
+        this.selectedDueDate = this.lot.Due_Date;
       }, (error) => {
         console.log(error);
       });
@@ -53,13 +57,14 @@ export class LotFormComponent implements OnInit {
     httpClient.get(this.API_ENDPOINT + 'product', { headers })
       .subscribe((data: Products[]) => {
         this.products = data;
-        console.log(this.products);
       })
   }
   ngOnInit() {
   }
   savePost() {
     if (this.editing) {
+      this.lot.Product_Id = this.selectedProductId;
+      this.lot.Due_Date = this.selectedDueDate;
       this.lotService.put(this.lot).subscribe((data) => { //El unico cambioes el put
         Swal.fire('Lote Actualizado', '', 'success');
         console.log(data)
@@ -69,22 +74,21 @@ export class LotFormComponent implements OnInit {
       });
     }
     else {
-      if (this.selectedProductId == null || this.lot.Due_Date == null) {
+      this.lot.Product_Id = this.selectedProductId;
+      this.lot.Due_Date = this.selectedDueDate;
+      if (this.lot.Product_Id == null|| this.lot.Due_Date == null) {
         Swal.fire({ icon: 'warning', title: 'Aviso!', text: 'Debe llenar todos los campos' });
       }
       else {
-        this.lot.Product_Id = this.selectedProductId;
-        console.log(this.lot);
         this.lotService.save(this.lot).subscribe((data) => {
           Swal.fire('Lote Guardado', '', 'success');
           //this.router.navigate(["/lot-home"]);
           this.Lot_Id.emit(data['id']);
           this.inventory.Lot_Id = data['id'];
           this.inventory.Statuss = false;
-          console.log(this.inventory);
-          this.invetoryService.save(this.inventory).subscribe((date) => {
+          this.invetoryService.save(this.inventory).subscribe((data) => {
             Swal.fire('Inventario Guardado', '', 'success');
-            console.log(date)
+            console.log(data)
           });
 
         }, (error) => {

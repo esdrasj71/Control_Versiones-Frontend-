@@ -27,14 +27,11 @@
 
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" routerLink="/home">&nbsp;&nbsp;&nbsp;I N I C I O&nbsp;</a>
+    <a class="navbar-brand" routerLink="/home">&nbsp;&nbsp;<img src="../assets/images/logo2.png" style="height: 80px;">&nbsp;&nbsp;&nbsp;I N I C I O</a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-
           <a class="nav-link">|</a>
-          <li class="nav-item">
-            <a class="nav-link"><span class="sronly"></span></a>
-          </li>
+          <div style="width: 14px;"></div>
           <li class="nav-item dropdown">
             <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false">
@@ -53,9 +50,7 @@
               <a class="dropdown-item" routerLink="/bill-header-form">Factura Ventas</a>
             </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link"><span class="sronly"></span></a>
-          </li>
+          <div style="width: 21px;"></div>
           <li class="nav-item dropdown">
             <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false">
@@ -68,9 +63,7 @@
               <a class="dropdown-item" routerLink="/purchase_header-form">Factura Compras</a>
             </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link"><span class="sronly"></span></a>
-          </li>
+          <div style="width: 21px;"></div>
           <li class="nav-item dropdown">
             <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false">
@@ -84,12 +77,10 @@
               <a class="dropdown-item" routerLink="/product-category-home">Categoría Producto</a>
             </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link"><span class="sronly"></span></a>
-          </li>
+          <div style="width: 21px;"></div>
           <ng-container *ngIf="rol==1;">
             <!-- MULTIPLE DROPDOWNS INIT -->
-            <div class="dropdown">
+            <li class="nav-item dropdown">
               <a id="dLabel" role="button" data-toggle="dropdown" class="nav-link" data-target="#">
                 Reportes <span class="caret"></span>
               </a>
@@ -114,14 +105,12 @@
                 </li>
                 <li class="nav-item"><a class="dropdown-item" routerLink="/inventory-reports-home">Inventario</a></li>
               </ul>
-            </div>
+            </li>
             <!-- END OF DROPDOWNS-->
           </ng-container>
-          <li class="nav-item">
-            <a class="nav-link"><span class="sronly"></span></a>
-          </li>
+          <div style="width: 21px;"></div>
           <ng-container *ngIf="rol==1;">
-            <div class="dropdown">
+            <li class="nav-item dropdown">
               <a id="dLabel" role="button"  data-toggle="dropdown" class="nav-link"
                 data-target="#">
                 Estado de resultados <span class="caret"></span>
@@ -141,7 +130,7 @@
                   </ul>
                 </li>
               </ul>
-            </div>
+            </li>
           </ng-container>
         </ul>
         <form class="form-inline my-2 my-lg-0">

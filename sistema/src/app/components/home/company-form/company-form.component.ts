@@ -22,9 +22,9 @@ export class CompanyFormComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,private router: Router,private companyService:CompanyService) 
   { 
     this.id = this.activatedRoute.snapshot.params['id'];
-    this.companyService.getCompany().subscribe((data: Company[]) => { //Aqui traemos el arreglo completo de datos
+    this.companyService.getCompany().subscribe((data: Company[]) => { 
       this.postarr = data;
-      this.company = this.postarr.find((m) => { return m.Company_Id == this.id }); //Aqui traemos solo el id que nos interesa
+      this.company = this.postarr.find((m) => { return m.Company_Id == this.id });
     }, (error) => {
       console.log(error);
     });
@@ -35,7 +35,7 @@ export class CompanyFormComponent implements OnInit {
 
   savePost()
   {
-    this.companyService.put(this.company).subscribe((data) => { //El unico cambioes el put
+    this.companyService.put(this.company).subscribe((data) => { 
       Swal.fire('Compañia agregada', '','success');
       this.router.navigate(['/home']);
       console.log(data)

@@ -68,8 +68,6 @@ export class PurchaseHeaderFormComponent implements OnInit {
     Serie: null,
     Date_Purchase: null,
     Total: null,
-    Refund: null,
-    Annulment_State: null,
     Payment_Complete: 0,
     Observations: null,
     Providers_Id: null,
@@ -146,10 +144,8 @@ export class PurchaseHeaderFormComponent implements OnInit {
       datos.Subtotal = 0;
       datos.Quantity = 0;
       datos.Price = 0;
-
       this.inventorys = Array.of(datos);
       this.vista_detail.push(this.inventorys);
-      console.log(this.vista_detail);
     });
   }
 
@@ -158,8 +154,6 @@ export class PurchaseHeaderFormComponent implements OnInit {
       this.inventory = data;
     });
     this.productService.getProductsId(id).subscribe((data: Products[]) => {
-      //console.log(data);
-      //console.log(idd);
       let datos: any = data;
       datos.Subtotal = 0;
       datos.Quantity = 0;
@@ -167,7 +161,6 @@ export class PurchaseHeaderFormComponent implements OnInit {
       //datos.Inventory_Id=idd;
       this.inventorys = Array.of(datos);
       this.vista_detail.push(this.inventorys);
-      //console.log(this.vista_detail);
       return this.vista_detail;
     });
   }
@@ -175,11 +168,8 @@ export class PurchaseHeaderFormComponent implements OnInit {
   savePost() {
     //HEADER
     this.header.Providers_Id = this.proveedor_seleccionado[0].Providers_Id;
-    this.header.Refund = 0;
-    this.header.Annulment_State = 0;
     this.header.Payment_Complete = 0;
     this.header.Total = this.total;
-    console.log(this.header);
     this.purchase_headerservice.save(this.header).subscribe(
       (data) => {
         Swal.fire('Compra Guardada', '', 'success');
@@ -191,10 +181,8 @@ export class PurchaseHeaderFormComponent implements OnInit {
           this.debstopay.Description = ' ';
           this.debstopay.Quantity = 0;
           this.debstopay.Total = this.total_cobro;
-          console.log(this.debstopay.Total);
           this.debstopay.Statuss = true;
           this.debstopay.Purchase_Header_Id = data['id'];
-          console.log(data['id']);
           if (this.total_cobro > 0) {
             this.debstopayService.save(this.debstopay).subscribe(
               (data) => {
@@ -216,7 +204,6 @@ export class PurchaseHeaderFormComponent implements OnInit {
               Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
             }
           );
-          console.log(this.payment);
           this.payment.Method_Name = 0; // al contado
           this.payment.Total_Amount = this.total_cobroalcontado;
           this.payment_detail_purchase.save(this.payment).subscribe(
@@ -229,7 +216,6 @@ export class PurchaseHeaderFormComponent implements OnInit {
               Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
             }
           );
-          console.log(this.payment);
         } else {
           this.payment.Method_Name = 0; // al contado todooo
           this.payment.Total_Amount = this.total;
@@ -243,7 +229,6 @@ export class PurchaseHeaderFormComponent implements OnInit {
               Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
             }
           );
-          console.log(this.payment);
         } //
       },
       (error) => {
@@ -258,7 +243,6 @@ export class PurchaseHeaderFormComponent implements OnInit {
       this.purchase.Unit_Price = misdatos[0].Price;
       this.purchase.Subtotal = misdatos[0].Subtotal;
       this.purchase.Inventory_Id = misdatos[0].Lot_Id;
-      console.log(this.purchase);
 
       //console.log(this.purchase);
       this.procedure_purchaseservice.save(this.purchase).subscribe(
@@ -289,7 +273,6 @@ export class PurchaseHeaderFormComponent implements OnInit {
   EliminarDetalle(index, datos: any) {
     this.total -= datos[0].Subtotal;
     this.vista_detail.splice(index, 1);
-    console.log(this.vista_detail);
     this.total_cobro = this.total;
   }
 

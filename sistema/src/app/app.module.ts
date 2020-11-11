@@ -78,6 +78,8 @@ import { FilterBankPipe } from './pipes/filter-bank.pipe';
 import { FilterExpendituresPipe } from './pipes/filter-expenditures.pipe';
 import { ResultStatementHomeComponent } from './components/result_statement/result-statement-home/result-statement-home.component';
 import { SeriesFormComponent } from './components/series/series-form/series-form.component';
+import { FilterProductPipe } from './pipes/filter-product.pipe';
+
 
 
 
@@ -189,8 +191,7 @@ const routes: Route[] = [
   { path: 'expenditures-form', component: ExpendituresFormComponent, canActivate: [CheckloginGuard] },
   { path: 'expenditures-home', component: ExpendituresHomeComponent, canActivate: [CheckloginGuard] },
   { path: 'expenditures-form/:id', component: ExpendituresFormComponent, canActivate: [CheckloginGuard] },
-
-    //Result Statement
+  //Result Statement
   {path: 'resultstatement-home', component: ResultStatementHomeComponent, canActivate: [CheckloginGuard]},
 
   //series
@@ -275,6 +276,8 @@ const routes: Route[] = [
     FilterExpendituresPipe,
     ResultStatementHomeComponent,
     SeriesFormComponent,
+    FilterProductPipe,
+
 
   ],
   imports: [

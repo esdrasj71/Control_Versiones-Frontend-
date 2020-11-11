@@ -40,7 +40,6 @@ export class IncomesFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.incomesSevice.getIncomes().subscribe((data: Incomes[]) => {
-      //console.log(data);
       this.temp = data[12];
       //return this.incomes = data;
       this.temp.forEach((e) => {
@@ -58,12 +57,10 @@ export class IncomesFormComponent implements OnInit {
         this.total_suc3 += parseFloat(temp1["total_aux2"]);
         this.total_total += parseFloat(temp1["total_sumado"]);
       })
-      //console.log(this.tabla);
     });
 
     this.incomesSevice.getIncomesNuevo().subscribe((data: Incomes[]) => {
       this.incomes = data;
-      //console.log(this.incomes);
       if (this.incomes.length > 0) {
         this.total_suc1 = 0;
         this.total_suc2 = 0;
@@ -94,9 +91,6 @@ export class IncomesFormComponent implements OnInit {
 
   }
   onModificarCantidad(value: string, mes: string, datos: any) {
-    console.log(value);
-    console.log(mes);
-    console.log(datos);
     this.tabla.forEach((e) => {
       if (e.mes == mes) {
         if (datos == 1) {
@@ -143,7 +137,6 @@ export class IncomesFormComponent implements OnInit {
 
     })
     // fecha = this.date.getFullYear()  + "/" + this.mes.toString() + "/" + this.date.getDate();
-    console.log(this.incomes);
     if (this.incomes.length == 0) {
       this.tabla.forEach((b) => {
         this.ingresos.Branch_Office1 = b.total_mes;
@@ -154,9 +147,7 @@ export class IncomesFormComponent implements OnInit {
         this.incomesSevice.saveingresos(this.ingresos).subscribe((data) => {
           this.bandera += 1;
           this.estado(this.bandera, "insertado", true)
-          //console.log(data);
         }, (error) => {
-
           console.log(error);
           this.bandera = -1;
           this.estado(this.bandera, "insertado", false)
@@ -181,7 +172,6 @@ export class IncomesFormComponent implements OnInit {
           //this.estado(this.bandera1, "actualizado", false)
           Swal.fire('Ingreso Actualizado', '','success');
         })
-        //console.log( this.bandera1); 
       })
 
     }

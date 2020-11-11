@@ -12,12 +12,7 @@ export class EmployeeService {
   employee = [];
   filtradoEmpleados: '';
   constructor(private httpClient: HttpClient) {
-    const headers = new HttpHeaders({'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
 
-    httpClient.get(this.API_ENDPOINT + 'employee',{headers})
-      .subscribe((data: Employee[]) => {
-        this.employee = data;
-      });
   }
 
 getEmployee() {

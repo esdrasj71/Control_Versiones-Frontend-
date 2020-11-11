@@ -57,7 +57,9 @@ export class ProductFormComponent implements OnInit {
   productcategory: any[];
   selectedBrandId: number;
   selectedCategoryId: number;
-  selectedDueDate: Date;
+  selectedCorrelativeproduct: number;
+  selectedProduct: string;
+  selectedPerishable: boolean = false;
   //Update
   id: any;
   lastidproduct: number;
@@ -77,10 +79,8 @@ export class ProductFormComponent implements OnInit {
     //Update
     this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
-      console.log(this.product);
       this.editing = true;
       const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
-
       this.httpClient.get(this.API_ENDPOINT + 'product', { headers }).subscribe(
         (data: Products[]) => {
           this.productarr = data;
@@ -89,8 +89,12 @@ export class ProductFormComponent implements OnInit {
           });
           this.selectedCategoryId = this.product.Product_Category_Id;
           this.selectedBrandId = this.product.Brand_Id;
-          this.lot.Product_Id = this.product.Product_Id;
-          this.lot.Due_Date = this.selectedDueDate;
+          this.selectedCorrelativeproduct = this.product.Correlative_Product;
+          this.selectedProduct = this.product.Name;
+          this.selectedPerishable = this.product.Perishable;
+          //LOT
+          //this.lot.Product_Id = this.product.Product_Id;
+          //this.lot.Due_Date = this.selectedDueDate;
         },
         (error) => {
           console.log(error);
@@ -112,10 +116,11 @@ export class ProductFormComponent implements OnInit {
   ngOnInit(): void { }
   saveProduct() {
     if (this.editing) {
-      console.log(this.product);
       this.product.Product_Category_Id = this.selectedCategoryId;
       this.product.Brand_Id = this.selectedBrandId;
-      console.log(this.product.Name);
+      this.product.Correlative_Product = this.selectedCorrelativeproduct;
+      this.product.Name = this.selectedProduct;
+      this.product.Perishable = this.selectedPerishable;
       this.productService.put(this.product).subscribe(
         (data) => {
           this.lastidproduct = data['id'];
@@ -125,7 +130,6 @@ export class ProductFormComponent implements OnInit {
           location.reload();
           //window.location.reload();
           console.log(data);
-          console.log(this.product);
           this.router.navigate(['/product-home']);
         },
         (error) => {
@@ -136,23 +140,20 @@ export class ProductFormComponent implements OnInit {
     } else {
       this.procedure_saveproduct.Product_Category_Id = this.selectedCategoryId;
       this.procedure_saveproduct.Brand_Id = this.selectedBrandId;
+      this.procedure_saveproduct.Correlative_Product = this.selectedCorrelativeproduct;
+      this.procedure_saveproduct.Name = this.selectedProduct;
+      this.procedure_saveproduct.Perishable = this.selectedPerishable;
       this.productService.saveprocedure(this.procedure_saveproduct).subscribe(
         (data) => {
           this.lastidproduct = data['id'];
-          //
           this.procedure_saveproduct.Product_Id = this.lastidproduct;
-          //console.log(this.procedure_saveproduct.Product_Id);
           Swal.fire('Producto guardado', '', 'success');
           this.Product_Id.emit(data['Correlative_Product']);
-          //console.log(this.procedure_saveproduct);
-          //this.router.navigate(['/product-home']);
-          //console.log(data);
+          console.log(data);
         },
         (error) => {
           console.log(error);
           Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
-          console.log(this.procedure_saveproduct);
-          console.log(this.product);
         }
       );
     }

@@ -17,7 +17,6 @@ export class PaymentPurchaseHomeComponent implements OnInit {
     httpClient.get(this.API_ENDPOINT + 'payment_purchase', { headers })
       .subscribe((data: PaymentPurhcase[]) => {
         this.paymentPurchase = data; 
-        console.log(this.paymentPurchase);
       });
   }
   ngOnInit() {}
