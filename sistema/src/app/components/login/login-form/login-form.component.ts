@@ -154,6 +154,7 @@ export class LoginFormComponent implements OnInit {
       Swal.fire({icon: 'warning', title: 'Precaución!', text: 'Introduzca un usuario y una contraseña'}); 
     } else {
       this.loginService.save(this.login).subscribe();
+     
     }
   }
   logout() {

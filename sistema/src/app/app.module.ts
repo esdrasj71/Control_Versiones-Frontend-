@@ -77,6 +77,7 @@ import { FilterBillTypePipe } from './pipes/filter-bill-type.pipe';
 import { FilterBankPipe } from './pipes/filter-bank.pipe';
 import { FilterExpendituresPipe } from './pipes/filter-expenditures.pipe';
 import { ResultStatementHomeComponent } from './components/result_statement/result-statement-home/result-statement-home.component';
+import { SeriesFormComponent } from './components/series/series-form/series-form.component';
 
 
 
@@ -191,6 +192,11 @@ const routes: Route[] = [
 
     //Result Statement
   {path: 'resultstatement-home', component: ResultStatementHomeComponent, canActivate: [CheckloginGuard]},
+
+  //series
+  {path: 'serie-form', component:SeriesFormComponent, canActivate:[CheckloginGuard]},
+
+  
 ];
 
 @NgModule({
@@ -268,6 +274,7 @@ const routes: Route[] = [
     FilterBankPipe,
     FilterExpendituresPipe,
     ResultStatementHomeComponent,
+    SeriesFormComponent,
 
   ],
   imports: [

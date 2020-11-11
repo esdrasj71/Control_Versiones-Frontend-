@@ -30,7 +30,7 @@ export class Report1Component implements OnInit {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
     httpClient.get(this.API_ENDPOINT + 'series',{headers}).subscribe((data: Report2[])=>{
       this.repor1 = data;
-      //console.log(this.repor1);
+      console.log(this.repor1);
     })
   }
 
@@ -46,20 +46,27 @@ export class Report1Component implements OnInit {
       this.repor1.forEach(e => {
         let temp = [];
         let total_Serie = 0;
+        let temp2 = {};
+        
         data[0].forEach(g => {
-          if(e["Serie"] == g["Serie"]){
-            temp.push(g);
+          if(e["Serie_Id"] == g["Serie"]){
+            temp2 = g;
+            temp2['Serie']=e["Serie_Id"];
+            temp.push(temp2);
             total_Serie += g["Total"];
+           
           }
         });
         this.total_total += total_Serie;  
         temp.push(total_Serie);
+        temp.push(e["Serie"]);
         this.reportt1.push(temp);
+        console.log(this.reportt1);
       });
     }, (error)=>{
       console.log(error);
     })
-   
+  
   }
   downloadPDF() {
     let mes = this.date.getMonth() + 1;

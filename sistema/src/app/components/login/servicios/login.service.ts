@@ -38,7 +38,7 @@ export class LoginService {
           localStorage.setItem('Rol',user.Usertype.toString());
           localStorage.setItem('EmpleadoId',user.Employee_Id.toString());
           this.saveToken(user.Token.replace("","")); 
-          this.router.navigate(['/home']);
+          this.router.navigate(['/serie-form']);
           return user;      
           }
         }));
@@ -50,6 +50,7 @@ export class LoginService {
     localStorage.removeItem('usuario');
     localStorage.removeItem('Rol');
     localStorage.removeItem('EmpleadoId');
+    localStorage.removeItem('serie');
     this.router.navigate(['/login']);
   }
 

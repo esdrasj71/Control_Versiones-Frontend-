@@ -21,6 +21,8 @@ import { InventoryService } from '../../inventory/servicios/inventory.service';
 import { EmployeeService } from '../../employee/servicios/employee.service';
 import { AccountsReceivableService } from '../../accounts_receivable/servicios/accounts-receivable.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-bill-header-form',
   templateUrl: './bill-header-form.component.html',
@@ -47,14 +49,12 @@ export class BillHeaderFormComponent implements OnInit {
   }
   encabezado_factura: Bill_header = {
     Correlative_Number: null,
-    Serie: null,
     Date: null,
     Total: null,
-    Refund: null,
-    Annulment_State: null,
     Payment_Complete: null,
     Customers_Id: null,
     Employee_Id: null,
+    Serie_Id: null,
   };
   procedure_sale: Procedure_Sale = {
     Subtotal: null,
@@ -114,6 +114,11 @@ export class BillHeaderFormComponent implements OnInit {
   idempleado: number = 0;
   idempleado1: number = 0;
 
+  serie = {};
+  nombre_serie = "";
+  idserie = 0;
+  cantidadfac = 0;
+
   constructor(
     private billsService: BillsService,
     private employeeService: EmployeeService,
@@ -125,20 +130,9 @@ export class BillHeaderFormComponent implements OnInit {
     private proceduresaleService: ProcedureSaleService,
     private paymentdetailService: PaymentDetailService,
     private accountsRecivableService: AccountsReceivableService,
-
+    private router: Router,
   ) {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
-    httpClient.get(this.API_ENDPOINT + 'nofactura', { headers })
-      .subscribe((data: NoFactura[]) => {
-        if (data[0].NoFactura == null) {
-          this.nofacturas = [{ "NoFactura": 1 }];
-          this.encabezado_factura.Correlative_Number = "1";
-        } else {
-          this.nofacturas = data;
-          this.encabezado_factura.Correlative_Number = data[0].NoFactura.toString();
-        }
 
-      })
 
     this.idempleado = parseInt(localStorage.getItem('EmpleadoId'));
     this.encabezado_factura.Employee_Id = this.idempleado;
@@ -147,11 +141,27 @@ export class BillHeaderFormComponent implements OnInit {
       this.nombre_empleado = data["Names"] + " " + data["Last_names"];
 
     })
-
+    try{
+      this.serie = JSON.parse(localStorage.getItem("serie"));
+      this.nombre_serie = this.serie["Nombre"];
+      this.idserie = this.serie["serieId"];
+      //this.cantidadfac = this.serie["Cantidad"];
+      this.billsService.getfactura(this.idserie).subscribe((data)=>{
+        console.log(data);
+        this.cantidadfac = data[0]["Cantidad_inicial"];
+        
+      })
+      console.log(this.cantidadfac);
+    }catch{
+      alert("Falta serie");
+      this.router.navigate(['/serie-form']);
+    }
+    
 
   }
 
   ngOnInit(): void {
+   
     this.customersService.getCustomer().subscribe((data: Customers[]) => {
       return this.cliente = data;
     })
@@ -290,7 +300,7 @@ export class BillHeaderFormComponent implements OnInit {
   }
 
   enviar() {
-    if (this.encabezado_factura.Correlative_Number == " " || this.encabezado_factura.Serie == null || this.encabezado_factura.Date == "" || this.encabezado_factura.Customers_Id == null || this.encabezado_factura.Employee_Id == NaN || this.encabezado_factura.Total == 0) {
+    if (this.encabezado_factura.Correlative_Number == 0 || this.encabezado_factura.Date == "" || this.encabezado_factura.Customers_Id == null  || this.encabezado_factura.Total == 0) {
       Swal.fire({ icon: 'warning', title: 'Precaución!', text: 'Algun dato no fue ingresado' });
     } else {
       console.log(this.total_cobroalcontado);
@@ -301,14 +311,13 @@ export class BillHeaderFormComponent implements OnInit {
         //pago incompleto
         this.encabezado_factura.Payment_Complete = false;
       }
-
-      this.encabezado_factura.Refund = 0;
-      this.encabezado_factura.Annulment_State = 0;
+     
       this.encabezado_factura.Total = parseFloat(this.total.toFixed(2));
 
       console.log(this.fecha);
       this.encabezado_factura.Date = this.fecha;
-
+      this.encabezado_factura.Serie_Id = this.idserie;
+      this.encabezado_factura.Correlative_Number =  this.cantidadfac;
       this.billsService.saveHeader(this.encabezado_factura).subscribe(
         (data) => {
           Swal.fire('Encabezado Guardado', '', 'success');

@@ -18,4 +18,8 @@ export class BillsService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
      return this.httpClient.post(this.API_ENDPOINT + 'bill_header',billheader, {headers: headers});
    }
+   getfactura(Serie_Id){
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
+    return this.httpClient.get(this.API_ENDPOINT + 'nofactura/'+ Serie_Id,  {headers});
+   }
 }

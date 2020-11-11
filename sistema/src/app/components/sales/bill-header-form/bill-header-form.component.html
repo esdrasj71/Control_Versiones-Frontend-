@@ -13,10 +13,9 @@
                             <div class="col-md-7">
                                 <div class="form-group row">
                                     <label for="correlativo" class="col-form-label">No de Factura:</label>
-                                    <div class="col-sm-7" *ngFor="let nofactura of nofacturas">
+                                    <div class="col-sm-7" >
  
-                                        <h4 [(ngModel)]="encabezado_factura.Correlative_Number" ngDefaultControl>
-                                            {{nofactura.NoFactura}}</h4>
+                                        <h4 >{{cantidadfac}}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -24,9 +23,8 @@
                                 <div class="form-group row">
                                     <label for="serie" class="col-form-label">Serie:</label>
                                     <div class="col-sm-9">
-                                        <input type="text" [(ngModel)]="encabezado_factura.Serie" ngDefaultControl
-                                            name="serie" id="serie" class="form-control" placeholder="Serie"
-                                            tabindex="2" required="" />
+                                        <label for="serie" class="col-form-label">{{nombre_serie}}</label>
+                                      
                                     </div>
                                 </div>
                             </div>
