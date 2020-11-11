@@ -2,4 +2,16 @@
     
     display: grid;
   grid-template-columns: repeat(3, 250px)
+} 
+.container{
+  height: 100%;
+  width: 100%;
+  padding-top: 5%;
+  padding-bottom: 10%;
+  padding-left: 14%;
+  position: relative;
+}
+
+.card{
+  box-shadow:0 12px 15px 0 rgba(0,0,0,.30),0 17px 50px 0 rgba(0,0,0,.27);
 }

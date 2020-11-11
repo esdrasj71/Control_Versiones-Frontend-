@@ -1,29 +1,29 @@
 <div class="container">
     <div class="col-sm-12  ">
-    <div class="card" style="width: 50rem; right: 5rem">
+    <div class="card" style="width: 100%; right: 5rem">
         <div class="card-body">
             <div class="form-group row">
-            <h5 class="card-title"  style="color: black; margin-left: 2rem;"><b>Series de la factura</b></h5>
+            <h5 class="card-title"  style="color: black; margin-left: 2rem;"><b>SERIES DE LA FACTURA</b></h5>
            
             <div class="col-sm-8  ">
-            <button style="float: right;"  data-toggle="modal" data-target="#ingresoseries" class="btn btn-primary" ><i class="fa fa-plus" style="color: white;"></i>Agregar</button>
+            <button style="float: right;"  data-toggle="modal" data-target="#ingresoseries" class="btn btn-primary btn-sm" ><i class="fa fa-plus" style="color: white;"></i>&nbsp;Agregar</button>
             </div>  
         </div>  
             <hr>
             <div class="container grid" >
-                <div class="row  " *ngFor="let serie of serie" >
+                <div class="row" *ngFor="let serie of serie" >
                     <div >
                         <div class="card" style="margin-top: 2rem;" >
                           <div class="card-body">
-                            <h4 class="card-title" style="color: black;">Nombre Serie: {{serie.Nombre}}</h4>
-                            <h6 class="card-text" style="color: black;">Cantidad Limite: {{serie.Cantidad_limite}}</h6>
-                            <h6 class="card-text" style="color: black;">Factura actual: {{serie.Cantidad_inicial}}</h6>
-                            <button class="btn btn-primary" *ngIf="!(serie.Cantidad_limite == serie.Cantidad_inicial)" (click)="seleccion(serie.Serie_Id, serie.Nombre, serie.Cantidad_inicial)">Seleccionar</button>
+                            <h4 class="card-title" style="color: black;">Nombre Serie:&nbsp; {{serie.Nombre}}</h4>
+                            <h6 class="card-text" style="color: black;">Cantidad Limite:&nbsp; {{serie.Cantidad_limite}}</h6>
+                            <h6 class="card-text" style="color: black;">Factura actual:&nbsp; {{serie.Cantidad_inicial}}</h6>
+                            <button class="btn btn-warning btn-sm" *ngIf="!(serie.Cantidad_limite == serie.Cantidad_inicial)" (click)="seleccion(serie.Serie_Id, serie.Nombre, serie.Cantidad_inicial)"
+                            style="background-color:#F7985B; color: white;">Seleccionar</button>
                             
                           </div>
                         </div>
                       </div>
-                    
                 </div>
             </div>
         </div>
@@ -35,8 +35,8 @@
 <div class="modal fade" id="ingresoseries" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle" style="color: #000;">Agrear serie</h5>
+        <div class="modal-header" style="background-color:#EC7063">
+          <h5 class="modal-title" id="exampleModalLongTitle">Agrear serie</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -55,7 +55,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" (click)="guardarserie()">Guardar</button>
+          <button type="button" class="btn btn-danger" (click)="guardarserie()" style="background-color:#EC7063; color: white;">Guardar</button>
         </div>
       </div>
     </div>

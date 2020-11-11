@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {SeriesService} from '../servicios/series.service';
 import {Series} from '../interfaces/serie';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-series-form',
   templateUrl: './series-form.component.html',
@@ -34,12 +35,12 @@ export class SeriesFormComponent implements OnInit {
   guardarserie(){
     this.series.Cantidad_inicial = 1;
     this.seriesService.saveSeries(this.series).subscribe((data)=>{
-      alert("Serie guardada");
+      Swal.fire('Serie Guardada', '','success');
 
     },(error)=>{
       console.log(error);
-      alert("Ocurrio un error al insertar la serie")
+      Swal.fire({icon: 'error', title: 'Ocurrio un error', text: 'Conflictos al insertar la serie'});
     })
-    //console.log(this.series);
+    //console.log(this.series); 
   }
 }
