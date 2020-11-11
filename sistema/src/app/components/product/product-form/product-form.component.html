@@ -97,7 +97,7 @@
                         <label class="col-md-3 form-control-label" for="textinput">¿Es perecedero?</label>
                         <div class="col-md-9">
                             <input #small type="checkbox" name="size" (change)="0" v-model="nombre" class="formcontrol"
-                                [(ngModel)]="procedure_saveproduct.Perishable" [ngModelOptions]="{standalone: true}">
+                                [(ngModel)]="selectedPerishable" [ngModelOptions]="{standalone: true}">
                             <br>
                             <br>
                             <label *ngIf="small.checked" style="color: white;">Fecha de caducidad:</label>

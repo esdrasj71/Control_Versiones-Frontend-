@@ -59,6 +59,7 @@ export class ProductFormComponent implements OnInit {
   selectedCategoryId: number;
   selectedCorrelativeproduct: number;
   selectedProduct: string;
+  selectedPerishable: boolean = false;
   //Update
   id: any;
   lastidproduct: number;
@@ -90,6 +91,7 @@ export class ProductFormComponent implements OnInit {
           this.selectedBrandId = this.product.Brand_Id;
           this.selectedCorrelativeproduct = this.product.Correlative_Product;
           this.selectedProduct = this.product.Name;
+          this.selectedPerishable = this.product.Perishable;
           //LOT
           //this.lot.Product_Id = this.product.Product_Id;
           //this.lot.Due_Date = this.selectedDueDate;
@@ -118,6 +120,7 @@ export class ProductFormComponent implements OnInit {
       this.product.Brand_Id = this.selectedBrandId;
       this.product.Correlative_Product = this.selectedCorrelativeproduct;
       this.product.Name = this.selectedProduct;
+      this.product.Perishable = this.selectedPerishable;
       this.productService.put(this.product).subscribe(
         (data) => {
           this.lastidproduct = data['id'];
@@ -139,6 +142,7 @@ export class ProductFormComponent implements OnInit {
       this.procedure_saveproduct.Brand_Id = this.selectedBrandId;
       this.procedure_saveproduct.Correlative_Product = this.selectedCorrelativeproduct;
       this.procedure_saveproduct.Name = this.selectedProduct;
+      this.procedure_saveproduct.Perishable = this.selectedPerishable;
       this.productService.saveprocedure(this.procedure_saveproduct).subscribe(
         (data) => {
           this.lastidproduct = data['id'];
