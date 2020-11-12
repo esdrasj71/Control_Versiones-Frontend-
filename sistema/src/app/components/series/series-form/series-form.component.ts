@@ -33,14 +33,23 @@ export class SeriesFormComponent implements OnInit {
     this.router.navigate(['/home']);
   }
   guardarserie(){
-    this.series.Cantidad_inicial = 1;
-    this.seriesService.saveSeries(this.series).subscribe((data)=>{
-      Swal.fire('Serie Guardada', '','success');
-      window.setTimeout(function(){location.reload()},1200) 
-    },(error)=>{
-      console.log(error);
-      Swal.fire({icon: 'error', title: 'Ocurrio un error', text: 'Conflictos al insertar la serie'});
-    })
-    //console.log(this.series); 
+      if(this.series.Nombre == null || this.series.Cantidad_limite == null || this.series.Cantidad_limite == 0 ){
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: 'Conflictos al insertar la serie'});
+      }else{
+        this.series.Cantidad_inicial = 1;
+      this.seriesService.saveSeries(this.series).subscribe((data)=>{
+        Swal.fire('Serie Guardada', '','success');
+        window.setTimeout(function(){location.reload()},1200) 
+      },(error)=>{
+        console.log(error);
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: 'Conflictos al insertar la serie'});
+      })
+      }
+      
+    
+     
+    
+  
+   
   }
 }
