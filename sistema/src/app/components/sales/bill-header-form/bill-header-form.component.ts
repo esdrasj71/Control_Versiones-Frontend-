@@ -321,15 +321,17 @@ export class BillHeaderFormComponent implements OnInit {
       this.encabezado_factura.Correlative_Number =  this.cantidadfac;
       this.billsService.saveHeader(this.encabezado_factura).subscribe(
         (data) => {
-          Swal.fire('Encabezado Guardado', '', 'success');
-          window.setTimeout(function () { location.reload() }, 1500)
+        
+          Swal.fire('Click para finalizar', '', 'success');
+          //Swal.fire('Encabezado Guardado', '', 'success');
+          window.setTimeout(function () { location.reload() }, 3000)
           if (this.encabezado_factura.Payment_Complete == false) {
             this.accounts_receivable.Quantity = 0;
             this.accounts_receivable.Total = this.total_cobro;
             this.accounts_receivable.Statuss = true;
             this.accounts_receivable.Bill_header_Id = data["id"];
             this.accountsRecivableService.saveAccountRecivable(this.accounts_receivable).subscribe((data) => {
-              Swal.fire('Cuenta por cobrar guardada', '', 'success');
+              //Swal.fire('Cuenta por cobrar guardada', '', 'success');
             }, (error) => {
               Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: 'Cuentas por cobrar' });
             })
@@ -342,10 +344,11 @@ export class BillHeaderFormComponent implements OnInit {
             this.pago_detalle.Total_Amount = this.total_cobroalcontado;
             this.pago_detalle.Payment_Id = 1;
             this.pago_detalle.Bill_header_Id = data["id"];
+            
             this.paymentdetailService.save(this.pago_detalle).subscribe(
               (data) => {
-                Swal.fire('Pago Guardado', '', 'success');
-                console.log(data);
+                //Swal.fire('Pago Guardado', '', 'success');
+                //console.log(data);
               },
               (error) => {
                 console.log(error);
@@ -360,8 +363,8 @@ export class BillHeaderFormComponent implements OnInit {
               this.pago_detalle.Bill_header_Id = data["id"];
               this.paymentdetailService.save(this.pago_detalle).subscribe(
                 (data) => {
-                  Swal.fire('Pago Guardado', '', 'success');
-                  console.log(data);
+                 // Swal.fire('Pago Guardado', '', 'success');
+                  //console.log(data);
                 },
                 (error) => {
                   console.log(error);
@@ -373,8 +376,8 @@ export class BillHeaderFormComponent implements OnInit {
               this.pago_detalle.Bill_header_Id = data["id"];
               this.paymentdetailService.save(this.pago_detalle).subscribe(
                 (data) => {
-                  Swal.fire('Pago Guardado', '', 'success');
-                  console.log(data);
+                  //Swal.fire('Pago Guardado', '', 'success');
+                  //console.log(data);
                 },
                 (error) => {
                   console.log(error);
@@ -385,7 +388,7 @@ export class BillHeaderFormComponent implements OnInit {
               this.pago_detalle.Bill_header_Id = data["id"];
               this.paymentdetailService.save(this.pago_detalle).subscribe(
                 (data) => {
-                  Swal.fire('Pago Guardado', '', 'success');
+                  //Swal.fire('Pago Guardado', '', 'success');
                   console.log(data);
                 },
                 (error) => {
@@ -396,28 +399,35 @@ export class BillHeaderFormComponent implements OnInit {
             }
           }
 
+          for (let misdatos of this.nuevo) {
+            //alert("Detalle guardado");
+            this.procedure_sale.Subtotal = misdatos[0].Subtotal;
+            this.procedure_sale.Quantity = parseInt(misdatos[0].Quantity);
+            this.procedure_sale.Price = misdatos[0].Unit_Price;
+            this.procedure_sale.Inventory_Id = misdatos[0].Inventory_Id;
+            
+            this.proceduresaleService.save(this.procedure_sale).subscribe(
+              (data) => {
+                
+              
+                //console.log(data);
+              },
+              (error) => {
+                console.log(error);
+                Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
+              }
+            )
+          };
+
+
         },
         (error) => {
           console.log(error);
           Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
         });
       //detalle
-      for (let misdatos of this.nuevo) {
-        this.procedure_sale.Subtotal = misdatos[0].Subtotal;
-        this.procedure_sale.Quantity = parseInt(misdatos[0].Quantity);
-        this.procedure_sale.Price = misdatos[0].Unit_Price;
-        this.procedure_sale.Inventory_Id = misdatos[0].Inventory_Id;
-        this.proceduresaleService.save(this.procedure_sale).subscribe(
-          (data) => {
-            Swal.fire('Producto Guardado', '', 'success');
-            console.log(data);
-          },
-          (error) => {
-            console.log(error);
-            Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
-          }
-        )
-      };
+      
+      
 
       //localStorage.removeItem("id");
     }
