@@ -44,7 +44,7 @@ export class UserFormComponent implements OnInit {
     } else {
       this.editing = false;
     }
-    this.httpClient.get(this.API_ENDPOINT + 'employee', { headers })
+    this.httpClient.get(this.API_ENDPOINT + 'employeelogin', { headers })
       .subscribe((data: Employee[]) => {
         this.employee = data;
       });
