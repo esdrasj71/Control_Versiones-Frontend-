@@ -74,18 +74,24 @@ export class AccountsReceivableComponent implements OnInit {
   }
   resta = 0;
   saveProcedure(){
-    if(this.procedure_accountsReceivable.Quantity > this.total_cobrar){
+    if( this.procedure_accountsReceivable.Quantity ==null || this.procedure_accountsReceivable.Payment_Id == null){
+
+      Swal.fire({icon: 'warning', title: 'No selecciono el tipo de pago o no ingreso monto a pagar', text: ''})
+    }else{
+      if(this.procedure_accountsReceivable.Quantity > this.total_cobrar){
     
-      this.procedure_accountsReceivable.Quantity = this.total_cobrar;
-    }
-  this.procedure_accountsService.saveprocedure(this.procedure_accountsReceivable).subscribe((data)=>{
-    //console.log(data);
-    Swal.fire('Descuento Exitoso', '','success');
-    window.setTimeout(function(){location.reload()},1200)
-  },(error)=>{
-    //console.log(error);
-    Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
-  })
+        this.procedure_accountsReceivable.Quantity = this.total_cobrar;
+      }
+    this.procedure_accountsService.saveprocedure(this.procedure_accountsReceivable).subscribe((data)=>{
+      //console.log(data);
+      Swal.fire('Descuento Exitoso', '','success');
+      window.setTimeout(function(){location.reload()},1200)
+    },(error)=>{
+      //console.log(error);
+      Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
+    })
+  }
+ 
   }
 
 }

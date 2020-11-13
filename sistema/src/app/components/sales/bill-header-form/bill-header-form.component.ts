@@ -262,7 +262,7 @@ export class BillHeaderFormComponent implements OnInit {
       alert("Solo hay en existencia: " + datos[0].Stock);
     } else {
       this.total -= datos[0].Subtotal;
-      datos[0].Subtotal = Math.round(value * precio);
+      datos[0].Subtotal = parseFloat((value * precio).toFixed(2))
       datos[0].Quantity = value;
       this.total += datos[0].Subtotal;
       this.total_cobro = this.total;

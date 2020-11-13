@@ -20,4 +20,8 @@ export class BalancesService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
     return this.httpClient.post(this.API_ENDPOINT + 'balance_detail', detalle, {headers: headers});
   }
+  getempresa(){
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
+    return this.httpClient.get(this.API_ENDPOINT + 'empresa', {headers});
+  }
 }
