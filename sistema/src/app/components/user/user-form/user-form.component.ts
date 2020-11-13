@@ -31,7 +31,7 @@ export class UserFormComponent implements OnInit {
 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
 
-    this.httpClient.get(this.API_ENDPOINT + 'employee', { headers })
+    this.httpClient.get(this.API_ENDPOINT + 'employeelogin', { headers })
       .subscribe((data: Employee[]) => {
         this.employee = data;
       });
