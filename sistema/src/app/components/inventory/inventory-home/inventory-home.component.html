@@ -24,6 +24,7 @@
                     <th class="header" scope="col">Producto - Marca - Categoria</th>
                     <th class="header" scope="col">Stock</th>
                     <th class="header" scope="col">Precio unitario</th>
+                    <th class="header" scope="col">Precio de compra</th>
                     <th class="header" scope="col">Fecha de vencimiento</th>
                     <th class="header" scope="col">Acciones</th>
                 </tr>
@@ -35,6 +36,7 @@
                     <th>{{inventory.ProductComplete}}</th>
                     <td>{{inventory.Stock}}</td>
                     <td>{{inventory.Unit_Price | currency:"GTQ":"Q"}}</td>
+                    <td>{{inventory.Purchase_Price | currency:"GTQ":"Q"}}</td>
                     <td>{{inventory.DueDate|date:'d-M-y'}}</td>
                     <td><a class="btn btn-warning btnsm" style="background-color:#F7985B;"
                             routerLink="/inventory-form/{{inventory.Inventory_Id}}">
@@ -75,7 +77,7 @@
                                 <th scope="col">Marca</th>
                                 <th scope="col">Categoría</th>
                                 <th scope="col">Stock</th>
-                                <th scope="col">Precio Ponderado</th>
+                                <th scope="col">Precio Ponderado de Venta</th>
                             </tr>
                         </thead>
                         <tbody>

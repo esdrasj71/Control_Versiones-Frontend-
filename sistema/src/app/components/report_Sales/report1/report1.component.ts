@@ -8,7 +8,7 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import htmlToPdfmake from 'html-to-pdfmake';
 import { ExpendituresService } from '../../expenditures/servicios/expenditures.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-report1',
   templateUrl: './report1.component.html',
@@ -42,31 +42,36 @@ export class Report1Component implements OnInit {
     })
   }
   saveReport1(){
-    this.report1Service.getReport1(this.report2).subscribe((data)=>{
-      this.reportt1 = [];
-      this.repor1.forEach(e => {
-        let temp = [];
-        let total_Serie = 0;
-        let temp2 = {};
-        
-        data[0].forEach(g => {
-          if(e["Serie_Id"] == g["Serie"]){
-            temp2 = g;
-            temp2['Serie']=e["Serie_Id"];
-            temp.push(temp2);
-            total_Serie += g["Total"];
-           
-          }
+    if (this.report2.fechainicio == null || this.report2.fechafin == null) {
+      Swal.fire({icon: 'warning', title: 'Aviso!', text: 'Debe llenar todos los campos'}); 
+    }else{
+      this.report1Service.getReport1(this.report2).subscribe((data)=>{
+        this.reportt1 = [];
+        this.repor1.forEach(e => {
+          let temp = [];
+          let total_Serie = 0;
+          let temp2 = {};
+          
+          data[0].forEach(g => {
+            if(e["Serie_Id"] == g["Serie"]){
+              temp2 = g;
+              temp2['Serie']=e["Serie_Id"];
+              temp.push(temp2);
+              total_Serie += g["Total"];
+             
+            }
+          });
+          this.total_total += total_Serie;  
+          temp.push(total_Serie);
+          temp.push(e["Serie"]);
+          this.reportt1.push(temp);
+          console.log(this.reportt1);
         });
-        this.total_total += total_Serie;  
-        temp.push(total_Serie);
-        temp.push(e["Serie"]);
-        this.reportt1.push(temp);
-        console.log(this.reportt1);
-      });
-    }, (error)=>{
-      console.log(error);
-    })
+      }, (error)=>{
+        console.log(error);
+      })
+    }
+  
   
   }
   downloadPDF() {

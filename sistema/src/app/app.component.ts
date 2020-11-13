@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 export class AppComponent implements OnInit {
   Existe=0;
   rol='1';
-  title = 'sistema';
+  title = 'Quetzal Commerce';
   isLog=true;
   usuario="";
   interval:any;

@@ -8,6 +8,7 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import htmlToPdfmake from 'html-to-pdfmake';
 import { ExpendituresService } from '../../expenditures/servicios/expenditures.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-report2',
   templateUrl: './report2.component.html',
@@ -34,6 +35,10 @@ export class Report2Component implements OnInit {
     })
   }
   saveReport2(){
+    if (this.report2.fechainicio == null || this.report2.fechafin == null) {
+      Swal.fire({icon: 'warning', title: 'Aviso!', text: 'Debe llenar todos los campos'}); 
+    }else{
+     
     this.report2Service.savereport2(this.report2).subscribe((data)=>{
       //alert('Reporte 2 generado');
       this.repor2 = data[0];
@@ -42,7 +47,7 @@ export class Report2Component implements OnInit {
       console.log(error);
       alert('Error en reporte 2');
     })
-   
+  }
   }
   downloadPDF() {
     let mes = this.date.getMonth() + 1;

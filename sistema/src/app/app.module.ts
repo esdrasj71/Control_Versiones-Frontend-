@@ -79,6 +79,8 @@ import { FilterExpendituresPipe } from './pipes/filter-expenditures.pipe';
 import { ResultStatementHomeComponent } from './components/result_statement/result-statement-home/result-statement-home.component';
 import { SeriesFormComponent } from './components/series/series-form/series-form.component';
 import { FilterProductPipe } from './pipes/filter-product.pipe';
+import {BalanceSheetComponent} from './components/balance_sheets/balance-sheet/balance-sheet.component'
+
 
 
 
@@ -196,7 +198,9 @@ const routes: Route[] = [
 
   //series
   {path: 'serie-form', component:SeriesFormComponent, canActivate:[CheckloginGuard]},
-
+ 
+  //Balance general
+  {path: 'balance-sheet', component:BalanceSheetComponent, canActivate:[CheckloginGuard]},
   
 ];
 
@@ -277,6 +281,7 @@ const routes: Route[] = [
     ResultStatementHomeComponent,
     SeriesFormComponent,
     FilterProductPipe,
+    BalanceSheetComponent,
 
 
   ],

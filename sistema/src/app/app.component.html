@@ -27,7 +27,7 @@
 
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" routerLink="/home">&nbsp;&nbsp;<img src="../assets/images/logo2.png" style="height: 80px;">&nbsp;&nbsp;&nbsp;I N I C I O</a>
+    <a class="navbar-brand" routerLink="/home">&nbsp;&nbsp;<img src="../assets/images/logo2.png" style="height: 70px;">&nbsp;&nbsp;&nbsp;I N I C I O</a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
           <a class="nav-link">|</a>
@@ -103,7 +103,7 @@
                     <li><a class="dropdown-item" routerLink="/report3">Cuentas por cobrar vigentes</a></li>
                   </ul>
                 </li>
-                <li class="nav-item"><a class="dropdown-item" routerLink="/inventory-reports-home">Inventario</a></li>
+                <li class="nav-item"><a class="dropdown-item" routerLink="/inventory-reports-home">Reporte de inventario en compras</a></li>
               </ul>
             </li>
             <!-- END OF DROPDOWNS-->
@@ -130,6 +130,15 @@
                   </ul>
                 </li>
               </ul>
+            </li>
+          </ng-container>
+          <div style="width: 21px;"></div>
+          <ng-container *ngIf="rol==1;">
+            <li class="nav-item dropdown">
+              <a id="dLabel" role="button"  routerLink="/balance-sheet"  data-toggle="dropdown" class="nav-link"
+                data-target="#">
+                Balance general <span class="caret"></span>
+              </a>
             </li>
           </ng-container>
         </ul>

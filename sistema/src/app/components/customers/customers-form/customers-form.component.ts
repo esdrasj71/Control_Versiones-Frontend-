@@ -38,7 +38,7 @@ export class CustomersFormComponent implements OnInit {
 
       this.customerService.getCustomer().subscribe((data: Customers[]) => { //Aqui traemos el arreglo completo de datos
         this.postarr = data;
-        console.log(this.postarr);
+        //console.log(this.postarr);
         this.customer = this.postarr.find((m) => { return m.Customers_Id == this.id }); //Aqui traemos solo el id que nos interesa
       }, (error) => {
         console.log(error);
@@ -54,7 +54,7 @@ export class CustomersFormComponent implements OnInit {
     if (this.editing) {
       this.customerService.put(this.customer).subscribe((data) => { //El unico cambioes el put
         Swal.fire('Cliente Actualizado', '', 'success');
-        console.log(data)
+        //console.log(data)
       }, (error) => {
         console.log(error);
         Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' })
@@ -67,7 +67,7 @@ export class CustomersFormComponent implements OnInit {
       else {
         this.customerService.saveCustomer(this.customer).subscribe((data) => {
           Swal.fire('Cliente Guardado', '', 'success');
-          console.log(data)
+          //console.log(data)
           this.Customers_Id.emit(data["id"]);
         }, (error) => {
           console.log(error);
