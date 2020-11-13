@@ -1,15 +1,20 @@
-import { ThrowStmt } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
-import { error } from 'protractor';
+
+import { Component, OnInit , ViewChild, ElementRef} from '@angular/core';
 import {Balance} from '../interfaces/balance';
 import {BalancesService} from '../servicios/balances.service';
 import Swal from 'sweetalert2';
+import jsPDF from 'jspdf';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import htmlToPdfmake from 'html-to-pdfmake';
 @Component({
   selector: 'app-balance-sheet',
   templateUrl: './balance-sheet.component.html',
   styleUrls: ['./balance-sheet.component.css']
 })
 export class BalanceSheetComponent implements OnInit {
+  @ViewChild('pdfTable') pdfTable: ElementRef;
   cuentas = [];
   nuenvas_cuentas = [];
   sum1 = 0;
@@ -20,20 +25,28 @@ export class BalanceSheetComponent implements OnInit {
   sum6 = 0;
   sum7 = 0;
   bandera = 0;
-
+  empresa: any = [];
+  date = new Date();
   balance: Balance ={
     fechafin: null,
   }
+
   constructor(private balanceService: BalancesService) {
     
   }
 
   ngOnInit(): void {
+    this.balanceService.getempresa().subscribe((data) => {
+      this.empresa = data[0];
+      return this.empresa;
+    });
   }
   //enterrr.value, detalle.Balance_Id, detalle.Name, detalle.Type
 //value,id, nombre, tipo
   registrar(value,id, Nombre, tipo){
-   
+   if(value <0){
+    Swal.fire({icon: 'warning', title: 'Aviso!', text: 'Debe ingresar un numero mayor'}); 
+   }
    //console.log(this.cuentas)
     if(tipo == 1){
       this.sum1 = 0;
@@ -270,5 +283,48 @@ export class BalanceSheetComponent implements OnInit {
       alert("Ocurrio un error");
     })
  
+  }
+  downloadPDF() {
+    let mes = this.date.getMonth() + 1;
+    let fecha =
+
+      this.date.getFullYear()
+      +
+      '-' +
+      mes.toString() +
+      '-'  +   this.date.getDate(); 
+  let creado = fecha;
+    const doc = new jsPDF();
+    //get table html
+    const pdfTable = this.pdfTable.nativeElement;
+    //html to pdf format
+    var html = htmlToPdfmake(`
+    <div style = "text-align:center;">
+    <h1>Quetzal Commerce ®</h1>
+    <p>
+    <b>Empresa: </b> `+this.empresa.Company_Name+`
+    </p>
+    <p>
+    <b>Dirección: </b> `+this.empresa.Address+`
+    </p>
+    <p>
+    <b>NIT: </b> `+this.empresa.NIT+`
+    </p>
+   </div> 
+    <div style = "text-align:justify;">
+    <p>
+      <b>Reporte: Balance General Clasificado.</b>
+    </p>
+    <p>
+    <b>La fecha en la que se generó el reporte fue: del ` +this.date.getFullYear()+`-` +`01-01` + ` al `+this.balance.fechafin+` </b>
+   </p>
+    <p>
+    <b>Este reporte se genero el día: `+creado +`</b> 
+    </p>
+    </div>
+    `+pdfTable.innerHTML);
+   
+    const documentDefinition = { content: html };
+    pdfMake.createPdf(documentDefinition).open();
   }
 }

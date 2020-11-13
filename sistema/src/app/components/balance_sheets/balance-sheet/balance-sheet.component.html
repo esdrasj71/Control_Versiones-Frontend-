@@ -1,6 +1,18 @@
 <div class="container">
     <h1 style="text-align: center;">Balance general clasificado</h1>
     <br><br>
+    <div class="form-group row">
+        <h5>&nbsp;&nbsp;&nbsp;Empresa: &nbsp;</h5>
+        <div class="col-md-10">
+            <h5>{{empresa.Company_Name}}</h5>
+        </div>
+        <h5>&nbsp;&nbsp;&nbsp;Direccion: &nbsp;</h5>
+        <div class="col-md-8">
+            <h5>{{empresa.Address}}</h5>
+        </div>
+        <h5 style="text-align: right;">NIT: &nbsp;</h5>
+            <h5 style="text-align: right;">{{empresa.NIT}}</h5>
+    </div>
     <form>
         <div class="form-group row ">
            
@@ -13,6 +25,9 @@
             </div><br><br><br>
             <div class="col-md-2">
                 <button type="button" class="btn btn-danger" (click)="almacenar()" >Guardar</button>
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-danger" (click)="downloadPDF()" >Generar PDF</button>
             </div>
         </div>
     </form>
