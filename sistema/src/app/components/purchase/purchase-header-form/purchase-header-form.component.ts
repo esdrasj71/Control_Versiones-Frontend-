@@ -136,7 +136,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
   }
   lot;
   getLotId(id) {
-    this.inventoryService.getInventory().subscribe((data: Inventory[]) => {
+    this.inventoryService.getInventoryNoPerishable().subscribe((data: Inventory[]) => {
       this.inventory = data;
     });
     this.lotService.findPresentation(id).subscribe((data: Lot[]) => {

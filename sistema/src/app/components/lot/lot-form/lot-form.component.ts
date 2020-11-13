@@ -21,8 +21,9 @@ export class LotFormComponent implements OnInit {
     Product_Id: null,
   };
   inventory: Inventory = {
-    Stock: 0,
+    Stock: 1,
     Unit_Price: 0,
+    Purchase_Price: 0,
     Lot_Id: null,
     Statuss: false,
   };
@@ -54,7 +55,7 @@ export class LotFormComponent implements OnInit {
       this.editing = false;
     }
 
-    httpClient.get(this.API_ENDPOINT + 'product', { headers })
+    httpClient.get(this.API_ENDPOINT + 'productlot', { headers })
       .subscribe((data: Products[]) => {
         this.products = data;
       })
