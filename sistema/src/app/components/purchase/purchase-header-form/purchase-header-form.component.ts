@@ -280,7 +280,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
       this.procedure_purchaseservice.save(this.purchase).subscribe(
         (data) => {
           //alert('procedimiento almacenado guardado');
-          console.log(data);
+          //console.log(data);
         },
         (error) => {
           //console.log(error);

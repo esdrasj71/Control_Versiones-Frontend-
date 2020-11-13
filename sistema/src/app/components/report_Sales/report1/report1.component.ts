@@ -65,7 +65,7 @@ export class Report1Component implements OnInit {
           temp.push(total_Serie);
           temp.push(e["Serie"]);
           this.reportt1.push(temp);
-          console.log(this.reportt1);
+          //console.log(this.reportt1);
         });
       }, (error)=>{
         //console.log(error);

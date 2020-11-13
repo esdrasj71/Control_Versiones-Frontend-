@@ -159,7 +159,7 @@ export class BillHeaderFormComponent implements OnInit {
         this.cantidadfac = data[0]["Cantidad_inicial"];
         
       })
-      console.log(this.cantidadfac);
+      //console.log(this.cantidadfac);
     }catch{
       alert("Falta serie");
       this.router.navigate(['/serie-form']);
