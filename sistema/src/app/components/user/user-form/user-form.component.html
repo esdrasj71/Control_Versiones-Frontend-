@@ -33,7 +33,7 @@
               />
             </div>
           </div>
-          
+          <ng-container *ngIf="id==null;">
           <div class="form-group row">
             <label class="col-md-3 form-controllabel" for="UserType">Tipo de usuario </label>
             &nbsp;&nbsp;&nbsp;&nbsp;<label for="admin" style="color: white;">Admin</label>&nbsp;
@@ -76,10 +76,11 @@
               </ng-select>
           </div>
         </div>
+      </ng-container>
         <!-- Fin de metodo 2 -->
           <div class="form-group row">
             <div class="col-md-12">
-              <button (click)="saveUser()" class="btn btn-success btnblock">
+              <button (click)="saveUser()" routerLink="/user-home" class="btn btn-success btnblock">
                 Registrar un usuario
               </button>
             </div>

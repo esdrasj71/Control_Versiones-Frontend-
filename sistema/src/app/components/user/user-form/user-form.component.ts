@@ -25,13 +25,26 @@ export class UserFormComponent implements OnInit {
   employee : Employee[];
   selectedEmployeeId : number;
   userarr: User[];
-
+  id: any;
+  editing: boolean = false; 
   constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private httpClient: HttpClient, 
     private employeeService: EmployeeService) {
 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
-
-    this.httpClient.get(this.API_ENDPOINT + 'employee', { headers })
+    this.id = this.activatedRoute.snapshot.params['id']; 
+    if (this.id) {
+      this.editing = true;
+      this.httpClient.get(this.API_ENDPOINT + 'user', { headers }).subscribe((data: User[]) => {
+        this.userarr = data;
+        console.log(this.userarr);
+        this.user = this.userarr.find((m) => { return m.User_Id == this.id });
+      }, (error) => {
+        console.log(error);
+      });
+    } else {
+      this.editing = false;
+    }
+    this.httpClient.get(this.API_ENDPOINT + 'employeelogin', { headers })
       .subscribe((data: Employee[]) => {
         this.employee = data;
       });
@@ -40,6 +53,16 @@ export class UserFormComponent implements OnInit {
 
   ngOnInit(): void {}
   saveUser() {
+    if (this.editing) {
+      this.userService.put(this.user).subscribe((data) => {
+        Swal.fire('Usuario Actualizado', '','success');
+        console.log(data)
+      }, (error) => {
+        console.log(error);
+        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
+      });
+    }else
+    {
     let mes = this.date.getMonth() + 1;
     let fecha =
       mes.toString() +
@@ -59,6 +82,7 @@ export class UserFormComponent implements OnInit {
         Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       }
     );
+    }
   }
 
   searchEmployee(filter: string, employee) {

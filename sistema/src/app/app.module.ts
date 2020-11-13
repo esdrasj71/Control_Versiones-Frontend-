@@ -79,7 +79,9 @@ import { FilterExpendituresPipe } from './pipes/filter-expenditures.pipe';
 import { ResultStatementHomeComponent } from './components/result_statement/result-statement-home/result-statement-home.component';
 import { SeriesFormComponent } from './components/series/series-form/series-form.component';
 import { FilterProductPipe } from './pipes/filter-product.pipe';
-import {BalanceSheetComponent} from './components/balance_sheets/balance-sheet/balance-sheet.component'
+import {BalanceSheetComponent} from './components/balance_sheets/balance-sheet/balance-sheet.component';
+import { UserHomeComponent } from './components/user/user-home/user-home.component';
+import { FiltradouserPipe } from './pipes/filtradouser.pipe'
 
 
 
@@ -146,7 +148,9 @@ const routes: Route[] = [
   //Login
   { path: 'login', component: LoginFormComponent },
   //user
+  { path: 'user-home', component: UserHomeComponent, canActivate: [CheckloginGuard] },
   { path: 'user', component: UserFormComponent, canActivate: [CheckloginGuard] },
+  { path: 'user/:id', component: UserFormComponent, canActivate: [CheckloginGuard] },
   //Company
   { path: 'company/:id', component: CompanyFormComponent, canActivate: [CheckloginGuard] },
   //accounts receivable
@@ -282,8 +286,8 @@ const routes: Route[] = [
     SeriesFormComponent,
     FilterProductPipe,
     BalanceSheetComponent,
-
-
+    UserHomeComponent,
+    FiltradouserPipe,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 <div class="container">
-    <h1 style="text-align: center;">Reporte sobre clientes más frecuentes</h1>
+    <h1 style="text-align: center;">Balance general clasificado</h1>
     <br><br>
     <form>
         <div class="form-group row ">
@@ -12,29 +12,159 @@
                 <button type="submit" (click)="guardar()" class="btn btn-danger">Consultar</button>
             </div><br><br><br>
             <div class="col-md-2">
-                <!--<button type="button" class="btn btn-danger" (click)="downloadPDF()">Generar PDF</button>-->
+                <button type="button" class="btn btn-danger" (click)="almacenar()" >Guardar</button>
             </div>
         </div>
     </form>
     <div id="pdfTable" #pdfTable> 
-        <table class="table" style="table-layout: fixed; word-wrap: break-word; background-color:#F8F9F9;" id="table">
+        <table class="table" *ngFor="let cuenta of cuentas" style="table-layout: fixed; word-wrap: break-word; background-color:#F8F9F9;" id="table">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">Nombre clliente</th>
-                    <th scope="col">DPI</th>
-                    <th scope="col">NIT</th>
-                    <th scope="col">Telefono</th>
-                    <th scope="col">Direccion</th>
-                    <th scope="col">Num Ventas</th>
-                    <th scope="col">Total</th>
+                    <th scope="col">{{cuenta[0][0].Nombre}}</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                 
                 </tr>
             </thead>
-            <tbody >
+            <thead class="thead-dark">
                 <tr>
-                    <td height="10">asdf</td>
+                    <th scope="col">{{cuenta[1][cuenta[1].length -1 ][0].Nombre}}</th>
+                    <th scope="col">{{sum1 | currency:"GTQ":"Q"}}</th>
+                    <th scope="col"></th>
+                 
+                </tr>
+            </thead>
+            <tbody *ngFor = "let detalle of cuenta[1]" >
+             
+                <tr>
+                    <td height="10">{{detalle.Name}}</td>
+                    <td height="10">{{detalle.Monto | currency:"GTQ":"Q"}}</td>
+                    <td> <input  *ngIf="detalle.Monto >= 0"  type="number" #enterrr
+                        (keyup.enter)="registrar(enterrr.value,detalle.Balance_Id, detalle.Name, detalle.Type)" ngDefaultControl
+                        name="monto" id="monto" class="form-control" placeholder=" " value=0
+                        tabindex="1" /></td>
+                  
+                </tr>
+                
+         
+            </tbody>
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">{{cuenta[2][cuenta[2].length -1 ][0].Nombre}}</th>
+                    <th scope="col">{{sum2 | currency:"GTQ":"Q"}}</th>
+                    <th scope="col"></th>
+                 
+                </tr>
+            </thead>
+            <tbody *ngFor = "let detalle of cuenta[2]" >
+               
+                <tr>
+                    <td height="10">{{detalle.Name}}</td>
+                    <td height="10">{{detalle.Monto | currency:"GTQ":"Q"}}</td>
+                    <td> <input  *ngIf="detalle.Monto >= 0" type="number" #enterrr
+                        (keyup.enter)="registrar(enterrr.value,detalle.Balance_Id, detalle.Name, detalle.Type)" ngDefaultControl
+                        name="monto" id="monto" class="form-control" placeholder=" " value=0
+                        tabindex="1" /></td>
                   
                 </tr>
             </tbody>
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Suma Total Activo</th>
+                    <th scope="col">{{sum1 + sum2 | currency:"GTQ":"Q"}} <hr style="border-color: white;">
+                        <hr style="border-color: white;">
+                    </th>
+                    
+                    <th scope="col"></th>
+                 
+                </tr>
+            </thead>
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">{{cuenta[3][0].Nombre}}</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                 
+                </tr>
+            </thead>
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">{{cuenta[4][cuenta[4].length -1 ][0].Nombre}}</th>
+                    <th scope="col">{{sum3 | currency:"GTQ":"Q"}}</th>
+                    <th scope="col"></th>
+                 
+                </tr>
+            </thead>
+            <tbody *ngFor = "let detalle of cuenta[4]" >
+               
+                <tr>
+                    <td height="10">{{detalle.Name}}</td>
+                    <td height="10">{{detalle.Monto | currency:"GTQ":"Q"}}</td>
+                    <td> <input  *ngIf="detalle.Monto >= 0" type="number" #enterrr
+                        (keyup.enter)="registrar(enterrr.value,detalle.Balance_Id, detalle.Name, detalle.Type)" ngDefaultControl
+                        name="monto" id="monto" class="form-control" placeholder=" " value=0
+                        tabindex="1" /></td>
+                </tr>
+            </tbody>
+         
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">{{cuenta[5][cuenta[5].length -1 ][0].Nombre}}</th>
+                    <th scope="col">{{sum4 | currency:"GTQ":"Q"}}</th>
+                    <th scope="col"></th>
+                 
+                </tr>
+            </thead>
+          
+            <tbody *ngFor = "let detalle of cuenta[5]" >
+               
+                <tr>
+                    <td height="10">{{detalle.Name}}</td>
+                    <td height="10">{{detalle.Monto | currency:"GTQ":"Q"}}</td>
+                    <td> <input  *ngIf="detalle.Monto >= 0" type="number" #enterrr
+                        (keyup.enter)="registrar(enterrr.value,detalle.Balance_Id, detalle.Name, detalle.Type)" ngDefaultControl
+                        name="monto" id="monto" class="form-control" placeholder=" " value=0
+                        tabindex="1" /></td>
+                </tr>
+            </tbody>
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Suma Total Pasivo</th>
+                    <th scope="col">{{sum3 + sum4 | currency:"GTQ":"Q"}}</th>
+                    <th scope="col"></th>
+                 
+                </tr>
+            </thead>
+            <thead class="thead-dark" *ngFor = "let detalle of cuenta[6]">
+                <tr>
+                    <th scope="col">{{detalle.Name}}</th>
+                    <th scope="col">{{detalle.Monto | currency:"GTQ":"Q"}}</th>
+                    <td> <input  *ngIf="detalle.Monto >= 0" type="number" #enterrr
+                        (keyup.enter)="registrar(enterrr.value,detalle.Balance_Id, detalle.Name, detalle.Type)" ngDefaultControl
+                        name="monto" id="monto" class="form-control" placeholder=" " value=0
+                        tabindex="1" /></td>
+                 
+                </tr>
+            </thead>
+            <thead class="thead-dark" *ngFor = "let detalle of cuenta[7]">
+                <tr>
+                    <th scope="col">{{detalle.Name}}</th>
+                    <th scope="col">{{detalle.Monto | currency:"GTQ":"Q"}}</th>
+                    <td> <input *ngIf="detalle.Monto >= 0" type="number" #enterrr
+                        (keyup.enter)="registrar(enterrr.value,detalle.Balance_Id, detalle.Name, detalle.Type)" ngDefaultControl
+                        name="monto" id="monto" class="form-control" placeholder=" " value=0
+                        tabindex="1" /></td>
+                 
+                </tr>
+            </thead>
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Suma igual al activo</th>
+                    <th scope="col">{{sum3 + sum4 + sum5 + sum6 | currency:"GTQ":"Q"}}<hr style="border-color: white;"><hr style="border-color: white;"> </th>
+                    <th scope="col"></th>
+                 
+                </tr>
+            </thead>
         </table>
     </div>
 </div>
