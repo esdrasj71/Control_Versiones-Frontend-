@@ -351,7 +351,7 @@ export class BillHeaderFormComponent implements OnInit {
                 //console.log(data);
               },
               (error) => {
-                console.log(error);
+                //console.log(error);
                 Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
               });
 
@@ -367,7 +367,7 @@ export class BillHeaderFormComponent implements OnInit {
                   //console.log(data);
                 },
                 (error) => {
-                  console.log(error);
+                  //console.log(error);
                   Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
                 });
             } else {
@@ -413,7 +413,7 @@ export class BillHeaderFormComponent implements OnInit {
                 //console.log(data);
               },
               (error) => {
-                console.log(error);
+                //console.log(error);
                 Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
               }
             )
@@ -422,7 +422,7 @@ export class BillHeaderFormComponent implements OnInit {
 
         },
         (error) => {
-          console.log(error);
+          //console.log(error);
           Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
         });
       //detalle

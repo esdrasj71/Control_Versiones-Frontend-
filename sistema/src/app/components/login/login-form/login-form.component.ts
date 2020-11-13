@@ -82,7 +82,7 @@ export class LoginFormComponent implements OnInit {
       },
       (error) => {
         Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
-        console.log(error);
+        //console.log(error);
       }
     );
   }
@@ -133,14 +133,14 @@ export class LoginFormComponent implements OnInit {
                 window.setTimeout(function(){location.reload()},1500)
               },
               (error) => {
-                console.log(error);
+                //console.log(error);
                 Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
               }
             );
           });
         },
         (error) => {
-          console.log(error);
+          //console.log(error);
           Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
           localStorage.removeItem('token');
           window.setTimeout(function(){location.reload()},1500)

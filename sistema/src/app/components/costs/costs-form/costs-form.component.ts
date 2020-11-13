@@ -41,7 +41,7 @@ export class CostsFormComponent implements OnInit {
     if (this.editing) {
       this.costsService.put(this.costs).subscribe((data) => {
         Swal.fire('Costo Actualizado', '', 'success');
-        console.log(data)
+        //console.log(data)
       }, (error) => {
         console.log(error);
         Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' })
@@ -54,7 +54,7 @@ export class CostsFormComponent implements OnInit {
       else {
         this.costsService.save(this.costs).subscribe((data) => {
           Swal.fire('Costo Guardado', '', 'success');
-          console.log(data)
+          //console.log(data)
           this.Cost_Id.emit(data['id']);
         }, (error) => {
           console.log(error);

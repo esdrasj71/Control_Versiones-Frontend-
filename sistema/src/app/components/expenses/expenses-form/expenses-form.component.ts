@@ -40,9 +40,9 @@ export class ExpensesFormComponent implements OnInit {
     if (this.editing) {
       this.expensesService.put(this.expenses).subscribe((data) => {
         Swal.fire('Gasto Actualizado', '', 'success');
-        console.log(data)
+        //console.log(data)
       }, (error) => {
-        console.log(error);
+        //console.log(error);
         Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' })
       });
     }
@@ -53,10 +53,10 @@ export class ExpensesFormComponent implements OnInit {
       else {
         this.expensesService.save(this.expenses).subscribe((data) => {
           Swal.fire('Gasto Guardado', '', 'success');
-          console.log(data)
+          //console.log(data)
           this.Expenses_Id.emit(data['id']);
         }, (error) => {
-          console.log(error);
+          //console.log(error);
           Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' })
         });
       }

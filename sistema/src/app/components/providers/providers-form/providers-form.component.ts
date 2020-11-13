@@ -46,9 +46,9 @@ export class ProvidersFormComponent implements OnInit {
     if (this.editing) {
       this.providersService.put(this.providers).subscribe((data) => {
         Swal.fire('Proveedor Actualizado', '','success');
-        console.log(data)
+        //console.log(data)
       }, (error) => {
-        console.log(error);
+        //console.log(error);
         Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
@@ -59,10 +59,10 @@ export class ProvidersFormComponent implements OnInit {
     else {
       this.providersService.save(this.providers).subscribe((data) => {
         Swal.fire('Proveedor Guardado', '','success');
-        console.log(data);
+        //console.log(data);
         this.Provider_Id.emit(data["id"]);
       }, (error) => {
-        console.log(error);
+        //console.log(error);
         Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }

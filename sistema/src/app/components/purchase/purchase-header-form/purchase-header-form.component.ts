@@ -257,14 +257,14 @@ export class PurchaseHeaderFormComponent implements OnInit {
               //console.log(data);
             },
             (error) => {
-              console.log(error);
+              //console.log(error);
               Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
             }
           );
         } //
       },
       (error) => {
-        console.log(error);
+        //console.log(error);
         Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
       }
     );
@@ -283,7 +283,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
           //console.log(data);
         },
         (error) => {
-          console.log(error);
+          //console.log(error);
           Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
         }
       );

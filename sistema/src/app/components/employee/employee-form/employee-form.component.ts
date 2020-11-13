@@ -56,9 +56,9 @@ export class EmployeeFormComponent implements OnInit {
     if (this.editing) {
       this.employeeService.put(this.employee).subscribe((data) => { //El unico cambioes el put
         Swal.fire('Empleado Actualizado', '','success');
-        console.log(data)
+        //console.log(data)
       }, (error) => {
-        console.log(error);
+        //console.log(error);
         Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
       });
     }
@@ -69,9 +69,9 @@ export class EmployeeFormComponent implements OnInit {
       else {
       this.employeeService.save(this.employee).subscribe((data) => {
         Swal.fire('Empleado Guardado', '','success');
-        console.log(data);
+        //console.log(data);
       }, (error) => {
-        console.log(error);
+        //console.log(error);
         Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }

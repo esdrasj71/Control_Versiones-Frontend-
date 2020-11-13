@@ -39,9 +39,9 @@ export class BillTypeFormComponent implements OnInit {
     if (this.editing) {
       this.billtypeService.put(this.billtype).subscribe((data) => {
         Swal.fire('Tipo de Factura Actualizado', '', 'success');
-        console.log(data)
+        //console.log(data)
       }, (error) => {
-        console.log(error);
+        //console.log(error);
         Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' })
       });
     }
@@ -52,10 +52,10 @@ export class BillTypeFormComponent implements OnInit {
       else {
         this.billtypeService.save(this.billtype).subscribe((data) => {
           Swal.fire('Tipo de Factura Guardado', '', 'success');
-          console.log(data);
+          //console.log(data);
           this.BillType_Id.emit(data['id']);
         }, (error) => {
-          console.log(error);
+          //console.log(error);
           Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' })
         });
       }
