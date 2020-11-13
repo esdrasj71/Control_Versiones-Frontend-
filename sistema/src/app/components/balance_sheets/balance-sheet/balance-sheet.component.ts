@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { error } from 'protractor';
 import {Balance} from '../interfaces/balance';
 import {BalancesService} from '../servicios/balances.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-balance-sheet',
   templateUrl: './balance-sheet.component.html',
@@ -22,7 +22,7 @@ export class BalanceSheetComponent implements OnInit {
     this.balanceService.consultar(this.balance).subscribe((data)=>{
       console.log(data);
     },(error)=>{
-      alert("Ocurrio un error");
+      Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
     })
   }
 }
