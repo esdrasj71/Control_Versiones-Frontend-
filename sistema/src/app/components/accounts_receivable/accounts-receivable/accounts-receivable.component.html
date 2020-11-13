@@ -50,7 +50,7 @@
 <!--Detalle de facturas-->
 <div class="modal fade" id="detalle_cliente" tabindex="" role="" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="width: 60rem;">
-        <div class="modal-content" style="width: 60rem;">
+        <div class="modal-content" style="width: 60rem; height: 50rem;" >
             <div class="modal-header" style="width: 900px" style="background-color:#EC7063">
                 <h5 class="modal-title" id="exampleModalLongTitle" style="color: white;">
                   Facturas Detalladas
@@ -63,21 +63,21 @@
                 <div class="container">
                     
                 <div class="form-group row col-md-4">
-                    <h4>Nombre:</h4>
-                    <h4>{{nombre_cliente}}</h4>
+                <strong><h5>Nombre:</h5></strong>
+                    <h5>{{nombre_cliente}}</h5>
                 </div>
 
                 <div class="form-group row col-md-3">
-                    <h4>Nit:</h4>
-                    <h4>{{Nit}}</h4>
+                <strong><h5>Nit:</h5></strong>
+                    <h5>{{Nit}}</h5>
                 </div>
                 <div class="form-group row col-md-3">
-                    <h4>Total:</h4>
-                    <h4>{{total_cobrar | currency:"GTQ":"Q"}}</h4>
+                    <strong><h5>Total:</h5></strong>
+                    <h5>{{total_cobrar | currency:"GTQ":"Q"}}</h5>
                 </div>
                 <div class="form-group row col-md-3">
-                    <h4>No Facturas:</h4>
-                    <h4>{{contador}}</h4>
+                    <strong><h5>No Facturas:</h5></strong>
+                    <h5>{{contador}}</h5>
                 </div>
         </div>
     </div>
@@ -130,12 +130,14 @@
                 <div class="form-group row">
 
                     <label for="" class="col-form-label"><strong>Monto a cobrar: </strong></label>
-                    <div class="col-sm-7">
+                    <div class="col-sm-5">
                         <input type="number" name="" id="" class="form-control" placeholder="Monto de pagar"
                             [(ngModel)]="procedure_accountsReceivable.Quantity" [ngModelOptions]="{standalone: true}" max="{{total_cobrar}}"
                             tabindex="1" />
                     </div>
-                    <div class="col-sm-4">
+                    
+                    <div class="col-sm-7">
+                        <label for="" class="col-form-label"><strong>Seleccione tipo de pago: </strong></label>
                         <select name="Payment_Id" id="" [(ngModel)]="procedure_accountsReceivable.Payment_Id" [ngModelOptions]="{standalone: true}"
                             tabindex="1" class="form-control">
                             <option *ngFor="let tipoPago of tipos_pagos" value="{{tipoPago.Payment_Id}}">
@@ -143,9 +145,12 @@
                             </option>
                         </select>
                     </div>
-                    <div class="col-sm-4">
-                        <input type="text" name="" id="" class="form-control" placeholder="Descripcion"
-                            [(ngModel)]="procedure_accountsReceivable.Description" ngDefaultControl tabindex="1" />
+                    <div class="col-sm-12">
+                        <Textarea type="text" name="" id="" class="form-control" placeholder="Descripcion"
+                        [(ngModel)]="procedure_accountsReceivable.Description" ngDefaultControl tabindex="1">
+
+                        </Textarea>
+                        
                     </div>
                 </div>
                 <h1>{{cadena_pago}}</h1>

@@ -12,7 +12,7 @@ export class ResultStatementService {
   }
 
   saveresultStatement(resultStatement: ResultStatement){
-    console.log(resultStatement);
+    //console.log(resultStatement);
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
     return this.httpClient.post(this.API_ENDPOINT + 'estadoresultado', resultStatement, {headers: headers});
   }
