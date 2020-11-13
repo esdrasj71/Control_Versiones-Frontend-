@@ -136,7 +136,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
   }
   lot;
   getLotId(id) {
-    this.inventoryService.getInventory().subscribe((data: Inventory[]) => {
+    this.inventoryService.getInventoryNoPerishable().subscribe((data: Inventory[]) => {
       this.inventory = data;
     });
     this.lotService.findPresentation(id).subscribe((data: Lot[]) => {
@@ -192,33 +192,65 @@ export class PurchaseHeaderFormComponent implements OnInit {
                 Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: 'Cuenta por pagar' });
               }
             );
+             ///
+             this.payment.Method_Name = 1; //al credito
+             this.payment_detail_purchase.save(this.payment).subscribe(
+               (data) => {
+                 console.log(data);
+               },
+               (error) => {
+                 console.log(error);
+                 Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
+               }
+             );
+             this.payment.Method_Name = 0; // al contado
+             this.payment.Total_Amount = this.total_cobroalcontado;
+             this.payment_detail_purchase.save(this.payment).subscribe(
+               (data) => {
+                 console.log(data);
+                 Swal.fire('El metodo de pago se ha registrado correctamente', '', 'success');
+               },
+               (error) => {
+                 console.log(error);
+                 Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
+               }
+             );
+          } 
+          else{
+            this.payment.Method_Name = 0; // al contado
+            this.payment.Total_Amount = this.total_cobroalcontado;
+            this.payment_detail_purchase.save(this.payment).subscribe(
+              (data) => {
+                console.log(data);
+                Swal.fire('El metodo de pago se ha registrado correctamente', '', 'success');
+              },
+              (error) => {
+                console.log(error);
+                Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
+              }
+            );
+          }
+        } 
+        else {
+          this.payment.Method_Name = 1; // al contado todooo
+          this.payment.Total_Amount = this.total;
+          ///DebsToPay
+          this.debstopay.Description = ' ';
+          this.debstopay.Quantity = 0;
+          this.debstopay.Total = this.total_cobro;
+          this.debstopay.Statuss = true;
+          this.debstopay.Purchase_Header_Id = data['id'];
+          if (this.total_cobro > 0) {
+            this.debstopayService.save(this.debstopay).subscribe(
+              (data) => {
+                Swal.fire('cuenta por pagar guardada', '', 'success');
+              },
+              (error) => {
+                Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: 'Cuenta por pagar' });
+              }
+            );
           }
           ///
-          this.payment.Method_Name = 1; //al credito
-          this.payment_detail_purchase.save(this.payment).subscribe(
-            (data) => {
-              console.log(data);
-            },
-            (error) => {
-              console.log(error);
-              Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
-            }
-          );
-          this.payment.Method_Name = 0; // al contado
-          this.payment.Total_Amount = this.total_cobroalcontado;
-          this.payment_detail_purchase.save(this.payment).subscribe(
-            (data) => {
-              console.log(data);
-              Swal.fire('El metodo de pago se ha registrado correctamente', '', 'success');
-            },
-            (error) => {
-              console.log(error);
-              Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
-            }
-          );
-        } else {
-          this.payment.Method_Name = 0; // al contado todooo
-          this.payment.Total_Amount = this.total;
           this.payment_detail_purchase.save(this.payment).subscribe(
             (data) => {
               Swal.fire('El metodo de pago al contado se ha registrado correctamente', '', 'success');
