@@ -1,0 +1,40 @@
+<div class="container">
+    <h1 style="text-align: center;">Reporte sobre clientes más frecuentes</h1>
+    <br><br>
+    <form>
+        <div class="form-group row ">
+           
+            <label for="" class="col-form-label">Fecha Fin:</label>
+            <div class="col-md-4">
+                <input type="date" name="" [(ngModel)]="balance.fechafin"  [ngModelOptions]="{standalone: true}" id="" class="form-control" tabindex="1" />
+            </div>
+            <div class="col-md-2">
+                <button type="submit" (click)="guardar()" class="btn btn-danger">Consultar</button>
+            </div><br><br><br>
+            <div class="col-md-2">
+                <!--<button type="button" class="btn btn-danger" (click)="downloadPDF()">Generar PDF</button>-->
+            </div>
+        </div>
+    </form>
+    <div id="pdfTable" #pdfTable> 
+        <table class="table" style="table-layout: fixed; word-wrap: break-word; background-color:#F8F9F9;" id="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Nombre clliente</th>
+                    <th scope="col">DPI</th>
+                    <th scope="col">NIT</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Direccion</th>
+                    <th scope="col">Num Ventas</th>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody >
+                <tr>
+                    <td height="10">asdf</td>
+                  
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

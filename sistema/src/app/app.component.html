@@ -132,6 +132,15 @@
               </ul>
             </li>
           </ng-container>
+          <div style="width: 21px;"></div>
+          <ng-container *ngIf="rol==1;">
+            <li class="nav-item dropdown">
+              <a id="dLabel" role="button"  routerLink="/balance-sheet"  data-toggle="dropdown" class="nav-link"
+                data-target="#">
+                Balance general <span class="caret"></span>
+              </a>
+            </li>
+          </ng-container>
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <ul class="navbar-nav mr-auto">
