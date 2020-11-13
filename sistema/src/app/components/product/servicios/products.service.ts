@@ -23,6 +23,10 @@ export class ProductsService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
     return this.httpClient.get(this.API_ENDPOINT + 'product', { headers });
   }
+  getProductLot() {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
+    return this.httpClient.get(this.API_ENDPOINT + 'productlot', { headers });
+  }
   getProductsId(id) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
     return this.httpClient.get(this.API_ENDPOINT + 'product/' + id, { headers: headers });
