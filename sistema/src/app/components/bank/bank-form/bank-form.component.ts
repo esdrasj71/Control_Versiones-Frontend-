@@ -40,7 +40,7 @@ export class BankFormComponent implements OnInit {
     if (this.editing) {
       this.bankService.put(this.bank).subscribe((data) => {
         Swal.fire('Banco Actualizado', '', 'success');
-        console.log(data)
+        //console.log(data)
       }, (error) => {
         console.log(error);
         Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' })
@@ -53,7 +53,7 @@ export class BankFormComponent implements OnInit {
       else {
         this.bankService.save(this.bank).subscribe((data) => {
           Swal.fire('Banco Guardado', '', 'success');
-          console.log(data)
+          //console.log(data)
           this.Bank_Id.emit(data['id']);
         }, (error) => {
           console.log(error);

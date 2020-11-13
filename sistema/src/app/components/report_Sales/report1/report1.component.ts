@@ -68,7 +68,7 @@ export class Report1Component implements OnInit {
           console.log(this.reportt1);
         });
       }, (error)=>{
-        console.log(error);
+        //console.log(error);
       })
     }
   

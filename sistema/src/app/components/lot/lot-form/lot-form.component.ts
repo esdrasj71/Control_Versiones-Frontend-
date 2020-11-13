@@ -68,9 +68,9 @@ export class LotFormComponent implements OnInit {
       this.lot.Due_Date = this.selectedDueDate;
       this.lotService.put(this.lot).subscribe((data) => { //El unico cambioes el put
         Swal.fire('Lote Actualizado', '', 'success');
-        console.log(data)
+        //console.log(data)
       }, (error) => {
-        console.log(error);
+        //console.log(error);
         Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
       });
     }
@@ -89,11 +89,11 @@ export class LotFormComponent implements OnInit {
           this.inventory.Statuss = false;
           this.invetoryService.save(this.inventory).subscribe((data) => {
             Swal.fire('Inventario Guardado', '', 'success');
-            console.log(data)
+            //console.log(data)
           });
 
         }, (error) => {
-          console.log(error);
+          //console.log(error);
           Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
         });
       }

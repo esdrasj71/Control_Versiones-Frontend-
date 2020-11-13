@@ -27,7 +27,7 @@ export class BankHomeComponent implements OnInit {
         Swal.fire('Banco Eliminado', '','success');
       },
       (error) => {
-        console.log(error);
+        //console.log(error);
         Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
       }
     );

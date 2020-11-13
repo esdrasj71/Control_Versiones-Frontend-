@@ -129,11 +129,11 @@ export class ProductFormComponent implements OnInit {
           Swal.fire('Producto Actualizado', '', 'success');
           location.reload();
           //window.location.reload();
-          console.log(data);
+          //console.log(data);
           this.router.navigate(['/product-home']);
         },
         (error) => {
-          console.log(error);
+          //console.log(error);
           Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
         }
       );
@@ -149,10 +149,10 @@ export class ProductFormComponent implements OnInit {
           this.procedure_saveproduct.Product_Id = this.lastidproduct;
           Swal.fire('Producto guardado', '', 'success');
           this.Product_Id.emit(data['Correlative_Product']);
-          console.log(data);
+          //console.log(data);
         },
         (error) => {
-          console.log(error);
+          //console.log(error);
           Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
         }
       );

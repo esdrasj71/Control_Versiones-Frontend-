@@ -169,6 +169,7 @@ export class IncomesFormComponent implements OnInit {
         }, (error) => {
           console.log(error);
           this.bandera1 = -1;
+          Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' })
           //this.estado(this.bandera1, "actualizado", false)
           //Swal.fire('Ingreso Actualizado', '','success');
         })

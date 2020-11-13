@@ -93,7 +93,7 @@ export class ExpendituresFormComponent implements OnInit {
           this.selectedProvidersId = this.expenditures.Providers_Id;
         },
         (error) => {
-          console.log(error);
+          //console.log(error);
           Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
         }
       );
@@ -140,12 +140,11 @@ export class ExpendituresFormComponent implements OnInit {
         (data) => {
           Swal.fire('Egreso Actualizado', '','success');
           location.reload();
-          //window.location.reload();
-          console.log(data);
+          //console.log(data);
           this.router.navigate(['/expenditures-home']);
         },
         (error) => {
-          console.log(error);
+          //console.log(error);
           Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
         }
       );
@@ -160,10 +159,10 @@ export class ExpendituresFormComponent implements OnInit {
         (data) => {
         Swal.fire('Egreso Guardado', '','success');
         this.router.navigate(['/expenditures-home']);
-        console.log(data);
+        //console.log(data);
         },
         (error) => {
-          console.log(error);
+          //console.log(error);
           Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
         }
       );

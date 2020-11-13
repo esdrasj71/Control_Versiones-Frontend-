@@ -136,15 +136,15 @@ export class BalanceSheetComponent implements OnInit {
         }
         this.comprobar(this.bandera); 
         },(error)=>{
-          console.log(error);
-          alert("Ocurrio un error");
+          //console.log(error);
+          Swal.fire({icon: 'error', title: 'Ocurrio un error'});
           
         })
-        console.log(this.bandera);
+        //console.log(this.bandera);
       })
       //Swal.fire('EL BALANCE GENERAL ES EXACTO', '','success');
     }else{
-      Swal.fire({icon: 'error', title: 'BALANCE GENERAL NO CUADRA, ASÍ QUE NO PUEDE SER ACTUALIZADO'});
+      Swal.fire({icon: 'error', title: 'BALANCE GENERAL NO CUADRA. NO PUEDE SER ACTUALIZADO'});
       
     }
   }

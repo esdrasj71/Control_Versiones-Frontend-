@@ -44,8 +44,9 @@ export class Report2Component implements OnInit {
       this.repor2 = data[0];
       
     }, (error)=>{
-      console.log(error);
-      alert('Error en reporte 2');
+      //console.log(error);
+      //alert('Error en reporte 2');
+      Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: 'Error en el reporte 2' })
     })
   }
   }

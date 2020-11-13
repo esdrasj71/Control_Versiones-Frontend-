@@ -48,7 +48,7 @@ export class ResultStatementHomeComponent implements OnInit {
       Swal.fire({icon: 'warning', title: 'Aviso!', text: 'Debe llenar todos los campos'}); 
     }else{
       this.resultStatementService.saveresultStatement(this.resultstatement).subscribe((data)=>{
-        console.log(data);
+        //console.log(data);
         this.total_ingreso = data[0];
         this.total_costos = data[1];
         this.detalle_costos = data[4];

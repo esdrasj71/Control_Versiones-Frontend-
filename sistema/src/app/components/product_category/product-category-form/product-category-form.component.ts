@@ -43,9 +43,9 @@ export class ProductCategoryFormComponent implements OnInit {
     if (this.editing) {
       this.productcategoryService.put(this.product_category).subscribe((data) => {
         Swal.fire('Categoría de Producto Actualizado', '', 'success');
-        console.log(data)
+        //console.log(data)
       }, (error) => {
-        console.log(error);
+        //console.log(error);
         Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
       });
     }
@@ -56,10 +56,10 @@ export class ProductCategoryFormComponent implements OnInit {
       else {
         this.productcategoryService.save(this.product_category).subscribe((data) => {
           Swal.fire('Categoría de Producto Guardado', '', 'success');
-          console.log(data)
+          //console.log(data)
           this.Category_Id.emit(data['id']);
         }, (error) => {
-          console.log(error);
+          //console.log(error);
           Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
         });
       }

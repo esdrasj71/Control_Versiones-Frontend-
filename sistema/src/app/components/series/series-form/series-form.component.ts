@@ -41,7 +41,7 @@ export class SeriesFormComponent implements OnInit {
         Swal.fire('Serie Guardada', '','success');
         window.setTimeout(function(){location.reload()},1200) 
       },(error)=>{
-        console.log(error);
+        //console.log(error);
         Swal.fire({icon: 'error', title: 'Ocurrio un error', text: 'Conflictos al insertar la serie'});
       })
       }
