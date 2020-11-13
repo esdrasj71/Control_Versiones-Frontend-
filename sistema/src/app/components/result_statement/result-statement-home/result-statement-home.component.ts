@@ -47,19 +47,6 @@ export class ResultStatementHomeComponent implements OnInit {
     if(this.resultstatement.fechainicio == null && this.resultstatement.fechafin == null){
       Swal.fire({icon: 'warning', title: 'Aviso!', text: 'Debe llenar todos los campos'}); 
     }else{
-<<<<<<< HEAD
-      this.resultStatementService.saveresultStatement(this.resultstatement).subscribe((data)=>{
-        //console.log(data);
-        this.total_ingreso = data[0];
-        this.total_costos = data[1];
-        this.detalle_costos = data[4];
-        this.utilidad_bruta = data[5];
-        this.total_gastos = data[2]
-        this.detalle_gastos = data[3];
-        this.utilidad_operativa = data[6];
-        
-      })
-=======
          this.resultStatementService.saveresultStatement(this.resultstatement).subscribe((data)=>{
       //console.log(data);
       this.total_ingreso = data[0];
@@ -71,7 +58,6 @@ export class ResultStatementHomeComponent implements OnInit {
       this.utilidad_operativa = data[6];
       
     })
->>>>>>> master
     }
  
   }
