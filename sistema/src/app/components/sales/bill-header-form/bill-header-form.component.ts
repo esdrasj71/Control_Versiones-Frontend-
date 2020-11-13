@@ -155,11 +155,11 @@ export class BillHeaderFormComponent implements OnInit {
       this.idserie = this.serie["serieId"];
       //this.cantidadfac = this.serie["Cantidad"];
       this.billsService.getfactura(this.idserie).subscribe((data)=>{
-        console.log(data);
+        //console.log(data);
         this.cantidadfac = data[0]["Cantidad_inicial"];
         
       })
-      console.log(this.cantidadfac);
+      //console.log(this.cantidadfac);
     }catch{
       alert("Falta serie");
       this.router.navigate(['/serie-form']);
@@ -389,7 +389,7 @@ export class BillHeaderFormComponent implements OnInit {
               this.paymentdetailService.save(this.pago_detalle).subscribe(
                 (data) => {
                   //Swal.fire('Pago Guardado', '', 'success');
-                  console.log(data);
+                  //console.log(data);
                 },
                 (error) => {
                   console.log(error);
