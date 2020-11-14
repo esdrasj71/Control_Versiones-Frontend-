@@ -17,6 +17,7 @@ export class BalanceSheetComponent implements OnInit {
   @ViewChild('pdfTable') pdfTable: ElementRef;
   cuentas = [];
   nuenvas_cuentas = [];
+  arreglo = [];
   sum1 = 0;
   sum2 = 0;
   sum3 = 0;
@@ -170,6 +171,13 @@ export class BalanceSheetComponent implements OnInit {
     }
     this.balanceService.consultar(this.balance).subscribe((data)=>{
       
+      this.cuentas = [];
+      this.sum1 = 0;
+      this.sum2 =0;
+      this.sum3 =0;
+      this.sum4 =0;
+      this.sum5 =0;
+      this.sum6 =0;
       let control = 1;
       
       let aux = {};
@@ -179,7 +187,7 @@ export class BalanceSheetComponent implements OnInit {
       let temp4 = [];
       let temp5 = [];
       let temp6 = [];
-      let arreglo = [];
+     
     
       data[0].forEach(a =>{
         if(a["Type"] == 1){
@@ -266,19 +274,19 @@ export class BalanceSheetComponent implements OnInit {
           }
         })
       })
-      arreglo.push([{"Nombre":"Activo"}])
+      this.arreglo.push([{"Nombre":"Activo"}])
       temp.push([{"Nombre":"Activo Corriente", "Total": this.sum1}])
-      arreglo.push(temp)
+      this.arreglo.push(temp)
       temp2.push([{"Nombre":"Activo No corriente", "Total": this.sum2}])
-      arreglo.push(temp2)
-      arreglo.push([{"Nombre":"Pasivo"}])
+      this.arreglo.push(temp2)
+      this.arreglo.push([{"Nombre":"Pasivo"}])
       temp3.push([{"Nombre":"Pasivo Corriente", "Total":this.sum3}])
-      arreglo.push(temp3)
+      this.arreglo.push(temp3)
       temp4.push([{"Nombre":"Pasivo a Largo Plazo", "Total":this.sum4}])
-      arreglo.push(temp4)
-      arreglo.push(temp5)
-      arreglo.push(temp6)
-      this.cuentas.push(arreglo)
+      this.arreglo.push(temp4)
+      this.arreglo.push(temp5)
+      this.arreglo.push(temp6)
+      this.cuentas.push(this.arreglo)
     
       //console.log(arreglo);
     },(error)=>{
