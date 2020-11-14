@@ -19,6 +19,8 @@ import { PaymentDetailService } from '../../payment_detail_purchase/servicios/pa
 import { DebstoPay } from '../../debs_to_pay/interfaces/debs-to-pay';
 import { DebsToPayService } from '../../debs_to_pay/servicios/debs-to-pay.service';
 import Swal from 'sweetalert2';
+import { Observable } from 'rxjs';
+
 @Component({
   selector: 'app-purchase-header-form',
   templateUrl: './purchase-header-form.component.html',
@@ -102,7 +104,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
     Description: null,
     Purchase_Header_Id: null,
   };
-
+  producto: Observable<any>
   constructor(
     private inventoryService: InventoryService,
     private providerService: ProvidersService,
@@ -113,11 +115,16 @@ export class PurchaseHeaderFormComponent implements OnInit {
     private productService: ProductsService,
     private payment_detail_purchase: PaymentDetailService,
     private lotService: LotService,
-    private debstopayService: DebsToPayService
+    private debstopayService: DebsToPayService,
   ) { }
   ngOnInit() {
+    //let timer = TimerObservable.create(0, 5000);
+   // this.product = timer.subscribe(t => {
+    //    this.lotService.getLot()
+    //});
+    //
     this.providerService.getProviders().subscribe((data: Providers[]) => {
-      this.providers = data;
+    this.providers = data;
     });
     this.inventoryService.getInventoryNoPerishable().subscribe((data: Inventory[]) => {
       this.inventory = data;
