@@ -14,6 +14,7 @@ import { InventoryGroup } from '../interfaces/inventorygroup';
 export class InventoryHomeComponent implements OnInit {
   API_ENDPOINT = 'http://localhost:3000/';
   inventories: Inventory[];
+  inventorytotal: Inventory[];
   inventorygroup: InventoryGroup[];
   rootInventory = '';
   cont = 0;
@@ -25,6 +26,10 @@ export class InventoryHomeComponent implements OnInit {
       .subscribe((data: Inventory[]) => {
         this.inventories = data; 
       });
+      httpClient.get(this.API_ENDPOINT + 'inventorytotal', { headers })
+      .subscribe((data: Inventory[]) => {
+        this.inventorytotal = data;
+      })
   }
   ngOnInit() {
     this.inventoryService.getInventoryGroup().subscribe((data: InventoryGroup[]) => {

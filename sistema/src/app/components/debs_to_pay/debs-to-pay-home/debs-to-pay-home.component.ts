@@ -15,6 +15,7 @@ export class DebsToPayHomeComponent implements OnInit {
   debstopay: DebstoPay[];
   bills: DebstoPay[];
   billsdetail: DebstoPay[];
+  billstotal: DebstoPay[];
   //Debs to pay
   procedure_debstopay: Procedure_DebstoPay = {
     Providers_Id: null,
@@ -30,6 +31,10 @@ export class DebsToPayHomeComponent implements OnInit {
       .subscribe((data: DebstoPay[]) => {
         this.debstopay = data;
       });
+      httpClient.get(this.API_ENDPOINT + 'DebstoPayTotal', { headers })
+      .subscribe((data: DebstoPay[]) => {
+        this.billstotal = data;
+      })
   }
 
   ngOnInit(): void {
@@ -60,7 +65,6 @@ export class DebsToPayHomeComponent implements OnInit {
 
   mostrar_facturas_detalle(purchaseheaderId, total, totalpurchase) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
-
     this.httpClient.get(this.API_ENDPOINT + 'DebstoPayPurchase/' + purchaseheaderId, { headers })
       .subscribe((data: DebstoPay[]) => {
         this.billsdetail = data;

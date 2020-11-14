@@ -1,6 +1,7 @@
 import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DebsPay } from '../interfaces/report3';
+import { DebstoPay } from '../../debs_to_pay/interfaces/debs-to-pay';
 import jsPDF from 'jspdf';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
@@ -17,6 +18,7 @@ export class DebsPayHomeComponent implements OnInit {
   @ViewChild('pdfTable') pdfTable: ElementRef;
   API_ENDPOINT = 'http://localhost:3000/';
   debs : DebsPay[];
+  debsTotal: DebstoPay[];
   date = new Date();
   empresa: any = [];
   constructor(private httpClient: HttpClient, private expendituresService:ExpendituresService) { 
@@ -25,6 +27,10 @@ export class DebsPayHomeComponent implements OnInit {
       .subscribe((data: DebsPay[]) => {
         this.debs = data;
       });
+      httpClient.get(this.API_ENDPOINT + 'DebstoPayTotal', { headers })
+      .subscribe((data: DebstoPay[]) => {
+        this.debsTotal = data;
+      })
   }
 
   ngOnInit(): void {
