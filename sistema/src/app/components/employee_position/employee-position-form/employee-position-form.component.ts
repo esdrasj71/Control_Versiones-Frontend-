@@ -42,7 +42,7 @@ export class EmployeePositionFormComponent implements OnInit {
     if (this.editing) {
       this.employeePositionServicie.put(this.employeePosition).subscribe((data) => { //El unico cambioes el put
         Swal.fire('Posición empleado actualizado', '', 'success');
-        console.log(data)
+        //console.log(data)
       }, (error) => {
         console.log(error);
         Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
@@ -55,9 +55,9 @@ export class EmployeePositionFormComponent implements OnInit {
       else {
         this.employeePositionServicie.save(this.employeePosition).subscribe((data) => {
           Swal.fire('Posición empleado guardado', '', 'success');
-          console.log(data)
+          //console.log(data)
         }, (error) => {
-          console.log(error);
+          //console.log(error);
           Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
         });
       }

@@ -64,9 +64,9 @@ export class InventoryFormComponent implements OnInit {
       this.inventoryService.put(this.inventory).subscribe((data) => {
         Swal.fire('Inventario Actualizado', '','success');
         this.router.navigate(["/inventory-home"]);
-        console.log(data)
+        //console.log(data)
       }, (error) => {
-        console.log(error);
+        //console.log(error);
         Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
@@ -75,9 +75,9 @@ export class InventoryFormComponent implements OnInit {
       this.inventoryService.save(this.inventory).subscribe((data) => {
         Swal.fire('Inventario Guardado', '','success');
         this.router.navigate(["/inventory-home"]);
-        console.log(data)
+        //console.log(data)
       }, (error) => {
-        console.log(error);
+        //console.log(error);
         Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }

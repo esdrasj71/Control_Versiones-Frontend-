@@ -6,7 +6,7 @@ h1{
     letter-spacing: 7px;
     margin-bottom: 10px;
     position: relative;
-    animation: text 2s 1;
+    animation: text 1.65s 1;
 } 
 h2{
     font-size: 25px;

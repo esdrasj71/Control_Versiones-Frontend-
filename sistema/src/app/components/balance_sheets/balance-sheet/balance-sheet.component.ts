@@ -1,17 +1,23 @@
-import { ThrowStmt } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
-import { error } from 'protractor';
+
+import { Component, OnInit , ViewChild, ElementRef} from '@angular/core';
 import {Balance} from '../interfaces/balance';
 import {BalancesService} from '../servicios/balances.service';
 import Swal from 'sweetalert2';
+import jsPDF from 'jspdf';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import htmlToPdfmake from 'html-to-pdfmake';
 @Component({
   selector: 'app-balance-sheet',
   templateUrl: './balance-sheet.component.html',
   styleUrls: ['./balance-sheet.component.css']
 })
 export class BalanceSheetComponent implements OnInit {
+  @ViewChild('pdfTable') pdfTable: ElementRef;
   cuentas = [];
   nuenvas_cuentas = [];
+  arreglo = [];
   sum1 = 0;
   sum2 = 0;
   sum3 = 0;
@@ -20,100 +26,110 @@ export class BalanceSheetComponent implements OnInit {
   sum6 = 0;
   sum7 = 0;
   bandera = 0;
-
+  empresa: any = [];
+  date = new Date();
   balance: Balance ={
     fechafin: null,
   }
+
   constructor(private balanceService: BalancesService) {
     
   }
 
   ngOnInit(): void {
+    this.balanceService.getempresa().subscribe((data) => {
+      this.empresa = data[0];
+      return this.empresa;
+    });
   }
   //enterrr.value, detalle.Balance_Id, detalle.Name, detalle.Type
 //value,id, nombre, tipo
   registrar(value,id, Nombre, tipo){
-   
-   //console.log(this.cuentas)
-    if(tipo == 1){
-      this.sum1 = 0;
-      this.cuentas.forEach(a =>{
-        a[1].forEach(b =>{
-          if(b["Name"] == Nombre){
-            b["Monto"] = parseFloat( b["Valor_Base"]) + parseFloat(value);
-          }
-          this.sum1 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
+   if(value <0){
+    Swal.fire({icon: 'warning', title: 'Aviso!', text: 'Debe ingresar un numero mayor'}); 
+   }else{
+       //console.log(this.cuentas)
+       if(tipo == 1){
+        this.sum1 = 0;
+        this.cuentas.forEach(a =>{
+          a[1].forEach(b =>{
+            if(b["Name"] == Nombre){
+              b["Monto"] = parseFloat( b["Valor_Base"]) + parseFloat(value);
+            }
+            this.sum1 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
+          })
+          
         })
-        
-      })
-    }else if(tipo == 2){
-      this.sum2 = 0;
-      this.cuentas.forEach(a =>{
-        a[2].forEach(b =>{
-          if(b["Name"] == Nombre){
-            b["Monto"]  = b["Valor_Base"] +  parseFloat(value);
-          }
-          this.sum2 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
+      }else if(tipo == 2){
+        this.sum2 = 0;
+        this.cuentas.forEach(a =>{
+          a[2].forEach(b =>{
+            if(b["Name"] == Nombre){
+              b["Monto"]  = b["Valor_Base"] +  parseFloat(value);
+            }
+            this.sum2 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
+          })
         })
-      })
-    }else if(tipo == 3){
-      this.sum3 = 0;
-      this.cuentas.forEach(a =>{
-        a[4].forEach(b =>{
-          if(b["Name"] == Nombre){
-            b["Monto"]  = b["Valor_Base"] +  parseFloat(value);
-          }
-          this.sum3 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
+      }else if(tipo == 3){
+        this.sum3 = 0;
+        this.cuentas.forEach(a =>{
+          a[4].forEach(b =>{
+            if(b["Name"] == Nombre){
+              b["Monto"]  = b["Valor_Base"] +  parseFloat(value);
+            }
+            this.sum3 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
+          })
         })
-      })
-    }else if(tipo == 4){
-
-      this.sum4 = 0;
-      this.cuentas.forEach(a =>{
-        a[5].forEach(b =>{
-          if(b["Name"] == Nombre){
-            b["Monto"]  = b["Valor_Base"] +  parseFloat(value);
-          }
-          this.sum4 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
+      }else if(tipo == 4){
+  
+        this.sum4 = 0;
+        this.cuentas.forEach(a =>{
+          a[5].forEach(b =>{
+            if(b["Name"] == Nombre){
+              b["Monto"]  = b["Valor_Base"] +  parseFloat(value);
+            }
+            this.sum4 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
+          })
         })
-      })
-    }else if(tipo == 5){
-      this.sum5 = 0;
-      this.cuentas.forEach(a =>{
-        a[6].forEach(b =>{
-          if(b["Name"] == Nombre){
-            b["Monto"]  = b["Valor_Base"] +  parseFloat(value);
-          }
-          this.sum5 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
+      }else if(tipo == 5){
+        this.sum5 = 0;
+        this.cuentas.forEach(a =>{
+          a[6].forEach(b =>{
+            if(b["Name"] == Nombre){
+              b["Monto"]  = b["Valor_Base"] +  parseFloat(value);
+            }
+            this.sum5 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
+          })
         })
-      })
-    }else if(tipo == 6){
-      this.sum6 = 0;
-      this.cuentas.forEach(a =>{
-        a[7].forEach(b =>{
-          if(b["Name"] == Nombre){
-            b["Monto"]  = b["Valor_Base"] +  parseFloat(value);
-          }
-          this.sum6 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
+      }else if(tipo == 6){
+        this.sum6 = 0;
+        this.cuentas.forEach(a =>{
+          a[7].forEach(b =>{
+            if(b["Name"] == Nombre){
+              b["Monto"]  = b["Valor_Base"] +  parseFloat(value);
+            }
+            this.sum6 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
+          })
         })
-      })
-    }
-
-   //aqui se va a mandar a insertar UwU TwT T_T
-   let bandera: boolean =  false
-    if(this.nuenvas_cuentas.length > 0 ){
-      this.nuenvas_cuentas.forEach(a=>{
-        if(a["Balance_Id"]== id){
-          bandera = true;
-          a["Monto"] = parseFloat(value);
-        }
-      })
-      if(!bandera){
-        this.nuenvas_cuentas.push({"Balance_Id": id, "Monto": parseFloat(value)})  
       }
-    }else{
-      this.nuenvas_cuentas.push({"Balance_Id": id, "Monto": parseFloat(value)})
-    }
+  
+     //aqui se va a mandar a insertar UwU TwT T_T
+     let bandera: boolean =  false
+      if(this.nuenvas_cuentas.length > 0 ){
+        this.nuenvas_cuentas.forEach(a=>{
+          if(a["Balance_Id"]== id){
+            bandera = true;
+            a["Monto"] = parseFloat(value);
+          }
+        })
+        if(!bandera){
+          this.nuenvas_cuentas.push({"Balance_Id": id, "Monto": parseFloat(value)})  
+        }
+      }else{
+        this.nuenvas_cuentas.push({"Balance_Id": id, "Monto": parseFloat(value)})
+      }
+   }
+
   }
   comprobar(bandera){
     if(bandera == this.nuenvas_cuentas.length){
@@ -136,15 +152,15 @@ export class BalanceSheetComponent implements OnInit {
         }
         this.comprobar(this.bandera); 
         },(error)=>{
-          console.log(error);
-          alert("Ocurrio un error");
+          //console.log(error);
+          Swal.fire({icon: 'error', title: 'Ocurrio un error'});
           
         })
-        console.log(this.bandera);
+        //console.log(this.bandera);
       })
       //Swal.fire('EL BALANCE GENERAL ES EXACTO', '','success');
     }else{
-      Swal.fire({icon: 'error', title: 'BALANCE GENERAL NO CUADRA, ASÍ QUE NO PUEDE SER ACTUALIZADO'});
+      Swal.fire({icon: 'error', title: 'BALANCE GENERAL NO CUADRA. NO PUEDE SER ACTUALIZADO'});
       
     }
   }
@@ -155,6 +171,13 @@ export class BalanceSheetComponent implements OnInit {
     }
     this.balanceService.consultar(this.balance).subscribe((data)=>{
       
+      this.cuentas = [];
+      this.sum1 = 0;
+      this.sum2 =0;
+      this.sum3 =0;
+      this.sum4 =0;
+      this.sum5 =0;
+      this.sum6 =0;
       let control = 1;
       
       let aux = {};
@@ -164,7 +187,7 @@ export class BalanceSheetComponent implements OnInit {
       let temp4 = [];
       let temp5 = [];
       let temp6 = [];
-      let arreglo = [];
+     
     
       data[0].forEach(a =>{
         if(a["Type"] == 1){
@@ -251,24 +274,67 @@ export class BalanceSheetComponent implements OnInit {
           }
         })
       })
-      arreglo.push([{"Nombre":"Activo"}])
+      this.arreglo.push([{"Nombre":"Activo"}])
       temp.push([{"Nombre":"Activo Corriente", "Total": this.sum1}])
-      arreglo.push(temp)
+      this.arreglo.push(temp)
       temp2.push([{"Nombre":"Activo No corriente", "Total": this.sum2}])
-      arreglo.push(temp2)
-      arreglo.push([{"Nombre":"Pasivo"}])
+      this.arreglo.push(temp2)
+      this.arreglo.push([{"Nombre":"Pasivo"}])
       temp3.push([{"Nombre":"Pasivo Corriente", "Total":this.sum3}])
-      arreglo.push(temp3)
+      this.arreglo.push(temp3)
       temp4.push([{"Nombre":"Pasivo a Largo Plazo", "Total":this.sum4}])
-      arreglo.push(temp4)
-      arreglo.push(temp5)
-      arreglo.push(temp6)
-      this.cuentas.push(arreglo)
+      this.arreglo.push(temp4)
+      this.arreglo.push(temp5)
+      this.arreglo.push(temp6)
+      this.cuentas.push(this.arreglo)
     
       //console.log(arreglo);
     },(error)=>{
-      alert("Ocurrio un error");
+      Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
     })
  
+  }
+  downloadPDF() {
+    let mes = this.date.getMonth() + 1;
+    let fecha =
+
+      this.date.getFullYear()
+      +
+      '-' +
+      mes.toString() +
+      '-'  +   this.date.getDate(); 
+  let creado = fecha;
+    const doc = new jsPDF();
+    //get table html
+    const pdfTable = this.pdfTable.nativeElement;
+    //html to pdf format
+    var html = htmlToPdfmake(`
+    <div style = "text-align:center;">
+    <h1>Quetzal Commerce ®</h1>
+    <p>
+    <b>Empresa: </b> `+this.empresa.Company_Name+`
+    </p>
+    <p>
+    <b>Dirección: </b> `+this.empresa.Address+`
+    </p>
+    <p>
+    <b>NIT: </b> `+this.empresa.NIT+`
+    </p>
+   </div> 
+    <div style = "text-align:justify;">
+    <p>
+      <b>Reporte: Balance General Clasificado.</b>
+    </p>
+    <p>
+    <b>La fecha en la que se generó el reporte fue: del ` +this.date.getFullYear()+`-` +`01-01` + ` al `+this.balance.fechafin+` </b>
+   </p>
+    <p>
+    <b>Este reporte se genero el día: `+creado +`</b> 
+    </p>
+    </div>
+    `+pdfTable.innerHTML);
+   
+    const documentDefinition = { content: html };
+    pdfMake.createPdf(documentDefinition).open();
   }
 }

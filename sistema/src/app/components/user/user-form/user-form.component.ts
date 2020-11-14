@@ -36,7 +36,7 @@ export class UserFormComponent implements OnInit {
       this.editing = true;
       this.httpClient.get(this.API_ENDPOINT + 'user', { headers }).subscribe((data: User[]) => {
         this.userarr = data;
-        console.log(this.userarr);
+        //console.log(this.userarr);
         this.user = this.userarr.find((m) => { return m.User_Id == this.id });
       }, (error) => {
         console.log(error);
@@ -57,9 +57,9 @@ export class UserFormComponent implements OnInit {
     if (this.editing) {
       this.userService.put(this.user).subscribe((data) => {
         Swal.fire('Usuario Actualizado', '','success');
-        console.log(data)
+        //console.log(data)
       }, (error) => {
-        console.log(error);
+        //console.log(error);
         Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }else
@@ -76,10 +76,10 @@ export class UserFormComponent implements OnInit {
     this.userService.save(this.user).subscribe(
       (data) => {
         Swal.fire('Usuario Creado', '','success');
-        console.log(data);
+        //console.log(data);
       },
       (error) => {
-        console.log(error);
+        //console.log(error);
         Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       }
     );

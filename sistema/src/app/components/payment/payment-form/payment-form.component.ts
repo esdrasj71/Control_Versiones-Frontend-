@@ -39,9 +39,9 @@ export class PaymentFormComponent implements OnInit {
     if (this.editing) {
       this.paymentServicie.put(this.payment).subscribe((data) => { 
         Swal.fire('Pago Actualizado', '','success');
-        console.log(data)
+        //console.log(data)
       }, (error) => { 
-        console.log(error);  
+        //console.log(error);  
         Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }
@@ -53,9 +53,9 @@ export class PaymentFormComponent implements OnInit {
       console.log(this.payment);
       this.paymentServicie.save(this.payment).subscribe((data) => {
         Swal.fire('Pago Guardado', '','success');
-        console.log(data)
+        //console.log(data)
       }, (error) => { 
-        console.log(error);
+        //console.log(error);
         Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
       });
     }

@@ -152,7 +152,7 @@ export class InventoryReportsHomeComponent implements OnInit {
           this.reportone = data[0];
         }
       }, (error) => {
-        console.log(error);
+        //console.log(error);
         Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
       })
     }

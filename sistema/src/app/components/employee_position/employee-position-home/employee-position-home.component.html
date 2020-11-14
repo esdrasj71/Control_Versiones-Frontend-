@@ -24,10 +24,7 @@
             <td>{{employeePosition.Name}}</td>
             <td>{{employeePosition.Description}}</td>
             <td><a class="btn btn-warning btn-sm" style="background-color:#F7985B;" routerLink="/employee-position-form/{{employeePosition.Employee_Position_Id}}">
-                <i class="fa fa-pencil-square-o fa-lg" style="color: white;"></i></a>&nbsp;
-                <a class="btn btn-danger btn-sm" onClick="EliminarFila(this)" style="background-color:#e74c3c;" 
-                (click)="delete(employeePosition.Employee_Position_Id)">
-                    <i class="fa fa-trash fa-lg" style="color: white;"></i></a>
+                <i class="fa fa-pencil-square-o fa-lg" style="color: white;"></i></a>
             </td>          
         </tr>
     </tbody>

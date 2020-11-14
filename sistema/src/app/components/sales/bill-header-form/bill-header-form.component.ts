@@ -155,11 +155,11 @@ export class BillHeaderFormComponent implements OnInit {
       this.idserie = this.serie["serieId"];
       //this.cantidadfac = this.serie["Cantidad"];
       this.billsService.getfactura(this.idserie).subscribe((data)=>{
-        console.log(data);
+        //console.log(data);
         this.cantidadfac = data[0]["Cantidad_inicial"];
         
       })
-      console.log(this.cantidadfac);
+      //console.log(this.cantidadfac);
     }catch{
       alert("Falta serie");
       this.router.navigate(['/serie-form']);
@@ -262,7 +262,7 @@ export class BillHeaderFormComponent implements OnInit {
       alert("Solo hay en existencia: " + datos[0].Stock);
     } else {
       this.total -= datos[0].Subtotal;
-      datos[0].Subtotal = Math.round(value * precio);
+      datos[0].Subtotal = parseFloat((value * precio).toFixed(2))
       datos[0].Quantity = value;
       this.total += datos[0].Subtotal;
       this.total_cobro = this.total;
@@ -351,7 +351,7 @@ export class BillHeaderFormComponent implements OnInit {
                 //console.log(data);
               },
               (error) => {
-                console.log(error);
+                //console.log(error);
                 Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
               });
 
@@ -367,7 +367,7 @@ export class BillHeaderFormComponent implements OnInit {
                   //console.log(data);
                 },
                 (error) => {
-                  console.log(error);
+                  //console.log(error);
                   Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
                 });
             } else {
@@ -389,7 +389,7 @@ export class BillHeaderFormComponent implements OnInit {
               this.paymentdetailService.save(this.pago_detalle).subscribe(
                 (data) => {
                   //Swal.fire('Pago Guardado', '', 'success');
-                  console.log(data);
+                  //console.log(data);
                 },
                 (error) => {
                   console.log(error);
@@ -413,7 +413,7 @@ export class BillHeaderFormComponent implements OnInit {
                 //console.log(data);
               },
               (error) => {
-                console.log(error);
+                //console.log(error);
                 Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
               }
             )
@@ -422,7 +422,7 @@ export class BillHeaderFormComponent implements OnInit {
 
         },
         (error) => {
-          console.log(error);
+          //console.log(error);
           Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
         });
       //detalle

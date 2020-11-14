@@ -42,7 +42,7 @@ export class BrandFormComponent implements OnInit {
     if (this.editing) {
       this.brandService.put(this.brand).subscribe((data) => { //El unico cambioes el put
         Swal.fire('Marca Actualizado', '', 'success');
-        console.log(data)
+        //console.log(data)
       }, (error) => {
         console.log(error);
         Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
@@ -55,7 +55,7 @@ export class BrandFormComponent implements OnInit {
       else {
         this.brandService.save(this.brand).subscribe((data) => {
           Swal.fire('Marca Guardada', '', 'success');
-          console.log(data)
+          //console.log(data)
           this.Brand_Id.emit(data['id']);
         }, (error) => {
           console.log(error);

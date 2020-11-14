@@ -173,7 +173,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
     this.purchase_headerservice.save(this.header).subscribe(
       (data) => {
         Swal.fire('Compra Guardada', '', 'success');
-        console.log(data);
+        //console.log(data);
         window.setTimeout(function () { location.reload() }, 1100)
         this.payment.Purchase_Header_Id = data['id'];
         if (this.SiPago == true) {
@@ -196,7 +196,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
              this.payment.Method_Name = 1; //al credito
              this.payment_detail_purchase.save(this.payment).subscribe(
                (data) => {
-                 console.log(data);
+                 //console.log(data);
                },
                (error) => {
                  console.log(error);
@@ -207,7 +207,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
              this.payment.Total_Amount = this.total_cobroalcontado;
              this.payment_detail_purchase.save(this.payment).subscribe(
                (data) => {
-                 console.log(data);
+                 //console.log(data);
                  Swal.fire('El metodo de pago se ha registrado correctamente', '', 'success');
                },
                (error) => {
@@ -221,7 +221,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
             this.payment.Total_Amount = this.total_cobroalcontado;
             this.payment_detail_purchase.save(this.payment).subscribe(
               (data) => {
-                console.log(data);
+                //console.log(data);
                 Swal.fire('El metodo de pago se ha registrado correctamente', '', 'success');
               },
               (error) => {
@@ -254,17 +254,17 @@ export class PurchaseHeaderFormComponent implements OnInit {
           this.payment_detail_purchase.save(this.payment).subscribe(
             (data) => {
               Swal.fire('El metodo de pago al contado se ha registrado correctamente', '', 'success');
-              console.log(data);
+              //console.log(data);
             },
             (error) => {
-              console.log(error);
+              //console.log(error);
               Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
             }
           );
         } //
       },
       (error) => {
-        console.log(error);
+        //console.log(error);
         Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
       }
     );
@@ -280,10 +280,10 @@ export class PurchaseHeaderFormComponent implements OnInit {
       this.procedure_purchaseservice.save(this.purchase).subscribe(
         (data) => {
           //alert('procedimiento almacenado guardado');
-          console.log(data);
+          //console.log(data);
         },
         (error) => {
-          console.log(error);
+          //console.log(error);
           Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
         }
       );
