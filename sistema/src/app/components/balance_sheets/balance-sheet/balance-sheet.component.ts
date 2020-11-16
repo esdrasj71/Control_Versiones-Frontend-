@@ -44,17 +44,20 @@ export class BalanceSheetComponent implements OnInit {
   }
   //enterrr.value, detalle.Balance_Id, detalle.Name, detalle.Type
 //value,id, nombre, tipo
-  registrar(value,id, Nombre, tipo){
-   if(value <0){
-    Swal.fire({icon: 'warning', title: 'Aviso!', text: 'Debe ingresar un numero mayor'}); 
-   }else{
+  registrar(value,id, Nombre, tipo, monto){
+  if(monto == 0 && value <0){
+    Swal.fire({icon: 'warning', title: 'Aviso!', text: 'No puede restar en 0'}); 
+    return;
+  }
+   // 
+  
        //console.log(this.cuentas)
        if(tipo == 1){
         this.sum1 = 0;
         this.cuentas.forEach(a =>{
           a[1].forEach(b =>{
             if(b["Name"] == Nombre){
-              b["Monto"] = parseFloat( b["Valor_Base"]) + parseFloat(value);
+              b["Monto"] = parseFloat(monto) + parseFloat(value);
             }
             this.sum1 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
           })
@@ -65,7 +68,7 @@ export class BalanceSheetComponent implements OnInit {
         this.cuentas.forEach(a =>{
           a[2].forEach(b =>{
             if(b["Name"] == Nombre){
-              b["Monto"]  = b["Valor_Base"] +  parseFloat(value);
+              b["Monto"]  = parseFloat(monto) +  parseFloat(value);
             }
             this.sum2 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
           })
@@ -75,7 +78,7 @@ export class BalanceSheetComponent implements OnInit {
         this.cuentas.forEach(a =>{
           a[4].forEach(b =>{
             if(b["Name"] == Nombre){
-              b["Monto"]  = b["Valor_Base"] +  parseFloat(value);
+              b["Monto"]  = parseFloat(monto)+  parseFloat(value);
             }
             this.sum3 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
           })
@@ -86,7 +89,7 @@ export class BalanceSheetComponent implements OnInit {
         this.cuentas.forEach(a =>{
           a[5].forEach(b =>{
             if(b["Name"] == Nombre){
-              b["Monto"]  = b["Valor_Base"] +  parseFloat(value);
+              b["Monto"]  = parseFloat(monto)+  parseFloat(value);
             }
             this.sum4 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
           })
@@ -96,7 +99,7 @@ export class BalanceSheetComponent implements OnInit {
         this.cuentas.forEach(a =>{
           a[6].forEach(b =>{
             if(b["Name"] == Nombre){
-              b["Monto"]  = b["Valor_Base"] +  parseFloat(value);
+              b["Monto"]  = parseFloat(monto) +  parseFloat(value);
             }
             this.sum5 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
           })
@@ -106,29 +109,14 @@ export class BalanceSheetComponent implements OnInit {
         this.cuentas.forEach(a =>{
           a[7].forEach(b =>{
             if(b["Name"] == Nombre){
-              b["Monto"]  = b["Valor_Base"] +  parseFloat(value);
+              b["Monto"]  = parseFloat(monto) +  parseFloat(value);
             }
             this.sum6 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
           })
         })
       }
   
-     //aqui se va a mandar a insertar UwU TwT T_T
-     let bandera: boolean =  false
-      if(this.nuenvas_cuentas.length > 0 ){
-        this.nuenvas_cuentas.forEach(a=>{
-          if(a["Balance_Id"]== id){
-            bandera = true;
-            a["Monto"] = parseFloat(value);
-          }
-        })
-        if(!bandera){
-          this.nuenvas_cuentas.push({"Balance_Id": id, "Monto": parseFloat(value)})  
-        }
-      }else{
-        this.nuenvas_cuentas.push({"Balance_Id": id, "Monto": parseFloat(value)})
-      }
-   }
+      this.nuenvas_cuentas.push({"Balance_Id": id, "Monto": parseFloat(value)})
 
   }
   comprobar(bandera){
@@ -139,8 +127,9 @@ export class BalanceSheetComponent implements OnInit {
     }
   }
   almacenar(){
-  
-    if((this.sum1+this.sum2)==(this.sum3+this.sum4+this.sum5+this.sum6)){
+    console.log(this.sum1+this.sum2);
+    console.log(this.sum3+this.sum4+this.sum5+this.sum6)
+    if((this.sum1+this.sum2)==(this.sum3+this.sum4+((this.sum1+this.sum2)-(this.sum3+this.sum4)-(this.sum6))+this.sum6)){
      
       this.nuenvas_cuentas.forEach((a)=>{
         this.balanceService.guardarbalance(a).subscribe((data)=>{

@@ -7,6 +7,7 @@ import { AccountsReceivableService} from '../servicios/accounts-receivable.servi
 import {ProcedureAccountsreceivableService} from '../servicios/procedure-accountsreceivable.service';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-accounts-receivable',
   templateUrl: './accounts-receivable.component.html',
@@ -21,6 +22,7 @@ export class AccountsReceivableComponent implements OnInit {
   Nit= "";
   total_cobrar= 0; 
   contador = 0;
+  total = 0;
   //Cargar metodos de pago
   tipos_pagos: Payment[];
   cadena_pago: string = "";
@@ -40,6 +42,12 @@ export class AccountsReceivableComponent implements OnInit {
     httpClient.get(this.API_ENDPOINT + 'accounts_receivable',{headers})
     .subscribe((data: AccountsRecivable[])=>{
       this.accounts_recivable = data;
+      data.forEach(a=>{
+        this.total +=  a["Total"];
+      })
+     
+     
+
     })
     
     httpClient.get(this.API_ENDPOINT + 'payment',{headers})
@@ -50,6 +58,7 @@ export class AccountsReceivableComponent implements OnInit {
    }
 
   ngOnInit(): void {
+  
   }
 
   mostrar_facturas(idcliente, nombre, nit, total_cobrar){
@@ -63,6 +72,7 @@ export class AccountsReceivableComponent implements OnInit {
     this.nombre_cliente = nombre;
     this.Nit = nit;
     this.total_cobrar = total_cobrar;
+
   }
   
   mostrarDetalle_facturas(idbillHeader){
