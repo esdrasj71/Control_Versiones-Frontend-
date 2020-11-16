@@ -312,14 +312,12 @@ export class BalanceSheetComponent implements OnInit {
    </div> 
     <div style = "text-align:justify;">
     <p>
-      <b>Reporte: Balance General Clasificado.</b>
+      <b>Reporte: Balance General</b>
     </p>
     <p>
     <b>La fecha en la que se generó el reporte fue: del ` +this.date.getFullYear()+`-` +`01-01` + ` al `+this.balance.fechafin+` </b>
    </p>
-    <p>
-    <b>Este reporte se genero el día: `+creado +`</b> 
-    </p>
+   
     </div>
     `+pdfTable.innerHTML);
    

@@ -1,5 +1,5 @@
 <div class="container">
-    <h1 style="text-align: center;">Balance general clasificado</h1>
+    <h1 style="text-align: center;">Balance General</h1>
 
 <h2 style="text-align: center;">____________________</h2><br><br>
     <div class="form-group row">
@@ -147,7 +147,6 @@
                     <th scope="col">{{detalle.Name}}</th>
                     <th scope="col">{{(sum1 + sum2)-(sum3 + sum4)-(sum6)   | currency:"GTQ":"Q"}}</th>
                     <td></td>
-                 
                 </tr>
             </thead>
             <thead *ngFor = "let detalle of cuenta[7]">
@@ -158,7 +157,6 @@
                         (keyup.enter)="registrar(enterrr.value,detalle.Balance_Id, detalle.Name, detalle.Type, detalle.Monto)" ngDefaultControl
                         name="monto" id="monto" class="form-control" placeholder=" " value=0
                         tabindex="1" /></td>
-                 
                 </tr>
             </thead>
             <thead>
