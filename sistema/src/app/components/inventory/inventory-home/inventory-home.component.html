@@ -14,6 +14,12 @@
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target=".bd-group-modal-lg" 
             > Ver Inventario Agrupado</button>
         </div>
+        <div class="form-group row row col-md-4">
+            <tr *ngFor="let inventorytotal of inventorytotal">
+              <h4 style="color: white;"><strong>Total Mercaderia: &nbsp;</strong></h4>
+              <h4 style="color: white;">{{inventorytotal.Total  | currency:"GTQ":"Q"}}</h4>
+              <tr>
+          </div>
     </form>
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
         <table class="table table-hover" style="background-color:#F8F9F9;">

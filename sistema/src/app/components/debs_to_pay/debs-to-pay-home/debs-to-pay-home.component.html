@@ -7,6 +7,12 @@
       <input type="text" class="form-control" name="searchTerm3" [(ngModel)]="searchTerm3"
         placeholder="Buscar proveedor" style="width: 250px;">&nbsp;&nbsp;&nbsp;&nbsp;
     </div>
+    <div class="form-group row row col-md-4">
+      <tr *ngFor="let billstotal of billstotal">
+        <h4 style="color: white;"><strong>Total Cuentas por Pagar: &nbsp;</strong></h4>
+        <h4 style="color: white;">{{billstotal.Total  | currency:"GTQ":"Q"}}</h4>
+        <tr>
+    </div>
   </form>
   <div class="table-wrapper-scroll-y my-custom-scrollbar">
     <table class="table table-hover" style="background-color:#F8F9F9;">

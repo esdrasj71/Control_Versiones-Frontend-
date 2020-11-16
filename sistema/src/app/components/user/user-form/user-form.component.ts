@@ -47,6 +47,7 @@ export class UserFormComponent implements OnInit {
     this.httpClient.get(this.API_ENDPOINT + 'employeelogin', { headers })
       .subscribe((data: Employee[]) => {
         this.employee = data;
+        console.log(this.employee);
       });
       this.selectedEmployeeId = this.user.Employee_Id;
   }

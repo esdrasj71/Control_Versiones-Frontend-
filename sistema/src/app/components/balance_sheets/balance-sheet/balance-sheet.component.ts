@@ -17,6 +17,7 @@ export class BalanceSheetComponent implements OnInit {
   @ViewChild('pdfTable') pdfTable: ElementRef;
   cuentas = [];
   nuenvas_cuentas = [];
+  arreglo = [];
   sum1 = 0;
   sum2 = 0;
   sum3 = 0;
@@ -46,87 +47,89 @@ export class BalanceSheetComponent implements OnInit {
   registrar(value,id, Nombre, tipo){
    if(value <0){
     Swal.fire({icon: 'warning', title: 'Aviso!', text: 'Debe ingresar un numero mayor'}); 
-   }
-   //console.log(this.cuentas)
-    if(tipo == 1){
-      this.sum1 = 0;
-      this.cuentas.forEach(a =>{
-        a[1].forEach(b =>{
-          if(b["Name"] == Nombre){
-            b["Monto"] = parseFloat( b["Valor_Base"]) + parseFloat(value);
-          }
-          this.sum1 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
+   }else{
+       //console.log(this.cuentas)
+       if(tipo == 1){
+        this.sum1 = 0;
+        this.cuentas.forEach(a =>{
+          a[1].forEach(b =>{
+            if(b["Name"] == Nombre){
+              b["Monto"] = parseFloat( b["Valor_Base"]) + parseFloat(value);
+            }
+            this.sum1 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
+          })
+          
         })
-        
-      })
-    }else if(tipo == 2){
-      this.sum2 = 0;
-      this.cuentas.forEach(a =>{
-        a[2].forEach(b =>{
-          if(b["Name"] == Nombre){
-            b["Monto"]  = b["Valor_Base"] +  parseFloat(value);
-          }
-          this.sum2 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
+      }else if(tipo == 2){
+        this.sum2 = 0;
+        this.cuentas.forEach(a =>{
+          a[2].forEach(b =>{
+            if(b["Name"] == Nombre){
+              b["Monto"]  = b["Valor_Base"] +  parseFloat(value);
+            }
+            this.sum2 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
+          })
         })
-      })
-    }else if(tipo == 3){
-      this.sum3 = 0;
-      this.cuentas.forEach(a =>{
-        a[4].forEach(b =>{
-          if(b["Name"] == Nombre){
-            b["Monto"]  = b["Valor_Base"] +  parseFloat(value);
-          }
-          this.sum3 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
+      }else if(tipo == 3){
+        this.sum3 = 0;
+        this.cuentas.forEach(a =>{
+          a[4].forEach(b =>{
+            if(b["Name"] == Nombre){
+              b["Monto"]  = b["Valor_Base"] +  parseFloat(value);
+            }
+            this.sum3 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
+          })
         })
-      })
-    }else if(tipo == 4){
-
-      this.sum4 = 0;
-      this.cuentas.forEach(a =>{
-        a[5].forEach(b =>{
-          if(b["Name"] == Nombre){
-            b["Monto"]  = b["Valor_Base"] +  parseFloat(value);
-          }
-          this.sum4 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
+      }else if(tipo == 4){
+  
+        this.sum4 = 0;
+        this.cuentas.forEach(a =>{
+          a[5].forEach(b =>{
+            if(b["Name"] == Nombre){
+              b["Monto"]  = b["Valor_Base"] +  parseFloat(value);
+            }
+            this.sum4 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
+          })
         })
-      })
-    }else if(tipo == 5){
-      this.sum5 = 0;
-      this.cuentas.forEach(a =>{
-        a[6].forEach(b =>{
-          if(b["Name"] == Nombre){
-            b["Monto"]  = b["Valor_Base"] +  parseFloat(value);
-          }
-          this.sum5 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
+      }else if(tipo == 5){
+        this.sum5 = 0;
+        this.cuentas.forEach(a =>{
+          a[6].forEach(b =>{
+            if(b["Name"] == Nombre){
+              b["Monto"]  = b["Valor_Base"] +  parseFloat(value);
+            }
+            this.sum5 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
+          })
         })
-      })
-    }else if(tipo == 6){
-      this.sum6 = 0;
-      this.cuentas.forEach(a =>{
-        a[7].forEach(b =>{
-          if(b["Name"] == Nombre){
-            b["Monto"]  = b["Valor_Base"] +  parseFloat(value);
-          }
-          this.sum6 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
+      }else if(tipo == 6){
+        this.sum6 = 0;
+        this.cuentas.forEach(a =>{
+          a[7].forEach(b =>{
+            if(b["Name"] == Nombre){
+              b["Monto"]  = b["Valor_Base"] +  parseFloat(value);
+            }
+            this.sum6 += (typeof(b["Monto"]) == "undefined")? 0 :  b["Monto"]
+          })
         })
-      })
-    }
-
-   //aqui se va a mandar a insertar UwU TwT T_T
-   let bandera: boolean =  false
-    if(this.nuenvas_cuentas.length > 0 ){
-      this.nuenvas_cuentas.forEach(a=>{
-        if(a["Balance_Id"]== id){
-          bandera = true;
-          a["Monto"] = parseFloat(value);
-        }
-      })
-      if(!bandera){
-        this.nuenvas_cuentas.push({"Balance_Id": id, "Monto": parseFloat(value)})  
       }
-    }else{
-      this.nuenvas_cuentas.push({"Balance_Id": id, "Monto": parseFloat(value)})
-    }
+  
+     //aqui se va a mandar a insertar UwU TwT T_T
+     let bandera: boolean =  false
+      if(this.nuenvas_cuentas.length > 0 ){
+        this.nuenvas_cuentas.forEach(a=>{
+          if(a["Balance_Id"]== id){
+            bandera = true;
+            a["Monto"] = parseFloat(value);
+          }
+        })
+        if(!bandera){
+          this.nuenvas_cuentas.push({"Balance_Id": id, "Monto": parseFloat(value)})  
+        }
+      }else{
+        this.nuenvas_cuentas.push({"Balance_Id": id, "Monto": parseFloat(value)})
+      }
+   }
+
   }
   comprobar(bandera){
     if(bandera == this.nuenvas_cuentas.length){
@@ -168,6 +171,13 @@ export class BalanceSheetComponent implements OnInit {
     }
     this.balanceService.consultar(this.balance).subscribe((data)=>{
       
+      this.cuentas = [];
+      this.sum1 = 0;
+      this.sum2 =0;
+      this.sum3 =0;
+      this.sum4 =0;
+      this.sum5 =0;
+      this.sum6 =0;
       let control = 1;
       
       let aux = {};
@@ -177,7 +187,7 @@ export class BalanceSheetComponent implements OnInit {
       let temp4 = [];
       let temp5 = [];
       let temp6 = [];
-      let arreglo = [];
+     
     
       data[0].forEach(a =>{
         if(a["Type"] == 1){
@@ -264,19 +274,19 @@ export class BalanceSheetComponent implements OnInit {
           }
         })
       })
-      arreglo.push([{"Nombre":"Activo"}])
+      this.arreglo.push([{"Nombre":"Activo"}])
       temp.push([{"Nombre":"Activo Corriente", "Total": this.sum1}])
-      arreglo.push(temp)
+      this.arreglo.push(temp)
       temp2.push([{"Nombre":"Activo No corriente", "Total": this.sum2}])
-      arreglo.push(temp2)
-      arreglo.push([{"Nombre":"Pasivo"}])
+      this.arreglo.push(temp2)
+      this.arreglo.push([{"Nombre":"Pasivo"}])
       temp3.push([{"Nombre":"Pasivo Corriente", "Total":this.sum3}])
-      arreglo.push(temp3)
+      this.arreglo.push(temp3)
       temp4.push([{"Nombre":"Pasivo a Largo Plazo", "Total":this.sum4}])
-      arreglo.push(temp4)
-      arreglo.push(temp5)
-      arreglo.push(temp6)
-      this.cuentas.push(arreglo)
+      this.arreglo.push(temp4)
+      this.arreglo.push(temp5)
+      this.arreglo.push(temp6)
+      this.cuentas.push(this.arreglo)
     
       //console.log(arreglo);
     },(error)=>{
