@@ -66,7 +66,7 @@ let creado = fecha;
   //html to pdf format
   var html = htmlToPdfmake(`
   <div style = "text-align:center;">
-  <h1>Quetzal Commerce ®</h1>
+  <h1>Quetzal Commerce</h1>
   <p>
   <b>Empresa: </b> `+this.empresa.Company_Name+`
   </p>
@@ -79,10 +79,10 @@ let creado = fecha;
  </div> 
   <div style = "text-align:justify;">
   <p>
-    <b>Reporte: Reporte Detallado de Compras.</b>
+    <b>Reporte Detallado de Compras.</b>
   </p>
   <p>
-   <b>La fecha en la que se generó el reporte fue: del ` +this.report1.Date1+ ` al `+this.report1.Date2 +` </b>
+   <b>Reporte del: ` +this.report1.Date1+ ` al `+this.report1.Date2 +` </b>
   </p>
   <p>
   <b>Este reporte se genero el día: `+creado +`</b> 
@@ -110,7 +110,7 @@ let creado = fecha;
   //html to pdf format
   var html = htmlToPdfmake(`
   <div style = "text-align:center;">
-  <h1>Quetzal Commerce ®</h1>
+  <h1>Quetzal Commerce</h1>
   <p>
   <b>Empresa: </b> `+this.empresa.Company_Name+`
   </p>
@@ -123,10 +123,10 @@ let creado = fecha;
  </div> 
   <div style = "text-align:justify;">
   <p>
-    <b>Reporte: Detalle de las compras.</b>
+    <b>Reporte: Detalle de compras.</b>
   </p>
   <p>
-   <b>La fecha en la que se generó el reporte fue: del ` +this.report1.Date1+ ` al `+this.report1.Date2 +` </b>
+   <b>Reporte del: ` +this.report1.Date1+ ` al `+this.report1.Date2 +` </b>
   </p>
   <p>
   <b>Este reporte se genero el día: `+creado +`</b> 

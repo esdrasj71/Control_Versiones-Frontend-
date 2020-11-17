@@ -64,7 +64,7 @@ export class InventoryReportsHomeComponent implements OnInit {
     //html to pdf format
     var html = htmlToPdfmake(`
     <div style = "text-align:center;">
-    <h1>Quetzal Commerce ®</h1>
+    <h1>Quetzal Commerce</h1>
     <p>
     <b>Empresa: </b> `+this.empresa.Company_Name+`
     </p>
@@ -77,10 +77,10 @@ export class InventoryReportsHomeComponent implements OnInit {
    </div> 
     <div style = "text-align:justify;">
     <p>
-      <b>Reporte: Reporte de inventario.</b>
+      <b>Reporte de inventario.</b>
     </p>
     <p>
-    <b>La fecha en la que se generó el reporte fue: del ` +this.report1.Date1+ ` al `+this.report1.Date2 +` </b>
+    <b>Reporte del: ` +this.report1.Date1+ ` al `+this.report1.Date2 +` </b>
    </p>
     <p>
     <b>Este reporte se genero el día: `+creado +`</b> 
@@ -108,7 +108,7 @@ export class InventoryReportsHomeComponent implements OnInit {
     //html to pdf format
     var html = htmlToPdfmake(`
     <div style = "text-align:center;">
-    <h1>Quetzal Commerce ®</h1>
+    <h1>Quetzal Commerce</h1>
     <p>
     <b>Empresa: </b> `+this.empresa.Company_Name+`
     </p>
@@ -121,10 +121,10 @@ export class InventoryReportsHomeComponent implements OnInit {
    </div> 
     <div style = "text-align:justify;">
     <p>
-      <b>Reporte: Reporte detallado de inventario.</b>
+      <b>Reporte detallado de inventario.</b>
     </p>
     <p>
-    <b>La fecha en la que se generó el reporte fue: del ` +this.report1.Date1+ ` al `+this.report1.Date2 +` </b>
+    <b>Reporte del: ` +this.report1.Date1+ ` al `+this.report1.Date2 +` </b>
    </p>
     <p>
     <b>Este reporte se genero el día: `+creado +`</b> 
