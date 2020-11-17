@@ -77,7 +77,7 @@ export class ResultStatementHomeComponent implements OnInit {
     //html to pdf format
     var html = htmlToPdfmake(`
     <div style = "text-align:center;">
-    <h1>Quetzal Commerce ®</h1>
+    <h1>Estado de Resultados</h1>
     <p>
     <b>Empresa: </b> `+this.empresa.Company_Name+`
     </p>
@@ -90,10 +90,7 @@ export class ResultStatementHomeComponent implements OnInit {
    </div> 
     <div style = "text-align:justify;">
     <p>
-      <b>Reporte: Estado de resultados.</b>
-    </p>
-    <p>
-    <b>La fecha en la que se generó el reporte fue: del ` +this.resultstatement.fechainicio+ ` al `+this.resultstatement.fechafin+` </b>
+    <b>Reporte del: ` +this.resultstatement.fechainicio+ ` al `+this.resultstatement.fechafin+` </b>
    </p>
     <p>
     <b>Este reporte se genero el día: `+creado +`</b> 

@@ -66,7 +66,7 @@ export class Report2Component implements OnInit {
     //html to pdf format
     var html = htmlToPdfmake(`
     <div style = "text-align:center;">
-    <h1>Quetzal Commerce ®</h1>
+    <h1>Quetzal Commerce</h1>
     <p>
     <b>Empresa: </b> `+this.empresa.Company_Name+`
     </p>
@@ -82,7 +82,7 @@ export class Report2Component implements OnInit {
       <b>Reporte: Clientes más frecuentes.</b>
     </p>
     <p>
-     <b>La fecha en la que se generó el reporte fue: del ` +this.report2.fechainicio+ ` al `+this.report2.fechafin +` </b>
+     <b>Reporte del: ` +this.report2.fechainicio+ ` al `+this.report2.fechafin +` </b>
     </p>
     <p>
     <b>Este reporte se genero el día: `+creado +`</b> 

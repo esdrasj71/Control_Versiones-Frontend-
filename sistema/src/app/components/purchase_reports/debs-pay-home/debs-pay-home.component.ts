@@ -56,7 +56,7 @@ export class DebsPayHomeComponent implements OnInit {
   //html to pdf format
   var html = htmlToPdfmake(`
   <div style = "text-align:center;">
-  <h1>Quetzal Commerce ®</h1>
+  <h1>Quetzal Commerce</h1>
   <p>
   <b>Empresa: </b> `+this.empresa.Company_Name+`
   </p>
@@ -69,10 +69,10 @@ export class DebsPayHomeComponent implements OnInit {
  </div> 
   <div style = "text-align:justify;">
   <p>
-    <b>Reporte: </b> Se ha generado el siguiente reporte: <b> Cuentas por pagar vigentes.</b>
+    <b>Reporte: </b> <b> Cuentas por pagar vigentes.</b>
   </p>
   <p>
-   <b>Fecha: </b> La fecha en la que se genero fue: <b> ` + creado + `</b>
+   <b></b> La fecha en la que se genero fue: <b> ` + creado + `</b>
   </p>
   </div>
   ` 

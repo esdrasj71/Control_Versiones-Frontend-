@@ -9,10 +9,10 @@
                 <input type="text" name="" id="" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Buscar NIT o Nombre del cliente"
                     [(ngModel)]="filtrado_clientes" tabindex="1" style="width: 60%;"/>
             </div>
-            <div class="col">
-                <h4 style="color: white;"><strong>Total Cuentas por cobrar </strong></h4>
-               <h4 style="color: white;">{{total  | currency:"GTQ":"Q"}}</h4>
-            </div>
+        </div>
+        <div class="col">
+            <h4 style="color: white;"><strong>Total Cuentas por cobrar </strong></h4>
+           <h4 style="color: white;">{{total  | currency:"GTQ":"Q"}}</h4>
         </div>
         <div class="table-wrapper-scroll-y my-custom-scrollbar">
             <table class="table table-hover"
