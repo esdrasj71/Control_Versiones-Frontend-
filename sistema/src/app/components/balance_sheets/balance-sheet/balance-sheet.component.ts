@@ -299,7 +299,7 @@ export class BalanceSheetComponent implements OnInit {
     //html to pdf format
     var html = htmlToPdfmake(`
     <div style = "text-align:center;">
-    <h1>Quetzal Commerce ®</h1>
+    <h1>Balance General</h1>
     <p>
     <b>Empresa: </b> `+this.empresa.Company_Name+`
     </p>
@@ -315,7 +315,7 @@ export class BalanceSheetComponent implements OnInit {
       <b>Reporte: Balance General</b>
     </p>
     <p>
-    <b>La fecha en la que se generó el reporte fue: del ` +this.date.getFullYear()+`-` +`01-01` + ` al `+this.balance.fechafin+` </b>
+    <b>Reporte del: ` +this.date.getFullYear()+`-` +`01-01` + ` al `+this.balance.fechafin+` </b>
    </p>
    
     </div>
