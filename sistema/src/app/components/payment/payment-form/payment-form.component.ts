@@ -12,6 +12,7 @@ import {NgForm} from '@angular/forms';
 })
 export class PaymentFormComponent implements OnInit {
   payment: Payment = {
+
     Payment_Id: null,
     Method_Name: null,
   }; 
@@ -26,8 +27,10 @@ export class PaymentFormComponent implements OnInit {
       this.paymentServicie.getPayment().subscribe((data: Payment[]) => {
         //console.log(data);
         this.postarr = data;
+
         //console.log(this.postarr);
         this.payment = this.postarr.find((m) => { return m.Payment_Id == this.id });
+
       }, (error) => {
         console.log(error);
       });

@@ -41,22 +41,10 @@
             <label for="usuario" style="color: white;">Usuario normal</label>&nbsp;
             <input type="radio"  [(ngModel)]="user.Usertype" id="usuario" value="0">
         </div>
-
-      <!-- NUEVO EMPLEADO 
-      <label class="col-md-3 form-controllabel" for="employee"> Seleccione empleado: </label>&nbsp;
-      <select id="employee" name="employee" [(ngModel)]="user.Employee_Id"
-          [ngModelOptions]="{standalone: true}" style="width:40%; height: 25px; border-color: white; border-radius: 4px; height: 35px;">
-          <option *ngFor="let employee of employee" value="{{employee.Employee_Id}}"
-              style="height: 1300px">
-              {{employee.Names}}
-          </option>
-      </select>
-        -->
-
-        <!-- Metodo 2 de nuevo empleado -->
+<!-- Seleccionar empleado -->
         <div class="form-group row">
           <label class="col-md-3 form-control-label" for="textinput"> Seleccione empleado:</label>
-          <div style="width:60%; height:100px" class="col-md-6">
+          <div style="width:90%; height:100px" class="col-md-8">
               <ng-select [searchFn]="searchEmployee" id="employee" name="employee"
                   [items]="employee" [virtualScroll]="true" bindLabel="Name"
                   bindValue="Employee_Id" [(ngModel)]="selectedEmployeeId">
@@ -68,14 +56,15 @@
                       </div>
                   </ng-template>
                   <ng-template ng-label-tmp let-item="item">
-                      <span>{{item.Names}}</span>
+                      <span>{{item.Names}}&nbsp;{{item.Last_names}}</span>
                   </ng-template>
                   <ng-template ng-option-tmp let-item="item" let-index="index">
-                      {{item.Names}}
+                      {{item.Names}}&nbsp;{{item.Last_names}}
                   </ng-template>
               </ng-select>
           </div>
         </div>
+      <!-- FIN -->
       </ng-container>
         <!-- Fin de metodo 2 -->
           <div class="form-group row">

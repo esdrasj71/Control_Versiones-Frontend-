@@ -55,12 +55,16 @@ export class LotFormComponent implements OnInit {
       this.editing = false;
     }
 
-    httpClient.get(this.API_ENDPOINT + 'productlot', { headers })
+    
+  }
+  ngOnInit() {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
+    setInterval(() => {
+      this.httpClient.get(this.API_ENDPOINT + 'productlot', { headers })
       .subscribe((data: Products[]) => {
         this.products = data;
       })
-  }
-  ngOnInit() {
+    }, 1000);
   }
   savePost() {
     if (this.editing) {

@@ -277,7 +277,6 @@
                                 <th class="header" scope="col">Nombre producto</th>
                                 <th class="header" scope="col">Precio Unitario</th>
                                 <th class="header" scope="col">Stock</th>
-                                <th class="header" scope="col">Estado</th>
                                 <th class="header" scope="col">Seleccionar</th>
                             </tr>
                         </thead>
@@ -288,7 +287,6 @@
                                 <td height="10">{{inventario.Product}}</td>
                                 <td height="10">{{inventario.Unit_Price | currency:"GTQ":"Q"}}</td>
                                 <th height="10">{{inventario.Stock}}</th>
-                                <td height="10">{{inventario.Statuss}}</td>
                                 <td><a class="btn btn-warning btn-sm" style="background-color:#F7985B;"
                                         (click)="getInventoryId(inventario.Inventory_Id, inventario.Unit_Price, inventario.Stock)"
                                         data-dismiss="modal"><i class="fa fa-check" style="color: white;"></i></a>

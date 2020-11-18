@@ -105,14 +105,6 @@ export class LoginFormComponent implements OnInit {
      
       Swal.fire({icon: 'warning', title: 'Precaución!', text: 'Algunos de los datos son incorrectos porfavor verifique haber llenado todos los campos'}); 
     } else {
-      let mes = this.date.getMonth() + 1;
-      //fecha = this.date.getDate() + "/" + this.mes.toString() + "/" + this.date.getFullYear();
-      let fecha =
-        mes.toString() +
-        '/' +
-        this.date.getDate() +
-        '/' +
-        this.date.getFullYear();
       this.position.Name = 'Administrador';
       this.position.Description = 'Es el encargado del sistema y de la empresa';
       this.companyService.save(this.company).subscribe();
@@ -121,7 +113,6 @@ export class LoginFormComponent implements OnInit {
           this.employee.Employee_Position_Id = data['id'];
           this.employeeService.save(this.employee).subscribe((ata) => {
             //alert('Empleado Guardado');
-            this.user.Date_Created = new Date(fecha);
             this.user.Employee_Id = ata['id'];
             this.user.Usertype = 1;
             //console.log(this.user);
