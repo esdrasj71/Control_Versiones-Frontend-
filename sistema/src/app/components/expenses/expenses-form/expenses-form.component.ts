@@ -4,6 +4,8 @@ import { ExpensesService } from '../servicios/expenses.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import {NgForm} from '@angular/forms';
+
 @Component({
   selector: 'app-expenses-form',
   templateUrl: './expenses-form.component.html',
@@ -36,6 +38,9 @@ export class ExpensesFormComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  onSubmit(form: NgForm) {
+    form.resetForm();
+}
   saveExpenses() {
     if (this.editing) {
       this.expensesService.put(this.expenses).subscribe((data) => {

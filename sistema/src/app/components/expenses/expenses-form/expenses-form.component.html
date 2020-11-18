@@ -4,18 +4,24 @@
         <div class="card-body" style="height: 100%;">
             <h2 class="alert alert-primary" role="alert" style="text-align: center;">Editar/Crear Gasto</h2>
             <div class="alert alert-warning" role="alert" style="background-color:#699DBF; height: 100%;">
-                <form name="formulario" onSubmit="return limpiar()">
+                <form name ="formulario" #myform = "ngForm" (ngSubmit) = "onSubmit(myform)">
                     <div class="form-group row" id="hey">
                         <label class="col-md-3 form-control-label" for="textinput">Nombre del gasto</label>
                         <div class="col-md-9">
-                            <input id="expenses" [(ngModel)]="expenses.Name" type="text" name="Name" class="form-control"
-                                [ngModelOptions]="{standalone: true}" minlength="2" maxlength="60" placeholder="Ingrese el nombre del gasto" required>
+                            <input id="expenses" [(ngModel)]="expenses.Name" type="text" name="Name" id="Name" class="form-control"
+                                minlength="2" maxlength="60" placeholder="Ingrese el nombre del gasto" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
                             <button (click)="saveExpenses()" type="submit" class="btn btn-success btnblock"
                                >Guardar</button>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <button  routerLink="/expenses-home" type="submit" class="btn btn-success btnblock"
+                               >Regresar</button>
                         </div>
                     </div>
                 </form>

@@ -6,8 +6,8 @@ import {Payment} from '../interfaces/payment';
 import { AccountsReceivableService} from '../servicios/accounts-receivable.service';
 import {ProcedureAccountsreceivableService} from '../servicios/procedure-accountsreceivable.service';
 import Swal from 'sweetalert2';
-
-
+import {NgForm} from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-accounts-receivable',
   templateUrl: './accounts-receivable.component.html',
@@ -37,7 +37,7 @@ export class AccountsReceivableComponent implements OnInit {
 
   //filtro para buscar cliente
   filtrado_clientes = '';
-  constructor(private accountsReceivableService: AccountsReceivableService, private httpClient: HttpClient, private procedure_accountsService: ProcedureAccountsreceivableService) {
+  constructor(private router: Router, private accountsReceivableService: AccountsReceivableService, private httpClient: HttpClient, private procedure_accountsService: ProcedureAccountsreceivableService) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
     httpClient.get(this.API_ENDPOINT + 'accounts_receivable',{headers})
     .subscribe((data: AccountsRecivable[])=>{
@@ -60,7 +60,9 @@ export class AccountsReceivableComponent implements OnInit {
   ngOnInit(): void {
   
   }
-
+  onSubmit(form: NgForm) {
+    form.resetForm();
+}
   mostrar_facturas(idcliente, nombre, nit, total_cobrar){
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
     this.procedure_accountsReceivable.Customers_Id = idcliente;
@@ -95,6 +97,7 @@ export class AccountsReceivableComponent implements OnInit {
     this.procedure_accountsService.saveprocedure(this.procedure_accountsReceivable).subscribe((data)=>{
       //console.log(data);
       Swal.fire('Descuento Exitoso', '','success');
+      this.procedure_accountsReceivable.Payment_Id = undefined;
       window.setTimeout(function(){location.reload()},1200)
     },(error)=>{
       //console.log(error);

@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Payment } from '../interfaces/payment';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+import {NgForm} from '@angular/forms';
 @Component({
   selector: 'app-payment-form',
   templateUrl: './payment-form.component.html',
@@ -11,7 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class PaymentFormComponent implements OnInit {
   payment: Payment = {
-    Payment_Purchase_Id:null,
+    Payment_Id: null,
     Method_Name: null,
   }; 
   API_ENDPOINT = 'http://localhost:3000/';
@@ -23,9 +24,10 @@ export class PaymentFormComponent implements OnInit {
     if (this.id) {
       this.editing = true;
       this.paymentServicie.getPayment().subscribe((data: Payment[]) => {
+        //console.log(data);
         this.postarr = data;
-        console.log(this.postarr);
-        this.payment = this.postarr.find((m) => { return m.Payment_Purchase_Id == this.id });
+        //console.log(this.postarr);
+        this.payment = this.postarr.find((m) => { return m.Payment_Id == this.id });
       }, (error) => {
         console.log(error);
       });
@@ -35,6 +37,9 @@ export class PaymentFormComponent implements OnInit {
   }
   ngOnInit() {
   }
+  onSubmit(form: NgForm) {
+    form.resetForm();
+}
   savePayment() {
     if (this.editing) {
       this.paymentServicie.put(this.payment).subscribe((data) => { 
@@ -50,7 +55,7 @@ export class PaymentFormComponent implements OnInit {
         Swal.fire({ icon: 'warning', title: 'Aviso!', text: 'Debe ingresar un nombre' });
       }
     else {
-      console.log(this.payment);
+     // console.log(this.payment);
       this.paymentServicie.save(this.payment).subscribe((data) => {
         Swal.fire('Pago Guardado', '','success');
         //console.log(data)

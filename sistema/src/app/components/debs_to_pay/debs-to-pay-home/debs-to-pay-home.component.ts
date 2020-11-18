@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DebstoPay } from '../interfaces/debs-to-pay';
 import { Procedure_DebstoPay } from '../interfaces/procedure_debstopay';
 import Swal from 'sweetalert2';
+import {NgForm} from '@angular/forms';
 @Component({
   selector: 'app-debs-to-pay-home',
   templateUrl: './debs-to-pay-home.component.html',
@@ -86,4 +87,7 @@ export class DebsToPayHomeComponent implements OnInit {
       })
     }
   }
+  onSubmit(form: NgForm) {
+    form.resetForm();
+}
 }

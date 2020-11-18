@@ -5,6 +5,9 @@ import { Employee } from '../interfaces/employee';
 import { ActivatedRoute } from '@angular/router';
 import { EmployeePosition } from '../../employee_position/interfaces/employee-position';
 import Swal from 'sweetalert2';
+import {NgForm} from '@angular/forms';
+
+
 @Component({
   selector: 'app-employee-form',
   templateUrl: './employee-form.component.html',
@@ -29,12 +32,15 @@ export class EmployeeFormComponent implements OnInit {
   editing: boolean = false;
   postarr: Employee[];
   employeePosition: EmployeePosition[];
-
+  
   constructor(private employeeService: EmployeeService, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
     this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
       this.editing = true;
+    
       this.employeeService.getEmployee().subscribe((data: Employee[]) => {
+        console.log(data);
+        
         this.postarr = data;
         console.log(this.postarr);
         this.employee = this.postarr.find((m) => { return m.Employee_Id == this.id });
@@ -52,7 +58,12 @@ export class EmployeeFormComponent implements OnInit {
   }
   ngOnInit() {
   }
+  onSubmit(form: NgForm) {
+    form.resetForm();
+  }
+
   savePost() {
+
     if (this.editing) {
       this.employeeService.put(this.employee).subscribe((data) => { //El unico cambioes el put
         Swal.fire('Empleado Actualizado', '','success');
@@ -69,6 +80,7 @@ export class EmployeeFormComponent implements OnInit {
       else {
       this.employeeService.save(this.employee).subscribe((data) => {
         Swal.fire('Empleado Guardado', '','success');
+        this.employee.Employee_Position_Id = undefined;
         //console.log(data);
       }, (error) => {
         //console.log(error);

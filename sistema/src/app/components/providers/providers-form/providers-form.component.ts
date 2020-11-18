@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Providers } from '../interfaces/providers';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+import {NgForm} from '@angular/forms';
 @Component({
   selector: 'app-providers-form',
   templateUrl: './providers-form.component.html',
@@ -42,6 +43,9 @@ export class ProvidersFormComponent implements OnInit {
   }
   ngOnInit() {
   }
+  onSubmit(form: NgForm) {
+    form.resetForm();
+}
   savePost() {
     if (this.editing) {
       this.providersService.put(this.providers).subscribe((data) => {

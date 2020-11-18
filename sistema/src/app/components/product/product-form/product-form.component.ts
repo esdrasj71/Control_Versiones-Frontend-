@@ -19,6 +19,7 @@ import { Procedure_SaveProduct } from '../interfaces/procedure_saveproduct';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ProductCategoryService } from '../../product_category/servicios/product-category.service';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-product-form',
@@ -87,6 +88,7 @@ export class ProductFormComponent implements OnInit {
           this.product = this.productarr.find((m) => {
             return m.Product_Id == this.id;
           });
+          //console.log(this.product.Name);
           this.selectedCategoryId = this.product.Product_Category_Id;
           this.selectedBrandId = this.product.Brand_Id;
           this.selectedCorrelativeproduct = this.product.Correlative_Product;
@@ -114,6 +116,9 @@ export class ProductFormComponent implements OnInit {
       });
   }
   ngOnInit(): void { }
+  onSubmit(form: NgForm) {
+    form.resetForm();
+}
   saveProduct() {
     if (this.editing) {
       this.product.Product_Category_Id = this.selectedCategoryId;
@@ -130,6 +135,7 @@ export class ProductFormComponent implements OnInit {
           location.reload();
           //window.location.reload();
           //console.log(data);
+          
           this.router.navigate(['/product-home']);
         },
         (error) => {
@@ -149,6 +155,8 @@ export class ProductFormComponent implements OnInit {
           this.procedure_saveproduct.Product_Id = this.lastidproduct;
           Swal.fire('Producto guardado', '', 'success');
           this.Product_Id.emit(data['Correlative_Product']);
+          this.selectedCategoryId = undefined;
+          this.selectedBrandId = undefined;
           //console.log(data);
         },
         (error) => {
