@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class PaymentFormComponent implements OnInit {
   payment: Payment = {
-    Payment_Purchase_Id:null,
+    Payment_Id:null,
     Method_Name: null,
   }; 
   API_ENDPOINT = 'http://localhost:3000/';
@@ -24,8 +24,8 @@ export class PaymentFormComponent implements OnInit {
       this.editing = true;
       this.paymentServicie.getPayment().subscribe((data: Payment[]) => {
         this.postarr = data;
-        console.log(this.postarr);
-        this.payment = this.postarr.find((m) => { return m.Payment_Purchase_Id == this.id });
+        this.payment = this.postarr.find((m) => { return m.Payment_Id == this.id });
+        console.log(this.payment);
       }, (error) => {
         console.log(error);
       });
