@@ -166,6 +166,7 @@ export class BillHeaderFormComponent implements OnInit {
       this.router.navigate(['/serie-form']);
     }
     
+    
 
   }
 
@@ -338,10 +339,11 @@ export class BillHeaderFormComponent implements OnInit {
             })
 
           }
-          if (this.encabezado_factura.Payment_Complete == true) {
+          if (this.encabezado_factura.Payment_Complete == true ) {
             if (this.total_cobroalcontado > this.total) {
               this.total_cobroalcontado = this.total;
             }
+            
             this.pago_detalle.Total_Amount = this.total_cobroalcontado;
             this.pago_detalle.Payment_Id = 1;
             this.pago_detalle.Bill_header_Id = data["id"];
