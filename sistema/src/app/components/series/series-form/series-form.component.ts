@@ -39,9 +39,8 @@ export class SeriesFormComponent implements OnInit {
         this.series.Cantidad_inicial = 1;
       this.seriesService.saveSeries(this.series).subscribe((data)=>{
         Swal.fire('Serie Guardada', '','success');
-        window.setTimeout(function(){this.router.navigate(['/home']);
-        this.router.navigate(['/bill-header-form']);
-      },1200) 
+        this.router.navigate(['/home']);
+      
       },(error)=>{
         //console.log(error);
         Swal.fire({icon: 'error', title: 'Ocurrio un error', text: 'Conflictos al insertar la serie'});
