@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 import { Company } from '../../home/interface/company';
 import { CompanyService } from '../../home/servicios/company.service';
 import {AppComponent} from '../../../app.component'
+import {NgForm} from '@angular/forms';
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -122,6 +123,7 @@ export class LoginFormComponent implements OnInit {
                 //console.log(user);
                 Swal.fire('Usuario Creado', '','success');
                 localStorage.removeItem('token');
+                this.Existe=1;
                 this.router.navigate(['/']);
                 this.router.navigate(["/login"]);
               },
@@ -146,10 +148,12 @@ export class LoginFormComponent implements OnInit {
       Swal.fire({icon: 'warning', title: 'Precaución!', text: 'Introduzca un usuario y una contraseña'}); 
     } else {
       this.loginService.save(this.login).subscribe();
-     
     }
   }
   logout() {
     this.loginService.logout();
   }
+  onSubmit(form: NgForm) {
+    form.resetForm();
+}
 }

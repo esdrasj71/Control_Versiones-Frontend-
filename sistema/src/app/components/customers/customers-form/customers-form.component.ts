@@ -78,7 +78,6 @@ export class CustomersFormComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log('Your form data : ', form.value);
     form.resetForm();
 }
 
