@@ -3,7 +3,7 @@
         <div class="card-body" style="height: 100%;">
             <h2 class="alert alert-primary" role="alert" style="text-align: center;">Editar/Crear Categoría de Producto
             </h2>
-            <form name="formulario" onSubmit="return limpiar()">
+            <form name ="formulario" #myform = "ngForm" (ngSubmit) = "onSubmit(myform)">
             <div class="alert alert-warning" role="alert" style="background-color:#699DBF; height: 100%;">
                 <div>
                     <div class="form-group row">

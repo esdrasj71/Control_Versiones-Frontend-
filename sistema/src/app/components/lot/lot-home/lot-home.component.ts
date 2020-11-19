@@ -20,7 +20,7 @@ export class LotHomeComponent implements OnInit {
     this.lotService.getLot()
       .subscribe((data: Lot[]) => {
         this.lot = data;
-        console.log(this.lot);
+        //console.log(this.lot);
       });
   }
   ngOnInit(): void {

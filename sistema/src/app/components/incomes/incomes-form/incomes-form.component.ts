@@ -117,8 +117,8 @@ export class IncomesFormComponent implements OnInit {
         this.ban = true;
       }
       if (this.ban) {
-        alert("Punto de venta " + cadena);
-        //Swal.fire({icon: 'error', title: 'Ocurrio un error', text: cadena});
+        //alert("Punto de venta " + cadena);
+        Swal.fire('Punto de venta insertada', '','success');
       }
     } else {
       alert("Ocurrio un error " + cadena);

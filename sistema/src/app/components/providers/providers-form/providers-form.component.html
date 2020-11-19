@@ -5,7 +5,7 @@
         Editar/Agregar Proveedor
       </h2>
       <div class="alert alert-warning" role="alert" style="background-color: #699dbf; height: 100%">
-        <form name="formulario" onSubmit="return limpiar()">
+        <form name ="formulario" #myform = "ngForm" (ngSubmit) = "onSubmit(myform)">
           <div class="form-group row">
             <label class="col-md-3 form-controllabel" for="Nit">NIT</label>
             <div class="col-md-9">
@@ -39,7 +39,7 @@
           <div class="form-group row">
             <label class="col-md-3 form-controllabel" for="Email">Correo electrónico</label>
             <div class="col-md-9">
-              <input [(ngModel)]="providers.Email" type="text" name="Email" placeholder="Campo opcional *" id="Email"
+              <input [(ngModel)]="providers.Email" type="email" name="Email" placeholder="Campo opcional *" id="Email"
                 class="form-control" minlength="10" maxlength="40" />
             </div>
           </div>

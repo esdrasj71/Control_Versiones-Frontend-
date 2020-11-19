@@ -4,6 +4,7 @@ import { ProductCategoryService } from '../servicios/product-category.service';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-product-category-form',
@@ -27,7 +28,7 @@ export class ProductCategoryFormComponent implements OnInit {
       this.editing = true;
       this.httpClient.get(this.API_ENDPOINT + 'product_category', { headers }).subscribe((data: Product_Category[]) => {
         this.postarr = data;
-        console.log(this.postarr);
+        //console.log(this.postarr);
         this.product_category = this.postarr.find((m) => { return m.Product_Category_Id == this.id });
       }, (error) => {
         console.log(error);
@@ -39,6 +40,9 @@ export class ProductCategoryFormComponent implements OnInit {
   }
   ngOnInit() {
   }
+  onSubmit(form: NgForm) {
+    form.resetForm();
+}
   saveProductCategory() {
     if (this.editing) {
       this.productcategoryService.put(this.product_category).subscribe((data) => {

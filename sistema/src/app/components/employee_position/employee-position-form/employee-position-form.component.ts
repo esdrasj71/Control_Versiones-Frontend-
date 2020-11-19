@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EmployeePosition } from '../interfaces/employee-position';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+import {NgForm} from '@angular/forms';
 @Component({
   selector: 'app-employee-position-form',
   templateUrl: './employee-position-form.component.html',
@@ -38,6 +39,10 @@ export class EmployeePositionFormComponent implements OnInit {
   }
   ngOnInit() {
   }
+  onSubmit(form: NgForm) {
+    console.log('Your form data : ', form.value);
+    form.resetForm();
+}
   savePost() {
     if (this.editing) {
       this.employeePositionServicie.put(this.employeePosition).subscribe((data) => { //El unico cambioes el put
@@ -63,4 +68,6 @@ export class EmployeePositionFormComponent implements OnInit {
       }
     }
   }
+
+
 }

@@ -4,7 +4,7 @@ import { BrandsService } from '../servicios/brands.service';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import {NgForm} from '@angular/forms';
 @Component({
   selector: 'app-brand-form',
   templateUrl: './brand-form.component.html',
@@ -26,7 +26,7 @@ export class BrandFormComponent implements OnInit {
       this.editing = true;
       this.httpClient.get(this.API_ENDPOINT + 'brands', { headers }).subscribe((data: Brands[]) => {
         this.postarr = data;
-        console.log(this.postarr);
+        //console.log(this.postarr);
         this.brand = this.postarr.find((m) => { return m.Brand_Id == this.id });
       }, (error) => {
         console.log(error);
@@ -38,6 +38,9 @@ export class BrandFormComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  onSubmit(form: NgForm) {
+    form.resetForm();
+}
   saveBrand() {
     if (this.editing) {
       this.brandService.put(this.brand).subscribe((data) => { //El unico cambioes el put

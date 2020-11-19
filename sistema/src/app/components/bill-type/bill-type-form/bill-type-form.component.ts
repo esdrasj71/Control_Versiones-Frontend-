@@ -4,6 +4,7 @@ import { BillTypeService } from '../servicios/bill-type.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import {NgForm} from '@angular/forms';
 @Component({
   selector: 'app-bill-type-form',
   templateUrl: './bill-type-form.component.html',
@@ -35,6 +36,10 @@ export class BillTypeFormComponent implements OnInit {
   }
   ngOnInit(): void {
   }
+  onSubmit(form: NgForm) {
+    form.resetForm();
+}
+
   saveBillType() {
     if (this.editing) {
       this.billtypeService.put(this.billtype).subscribe((data) => {

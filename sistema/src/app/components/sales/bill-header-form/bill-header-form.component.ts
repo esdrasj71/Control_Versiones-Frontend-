@@ -161,7 +161,8 @@ export class BillHeaderFormComponent implements OnInit {
       })
       //console.log(this.cantidadfac);
     }catch{
-      alert("Falta serie");
+      //alert("Falta serie");
+      Swal.fire({ icon: 'warning', title: 'Aviso!', text: 'Debes seleccionar una serie' });
       this.router.navigate(['/serie-form']);
     }
     

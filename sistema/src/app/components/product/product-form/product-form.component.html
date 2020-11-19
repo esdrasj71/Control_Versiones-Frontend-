@@ -3,12 +3,12 @@
         <div class="card-body" style="height: 100%;">
             <h2 class="alert alert-primary" role="alert" style="text-align: center;">Editar/Crear Productos</h2>
             <div class="alert alert-warning" role="alert" style="background-color:#699DBF; height: 100%;">
-                <form name="formulario" onSubmit="return limpiar()">
+                <form name ="formulario" #myform = "ngForm" (ngSubmit) = "onSubmit(myform)">
                     <div class="form-group row">
                         <label class="col-md-3 form-control-label" for="textinput">Nombre del producto:</label>
                         <div class="col-md-9">
-                            <input class="form-control" type="text" [(ngModel)]="selectedProduct" name="Name"
-                                placeholder="Ingrese el nombre del producto" [ngModelOptions]="{standalone: true}"
+                            <input class="form-control" type="text" [(ngModel)]="selectedProduct" name="selectedProduct" id="selectedProduct"
+                                placeholder="Ingrese el nombre del producto" 
                                 required="">  
                         </div>
                     </div>
@@ -16,8 +16,8 @@
                         <label class="col-md-3 form-control-label" for="textinput">Número correlativo:</label>
                         <div class="col-md-9">
                             <input class="form-control" type="text" name="Correlative_Product"
-                                [(ngModel)]="selectedCorrelativeproduct"
-                                placeholder="Ingrese el numero correlativo" [ngModelOptions]="{standalone: true}"
+                                [(ngModel)]="selectedCorrelativeproduct" id="selectedCorrelativeproduct"
+                                placeholder="Ingrese el numero correlativo"  name="selectedCorrelativeproduct"
                                 required="">
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                         </div>
                         <label class="col-md-3 form-control-label" for="textinput"></label>
                         <div *ngFor="let brands of brand" class="form-group row">
-                            <label for="brand" class="col-md-12 form-control-label"> Marca Insertada:&nbsp;{{brands.Name}} 
+                            <label for="brand" class="col-md-12 form-control-label"  name="Name" id="Name"> Marca Insertada:&nbsp;{{brands.Name}} 
                                 &nbsp;&nbsp;&nbsp; ¡Ya no debe seleccionar marca!</label>
                         </div>  
                     </div>
@@ -97,13 +97,13 @@
                         <label class="col-md-3 form-control-label" for="textinput">¿Es perecedero?</label>
                         <div class="col-md-9">
                             <input #small type="checkbox" name="size" (change)="0" v-model="nombre" class="formcontrol"
-                                [(ngModel)]="selectedPerishable" [ngModelOptions]="{standalone: true}">
+                                [(ngModel)]="selectedPerishable"  name="selectedPerishable" id="selectedPerishable" >
                             <br>
                             <br>
                             <label *ngIf="small.checked" style="color: white;">Fecha de caducidad:</label>
-                            <input *ngIf="small.checked" type="date" id="start" name="trip-start" class="form-control"
-                                style="width: 60%;" [(ngModel)]="procedure_saveproduct.Due_Date"
-                                [ngModelOptions]="{standalone: true}">
+                            <input *ngIf="small.checked" type="date"  class="form-control"
+                                style="width: 60%;" [(ngModel)]="procedure_saveproduct.Due_Date" id="Due_Date" name="Due_Date"
+                             >
                         </div>
                     </div>
                     <div class="form-group row">

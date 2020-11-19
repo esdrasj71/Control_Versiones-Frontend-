@@ -4,7 +4,7 @@ import { CustomersService } from '../servicios/customers.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Swal from 'sweetalert2';
-
+import {NgForm} from '@angular/forms';
 @Component({
   selector: 'app-customers-form',
   templateUrl: './customers-form.component.html',
@@ -76,6 +76,11 @@ export class CustomersFormComponent implements OnInit {
       }
     }
   }
+
+  onSubmit(form: NgForm) {
+    console.log('Your form data : ', form.value);
+    form.resetForm();
+}
 
 };
 

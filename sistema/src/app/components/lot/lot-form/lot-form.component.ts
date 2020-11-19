@@ -44,7 +44,7 @@ export class LotFormComponent implements OnInit {
       this.editing = true;
       this.httpClient.get(this.API_ENDPOINT + 'lot', { headers }).subscribe((data: Lot[]) => {
         this.postarr = data;
-        console.log(this.postarr);
+        //console.log(this.postarr);
         this.lot = this.postarr.find((m) => { return m.Lot_Id == this.id });
         this.selectedProductId = this.lot.Product_Id;
         this.selectedDueDate = this.lot.Due_Date;

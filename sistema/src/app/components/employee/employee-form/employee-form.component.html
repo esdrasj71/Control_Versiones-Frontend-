@@ -4,11 +4,11 @@
         <div class="card-body" style="height: 100%;">
             <h2 class="alert alert-primary" role="alert" style="text-align: center;">Editar/Crear Empleado</h2>
             <div class="alert alert-warning" role="alert" style="background-color:#699DBF; height: 100%;">
-
+                <form name ="formulario" #myform = "ngForm" (ngSubmit) = "onSubmit(myform)">
                 <div class="form-group row">
                     <label class="col-md-3 form-controllabel" for="DPI">DPI</label>
                     <div class="col-md-9">
-                        <input [(ngModel)]="employee.DPI" type="text" id="DPI" class="form-control"
+                        <input [(ngModel)]="employee.DPI" type="text" name="DPI" id="DPI" class="form-control"
                         minlength="7" maxlength="20" placeholder="Ingrese no. de DPI" required>
                     </div>
                 </div>
@@ -16,7 +16,7 @@
                 <div class="form-group row">
                     <label class="col-md-3 form-controllabel" for="Names">Nombres</label>
                     <div class="col-md-9">
-                        <input [(ngModel)]="employee.Names" type="text" id="Names" class="form-control"
+                        <input [(ngModel)]="employee.Names" type="text" id="Names" name="Names" class="form-control"
                         minlength="4" maxlength="70" placeholder="Ingrese nombres" required>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                 <div class="form-group row">
                     <label class="col-md-3 form-controllabel" for="Last_names">Apellidos</label>
                     <div class="col-md-9">
-                        <input [(ngModel)]="employee.Last_names" type="text" id="Last_names" class="form-control"
+                        <input [(ngModel)]="employee.Last_names" type="text" id="Last_names" name="Last_names" class="form-control"
                         minlength="4" maxlength="70" placeholder="Ingrese apellidos" required>
                     </div>
                 </div>
@@ -32,14 +32,14 @@
                 <div class="form-group row">
                     <label class="col-md-3 form-controllabel" for="Phone_number">Número Telefónico</label>
                     <div class="col-md-9">
-                        <input [(ngModel)]="employee.Phone_number" type="text" id="Phone_number" class="form-control" placeholder="Campo opcional *">
+                        <input [(ngModel)]="employee.Phone_number" type="text" id="Phone_number"  name="Phone_number" class="form-control" placeholder="Campo opcional *">
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-md-3 form-controllabel" for="Cellphone_number">Número Móvil</label>
                     <div class="col-md-9">
-                        <input [(ngModel)]="employee.Cellphone_number" type="text" id="Cellphone_number"
+                        <input [(ngModel)]="employee.Cellphone_number" type="text" name="Cellphone_number" id="Cellphone_number"
                             class="form-control" minlength="7" maxlength="15" placeholder="Ingrese numero movil" required>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                 <div class="form-group row">
                     <label class="col-md-3 form-controllabel" for="Email">Correo Electrónico</label>
                     <div class="col-md-9">
-                        <input [(ngModel)]="employee.Email" type="email" id="Email" class="form-control" placeholder="Campo opcional *">
+                        <input [(ngModel)]="employee.Email" type="email" name="Email" id="Email" class="form-control" placeholder="Campo opcional *">
                     </div>
                 </div>
                 <!-- 
@@ -60,25 +60,25 @@
                 <div class="form-group row">
                     <label class="col-md-3 form-controllabel">Genero </label>
                     &nbsp;&nbsp;&nbsp;&nbsp;<label for="male" style="color: white;">Masculino</label>&nbsp;
-                    <input type="radio" [(ngModel)]="employee.Gender" name="gender" id="male" value="1" checked>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="radio" [(ngModel)]="employee.Gender"  name="male" id="male" value="1" checked>&nbsp;&nbsp;&nbsp;&nbsp;
                     <label for="female" style="color: white;">Femenino</label>&nbsp;
-                    <input type="radio" [(ngModel)]="employee.Gender" name="gender" id="female" value="0">
+                    <input type="radio" [(ngModel)]="employee.Gender" name="female" id="female" value="0">
                 </div>
                 <!-- TAKE 1-->
 
                 <div class="form-group row">
                     <label class="col-md-3 form-controllabel" for="Hire_date">Fecha Contrato</label>
                     <div class="col-md-9">
-                        <input [(ngModel)]="employee.Hire_date" type="date" id="Names" class="form-control"
+                        <input [(ngModel)]="employee.Hire_date" type="date" name="Hire_date" id="Hire_date"  class="form-control"
                             style="width: 80%;" required>
                     </div>
                 </div>
                 
                 &nbsp;&nbsp;
                 <label class="col-md-3 form-controllabel" for="Lot"> Seleccione posición del empleado: </label>
-                <select id="employee_pos" name="employee_pos" [(ngModel)]="employee.Employee_Position_Id"
+                <select id="Name"  name="Name" [(ngModel)]="employee.Employee_Position_Id"
                     [ngModelOptions]="{standalone: true}" style="width:35%; border-radius: 4px;">
-                    <option *ngFor="let employeePos of employeePosition" value="{{employeePos.Employee_Position_Id}}"
+                    <option *ngFor="let employeePos of employeePosition" value="{{employeePos.Employee_Position_Id}}" id="Name" name="Name"
                         style="height: 1200px">
                         {{employeePos.Name}}
                     </option>
@@ -112,10 +112,11 @@
                 <!-- FIN -->
                 <div class="form-group row">
                     <div class="col-md-12">
-                        <button (click)="savePost()" class="btn btn-success btnblock"
-                            routerLink="/employee-home">Guardar</button>
+                        <button (click)="savePost()" class="btn btn-success btnblock" type="submit"
+                           >Guardar</button>
                     </div>
                 </div>
+            </form>
             </div>
         </div>
     </div>

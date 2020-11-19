@@ -4,6 +4,7 @@ import { BankService } from '../servicios/bank.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import {NgForm} from '@angular/forms';
 @Component({
   selector: 'app-bank-form',
   templateUrl: './bank-form.component.html',
@@ -36,6 +37,10 @@ export class BankFormComponent implements OnInit {
   }
   ngOnInit(): void {
   }
+  
+  onSubmit(form: NgForm) {
+    form.resetForm();
+}
   saveBank() {
     if (this.editing) {
       this.bankService.put(this.bank).subscribe((data) => {
