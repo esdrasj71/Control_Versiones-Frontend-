@@ -38,6 +38,74 @@ label{
   overflow: hidden; 
 }
 
+#andres{
+  width: 100%;
+  min-height: 400px;
+  background: url('../../../assets/images/andres.jpg') bottom no-repeat;
+  background-size: cover;
+  position: relative;
+  z-index: 999;
+}
+
+.comercial{
+  width: 180px;
+  min-height: 180px;
+  background: url('../../../assets/images/commerce.png') bottom no-repeat;
+  background-size: cover;
+  position: relative;
+  margin: 0 auto;
+}
+.recursos{
+  width: 180px;
+  min-height: 180px;
+  background: url('../../../assets/images/recursos.png') bottom no-repeat;
+  background-size: cover;
+  position: relative;
+  margin: 0 auto;
+}
+.operaciones{
+  width: 180px;
+  min-height: 180px;
+  background: url('../../../assets/images/operation.png') bottom no-repeat;
+  background-size: cover;
+  position: relative;
+  margin: 0 auto;
+}
+.finance{
+  width: 180px;
+  min-height: 180px;
+  background: url('../../../assets/images/finance.png') bottom no-repeat;
+  background-size: cover;
+  position: relative;
+  margin: 0 auto;
+}
+#julio{
+  width: 100%;
+  min-height: 400px;
+  background: url('../../../assets/images/julio.jpg') bottom no-repeat;
+  background-size: cover;
+  position: relative;
+  z-index: 999;
+}
+
+#esdras{
+  width: 100%;
+  min-height: 400px;
+  background: url('../../../assets/images/BN3.jpg');
+  background-size: cover;
+  position: relative;
+  z-index: 999;
+}
+
+#kevin{
+  width: 100%;
+  min-height: 400px;
+  background: url('../../../assets/images/kevin.jpg') bottom no-repeat;
+  background-size: cover;
+  position: relative;
+  z-index: 999;
+}
+
 .photo-text{
   min-height: 500px;
   display: flex;
@@ -332,7 +400,7 @@ ul li p{
 }
 
 .portafolio-item:hover .portafolio-img{
-  transform: rotate(-5deg) scale(1.15);
+  transform: rotate(-2deg);
 }
 
 /*FOOTER*/
