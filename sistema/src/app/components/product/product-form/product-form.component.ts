@@ -132,7 +132,7 @@ export class ProductFormComponent implements OnInit {
           //
           this.lot.Product_Id = this.lastidproduct;
           Swal.fire('Producto Actualizado', '', 'success');
-          location.reload();
+          this.router.navigateByUrl('/home');
           //window.location.reload();
           //console.log(data);
           

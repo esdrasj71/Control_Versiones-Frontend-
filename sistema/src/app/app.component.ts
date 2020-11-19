@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   isLog=true;
   usuario="";
   interval:any;
+  afuera:any;
 constructor(private router: Router,
   private loginService:LoginService
   ){
@@ -30,21 +31,36 @@ constructor(private router: Router,
 ngOnInit(){}
 mostrar()
 {
+  console.log('entro');
+  console.log(this.Existe);
   if(this.Existe==0)
   {
    this.usuario=localStorage.getItem('usuario');
-   this.rol=localStorage.getItem('Rol');
-   if(this.usuario==null)
-    this.Existe=0;
+
+   if(this.usuario==null){
+    this.Existe=0;   console.log('0');
+   }
     else
-      this.Existe=1;
+      {this.Existe=1;
+
+        this.usuario=localStorage.getItem('usuario');
+        this.rol=localStorage.getItem('Rol');
+      }
   }else
+  {
     clearInterval(this.interval);
+    clearInterval(this.afuera);
+  }
 }
   logout()
   {
 
     this.loginService.logout();
-    window.location.reload();
+    this.Existe=0;
+    this.router.navigateByUrl('/home');
+    this.router.navigate(['/login'])
+    this.afuera=setInterval(() => {
+      this.mostrar(); 
+    }, 2000);
   }
 }

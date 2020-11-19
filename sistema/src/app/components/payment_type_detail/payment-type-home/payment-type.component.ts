@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PaymentTypeDetailService } from '../servicios/payment-type-detail.service';
 import { HttpClient } from '@angular/common/http';
 import { PaymentTypeDetail } from '../interfaces/payment-type-detail';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-payment-type',
   templateUrl: './payment-type.component.html',
@@ -14,7 +14,8 @@ export class PaymentTypeComponent implements OnInit {
   paymentType: PaymentTypeDetail[];
   constructor( 
     private paymentService: PaymentTypeDetailService,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private router: Router
   ) {
     httpClient
       .get(this.API_ENDPOINT + 'payment_type_detail')
@@ -27,7 +28,8 @@ export class PaymentTypeComponent implements OnInit {
     this.paymentService.delete(id).subscribe(
       (data) => {
         alert('Detalle tipo de pago Eliminado');
-        window.location.reload();
+        this.router.navigateByUrl('/home');
+        this.router.navigate(["/payment-type-home"]);
       },
       (error) => {
         console.log(error);
