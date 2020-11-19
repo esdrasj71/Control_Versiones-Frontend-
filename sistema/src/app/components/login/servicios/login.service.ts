@@ -29,7 +29,7 @@ export class LoginService {
           if(user.message=='El usuario o contraseña son incorrectos')
           {
             Swal.fire({icon: 'error', title: 'No Valido', text: 'El usuario o contraseña son incorrectos'})
-            window.setTimeout(function(){location.reload()},1300)
+            window.setTimeout(function(){this.router.navigate(['/home'])},1300)
           }else
           {
             //alert('Bienvenido al sistema');

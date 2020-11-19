@@ -11,7 +11,7 @@ import {EmployeePositionService} from '../../employee_position/servicios/employe
 import Swal from 'sweetalert2';
 import { Company } from '../../home/interface/company';
 import { CompanyService } from '../../home/servicios/company.service';
-
+import {AppComponent} from '../../../app.component'
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -62,7 +62,8 @@ export class LoginFormComponent implements OnInit {
     private userService: UserService,
     private employeeService: EmployeeService,
     private employeepositionService: EmployeePositionService,
-    private companyService: CompanyService
+    private companyService: CompanyService,
+    private appcomp:AppComponent
   ) {
     this.Existe = 0;
     this.userService.getUsers().subscribe(
@@ -121,7 +122,8 @@ export class LoginFormComponent implements OnInit {
                 //console.log(user);
                 Swal.fire('Usuario Creado', '','success');
                 localStorage.removeItem('token');
-                window.setTimeout(function(){location.reload()},1500)
+                this.router.navigate(['/']);
+                this.router.navigate(["/login"]);
               },
               (error) => {
                 //console.log(error);
