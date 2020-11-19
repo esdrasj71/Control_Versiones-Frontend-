@@ -55,10 +55,10 @@ label{
   position: relative;
   margin: 0 auto;
 }
-.recursos{
+.meso{
   width: 180px;
   min-height: 180px;
-  background: url('../../../assets/images/recursos.png') bottom no-repeat;
+  background: url('../../../assets/images/meso.png') bottom no-repeat;
   background-size: cover;
   position: relative;
   margin: 0 auto;

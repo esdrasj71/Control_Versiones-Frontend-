@@ -13,6 +13,10 @@ h2{
     color: whitesmoke;
 }
 
+h6{
+    color: black;
+}
+
 @keyframes text {
     0%{
         color: whitesmoke;

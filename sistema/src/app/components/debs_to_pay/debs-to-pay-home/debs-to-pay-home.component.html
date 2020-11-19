@@ -5,7 +5,7 @@
     <div class="form-group row">
       &nbsp;&nbsp;&nbsp;<i class="fa fa-search fa-lg"></i> &nbsp;&nbsp;&nbsp;
       <input type="text" class="form-control" name="searchTerm3" [(ngModel)]="searchTerm3"
-        placeholder="Buscar proveedor" style="width: 250px;">&nbsp;&nbsp;&nbsp;&nbsp;
+        placeholder="Buscar proveedor" style="width: 40%;">&nbsp;&nbsp;&nbsp;&nbsp;
     </div>
     <div class="form-group row row col-md-4">
       <tr *ngFor="let billstotal of billstotal">
@@ -57,7 +57,7 @@
       </div>
       <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y: auto">
         <div class="container">
-          <div class="form-group row col-md-4">
+          <div class="form-group row col-md-9">
             <h6 style="color: black;"><strong>Nombre Fiscal: &nbsp;</strong></h6>
             <h6 style="color: black;">{{Fiscal_Name}}</h6>
           </div>
@@ -65,11 +65,11 @@
             <h6 style="color: black;"><strong>NIT: &nbsp;</strong></h6>
             <h6 style="color: black;">{{Nit}}</h6>
           </div>
-          <div class="form-group row row col-md-4">
+          <div class="form-group row row col-md-8">
             <h6 style="color: black;"><strong>Total Cuentas por Pagar:</strong></h6>
             <h6 style="color: black;">{{Total_Debs | currency:"GTQ":"Q"}}</h6>
           </div>
-          <div class="form-group row row col-md-4">
+          <div class="form-group row row col-md-6">
             <h6 for="bills" style="color: black;"><strong>Facturas a pagar: &nbsp;</strong> </h6>
             <h6 for="bills" style="color: black;"> {{cont}} </h6>
           </div>
@@ -154,12 +154,12 @@
       <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y: auto">
         <div class="container">
           <div class="form-group row">
-            <h5 style="color: black;"><strong>Total de la factura: </strong> </h5>
-            <h5 style="color: black;"> {{TotalPurchase | currency:"GTQ":"Q"}}</h5>
+            <h6 style="color: black;"><strong>Total de la factura: </strong> </h6>
+            <h6 style="color: black;"> {{TotalPurchase | currency:"GTQ":"Q"}}</h6>
           </div>
           <div class="form-group row">
-            <h5 style="color: black;"><strong>Total a pagar de la factura: </strong> </h5>
-            <h5 style="color: black;"> {{Total | currency:"GTQ":"Q"}}</h5>
+            <h6 style="color: black;"><strong>Total a pagar de la factura: </strong> </h6>
+            <h6 style="color: black;"> {{Total | currency:"GTQ":"Q"}}</h6>
           </div>
           <table class="table">
             <thead class="thead-dark">
