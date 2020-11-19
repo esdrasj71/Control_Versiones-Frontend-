@@ -21,7 +21,7 @@ export class LotFormComponent implements OnInit {
     Product_Id: null,
   };
   inventory: Inventory = {
-    Stock: 1,
+    Stock: 0,
     Unit_Price: 0,
     Purchase_Price: 0,
     Lot_Id: null,
