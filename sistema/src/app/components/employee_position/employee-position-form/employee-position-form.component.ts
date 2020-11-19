@@ -28,7 +28,7 @@ export class EmployeePositionFormComponent implements OnInit {
       this.editing = true;
       this.httpClient.get(this.API_ENDPOINT + 'employee_position', { headers }).subscribe((data: EmployeePosition[]) => {
         this.postarr = data;
-        console.log(this.postarr);
+        //console.log(this.postarr);
         this.employeePosition = this.postarr.find((m) => { return m.Employee_Position_Id == this.id }); //Aqui traemos solo el id que nos interesa
       }, (error) => {
         console.log(error);

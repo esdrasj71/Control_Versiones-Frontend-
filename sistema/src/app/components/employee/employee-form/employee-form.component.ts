@@ -7,7 +7,6 @@ import { EmployeePosition } from '../../employee_position/interfaces/employee-po
 import Swal from 'sweetalert2';
 import {NgForm} from '@angular/forms';
 
-
 @Component({
   selector: 'app-employee-form',
   templateUrl: './employee-form.component.html',
@@ -39,13 +38,18 @@ export class EmployeeFormComponent implements OnInit {
       this.editing = true;
     
       this.employeeService.getEmployee().subscribe((data: Employee[]) => {
-        console.log(data);
+       // console.log(data);
         
         this.postarr = data;
-        console.log(this.postarr);
+        //console.log(this.postarr);
         this.employee = this.postarr.find((m) => { return m.Employee_Id == this.id });
+        //this.employee.Hire_date.toUTCString();
+        let b=this.employee.Hire_date.toString(); 
+        b= new Date (). toISOString (). slice (0,10);
+        console.log(b);
       }, (error) => {
-        console.log(error);
+        Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: 'Empleado' });
+        //console.log(error);
       });
     } else {
       this.editing = false;

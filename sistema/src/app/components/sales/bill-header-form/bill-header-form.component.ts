@@ -322,10 +322,10 @@ export class BillHeaderFormComponent implements OnInit {
       this.encabezado_factura.Correlative_Number =  this.cantidadfac;
       this.billsService.saveHeader(this.encabezado_factura).subscribe(
         (data) => {
-        
           Swal.fire('Click para finalizar', '', 'success');
+          this.router.navigate(['/home']);
           //Swal.fire('Encabezado Guardado', '', 'success');
-          window.setTimeout(function () { location.reload() }, 3000)
+          //window.setTimeout(function () { location.reload() }, 3000)
           if (this.encabezado_factura.Payment_Complete == false) {
             this.accounts_receivable.Quantity = 0;
             this.accounts_receivable.Total = this.total_cobro;
