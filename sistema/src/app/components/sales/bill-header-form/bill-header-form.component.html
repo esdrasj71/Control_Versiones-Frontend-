@@ -273,7 +273,7 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th class="header" scope="col">#</th>
-                                <th class="header" scope="col">Correlativo producto</th>
+                                <th class="header" scope="col">No. Correlativo</th>
                                 <th class="header" scope="col">Nombre producto</th>
                                 <th class="header" scope="col">Precio Unitario</th>
                                 <th class="header" scope="col">Stock</th>
@@ -284,7 +284,7 @@
                             <tr *ngFor="let inventario of nuevo_inventario | fitradoproduct:filtrado_productos">
                                 <td height="10">{{inventario.Inventory_Id}}</td>
                                 <td height="10">{{inventario.Correlative_Product}}</td>
-                                <td height="10">{{inventario.Product}}</td>
+                                <td height="10">{{inventario.ProductComplete}}</td>
                                 <td height="10">{{inventario.Unit_Price | currency:"GTQ":"Q"}}</td>
                                 <th height="10">{{inventario.Stock}}</th>
                                 <td><a class="btn btn-warning btn-sm" style="background-color:#F7985B;"
@@ -379,7 +379,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group" style="text-align: right;">
                                         <button type="button" (click)="enviar()" class="btn btn-primary" 
-                                       >Enviar</button>
+                                        data-dismiss="modal" >Enviar</button>
                                     </div>
                                 </div>
                             </div>

@@ -31,14 +31,14 @@ constructor(private router: Router,
 ngOnInit(){}
 mostrar()
 {
-  console.log('entro');
-  console.log(this.Existe);
+  //console.log('entro');
+  //console.log(this.Existe);
   if(this.Existe==0)
   {
    this.usuario=localStorage.getItem('usuario');
 
    if(this.usuario==null){
-    this.Existe=0;   console.log('0');
+    this.Existe=0;   //console.log('0');
    }
     else
       {this.Existe=1;

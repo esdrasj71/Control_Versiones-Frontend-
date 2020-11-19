@@ -66,7 +66,7 @@ let creado = fecha;
   //html to pdf format
   var html = htmlToPdfmake(`
   <div style = "text-align:center;">
-  <h1>Quetzal Commerce</h1>
+  <h1>Quetzal Finance</h1>
   <p>
   <b>Empresa: </b> `+this.empresa.Company_Name+`
   </p>

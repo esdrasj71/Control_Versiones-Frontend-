@@ -166,6 +166,7 @@ export class BillHeaderFormComponent implements OnInit {
       this.router.navigate(['/serie-form']);
     }
     
+    
 
   }
 
@@ -322,10 +323,10 @@ export class BillHeaderFormComponent implements OnInit {
       this.encabezado_factura.Correlative_Number =  this.cantidadfac;
       this.billsService.saveHeader(this.encabezado_factura).subscribe(
         (data) => {
-        
           Swal.fire('Click para finalizar', '', 'success');
+          this.router.navigate(['/home']);
           //Swal.fire('Encabezado Guardado', '', 'success');
-          window.setTimeout(function () { location.reload() }, 3000)
+          //window.setTimeout(function () { location.reload() }, 3000)
           if (this.encabezado_factura.Payment_Complete == false) {
             this.accounts_receivable.Quantity = 0;
             this.accounts_receivable.Total = this.total_cobro;
@@ -338,10 +339,11 @@ export class BillHeaderFormComponent implements OnInit {
             })
 
           }
-          if (this.encabezado_factura.Payment_Complete == true) {
+          if (this.encabezado_factura.Payment_Complete == true ) {
             if (this.total_cobroalcontado > this.total) {
               this.total_cobroalcontado = this.total;
             }
+            
             this.pago_detalle.Total_Amount = this.total_cobroalcontado;
             this.pago_detalle.Payment_Id = 1;
             this.pago_detalle.Bill_header_Id = data["id"];
