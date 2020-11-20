@@ -20,7 +20,7 @@ import { DebstoPay } from '../../debs_to_pay/interfaces/debs-to-pay';
 import { DebsToPayService } from '../../debs_to_pay/servicios/debs-to-pay.service';
 import Swal from 'sweetalert2';
 import { Observable } from 'rxjs';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-purchase-header-form',
   templateUrl: './purchase-header-form.component.html',
@@ -106,6 +106,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
   };
   producto: Observable<any>
   constructor(
+    private router: Router,
     private inventoryService: InventoryService,
     private providerService: ProvidersService,
     private activatedRoute: ActivatedRoute,
@@ -181,7 +182,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
       (data) => {
         Swal.fire('Compra Guardada', '', 'success');
         //console.log(data);
-        window.setTimeout(function () { location.reload() }, 1100)
+        this.router.navigate(['/home']);
         this.payment.Purchase_Header_Id = data['id'];
         if (this.SiPago == true) {
           ///DebsToPay
