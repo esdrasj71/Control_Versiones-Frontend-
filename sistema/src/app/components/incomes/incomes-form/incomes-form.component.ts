@@ -40,6 +40,7 @@ export class IncomesFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.incomesSevice.getIncomes().subscribe((data: Incomes[]) => {
+      console.log(data[12]);
       this.temp = data[12];
       //return this.incomes = data;
       this.temp.forEach((e) => {
@@ -70,10 +71,13 @@ export class IncomesFormComponent implements OnInit {
           this.incomes.forEach((b) => {
             if (e.mes == b.Income_Date) {
               e.mes = this.meses[e.mes - 1];;
-              e.total_mes = b.Branch_Office1;
               e.total_aux1 = b.Branch_Office2;
               e.total_aux2 = b.Branch_Office3;
-              e.total_sumado = b.Total;
+             
+              if(e.total_mes == 0){
+                e.total_mes = b.Branch_Office1;
+                e.total_sumado = b.Total;
+              }
             }
           })
           this.total_suc1 += parseFloat(e.total_mes);
@@ -164,13 +168,13 @@ export class IncomesFormComponent implements OnInit {
         this.ingresos.Total = b.total_sumado;
         this.incomesSevice.put(this.ingresos).subscribe((data) => {
           this.bandera1 += 1;
-          //this.estado(this.bandera1, "actualizado", true)
-          Swal.fire('Ingreso Actualizado', '','success');
+          this.estado(this.bandera1, "actualizado", true)
+          //Swal.fire('Ingreso Actualizado', '','success');
         }, (error) => {
           console.log(error);
           this.bandera1 = -1;
           Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' })
-          //this.estado(this.bandera1, "actualizado", false)
+          this.estado(this.bandera1, "actualizado", false)
           //Swal.fire('Ingreso Actualizado', '','success');
         })
       })
