@@ -26,7 +26,7 @@ export class ProvidersService {
   }
 
   save(providers: Providers) {
-    console.log(providers);
+    //console.log(providers);
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token')});
     return this.httpClient.post(this.API_ENDPOINT + 'providers', providers, { headers: headers });
   }

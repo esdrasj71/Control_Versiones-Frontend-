@@ -5,6 +5,7 @@ import { DebstoPay } from '../interfaces/debs-to-pay';
 import { Procedure_DebstoPay } from '../interfaces/procedure_debstopay';
 import Swal from 'sweetalert2';
 import {NgForm} from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-debs-to-pay-home',
   templateUrl: './debs-to-pay-home.component.html',
@@ -26,7 +27,7 @@ export class DebsToPayHomeComponent implements OnInit {
 
   cont = 0;
 
-  constructor(private debstopayService: DebsToPayService, private httpClient: HttpClient) {
+  constructor(private debstopayService: DebsToPayService, private httpClient: HttpClient,private router: Router) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
     httpClient.get(this.API_ENDPOINT + 'DebstoPay', { headers })
       .subscribe((data: DebstoPay[]) => {
@@ -80,7 +81,8 @@ export class DebsToPayHomeComponent implements OnInit {
     else {
       this.debstopayService.saveprocedure(this.procedure_debstopay).subscribe((data) => {
         Swal.fire('Pago Exitoso', '','success');
-        window.setTimeout(function(){location.reload()},1100)
+        this.router.navigate(['/home']);
+        //window.setTimeout(function(){location.reload()},1100)
       }, (error) => {
         console.log(error);
         Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})

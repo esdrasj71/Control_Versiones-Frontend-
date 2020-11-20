@@ -261,7 +261,8 @@ export class BillHeaderFormComponent implements OnInit {
   }
   onEnter(value: number, precio: number, datos: any) {
     if (value > datos[0].Stock || value < 0) {
-      alert("Solo hay en existencia: " + datos[0].Stock);
+      Swal.fire({ icon: 'warning', title: 'Precaución!', text: 'solo hay en existencia'+ datos[0].Stock });
+      //alert("Solo hay en existencia: " + datos[0].Stock);
     } else {
       this.total -= datos[0].Subtotal;
       datos[0].Subtotal = parseFloat((value * precio).toFixed(2))
