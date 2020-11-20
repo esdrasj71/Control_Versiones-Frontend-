@@ -16,12 +16,14 @@ export class SeriesFormComponent implements OnInit {
       Cantidad_inicial: null,
       Cantidad_limite: null,
   }
+  interval:any;
   constructor(private seriesService: SeriesService, private router: Router) {
     setInterval(() => {
     this.seriesService.getSeries().subscribe((data)=>{
       this.serie = data;
       //console.log(this.serie)
-    }) }, 1000);
+    }) 
+  }, 1000);
    }
   
   ngOnInit(): void {
@@ -31,6 +33,7 @@ export class SeriesFormComponent implements OnInit {
   }
   seleccion(id, nombre, cantidad){
     localStorage.setItem('serie', JSON.stringify({serieId: id, Nombre: nombre, Cantidad:cantidad}));
+    clearInterval(this.interval);
     this.router.navigate(['/home']);
   }
   guardarserie(){
@@ -40,6 +43,7 @@ export class SeriesFormComponent implements OnInit {
         this.series.Cantidad_inicial = 1;
       this.seriesService.saveSeries(this.series).subscribe((data)=>{
         Swal.fire('Serie Guardada', '','success');
+        clearInterval(this.interval);
         this.router.navigate(['/home']);
       },(error)=>{
         //console.log(error);

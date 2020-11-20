@@ -15,6 +15,12 @@ export class LotService {
         this.lot = data;
       });
   }
+
+  VerificarProduct(id) {
+    const headers = new HttpHeaders({ 'ContentType': 'application/json','accesstoken':localStorage.getItem('token') });
+
+    return this.httpClient.get(this.API_ENDPOINT + 'lote/'+id,{headers});
+  }
   getLot() {
     const headers = new HttpHeaders({ 'ContentType': 'application/json','accesstoken':localStorage.getItem('token') });
 

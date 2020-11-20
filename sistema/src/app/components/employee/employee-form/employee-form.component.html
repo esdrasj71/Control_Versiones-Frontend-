@@ -67,10 +67,10 @@
                 <!-- TAKE 1-->
 
                 <div class="form-group row">
-                    <label class="col-md-3 form-controllabel" for="Hire_date" timezone="[[timezone]]">Fecha Contrato</label>
+                    <label class="col-md-3 form-controllabel" for="Hire_date" >Fecha Contrato</label>
                     <div class="col-md-9">
                         <input [(ngModel)]="employee.Hire_date" type="date" name="Hire_date" id="Hire_date"  class="form-control"
-                            style="width: 80%;" required>
+                            style="width: 80%;" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}"  required>
                     </div>
                 </div>
                 
