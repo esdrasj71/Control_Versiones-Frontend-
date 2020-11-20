@@ -73,12 +73,15 @@ export class IncomesFormComponent implements OnInit {
               e.mes = this.meses[e.mes - 1];;
               e.total_aux1 = b.Branch_Office2;
               e.total_aux2 = b.Branch_Office3;
-             
+              
+
               if(e.total_mes == 0){
                 e.total_mes = b.Branch_Office1;
-                e.total_sumado = b.Total;
+                
               }
+              e.total_sumado = e.total_aux1+e.total_aux2+e.total_mes;
             }
+            
           })
           this.total_suc1 += parseFloat(e.total_mes);
           this.total_suc2 += parseFloat(e["total_aux1"]);
