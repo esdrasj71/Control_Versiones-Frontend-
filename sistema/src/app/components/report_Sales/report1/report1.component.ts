@@ -43,7 +43,7 @@ export class Report1Component implements OnInit {
   }
   saveReport1(){
     if (this.report2.fechainicio == null || this.report2.fechafin == null) {
-      Swal.fire({icon: 'warning', title: 'Aviso!', text: 'Debe llenar todos los campos'}); 
+      Swal.fire({icon: 'warning', title: 'Aviso!', text: 'Debe ingresar el rango de fechas'}); 
     }else{
       this.report1Service.getReport1(this.report2).subscribe((data)=>{
         this.reportt1 = [];
