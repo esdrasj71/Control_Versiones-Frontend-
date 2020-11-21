@@ -119,7 +119,7 @@
           <input  [(ngModel)]="procedure_debstopay.Description" ngDefaultControl name="Description" id="Description" type="text" class="form-control" aria-label="Default" placeholder="Añada una descripción..."
             aria-describedby="inputGroup-sizing-default">
         </div>
-        <button type="submit" class="btn btn-primary" (click)="saveDebs()">
+        <button type="submit" class="btn btn-primary" (click)="saveDebs()" data-dismiss="modal">
           Cobrar
           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cash" fill="currentColor"
             xmlns="http://www.w3.org/2000/svg">

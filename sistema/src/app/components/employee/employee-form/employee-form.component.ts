@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { EmployeePosition } from '../../employee_position/interfaces/employee-position';
 import Swal from 'sweetalert2';
 import {NgForm} from '@angular/forms';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-employee-form',
@@ -44,9 +45,17 @@ export class EmployeeFormComponent implements OnInit {
         //console.log(this.postarr);
         this.employee = this.postarr.find((m) => { return m.Employee_Id == this.id });
         //this.employee.Hire_date.toUTCString();
-        let b=this.employee.Hire_date.toString(); 
-        b= new Date (). toISOString (). slice (0,10);
-        console.log(b);
+        //console.log(this.employee.Hire_date);
+        
+        /*let b=this.employee.Hire_date;
+        let a=formatDate(b,'yyyy-MM-dd','en-US');
+        console.log(a); 
+        let c= new Date(b).toLocaleDateString();
+        console.log(c);*/
+       // this.employee.Hire_date.toLocaleDateString();
+        //console.log(this.employee.Hire_date.toLocaleDateString());
+        //b.toDateString();
+        //console.log("nueva fecha",b);
       }, (error) => {
         Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: 'Empleado' });
         //console.log(error);

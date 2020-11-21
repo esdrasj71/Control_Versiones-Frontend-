@@ -125,7 +125,7 @@ export class BillHeaderFormComponent implements OnInit {
   nombre_serie = "";
   idserie = 0;
   cantidadfac = 0;
-
+  total1 = 0;
   constructor(
     private billsService: BillsService,
     private employeeService: EmployeeService,
@@ -261,7 +261,8 @@ export class BillHeaderFormComponent implements OnInit {
   }
   onEnter(value: number, precio: number, datos: any) {
     if (value > datos[0].Stock || value < 0) {
-      alert("Solo hay en existencia: " + datos[0].Stock);
+      Swal.fire({ icon: 'warning', title: 'Precaución!', text: 'solo hay en existencia'+ datos[0].Stock });
+      //alert("Solo hay en existencia: " + datos[0].Stock);
     } else {
       this.total -= datos[0].Subtotal;
       datos[0].Subtotal = parseFloat((value * precio).toFixed(2))
@@ -273,8 +274,9 @@ export class BillHeaderFormComponent implements OnInit {
   }
   onPagoalcontado(value: number) {
     this.total_cobroalcontado = value;
+    this.total1 = value;
     this.total_cobro -= this.total_cobroalcontado;
-
+    
     if (this.total_cobro < 0) {
       this.total_cobro = Math.abs(this.total_cobro)
       this.cadena_pago = "El vuelto es de: ";
@@ -302,6 +304,8 @@ export class BillHeaderFormComponent implements OnInit {
   }
   setear() {
     this.total_cobro = this.total;
+    this.cadena_pago = "Total:";
+    this.total1 = 0;
   }
 
   enviar() {

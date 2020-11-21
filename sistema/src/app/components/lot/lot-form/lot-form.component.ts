@@ -35,8 +35,10 @@ export class LotFormComponent implements OnInit {
   postarr: Lot[];
   products: Products[];
   selectedProductId: number;
-
+  interval:any;
   constructor(private invetoryService: InventoryService, private lotService: LotService, private activatedRoute: ActivatedRoute, private router: Router, private httpClient: HttpClient) {
+
+    
     this.id = this.activatedRoute.snapshot.params['id'];
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
 
@@ -59,7 +61,7 @@ export class LotFormComponent implements OnInit {
   }
   ngOnInit() {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
-    setInterval(() => {
+   this.interval=setInterval(() => {
       this.httpClient.get(this.API_ENDPOINT + 'productlot', { headers })
       .subscribe((data: Products[]) => {
         this.products = data;
@@ -72,6 +74,7 @@ export class LotFormComponent implements OnInit {
       this.lot.Due_Date = this.selectedDueDate;
       this.lotService.put(this.lot).subscribe((data) => { //El unico cambioes el put
         Swal.fire('Lote Actualizado', '', 'success');
+      clearInterval(this.interval);
         //console.log(data)
       }, (error) => {
         //console.log(error);
@@ -85,21 +88,48 @@ export class LotFormComponent implements OnInit {
         Swal.fire({ icon: 'warning', title: 'Aviso!', text: 'Debe llenar todos los campos' });
       }
       else {
-        this.lotService.save(this.lot).subscribe((data) => {
-          Swal.fire('Lote Guardado', '', 'success');
-          //this.router.navigate(["/lot-home"]);
-          this.Lot_Id.emit(data['id']);
-          this.inventory.Lot_Id = data['id'];
-          this.inventory.Statuss = false;
-          this.invetoryService.save(this.inventory).subscribe((data) => {
-            Swal.fire('Inventario Guardado', '', 'success');
-            //console.log(data)
-          });
-
-        }, (error) => {
-          //console.log(error);
-          Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
-        });
+        this.lotService.VerificarProduct(this.lot.Product_Id).subscribe((data)=>{
+          let a= data['num']
+          if(a ==-1)
+          {
+            this.lotService.save(this.lot).subscribe((data) => {
+              Swal.fire('Lote Guardado', '', 'success');
+              clearInterval(this.interval);
+              //this.router.navigate(["/lot-home"]);
+              this.Lot_Id.emit(data['id']);
+              this.inventory.Lot_Id = data['id'];
+              this.inventory.Statuss = true;
+              this.invetoryService.save(this.inventory).subscribe((data) => {
+                Swal.fire('Inventario Guardado', '', 'success');
+                //console.log(data)
+              });
+    
+            }, (error) => {
+              //console.log(error);
+              Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
+            });
+          }else
+          {
+            this.lotService.save(this.lot).subscribe((data) => {
+              Swal.fire('Lote Guardado', '', 'success');
+              clearInterval(this.interval);
+              //this.router.navigate(["/lot-home"]);
+              this.Lot_Id.emit(data['id']);
+              this.inventory.Lot_Id = data['id'];
+              this.inventory.Statuss = false;
+              this.invetoryService.save(this.inventory).subscribe((data) => {
+                Swal.fire('Inventario Guardado', '', 'success');
+                //console.log(data)
+              });
+    
+            }, (error) => {
+              //console.log(error);
+              Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
+            });
+          }
+        })
+        
+       
       }
     }
   }
