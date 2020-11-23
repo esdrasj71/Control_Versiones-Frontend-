@@ -153,10 +153,7 @@
                 <tr>
                     <th scope="col">{{detalle.Name}}</th>
                     <th scope="col">{{detalle.Monto | currency:"GTQ":"Q"}}</th>
-                    <td> <input *ngIf="detalle.Monto >= 0" type="number" #enterrr
-                        (keyup.enter)="registrar(enterrr.value,detalle.Balance_Id, detalle.Name, detalle.Type, detalle.Monto)" ngDefaultControl
-                        name="monto" id="monto" class="form-control" placeholder=" " value=0
-                        tabindex="1" /></td>
+                    <td></td>
                 </tr>
             </thead>
             <thead>

@@ -110,7 +110,7 @@ let creado = fecha;
   //html to pdf format
   var html = htmlToPdfmake(`
   <div style = "text-align:center;">
-  <h1>Quetzal Commerce</h1>
+  <h1>Quetzal Finance</h1>
   <p>
   <b>Empresa: </b> `+this.empresa.Company_Name+`
   </p>
@@ -152,7 +152,7 @@ mostrar(Date1, Date2, ProvidersId, total) {
 
   Reporte1() {
     if (this.report1.Date1 == null || this.report1.Date2 == null) {
-      Swal.fire({icon: 'warning', title: 'Aviso!', text: 'Debe llenar todos los campos'}); 
+      Swal.fire({icon: 'warning', title: 'Aviso!', text: 'Debe ingresar el rango de fechas'}); 
     }
     else {
       this.purchasereportService.showreport1(this.report1).subscribe((data) => {

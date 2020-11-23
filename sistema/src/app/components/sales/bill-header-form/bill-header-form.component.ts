@@ -125,7 +125,7 @@ export class BillHeaderFormComponent implements OnInit {
   nombre_serie = "";
   idserie = 0;
   cantidadfac = 0;
-
+  total1 = 0;
   constructor(
     private billsService: BillsService,
     private employeeService: EmployeeService,
@@ -274,8 +274,9 @@ export class BillHeaderFormComponent implements OnInit {
   }
   onPagoalcontado(value: number) {
     this.total_cobroalcontado = value;
+    this.total1 = value;
     this.total_cobro -= this.total_cobroalcontado;
-
+    
     if (this.total_cobro < 0) {
       this.total_cobro = Math.abs(this.total_cobro)
       this.cadena_pago = "El vuelto es de: ";
@@ -303,6 +304,8 @@ export class BillHeaderFormComponent implements OnInit {
   }
   setear() {
     this.total_cobro = this.total;
+    this.cadena_pago = "Total:";
+    this.total1 = 0;
   }
 
   enviar() {
