@@ -160,6 +160,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
   getProductId(id) {
     this.inventoryService.getInventoryNoPerishable().subscribe((data: Inventory[]) => {
       this.inventory = data;
+      //console.log(data);
     });
     this.productService.getProductsId(id).subscribe((data: Products[]) => {
       let datos: any = data;
