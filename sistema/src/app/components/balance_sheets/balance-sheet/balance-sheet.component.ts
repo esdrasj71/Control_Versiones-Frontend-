@@ -315,7 +315,7 @@ export class BalanceSheetComponent implements OnInit {
       <b>Reporte: Balance General</b>
     </p>
     <p>
-    <b>Reporte del: ` +this.date.getFullYear()+`-` +`01-01` + ` al `+this.balance.fechafin+` </b>
+    <b>Del ` +this.date.getFullYear()+`-` +`01-01` + ` al `+this.balance.fechafin+` </b>
    </p>
    
     </div>

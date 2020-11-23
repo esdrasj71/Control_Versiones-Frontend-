@@ -90,10 +90,9 @@ export class ResultStatementHomeComponent implements OnInit {
    </div> 
     <div style = "text-align:justify;">
     <p>
-    <b>Reporte del: ` +this.resultstatement.fechainicio+ ` al `+this.resultstatement.fechafin+` </b>
+    <b>Del ` +this.resultstatement.fechainicio+ ` al `+this.resultstatement.fechafin+` </b>
    </p>
     <p>
-    <b>Este reporte se genero el día: `+creado +`</b> 
     </p>
     </div>
     `+pdfTable.innerHTML);

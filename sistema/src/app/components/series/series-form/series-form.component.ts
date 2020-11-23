@@ -18,12 +18,16 @@ export class SeriesFormComponent implements OnInit {
   }
   interval:any;
   constructor(private seriesService: SeriesService, private router: Router) {
-    setInterval(() => {
-    this.seriesService.getSeries().subscribe((data)=>{
-      this.serie = data;
-      //console.log(this.serie)
-    }) 
-  }, 1000);
+    //let b = localStorage.getItem('serie')
+
+      this.interval=setInterval(() => {
+        this.seriesService.getSeries().subscribe((data)=>{
+          this.serie = data;
+          //console.log(this.serie)
+        }) 
+      }, 2000);
+  
+
    }
   
   ngOnInit(): void {
