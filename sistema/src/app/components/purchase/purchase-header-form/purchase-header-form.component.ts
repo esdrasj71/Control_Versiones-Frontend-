@@ -132,6 +132,8 @@ export class PurchaseHeaderFormComponent implements OnInit {
     });
   }
   getProviderId(id) {
+    this.header.Providers_Id=id;
+    console.log(this.header.Providers_Id);
     this.providerService.getProviders().subscribe((data: Providers[]) => {
       this.providers = data;
     });
@@ -178,8 +180,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
     //HEADER
 
     this.header.Total = this.total;
-    console.log(this.header.Total);
-    if(this.header.Serie==null || this.header.Correlative_Number==null || this.header.Date_Purchase==null || this.header.Total==null )
+    if(this.header.Serie==null || this.header.Correlative_Number==null || this.header.Date_Purchase==null || this.header.Total==null || this.header.Providers_Id==null )
     {
       Swal.fire({ icon: 'warning', title: 'Precaución!', text: 'Algun dato no fue ingresado' });
     }else
