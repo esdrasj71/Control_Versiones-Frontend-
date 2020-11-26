@@ -92,18 +92,18 @@ export class LoginFormComponent implements OnInit {
   ngOnInit() {}
   saveFirst() {
     if (
-      this.employee.Cellphone_number == null ||
-      this.employee.DPI == null ||
+      this.employee.Phone_number == null || this.employee.Phone_number=="" ||
+      this.employee.DPI == null || this.employee.DPI=="" ||
       this.employee.Gender == null ||
       this.employee.Hire_date == null ||
-      this.employee.Last_names == null ||
-      this.employee.Names == null ||
-      this.company.Company_Name == null ||
-      this.company.Address == null ||
-      this.company.NIT == null ||
-      this.user.Username == null ||
-      this.user.Password == null
-    ) {
+      this.employee.Last_names == null || this.employee.Last_names == "" ||
+      this.employee.Names == null || this.employee.Names == ""||
+      this.company.Company_Name == null || this.company.Company_Name == "" ||
+      this.company.Address == null || this.company.Address == "" ||
+      this.company.NIT == null || this.company.NIT == ""||
+      this.user.Username == null || this.user.Username == "" ||
+      this.user.Password == null || this.user.Password == "" 
+     ) {
      
       Swal.fire({icon: 'warning', title: 'Precaución!', text: 'Algunos de los datos son incorrectos porfavor verifique haber llenado todos los campos'}); 
     } else {
@@ -138,13 +138,13 @@ export class LoginFormComponent implements OnInit {
           //console.log(error);
           Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''})
           localStorage.removeItem('token');
-          window.setTimeout(function(){location.reload()},1500)
+          //window.setTimeout(function(){location.reload()},1500)
         }
       );
     }
   }
   savePost() {
-    if (this.login.Username == null || this.login.Password == null) {
+    if (this.login.Username == null || this.login.Username=="" || this.login.Password == null || this.login.Password=="") {
       Swal.fire({icon: 'warning', title: 'Precaución!', text: 'Introduzca un usuario y una contraseña'}); 
     } else {
       this.loginService.save(this.login).subscribe();

@@ -3,8 +3,8 @@ export interface Employee {
     DPI: string;
     Names: string;
     Last_names: string;
-    Phone_number: number;
-    Cellphone_number: number;
+    Phone_number: string;
+    Cellphone_number: string;
     Email: string;
     Gender: boolean;
     Hire_date: Date;
