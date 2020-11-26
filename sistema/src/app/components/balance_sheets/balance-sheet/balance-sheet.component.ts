@@ -45,8 +45,8 @@ export class BalanceSheetComponent implements OnInit {
   //enterrr.value, detalle.Balance_Id, detalle.Name, detalle.Type
 //value,id, nombre, tipo
   registrar(value,id, Nombre, tipo, monto){
-  if(monto == 0 && value <0){
-    Swal.fire({icon: 'warning', title: 'Aviso!', text: 'No puede restar en 0'}); 
+  if((monto == 0 && value <0)){
+    Swal.fire({icon: 'warning', title: 'Aviso!', text: 'No puede restar en '+monto}); 
     return;
   }
    // 
