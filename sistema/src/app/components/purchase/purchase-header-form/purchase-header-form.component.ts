@@ -176,14 +176,15 @@ export class PurchaseHeaderFormComponent implements OnInit {
 
   savePost() {
     //HEADER
-    if(this.header.Providers_Id==null || this.header.Serie==null || this.header.Correlative_Number==null || this.header.Date_Purchase==null|| this.purchase.Quantity==null || this.purchase.Subtotal==null || this.purchase.Unit_Price==null || this.purchase.Inventory_Id==null)
+    this.header.Providers_Id = this.proveedor_seleccionado[0].Providers_Id;
+    this.header.Total = this.total;
+    if(this.header.Serie==null || this.header.Correlative_Number==null || this.header.Date_Purchase==null || this.header.Providers_Id == null || this.header.Total==null || this.header.Total==0)
     {
       Swal.fire({ icon: 'warning', title: 'Precaución!', text: 'Algun dato no fue ingresado' });
     }else
     {
-    this.header.Providers_Id = this.proveedor_seleccionado[0].Providers_Id;
     this.header.Payment_Complete = 0;
-    this.header.Total = this.total;
+ 
     this.purchase_headerservice.save(this.header).subscribe(
       (data) => {
         Swal.fire('Compra Guardada', '', 'success');
