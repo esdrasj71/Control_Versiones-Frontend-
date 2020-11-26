@@ -61,7 +61,7 @@ export class InventoryFormComponent implements OnInit {
   saveInventory() {
     if (this.editing) {
       if (this.inventory.Unit_Price < this.inventory.Purchase_Price) {
-        Swal.fire({ icon: 'warning', title: 'Aviso!', text: 'El precio de venta es mayor al de compra' });
+        Swal.fire({ icon: 'warning', title: 'Aviso!', text: 'El precio de compra es mayor al de venta' });
         this.router.navigate(["/inventory-home"]);
       }
       else {
