@@ -6,7 +6,7 @@ import { ProductsService } from '../../product/servicios/products.service';
 import { LotService } from '../../lot/servicios/lot.service';
 import { InventoryService } from '../servicios/inventory.service';
 import { ActivatedRoute } from '@angular/router';
-import { Router} from '@angular/router'; 
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -41,7 +41,7 @@ export class InventoryFormComponent implements OnInit {
         console.log(this.inventoryarr);
         this.inventory = this.inventoryarr.find((m) => { return m.Inventory_Id == this.id });
         this.selectedProductId = this.inventory.Lot_Id;
-        
+
       }, (error) => {
         console.log(error);
       });
@@ -60,25 +60,31 @@ export class InventoryFormComponent implements OnInit {
   }
   saveInventory() {
     if (this.editing) {
-      this.inventory.Lot_Id = this.selectedProductId;
-      this.inventoryService.put(this.inventory).subscribe((data) => {
-        Swal.fire('Inventario Actualizado', '','success');
+      if (this.inventory.Unit_Price < this.inventory.Purchase_Price) {
+        Swal.fire({ icon: 'warning', title: 'Aviso!', text: 'El precio de venta es mayor al de compra' });
         this.router.navigate(["/inventory-home"]);
-        //console.log(data)
-      }, (error) => {
-        //console.log(error);
-        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
-      });
+      }
+      else {
+        this.inventory.Lot_Id = this.selectedProductId;
+        this.inventoryService.put(this.inventory).subscribe((data) => {
+          Swal.fire('Inventario Actualizado', '', 'success');
+          this.router.navigate(["/inventory-home"]);
+          //console.log(data)
+        }, (error) => {
+          //console.log(error);
+          Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
+        });
+      }
     }
     else {
       this.inventory.Lot_Id = this.selectedProductId;
       this.inventoryService.save(this.inventory).subscribe((data) => {
-        Swal.fire('Inventario Guardado', '','success');
+        Swal.fire('Inventario Guardado', '', 'success');
         this.router.navigate(["/inventory-home"]);
         //console.log(data)
       }, (error) => {
         //console.log(error);
-        Swal.fire({icon: 'error', title: 'Ocurrio un error', text: ''});
+        Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
       });
     }
   }

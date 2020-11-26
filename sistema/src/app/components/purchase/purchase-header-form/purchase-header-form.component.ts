@@ -176,12 +176,15 @@ export class PurchaseHeaderFormComponent implements OnInit {
 
   savePost() {
     //HEADER
-  
-      //Swal.fire({ icon: 'warning', title: 'Precaución!', text: 'Algun dato no fue ingresado' });
-  
     this.header.Providers_Id = this.proveedor_seleccionado[0].Providers_Id;
-    this.header.Payment_Complete = 0;
     this.header.Total = this.total;
+    if(this.header.Serie==null || this.header.Correlative_Number==null || this.header.Date_Purchase==null || this.header.Providers_Id == null || this.header.Total==null || this.header.Total==0)
+    {
+      Swal.fire({ icon: 'warning', title: 'Precaución!', text: 'Algun dato no fue ingresado' });
+    }else
+    {
+    this.header.Payment_Complete = 0;
+ 
     this.purchase_headerservice.save(this.header).subscribe(
       (data) => {
         Swal.fire('Compra Guardada', '', 'success');
@@ -301,7 +304,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
       );
     }
     //window.location.reload();
-  
+  }
 }
 
   onEnter(cantidad, precio, datos: any) {
