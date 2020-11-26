@@ -20,12 +20,10 @@ export class SeriesFormComponent implements OnInit {
   constructor(private seriesService: SeriesService, private router: Router) {
     //let b = localStorage.getItem('serie')
 
-      this.interval=setInterval(() => {
-        this.seriesService.getSeries().subscribe((data)=>{
-          this.serie = data;
-          //console.log(this.serie)
-        }) 
-      }, 2000);
+    this.seriesService.getSeries().subscribe((data)=>{
+      this.serie = data;
+      //console.log(this.serie)
+    }) 
   
 
    }
@@ -37,7 +35,6 @@ export class SeriesFormComponent implements OnInit {
   }
   seleccion(id, nombre, cantidad){
     localStorage.setItem('serie', JSON.stringify({serieId: id, Nombre: nombre, Cantidad:cantidad}));
-    clearInterval(this.interval);
     this.router.navigate(['/home']);
   }
   guardarserie(){
@@ -47,12 +44,15 @@ export class SeriesFormComponent implements OnInit {
         this.series.Cantidad_inicial = 1;
       this.seriesService.saveSeries(this.series).subscribe((data)=>{
         Swal.fire('Serie Guardada', '','success');
-        clearInterval(this.interval);
         this.router.navigate(['/home']);
       },(error)=>{
         //console.log(error);
         Swal.fire({icon: 'error', title: 'Ocurrio un error', text: 'Conflictos al insertar la serie'});
       })
+      this.seriesService.getSeries().subscribe((data)=>{
+        this.serie = data;
+        //console.log(this.serie)
+      }) 
       }
       
     
