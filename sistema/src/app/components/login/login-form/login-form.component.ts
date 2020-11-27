@@ -92,7 +92,7 @@ export class LoginFormComponent implements OnInit {
   ngOnInit() {}
   saveFirst() {
     if (
-      this.employee.Phone_number == null || this.employee.Phone_number=="" ||
+      this.employee.Cellphone_number == null || this.employee.Cellphone_number=="" ||
       this.employee.DPI == null || this.employee.DPI=="" ||
       this.employee.Gender == null ||
       this.employee.Hire_date == null ||
