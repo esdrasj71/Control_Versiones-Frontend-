@@ -101,31 +101,38 @@ export class ExpendituresFormComponent implements OnInit {
       this.editing = false;
     }
     //List Foreign Keys
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
-    httpClient.get(this.API_ENDPOINT + 'billtype', { headers }).subscribe((data: BillType[]) => {
-      this.billtype = data;
-    });
-    httpClient
-      .get(this.API_ENDPOINT + 'expenses', { headers })
+    
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
+      this.httpClient.get(this.API_ENDPOINT + 'billtype', { headers })
+      .subscribe((data: BillType[]) => {
+        this.billtype = data;
+      })
+   
+  
+   
+     
+      this.httpClient.get(this.API_ENDPOINT + 'expenses', { headers })
       .subscribe((data: Expenses[]) => {
         this.expenses = data;
-      });
-    httpClient
-      .get(this.API_ENDPOINT + 'costs', { headers })
-      .subscribe((data: Costs[]) => {
-        this.costs = data;
-      });
-    httpClient
-      .get(this.API_ENDPOINT + 'bank', { headers })
-      .subscribe((data: Bank[]) => {
-        this.banks = data;
-      });
-    httpClient
-      .get(this.API_ENDPOINT + 'providers', { headers })
-      .subscribe((data: Providers[]) => {
-        this.providers = data;
-      });
-  }
+      })
+  
+     
+        this.httpClient.get(this.API_ENDPOINT + 'costs', { headers })
+        .subscribe((data: Costs[]) => {
+          this.costs = data;
+        })
+  
+        this.httpClient.get(this.API_ENDPOINT + 'bank', { headers })
+        .subscribe((data: Bank[]) => {
+          this.banks = data;
+        })
+    
+        this.httpClient.get(this.API_ENDPOINT + 'providers', { headers })
+        .subscribe((data: Providers[]) => {
+          this.providers = data;
+        })
+     
+}
   ngOnInit(): void {
   }
   saveExpenditures() {
@@ -192,42 +199,63 @@ export class ExpendituresFormComponent implements OnInit {
   //Formularios Emergentes
   //Bank
   findbank(id) {
-    this.selectedBanksId = id;
+  
     this.banksService.findbank(id).subscribe((data: Bank[]) => {
       this.bk = data;//json
       return this.bk = Array.of(this.bk);
     });
+    this.banksService.get().subscribe((data: Bank[])=>{
+      this.banks = data;
+    })
+    this.selectedBanksId = id;
   }
   //BillType
   findbilltype(id) {
-    this.selectedBillTypeId = id;
+    
     this.billtypeService.findbilltype(id).subscribe((data: BillType[]) => {
       this.bt = data;//json
       return this.bt = Array.of(this.bt);
     });
+    this.billtypeService.get().subscribe((data: BillType[])=>{
+      this.billtype = data;
+    })
+    this.selectedBillTypeId = id;
   }
   //Costs
   findcost(id) {
-    this.selectedCostsId = id;
+    
     this.costsService.findcost(id).subscribe((data: Costs[]) => {
       this.cs = data;//json
       return this.cs = Array.of(this.cs);
     });
+    this.costsService.get().subscribe((data:Costs[])=>{
+      this.costs = data;
+    })
+    this.selectedCostsId = id;
   }
   //Expenses
   findexpenses(id) {
-    this.selectedExpensesId = id;
+    
     this.expensesService.findexpenses(id).subscribe((data: Expenses[]) => {
       this.ex = data;//json
       return this.ex = Array.of(this.ex);
     });
+
+    this.expensesService.get().subscribe((data: Expenses[])=>{
+      this.expenses = data;
+    })
+    this.selectedExpensesId = id;
   }
   //Providers
   findproviders(id) {
-    this.selectedProvidersId = id;
+    
     this.providersService.findproviders(id).subscribe((data: Providers[]) => {
       this.pr = data;//json
       return this.pr = Array.of(this.pr);
     });
+    this.providersService.getProviders().subscribe((data: Providers[])=>{
+      this.providers = data;
+    })
+    this.selectedProvidersId = id;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import { LotService } from '../servicios/lot.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Lot } from '../interfaces/lot';
@@ -8,12 +8,15 @@ import { Router } from '@angular/router';
 import { Inventory } from '../../inventory/interfaces/inventory';
 import { InventoryService } from '../../inventory/servicios/inventory.service';
 import Swal from 'sweetalert2';
+import {NgForm} from '@angular/forms';
 @Component({
   selector: 'app-lot-form',
   templateUrl: './lot-form.component.html',
   styleUrls: ['./lot-form.component.css']
 })
-export class LotFormComponent implements OnInit {
+export class LotFormComponent implements OnChanges {
+  @Input()entrada:any;
+
   @Output() Lot_Id = new EventEmitter<number>();
   lot: Lot = {
     Lot_Id: null,
@@ -33,15 +36,12 @@ export class LotFormComponent implements OnInit {
   editing: boolean = false;
   selectedDueDate: Date;
   postarr: Lot[];
-  products: Products[];
+  products: Lot[];
   selectedProductId: number;
   interval:any;
   constructor(private invetoryService: InventoryService, private lotService: LotService, private activatedRoute: ActivatedRoute, private router: Router, private httpClient: HttpClient) {
-
-    
     this.id = this.activatedRoute.snapshot.params['id'];
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
-
     if (this.id) {
       this.editing = true;
       this.httpClient.get(this.API_ENDPOINT + 'lot', { headers }).subscribe((data: Lot[]) => {
@@ -57,24 +57,34 @@ export class LotFormComponent implements OnInit {
       this.editing = false;
     }
 
-    
+    httpClient.get(this.API_ENDPOINT + 'productlot', { headers })
+    .subscribe((data: Lot[]) => {
+      this.products = data;
+    })
   }
-  ngOnInit() {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
-   this.interval=setInterval(() => {
+
+  ngOnChanges(changes:SimpleChanges) {
+    const valor = changes['entrada'];
+    if(valor.currentValue==1)
+    {
+       const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accesstoken': localStorage.getItem('token') });
       this.httpClient.get(this.API_ENDPOINT + 'productlot', { headers })
-      .subscribe((data: Products[]) => {
+      .subscribe((data: Lot[]) => {
         this.products = data;
+        changes['entrada'].currentValue=0;
       })
-    }, 1000);
+    }
+    this.entrada=[];
   }
+  onSubmit(form: NgForm) {
+    form.resetForm();
+}
   savePost() {
     if (this.editing) {
       this.lot.Product_Id = this.selectedProductId;
       this.lot.Due_Date = this.selectedDueDate;
       this.lotService.put(this.lot).subscribe((data) => { //El unico cambioes el put
         Swal.fire('Lote Actualizado', '', 'success');
-      clearInterval(this.interval);
         //console.log(data)
       }, (error) => {
         //console.log(error);
@@ -94,7 +104,6 @@ export class LotFormComponent implements OnInit {
           {
             this.lotService.save(this.lot).subscribe((data) => {
               Swal.fire('Lote Guardado', '', 'success');
-              clearInterval(this.interval);
               //this.router.navigate(["/lot-home"]);
               this.Lot_Id.emit(data['id']);
               this.inventory.Lot_Id = data['id'];
@@ -112,7 +121,6 @@ export class LotFormComponent implements OnInit {
           {
             this.lotService.save(this.lot).subscribe((data) => {
               Swal.fire('Lote Guardado', '', 'success');
-              clearInterval(this.interval);
               //this.router.navigate(["/lot-home"]);
               this.Lot_Id.emit(data['id']);
               this.inventory.Lot_Id = data['id'];

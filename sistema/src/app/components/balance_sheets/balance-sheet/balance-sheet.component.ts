@@ -159,7 +159,7 @@ export class BalanceSheetComponent implements OnInit {
       return;
     }
     this.balanceService.consultar(this.balance).subscribe((data)=>{
-      
+      console.log(data);
       this.cuentas = [];
       this.sum1 = 0;
       this.sum2 =0;
@@ -182,7 +182,7 @@ export class BalanceSheetComponent implements OnInit {
         if(a["Type"] == 1){
           
           //activo corriente
-          a["Monto"] = (a["Name"] == "CUENTAS POR COBRAR (Total CC)")? data[2][0]["Total_cuentascobrar"] : (a["Name"] == "MERCADERIAS (Inventario)")?data[3][0]["Total_inventario"] : 0
+          a["Monto"] = (a["Name"] == "CUENTAS POR COBRAR (Total CC)")? data[3][0]["Total_cuentascobrar"] : (a["Name"] == "MERCADERIAS (Inventario)")?data[2][0]["Total_inventario"] : 0
           a["Valor_Base"] = parseFloat( a["Monto"]);
           this.sum1 += parseFloat( a["Monto"]);
           temp.push(a);

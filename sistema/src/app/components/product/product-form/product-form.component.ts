@@ -17,6 +17,7 @@ import { ProductsService } from '../servicios/products.service';
 import { LotService } from '../../lot/servicios/lot.service';
 import { Procedure_SaveProduct } from '../interfaces/procedure_saveproduct';
 import { Router } from '@angular/router';
+
 import Swal from 'sweetalert2';
 import { ProductCategoryService } from '../../product_category/servicios/product-category.service';
 import {NgForm} from '@angular/forms';
@@ -41,6 +42,7 @@ export class ProductFormComponent implements OnInit {
     Due_Date: null,
     Product_Id: null,
   };
+  lote:Lot[];
   //Procedure SaveProduct
   procedure_saveproduct: Procedure_SaveProduct = {
     Name: null,
@@ -143,6 +145,9 @@ export class ProductFormComponent implements OnInit {
           Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
         }
       );
+      this.lotService.getLot().subscribe((data:Lot[])=>{
+        this.lote=data;
+      })
     } else {
       this.procedure_saveproduct.Product_Category_Id = this.selectedCategoryId;
       this.procedure_saveproduct.Brand_Id = this.selectedBrandId;
@@ -157,6 +162,7 @@ export class ProductFormComponent implements OnInit {
           this.Product_Id.emit(data['Correlative_Product']);
           this.selectedCategoryId = undefined;
           this.selectedBrandId = undefined;
+          this.selectedPerishable = false;
           //console.log(data);
         },
         (error) => {
@@ -164,6 +170,9 @@ export class ProductFormComponent implements OnInit {
           Swal.fire({ icon: 'error', title: 'Ocurrio un error', text: '' });
         }
       );
+      this.lotService.getLot().subscribe((data:Lot[])=>{
+        this.lote=data;
+      })
     }
   }
   searchCategory(filter: string, product_category) {
@@ -176,17 +185,27 @@ export class ProductFormComponent implements OnInit {
   }
   //Formularios Emergentes
   getBrandId(id) {
-    this.selectedBrandId = id;
+
     this.brandService.getBrandId(id).subscribe((data: Brands[]) => {
       this.brand = data;//json
+      
       return this.brand = Array.of(this.brand);
     });
+    this.brandService.getBrand().subscribe((data: Brands[])=>{
+      this.brands=data;
+    })
+    this.selectedBrandId = id;
   }
   getCategoryId(id) {
-    this.selectedCategoryId = id;
-    this.productcategoryService.getCategoryId(id).subscribe((data: Product_Category[]) => {
+      this.productcategoryService.getCategoryId(id).subscribe((data: Product_Category[]) => {
       this.productcategory = data;//json
       return this.productcategory = Array.of(this.productcategory);
     });
+
+    this.productcategoryService.getCategory().subscribe((data:Product_Category[])=>{
+      this.product_category = data;
+    })
+
+    this.selectedCategoryId = id;
   }
 }

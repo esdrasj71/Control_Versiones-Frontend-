@@ -158,10 +158,11 @@ export class PurchaseHeaderFormComponent implements OnInit {
       this.vista_detail.push(this.inventorys);
     });
   }
-
+  nuevoprod =0;
   getProductId(id) {
     this.inventoryService.getInventoryNoPerishable().subscribe((data: Inventory[]) => {
       this.inventory = data;
+      this.nuevoprod = 1;
       //console.log(data);
     });
     this.productService.getProductsId(id).subscribe((data: Products[]) => {
@@ -174,6 +175,7 @@ export class PurchaseHeaderFormComponent implements OnInit {
       this.vista_detail.push(this.inventorys);
       return this.vista_detail;
     });
+    this.nuevoprod = 0;
   }
 
   savePost() {

@@ -374,7 +374,7 @@
         </button>
       </div>
       <div class="modal-body" style="max-height: 900px; max-width: 900px; overflow-y: auto">
-        <app-lot-form (Lot_Id)="getLotId($event)"></app-lot-form>
+        <app-lot-form (Lot_Id)="getLotId($event)" [entrada]="nuevoprod"></app-lot-form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
